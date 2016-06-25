@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<configuration>
+    <property file="property/log.properties" />
+    
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>
+                %green(%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %level %logger{0} %marker - %msg %n)
+            </pattern>
+        </layout>
+    </appender>
+    
+    <appender name="AGENT_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        
+        <file>${log.dir}${log.file}_${file.agent}.csv</file>
+        
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>
+                ${log.dir}${log.history}${log.file}_${file.agent}_%d{yyyy-MM-dd}.zip
+            </fileNamePattern>
+        </rollingPolicy>
+        
+        <encoder>
+            <!-- time level thread logger messages -->
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS}, %marker, %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="MQ_EVENT_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>TRACE</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        
+        <file>${log.dir}${log.file}_${file.event}.csv</file>
+        
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>
+                ${log.dir}${log.history}${log.file}_${file.event}_%d{yyyy-MM-dd}.zip
+            </fileNamePattern>
+        </rollingPolicy>
+        
+        <encoder>
+            <!-- time level thread logger messages -->
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS}, %marker, %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="AGENT_RESULTS" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        
+        <file>${log.dir}${log.file}_${file.results}.csv</file>
+        
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>
+                ${log.dir}${log.history}${log.file}_${file.results}_%d{yyyy-MM-dd}.zip
+            </fileNamePattern>
+        </rollingPolicy>
+        
+        <encoder>
+            <!-- time level thread logger messages -->
+            <pattern>
+                %d{yyyy-MM-dd HH:mm:ss.SSS}, %marker, %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="ASYNC_AGENT_INFO" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="AGENT_INFO"/>
+    </appender>
+    
+    <appender name="ASYNC_MQ_EVENT_INFO" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="MQ_EVENT_INFO"/>
+    </appender>
+
+    <appender name="ASYNC_AGENT_RESULTS" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="AGENT_RESULTS"/>
+    </appender>
+
+    <root level="TRACE">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ASYNC_AGENT_INFO" />
+        <appender-ref ref="ASYNC_MQ_EVENT_INFO" />
+        <appender-ref ref="ASYNC_AGENT_RESULTS" />
+    </root>
+</configuration>

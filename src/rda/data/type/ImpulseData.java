@@ -1,0 +1,65 @@
+package rda.data.type;
+
+import rda.agent.queue.MessageObject;
+import rda.data.Data;
+import rda.data.DataType;
+
+public class ImpulseData implements DataType{
+    private static final Long impulse = 1000000L;
+    private static final Long burst = 10L;
+    
+    private static Long count;
+    private final Data data;
+    private final String name;
+    
+    private Long term, period, volume;
+
+    public ImpulseData(long time, long period, long volume, int numberOfUser, int valueOfUser, int datamode, long seed) {
+        this.name = "ImpulseType";
+        this.data = new Data();
+        
+        this.term = time;
+        this.volume = (time+1) * time * volume / 2 / (time / burst + 1) + 1;
+        this.period = period;
+        
+        //initialise
+        data.init(numberOfUser, valueOfUser, datamode, seed);
+        count = -1L;
+    }
+    
+    @Override
+    public String getName() {
+        return this.name;
+    }
+    
+    @Override
+    public String toString(){
+        Long n = (term / burst + 1) * 1000 / period;
+        Long result = n * volume;
+        
+        return name + " DataN_" + result;
+    }
+
+    @Override
+    public MessageObject nextData(Long time) {
+        if((time % burst != 0) && (count == -1)) count = volume.longValue()-1;
+        count++;
+        
+        MessageObject msg = data.getData();
+        
+        if(count == volume.longValue()) msg = data.getPoison();
+        if(count > volume.longValue()) {
+            msg = null;
+            count = -1L;
+        }
+        
+        return msg;
+    }
+
+    @Override
+    public String toString(Long time) {
+        if(time == -1L) return toString();
+        if((time % burst) == 0) return String.valueOf(volume);
+        else return String.valueOf(0);
+    }
+}

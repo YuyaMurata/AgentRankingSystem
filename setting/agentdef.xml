@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<agentdef package="rda" version="rda1.0">
+	<entities>
+		<!--UserAgent Entity define-->
+		<entity type="useragent">
+			<attribute name="UserID" type="string" primarykey="true" maxlength="32"/>
+			<attribute name="Profile" type="profile" singleentity="true"/>
+			<attribute name="Data" type="long" />
+			<attribute name="ConnectionCount" type="long" />
+			<attribute name="Log" type="log" />
+		</entity>
+		<entity type="profile">
+			<attribute name="UserID" type="string" primarykey="true" relationto="UserID" maxlength="32"/>
+			<attribute name="Name" type="string" maxlength="32"/>
+			<attribute name="Sex" type="string" maxlength="2"/>
+			<attribute name="Age" type="string" maxlength="4"/>
+			<attribute name="Address" type="string" maxlength="64"/>
+			<attribute name="LastAccessTime" type="timestamp" />
+		</entity>
+		<entity type="log">
+			<attribute name="UserID" type="string" primarykey="true" relationto="UserID" maxlength="32"/>
+			<attribute name="AccessID" type="string" primarykey="true" maxlength="16"/>
+			<attribute name="CurrentTime" type="long"/>
+                        <attribute name="LastAccessTime" type="timestamp" />
+		</entity>
+	</entities>
+	<messages>
+		<!--system define-->
+		<!--UserAgent Messages -->
+		<message type="initUserAgent" class="rda.agent.user.message.InitUserMessage"/>
+		<message type="readUserAgent" />
+		<message type="updateUserAgent" class="rda.agent.user.message.UpdateUserMessage"/>
+		<message type="readLogUserAgent"/>
+
+		<!--agent system define-->
+		<message type="dispose" />
+	</messages>
+	<agents>
+		<!--system define-->
+		<agent type="useragent">
+			<handler message="initUserAgent" class="rda.agent.user.handler.InitUserHandler"/>
+			<handler message="readUserAgent" class="rda.agent.user.handler.ReadUserHandler"/>
+			<handler message="updateUserAgent" class="rda.agent.user.handler.UpdateUserHandler"/>
+			<handler message="readLogUserAgent" class="rda.agent.user.handler.ReadLogUserHandler"/>
+
+			<handler message="dispose" class="rda.agent.disposer.handler.DisposeHandler"/>
+		</agent>
+	</agents>
+</agentdef>
