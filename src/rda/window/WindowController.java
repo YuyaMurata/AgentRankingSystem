@@ -24,6 +24,7 @@ public class WindowController{
         
     public void pack(Object msg){
         String destID = ((MessageTemplate)msg).toID;
+        
         if(windowMap.get(destID) == null){
             Window window = new Window(this, destID, size);
             windowMap.put(destID, window);

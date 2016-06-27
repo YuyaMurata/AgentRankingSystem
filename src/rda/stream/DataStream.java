@@ -50,7 +50,7 @@ public class DataStream implements Runnable{
         Map mqMap = AgentMessageQueueManager.getInstance().getMQMap();
         MessageObject msg;
         Window msgPack;
-        
+
         while(((msg = tcmanager.datagen.generate(t)) != null) && runnable){
             try {
                 window.pack(msg);
@@ -73,7 +73,7 @@ public class DataStream implements Runnable{
                     mqev.printEvent();
             } catch (Exception e){
                     e.printStackTrace();
-            }
+            }    
         }
     }
     
