@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import rda.agent.queue.MessageObject;
+import rda.agent.template.MessageTemplate;
 
 public class WindowController{
     private ExecutorService aliveThread;
@@ -22,14 +22,15 @@ public class WindowController{
         this.aliveTime = aliveTime;
     }
         
-    public void pack(MessageObject msg){
-        if(windowMap.get(msg.destID) == null){
-            Window window = new Window(this, msg.destID, size);
-            windowMap.put(msg.destID, window);
+    public void pack(Object msg){
+        String destID = ((MessageTemplate)msg).toID;
+        if(windowMap.get(destID) == null){
+            Window window = new Window(this, destID, size);
+            windowMap.put(destID, window);
             //aliveThread.execute(new WindowAliveThread(this, window, aliveTime));
         }
         
-        windowMap.get(msg.destID).pack(msg);
+        windowMap.get(destID).pack(msg);
     }
     
     public void addExecutable(Window window){

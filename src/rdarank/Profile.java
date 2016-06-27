@@ -1,4 +1,4 @@
-package rda;
+package rdarank;
 
 import com.ibm.agent.exa.AgentException;
 import com.ibm.agent.exa.impl.HPAEntity;
@@ -68,7 +68,7 @@ public class Profile extends HPAEntity {
      * Get the version string
     **/
     public String getVersion() {
-        return "rda1.0";
+        return "rdarank1.0";
     }
 
     /**

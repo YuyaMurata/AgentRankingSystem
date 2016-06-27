@@ -1,4 +1,4 @@
-package rda;
+package rdarank;
 
 import com.ibm.agent.exa.AgentException;
 import com.ibm.agent.exa.impl.HPAEntity;
@@ -9,40 +9,40 @@ import com.ibm.agent.exa.entity.Entity;
 import java.util.Iterator;
 
 /**
- * Generated code for useragent.
+ * Generated code for rankagent.
  *
- * <p>entity type="useragent tablename="useragent <br>
- * attribute name="UserID" type="STRING" primarykey="true" <br>
- * attribute name="Profile" type="profile" <br>
- * attribute name="Data" type="LONG" <br>
+ * <p>entity type="rankagent tablename="rankagent <br>
+ * attribute name="RankID" type="STRING" primarykey="true" <br>
+ * attribute name="RankTable" type="ranktable" <br>
+ * attribute name="TotalUsers" type="LONG" <br>
  * attribute name="ConnectionCount" type="LONG" <br>
- * attribute name="Log" type="log" <br>
+ * attribute name="Log" type="ranklog" <br>
 **/
-public class Useragent extends HPAEntity {
+public class Rankagent extends HPAEntity {
     /**
     * Primary key size
     **/
     public static final int PKINDEXSIZE = 1;
 
     /**
-    * Primary key index of UserID
+    * Primary key index of RankID
     **/
-    public static final int PKINDEX_USERID = 0;
+    public static final int PKINDEX_RANKID = 0;
 
     /**
-    * Column index of UserID
+    * Column index of RankID
     **/
-    public static final int USERID = 0;
+    public static final int RANKID = 0;
 
     /**
-    * Column index of Profile
+    * Column index of RankTable
     **/
-    public static final int PROFILE = 1;
+    public static final int RANKTABLE = 1;
 
     /**
-    * Column index of Data
+    * Column index of TotalUsers
     **/
-    public static final int DATA = 2;
+    public static final int TOTALUSERS = 2;
 
     /**
     * Column index of ConnectionCount
@@ -58,7 +58,7 @@ public class Useragent extends HPAEntity {
      * This constructor is used by the runtime.
      * An application should not create an instance with this constructor
     **/
-    public Useragent() {
+    public Rankagent() {
         super();
     }
 
@@ -66,71 +66,89 @@ public class Useragent extends HPAEntity {
      * Get the version string
     **/
     public String getVersion() {
-        return "rda1.0";
+        return "rdarank1.0";
     }
 
     /**
-     * Get a value of UserID. 
-     * The setter method of UserID is not generated because this attribute is a primarykey. 
-     * @return UserID
+     * Get a value of RankID. 
+     * The setter method of RankID is not generated because this attribute is a primarykey. 
+     * @return RankID
      **/
-    public final String getUserID(TxID tx) {
+    public final String getRankID(TxID tx) {
         // generated code
         return getString(tx,0);
     }
 
     /**
-     * Get a set of Profile. 
-     * Entity type of this entity set is profile.
-     * A returned entity set has a single entity.
-     * The setter method of Profile is not generated because this attribute is a EntitySet. 
-     * @return an entity set containing Profile
+     * Get a set of RankTable. 
+     * Entity type of this entity set is ranktable.
+     * The setter method of RankTable is not generated because this attribute is a EntitySet. 
+     * @return an entity set containing Ranktable
      * @throws AgentException
      **/
-    public final EntitySet getProfileSet(TxID tx) throws AgentException {
+    public final EntitySet getRankTable(TxID tx) throws AgentException {
         // generated code
         return getEntitySet(tx,1);
     }
 
     /**
-     * Get a value of Profile. 
+     * Get a value of RankTable. 
      * @param tx a transaction context
-     * @return Profile
+     * @param UserID
+     * @return Ranktable
      * @throws AgentException
      **/
-    public final Profile getProfile(TxID tx) throws AgentException {
+    public final Ranktable getRankTable(TxID tx,String UserID) throws AgentException {
         // generated code
         EntitySet es = getEntitySet(tx,1);
-        if (es == null) return null;
-        return (Profile)es.getSingleEntity();
-    }
-
-    /**
-     * Create a value of Profile. 
-     * @param tx a transaction context
-     * @return Profile
-     **/
-    public final Profile createProfile(TxID tx) throws AgentException {
-        // generated code
-        EntitySet es = getEntitySet(tx,1);
-        Profile entity = (Profile)es.createEntity(tx,new Object[1]);
+        Entity parent = es.getParent();
+        Object[] primaryKeys = new Object[]{parent.getObject(tx,0),UserID};
+        EntityKey ek = new EntityKey("ranktable", primaryKeys);
+        Ranktable entity = (Ranktable)es.getEntity(ek);
         return entity;
     }
 
     /**
-     * @return Data
+     * Create a value of Ranktable. 
+     * @param tx a transaction context
+     * @param UserID
+     * @return Ranktable
      **/
-    public final long getData(TxID tx) {
+    public final Ranktable createRankTable(TxID tx,String UserID) throws AgentException {
+        // generated code
+        if (UserID.length() > 16) {
+            throw new AgentException("UserID > maxlength(16)");
+        }
+        EntitySet es = getEntitySet(tx,1);
+        Object[] primaryKeys = new Object[]{null,UserID};
+        Ranktable entity = (Ranktable)es.createEntity(tx,primaryKeys);
+        return entity;
+    }
+
+    /**
+     * Get an iterator of Ranktable. 
+     * @param tx a transaction context
+     **/
+    public final Iterator<Entity> getRankTableIterator(TxID tx) throws AgentException {
+        // generated code
+        EntitySet es = getEntitySet(tx,1);
+        return es.iterator(tx);
+    }
+
+    /**
+     * @return TotalUsers
+     **/
+    public final long getTotalUsers(TxID tx) {
         // generated code
         return getLong(tx,2);
     }
 
     /**
-     * Set a value to Data. 
+     * Set a value to TotalUsers. 
      * @param tx a transaction context
-     * @param value a value to be set to Data
+     * @param value a value to be set to TotalUsers
      **/
-    public final void  setData(TxID tx, long value) throws AgentException {
+    public final void  setTotalUsers(TxID tx, long value) throws AgentException {
         // generated code
         setLong(tx,2,value);
     }
@@ -155,9 +173,9 @@ public class Useragent extends HPAEntity {
 
     /**
      * Get a set of Log. 
-     * Entity type of this entity set is log.
+     * Entity type of this entity set is ranklog.
      * The setter method of Log is not generated because this attribute is a EntitySet. 
-     * @return an entity set containing Log
+     * @return an entity set containing Ranklog
      * @throws AgentException
      **/
     public final EntitySet getLog(TxID tx) throws AgentException {
@@ -169,38 +187,38 @@ public class Useragent extends HPAEntity {
      * Get a value of Log. 
      * @param tx a transaction context
      * @param AccessID
-     * @return Log
+     * @return Ranklog
      * @throws AgentException
      **/
-    public final Log getLog(TxID tx,String AccessID) throws AgentException {
+    public final Ranklog getLog(TxID tx,String AccessID) throws AgentException {
         // generated code
         EntitySet es = getEntitySet(tx,4);
         Entity parent = es.getParent();
         Object[] primaryKeys = new Object[]{parent.getObject(tx,0),AccessID};
-        EntityKey ek = new EntityKey("log", primaryKeys);
-        Log entity = (Log)es.getEntity(ek);
+        EntityKey ek = new EntityKey("ranklog", primaryKeys);
+        Ranklog entity = (Ranklog)es.getEntity(ek);
         return entity;
     }
 
     /**
-     * Create a value of Log. 
+     * Create a value of Ranklog. 
      * @param tx a transaction context
      * @param AccessID
-     * @return Log
+     * @return Ranklog
      **/
-    public final Log createLog(TxID tx,String AccessID) throws AgentException {
+    public final Ranklog createLog(TxID tx,String AccessID) throws AgentException {
         // generated code
         if (AccessID.length() > 16) {
             throw new AgentException("AccessID > maxlength(16)");
         }
         EntitySet es = getEntitySet(tx,4);
         Object[] primaryKeys = new Object[]{null,AccessID};
-        Log entity = (Log)es.createEntity(tx,primaryKeys);
+        Ranklog entity = (Ranklog)es.createEntity(tx,primaryKeys);
         return entity;
     }
 
     /**
-     * Get an iterator of Log. 
+     * Get an iterator of Ranklog. 
      * @param tx a transaction context
      **/
     public final Iterator<Entity> getLogIterator(TxID tx) throws AgentException {
