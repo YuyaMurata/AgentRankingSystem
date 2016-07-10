@@ -9,7 +9,7 @@
 --			<attribute name="Data" type="long" />
 --			<attribute name="ConnectionCount" type="long" />
 --			<attribute name="MessageLatency" type="long" />
---          <attribute name="MessageQueueLength" type="long" />
+--                      <attribute name="MessageQueueLength" type="long" />
 --			<attribute name="Log" type="userlog" />
 --		</entity>
 --		<entity type="profile">
@@ -32,7 +32,7 @@ CREATE TRANSIENT TABLE useragent (
 	Data INTEGER,
 	ConnectionCount BIGINT,
 	MessageLatency BIGINT,
-    MessageQueueLength BIGINT,
+        MessageQueueLength BIGINT,
 	PRIMARY KEY(UserID)
 );
 COMMIT WORK;
@@ -89,7 +89,7 @@ CREATE TRANSIENT TABLE rankagent (
 	TotalUsers BIGINT,
 	ConnectionCount BIGINT,
 	MessageLatency BIGINT,
-    MessageQueueLength BIGINT,
+        MessageQueueLength BIGINT,
 	PRIMARY KEY(RankID)
 );
 COMMIT WORK;
