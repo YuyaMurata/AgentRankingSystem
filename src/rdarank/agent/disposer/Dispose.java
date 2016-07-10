@@ -1,4 +1,4 @@
-package rdarank.agent.disposer;
+package rda.agent.disposer;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -11,7 +11,7 @@ import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageFactory;
 import com.ibm.agent.exa.client.AgentClient;
 import com.ibm.agent.exa.client.AgentExecutor;
-import rdarank.agent.client.AgentConnection;
+import rda.agent.client.AgentConnection;
 
 /**
  *  全エージェントに削除指令を示すDISPOSEメッセージを送信するエグゼキュータ．

@@ -9,7 +9,7 @@ import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageFactory;
 import com.ibm.agent.exa.client.AgentClient;
 import com.ibm.agent.exa.client.AgentExecutor;
-import rdarank.agent.client.AgentConnection;
+import rda.agent.client.AgentConnection;
 
 public class ReadLogUser implements AgentExecutor, Serializable{
 	/**

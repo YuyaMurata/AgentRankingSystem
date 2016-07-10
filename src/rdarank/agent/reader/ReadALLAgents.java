@@ -15,7 +15,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.TreeMap;
-import rdarank.agent.client.AgentConnection;
+import rda.agent.client.AgentConnection;
 import rdarank.agent.user.reader.UserInfo;
 
 /**

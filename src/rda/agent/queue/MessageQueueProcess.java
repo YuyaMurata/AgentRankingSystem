@@ -5,8 +5,8 @@
  */
 package rda.agent.queue;
 
+import java.util.List;
 import rda.agent.template.AgentType;
-import rda.window.Window;
 
 /**
  *
@@ -30,7 +30,7 @@ public abstract class MessageQueueProcess extends Thread{
             Object msgpack = get();
             
             if(msgpack != null)
-                agent.sendMessage(((Window)msgpack).unpack());
+                agent.sendMessage((List)msgpack);
             
         }
         System.out.println(">> Stop--MessageQueue of "+agent.getID()+" shutdown message processing");

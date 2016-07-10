@@ -43,8 +43,7 @@ public class LogSchedule implements Runnable{
         try{
             if(t == 0) LoggerManager.getInstance().printTestcaseData(time);
             LoggerManager.getInstance().printQueueObserever();
-            if(t == 0) LoggerManager.getInstance().printAgentDBTranData();
-            if(t == 0) LoggerManager.getInstance().printMessageLatency();
+            if(t == 0) LoggerManager.getInstance().printAgentDBData();
             //System.out.println(">> TestGenerate Counts = "+TestCaseManager.getInstance().checkTestGenerateCounts());
         }catch(Exception e){
             e.printStackTrace();
@@ -79,6 +78,7 @@ public class LogSchedule implements Runnable{
         loggerTime("StopTime", String.valueOf(stop));
         
         LoggerManager.getInstance().printAgentDBLifeData(start);
+        
         LoggerManager.getInstance().printAgentTranTotal();
         loggerTime("TransactionTime", String.valueOf(stop-start));
     }

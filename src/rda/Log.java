@@ -8,7 +8,7 @@ import com.ibm.agent.exa.TxID;
  * Generated code for log.
  *
  * <p>entity type="log tablename="log <br>
- * attribute name="UserID" type="STRING" primarykey="true" relationto="UserID" <br>
+ * attribute name="AgentID" type="STRING" primarykey="true" relationto="AgentID" <br>
  * attribute name="AccessID" type="STRING" primarykey="true" <br>
  * attribute name="CurrentTime" type="LONG" <br>
  * attribute name="LastAccessTime" type="TIMESTAMP" <br>
@@ -20,9 +20,9 @@ public class Log extends HPAEntity {
     public static final int PKINDEXSIZE = 2;
 
     /**
-    * Primary key index of UserID
+    * Primary key index of AgentID
     **/
-    public static final int PKINDEX_USERID = 0;
+    public static final int PKINDEX_AGENTID = 0;
 
     /**
     * Primary key index of AccessID
@@ -30,9 +30,9 @@ public class Log extends HPAEntity {
     public static final int PKINDEX_ACCESSID = 1;
 
     /**
-    * Column index of UserID
+    * Column index of AgentID
     **/
-    public static final int USERID = 0;
+    public static final int AGENTID = 0;
 
     /**
     * Column index of AccessID
@@ -65,11 +65,11 @@ public class Log extends HPAEntity {
     }
 
     /**
-     * Get a value of UserID. 
-     * The setter method of UserID is not generated because this attribute is a primarykey. 
-     * @return UserID
+     * Get a value of AgentID. 
+     * The setter method of AgentID is not generated because this attribute is a primarykey. 
+     * @return AgentID
      **/
-    public final String getUserID(TxID tx) {
+    public final String getAgentID(TxID tx) {
         // generated code
         return getString(tx,0);
     }

@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 import rda.agent.queue.MessageObject;
 import rda.agent.queue.MessageQueue;
 import rda.agent.queue.MessageQueueEvent;
+import rda.agent.sender.SendAgentMessage;
 import rda.manager.AgentMessageQueueManager;
 import rda.manager.TestCaseManager;
 import rda.window.Window;
@@ -63,8 +64,11 @@ public class DataStream implements Runnable{
                 //Get MessageQueue
                 MessageQueue mq = (MessageQueue)mqMap.get(agID);
             
-                //MessageSender      
-                mq.put(msgPack);
+                //MessageSender
+                mq.put(msgPack.unpack());
+                
+                //Agent Put Handler
+                //new SendAgentMessage().sendMessage(msgPack);
                 
                 total = total+msgPack.unpack().size();
                 

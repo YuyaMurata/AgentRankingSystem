@@ -8,8 +8,8 @@ import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.exa.MessageFactory;
 import com.ibm.agent.exa.client.AgentClient;
 import java.util.List;
-import rdarank.agent.client.AgentConnection;
-import rdarank.agent.template.AgentType;
+import rda.agent.client.AgentConnection;
+import rda.agent.template.AgentType;
 import rdarank.agent.user.message.UpdateUserMessage;
 import rda.manager.LoggerManager;
 
@@ -19,7 +19,7 @@ public class UpdateRank extends AgentType {
     */
     private static final long serialVersionUID = -4245098133759745980L;
     private static final String AGENT_TYPE = "useragent";
-    private static final String MESSAGE_TYPE = "updateUserAgent";
+    private static final String MESSAGE_TYPE = "updateRankAgent";
     private static AgentConnection agcon;
     private String agID;
         

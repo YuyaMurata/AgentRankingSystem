@@ -9,7 +9,7 @@ import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageHandler;
 import com.ibm.agent.exa.TxID;
 import java.util.List;
-import rdarank.agent.queue.MessageObject;
+import rda.agent.queue.MessageObject;
 import rdarank.agent.user.message.UpdateUserMessage;
 
 public class UpdateUserHandler extends MessageHandler{

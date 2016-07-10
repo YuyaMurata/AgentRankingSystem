@@ -16,7 +16,9 @@ import java.util.Properties;
 import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.exa.client.AgentClient;
 import com.ibm.agent.exa.client.AgentExecutor;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import rda.agent.client.AgentConnection;
 
@@ -73,20 +75,32 @@ public class DBAccess implements AgentExecutor, Serializable {
             ResultSet rs = stmt.executeQuery();
             
             //IDとDataを取得
-            Map results = new HashMap();
-            if(sqlstmt.contains("useragent")){
+            List<Map> result = new ArrayList<>();
+            if(sqlstmt.contains("agent")){
+                Map tran = new HashMap();
+                Map late = new HashMap();
+                Map length = new HashMap();
                 while(rs.next()){
-                     results.put(rs.getString(1), rs.getLong(2));
+                    tran.put(rs.getString(1), rs.getLong(2));
+                    late.put(rs.getString(1), rs.getLong(4));
+                    length.put(rs.getString(1), rs.getLong(5));
                 }
-                return results;
+                result.add(tran);
+                result.add(late);
+                result.add(length);
+                
+                return result;
             }
             
             if(sqlstmt.contains("log")){
+                Map life = new HashMap();
                 while(rs.next()){
                     if(rs.getString(2).contains("update"))
-                        results.put(rs.getString(1), rs.getLong(3));
+                        life.put(rs.getString(1), rs.getLong(3));
                 }
-                return results;
+                result.add(life);
+                
+                return result;
             }
             
             return null;
@@ -125,9 +139,17 @@ public class DBAccess implements AgentExecutor, Serializable {
             Collection<Object> col = (Collection<Object>)ret;
             
             SQLReturnObject sqlResults = new SQLReturnObject();
+            List<Map> results = new ArrayList<>();
             for(Object o : col) {
-                sqlResults.setResultSet((Map)o);
+                int i=0;
+                for(Map m : (List<Map>)o){
+                    if(results.size() <= i) results.add(i, new HashMap());
+                    results.get(i).putAll(m);
+                    i++;
+                }
             }
+            
+            sqlResults.setResultSet(results);
             
             con.returnConnection(client);
             

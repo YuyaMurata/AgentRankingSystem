@@ -10,7 +10,7 @@ import com.ibm.agent.exa.MessageFactory;
 import com.ibm.agent.exa.client.AgentClient;
 import com.ibm.agent.exa.client.AgentExecutor;
 import java.util.ArrayList;
-import rdarank.agent.client.AgentConnection;
+import rda.agent.client.AgentConnection;
 
 public class ReadUser implements AgentExecutor, Serializable{
     /**

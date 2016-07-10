@@ -1,7 +1,6 @@
 package rda.test.unit;
 
-import rda.agent.rank.creator.CreateRankAgent;
-import rda.agent.user.creator.CreateUserAgent;
+import rda.agent.creator.CreateAgent;
 import rda.manager.AgentMessageQueueManager;
 import rda.test.manager.UnitTestManager;
 import rda.test.msg.MessageBox;
@@ -26,20 +25,12 @@ public class CreateAgentTest extends TestParameter{
         createStop();
     }
     
-    //UserAgentのCreatorで作成
-    public static void createUserAgents(Integer numberOfUserAgents){
-        CreateUserAgent userAgent = new CreateUserAgent();
-        
-        for(int i=0; i < numberOfUserAgents; i++)
-            userAgent.create("U#00"+i);
-    }
-    
     //RankAgentのCreatorで作成
     public static void createRankAgents(Integer numberOfRankAgents){
-        CreateRankAgent rankAgent = new CreateRankAgent();
+        CreateAgent agent = new CreateAgent();
         
         for(int i=0; i < numberOfRankAgents; i++)
-            rankAgent.create("R#00"+i, QUEUE_LENGTH, 10L, 10L);
+            agent.create("R#00"+i, QUEUE_LENGTH, 10L, 10L);
         
     }
     

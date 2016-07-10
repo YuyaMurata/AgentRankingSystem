@@ -54,24 +54,38 @@ public class IDManager {
     
     //Register InitAgent
     public synchronized void initRegID(String id){
+        //Original IDを10件に絞る
         if(serialID-1 < 10){
             List agList = new ArrayList();
             agList.add(id);
             regAgentMap.put(id, agList);
             ageMap.put(serialID * 10, id);
+            
+            //ID Mapping
+            idMap.put(id, id);
         } else {
             List agList = (List)regAgentMap.get(ageMap.get(((serialID % 10)+1) * 10));
             agList.add(id);
+            
+            //ID Mapping
+            idMap.put(id, ageMap.get(((serialID % 10)+1) * 10));
         }
     }
     
+    private Map idMap = new HashMap<>();
     public synchronized void regID(String origID, String id){
         ((List)regAgentMap.get(origID)).add(id);
+        
+        //ID Mapping
+        idMap.put(id, origID);
     }
     
     public synchronized void deleteID(String origID, String id){
         ((List)regAgentMap.get(origID)).remove(id);
         setReserveID(id);
+        
+        //ID Mapping
+        idMap.remove(id);
     }
     
     public String ageToID(Integer age){
@@ -81,6 +95,10 @@ public class IDManager {
     public String getDestID(String origID){
         List destAgentList = (List) regAgentMap.get(origID);
         return (String)destAgentList.get(rand.nextInt(destAgentList.size()));
+    }
+    
+    public String getOrigID(String agID){
+        return (String)idMap.get(agID);
     }
     
     //Test Print

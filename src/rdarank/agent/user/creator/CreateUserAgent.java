@@ -10,8 +10,8 @@ import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.exa.MessageFactory;
 import com.ibm.agent.exa.client.AgentClient;
 import com.ibm.agent.exa.client.AgentExecutor;
-import rdarank.agent.client.AgentConnection;
-import rdarank.agent.profile.AgentProfileGenerator;
+import rda.agent.client.AgentConnection;
+import rda.agent.profile.AgentProfileGenerator;
 import rdarank.agent.user.message.InitUserMessage;
 
 public class CreateUserAgent implements AgentExecutor, Serializable{

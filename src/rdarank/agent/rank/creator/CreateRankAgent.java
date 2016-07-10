@@ -10,9 +10,8 @@ import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.exa.MessageFactory;
 import com.ibm.agent.exa.client.AgentClient;
 import com.ibm.agent.exa.client.AgentExecutor;
-import rdarank.agent.client.AgentConnection;
-import rdarank.agent.profile.AgentProfileGenerator;
-import rdarank.agent.queue.MessageQueue;
+import rda.agent.client.AgentConnection;
+import rda.agent.queue.MessageQueue;
 import rdarank.agent.rank.updater.UpdateRank;
 import rdarank.agent.user.message.InitUserMessage;
 //import rda.manager.AgentMessageQueueManager;
@@ -73,14 +72,10 @@ public class CreateRankAgent implements AgentExecutor, Serializable{
     public Object create(String agID, Integer size, Long queuewait, Long agentwait){
         try {
             AgentConnection ag = AgentConnection.getInstance();
-            AgentProfileGenerator profileGen = AgentProfileGenerator.getInstance();
             
             AgentClient client = ag.getConnection();
                 
             agentKey = new AgentKey(AGENT_TYPE,new Object[]{agID});
-            prof = profileGen.genAgentProfile(agID);
-            
-            System.out.println(">Profile:"+prof);
             
             //Create Agent
             CreateRankAgent executor = new CreateRankAgent(agentKey, prof);

@@ -8,19 +8,17 @@ public class MessageQueueEvent extends Exception{
     /**
     *
     */
-    private final String name, clonename;
-    private final Window msgpack;
-    public MessageQueueEvent(String name, String clonename, Object msgpack) {
-        super(name);
+    private final String name, clonename, original;
+    public MessageQueueEvent(String name, String clonename, String original) {
         this.name = name;
         this.clonename = clonename;
-        this.msgpack = (Window)msgpack;
+        this.original = original;
     }
 
     public void printEvent(){
         //if(AgentMessageQueueManager.getInstance().getAutoMode() == 1){
             //System.out.println(">MQEvents:"+name+"-msg="+msgpack.toString());
-            AgentLogPrint.printAgentLoad(msgpack.getOrigID(), name, clonename);
+            AgentLogPrint.printAgentLoad(original, name, clonename);
         //}
     }
     

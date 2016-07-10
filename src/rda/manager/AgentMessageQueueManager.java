@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import rda.agent.queue.MessageQueue;
 import rda.agent.queue.QueueObserver;
-import rda.agent.rank.creator.CreateRankAgent;
+import rda.agent.creator.CreateAgent;
 import rda.clone.AgentCloning;
 
 /**
@@ -20,7 +20,7 @@ import rda.clone.AgentCloning;
  */
 public class AgentMessageQueueManager {
     private static AgentMessageQueueManager manager = new AgentMessageQueueManager();
-    private Boolean runnable;
+    private Boolean runnable = true;
     private Integer queueLength;
     private Long queuewait, agentwait;
     private Integer agentMode, reserveMode;
@@ -39,7 +39,7 @@ public class AgentMessageQueueManager {
         this.agentwait = (Long)agentMQParam.get("AGENT_WAIT");
         this.agentMode = (Integer)agentMQParam.get("AGENT_MODE");
         this.reserveMode = (Integer)agentMQParam.get("RESERVE_MODE");
-        this.runnable = true;
+        //this.runnable = true;
         
         AgentCloning.setAutoMode(agentMode);
     }
@@ -68,11 +68,9 @@ public class AgentMessageQueueManager {
         
         if((agID = id.getReserveID()) == null){
             agID = id.genID();
-            CreateRankAgent rankAgent = new CreateRankAgent();
-            agent = rankAgent.create(agID, queueLength, queuewait, agentwait);
-            register((MessageQueue)agent);
+            CreateAgent rankAgent = new CreateAgent();
+            rankAgent.create(agID, queueLength, queuewait, agentwait);
         } else {
-            agent = getAgent(agID);
             System.out.println(">> Get Reserve Agent = "+agID);
         }
         
@@ -82,19 +80,16 @@ public class AgentMessageQueueManager {
     //Agentの複製 e.g.("R#01_Clone")
     public String createCloneAgent(String originalID, Object originalState){
         String agID;
-        Object agent = null;
         
         if((agID = id.getReserveID()) == null){
             agID = id.genID();
-            CreateRankAgent rankAgent = new CreateRankAgent();
-            agent = rankAgent.create(agID, queueLength, queuewait, agentwait);
-            register((MessageQueue)agent);
+            CreateAgent rankAgent = new CreateAgent();
+            rankAgent.create(agID, queueLength, queuewait, agentwait);
         } else {
-            agent = getAgent(agID);
             System.out.println(">> Get Reserve Agent = "+agID);
         }
         
-        ((MessageQueue)agent).setOriginalQueue(originalID, originalState);
+        ((MessageQueue)getAgent(agID)).setOriginalQueue(originalID, originalState);
         
         return agID;
     }
@@ -188,8 +183,10 @@ public class AgentMessageQueueManager {
             sbsize.append(",");
         }
         
-        sb.deleteCharAt(sb.length()-1);
-        sbsize.deleteCharAt(sbsize.length()-1);
+        if(sb.length() > 0){
+            sb.deleteCharAt(sb.length()-1);
+            sbsize.deleteCharAt(sbsize.length()-1);
+        }
         
         sb.append("\n");
         sb.append(sbsize);

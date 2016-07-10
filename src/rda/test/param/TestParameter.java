@@ -31,7 +31,7 @@ public abstract class TestParameter {
     public static final Long SEED = Long.MAX_VALUE;
     public static final String NAME_RULE = "TEST#";
     
-    public static final String AGENT_TYPE = "useragent";
+    public static final String AGENT_TYPE = "aggregateagent";
     
     public static final Map profParam = 
         new HashMap<Object, Object>() {{

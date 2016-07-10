@@ -5,7 +5,6 @@
  */
 package rda.manager;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,73 +58,39 @@ public class LoggerManager {
         AgentLogPrint.printMessageQueueLog(AgentMessageQueueManager.getInstance().observerToMap());
     }
     
-    public void printAgentDBTranData(){
-        SQLReturnObject obj = db.query("select * from useragent");
-        System.out.println("> DataTransaction:\n"+obj.toString());
-        AgentLogPrint.printAgentTransaction(obj.toMapList());
+    public void printAgentDBData(){
+        SQLReturnObject obj = db.query("select * from aggregateagent");
+        
+        Map map = obj.toMap("Transaction", 0);
+        System.out.println("> DataTransaction:\n"+obj.toString(map));
+        AgentLogPrint.printAgentTransaction(map);
+        
+        map = obj.toMap("Latency", 1);
+        System.out.println("> MessageLatency:\n"+obj.toString(map));
+        AgentLogPrint.printMessageLatency(map);
+        
+        map = obj.toMap("Length", 2);
+        System.out.println("> QueueLength:\n"+obj.toString(map));
     }
     
     public void printAgentDBLifeData(Long time){
         SQLReturnObject obj = db.query("select * from log");
-        System.out.println("> AgentLifeTime:\n"+obj.toString(time));
-        AgentLogPrint.printAgentTransaction(obj.toMapList(time));
-    }
-    
-    public void printMessageLatency(){
-        //System.out.println("> MessageLatency:\n"+latencyToString());
-        AgentLogPrint.printMessageLatency(latencyToMap());
+        
+        Map map = obj.toMap("Time", time);
+        System.out.println("> AgentLifeTime:\n"+obj.toString(map));
+        AgentLogPrint.printAgentTransaction(map);
     }
     
     public void printAgentTranTotal(){
-        SQLReturnObject obj = db.query("select * from useragent");
-        Map map = new HashMap();
-        List field = (List) obj.toMapList().get("Field");
-        List data = (List) obj.toMapList().get("Data");
-        map.put(field.get(field.size()-1), data.get(data.size()-1));
-        AgentLogPrint.printResults("", map);
-    }
-    
-    public Map latencyToMap(){
-        StringBuilder place = new StringBuilder("MessageLatency");
-        List field = new ArrayList(latencyMap.keySet());
-        List data = new ArrayList(latencyMap.values());
-        Map map = new HashMap();
+        SQLReturnObject obj = db.query("select * from aggregateagent");
         
-        for(int i=0; i < field.size(); i++)
-            place.append(",{}");
+        Map map = obj.toMap("Transaction", 0);
         
-        map.put("Place", place.toString());
-        map.put("Field", field);
-        map.put("Data", data);
+        List field = (List) map.get("Field");
+        List data = (List) map.get("Data");
         
-        return map;
-    }
-    
-    public String latencyToString(){
-        if(latencyMap.size() < 1) return "";
-        
-        StringBuilder sb = new StringBuilder();
-        StringBuilder sblat = new StringBuilder();
-        Long avg = 0L;
-        for(Object agID : latencyMap.keySet()){
-            sb.append(agID);
-            sb.append(",");
-            
-            Long latency = (Long)latencyMap.get(agID);
-            
-            sblat.append(latency);
-            sblat.append(",");
-            
-            avg = avg + latency;
-        }
-        avg = avg / latencyMap.size();
-        
-        sb.append("Avg.");
-        sblat.append(avg);
-        
-        sb.append("\n");
-        sb.append(sblat);
-        
-        return sb.toString();
+        Map resultMap = new HashMap();
+        resultMap.put(field.get(field.size()-1), data.get(data.size()-1));
+        AgentLogPrint.printResults("", resultMap);
     }
 }

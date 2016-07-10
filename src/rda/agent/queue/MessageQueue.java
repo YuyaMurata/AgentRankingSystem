@@ -59,17 +59,18 @@ public class MessageQueue extends MessageQueueProcess{
         } catch (InterruptedException ex) {
         }
         
-        if(!success) eventClone(msgpack);
+        if(!success) eventClone();
         
         if(isClone() && ((queue.size() + orgQueue.size()) == 0)) eventDelete();
     }
     
     //Load Balancer Cloning updgrade
-    public void eventClone(Object msgpack) throws MessageQueueEvent{
-        String cloneID = AgentCloning.cloning(((Window)msgpack).getOrigID(), queue);
+    public void eventClone()  throws MessageQueueEvent{
+        String id = AgentMessageQueueManager.getInstance().getIDManager().getOrigID(name);
+        String cloneID = AgentCloning.cloning(id , queue);
         MessageQueueEvent.printState("cloning", originalID, cloneID);
         
-        throw new MessageQueueEvent(name, cloneID, msgpack);
+        throw new MessageQueueEvent(name, cloneID, id);
     }
     
     //Load Balancer Cloning degrade
@@ -90,13 +91,15 @@ public class MessageQueue extends MessageQueueProcess{
         //Work Stealing
         Object obj;
         int i= orgQueue.size() / 2;
-        while((obj = orgQueue.pollFirst()) != null)
+        while((obj = orgQueue.pollFirst()) != null){
+            i--;
+            if(i <= 0) break;
             try {
-                i--;
-                if(i <= 0) break;
                 put(obj);
-            } catch (MessageQueueEvent ex) {
+            } catch (MessageQueueEvent mqev) {
+                mqev.printEvent();
             }
+        }
     }
     
     private Boolean checkClone = false;
@@ -122,5 +125,9 @@ public class MessageQueue extends MessageQueueProcess{
     
     public String getID(){
         return name;
+    }
+    
+    public Integer getQueueLenght(){
+        return queue.size();
     }
 }

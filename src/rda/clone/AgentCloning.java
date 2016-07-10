@@ -31,6 +31,8 @@ public class AgentCloning {
     }
     
     public static String delete(String originalID, String cloneID){
+        if(mode) return "";
+        
         AgentMessageQueueManager manager = AgentMessageQueueManager.getInstance();
         manager.deleteAgentID(originalID, cloneID);
         System.out.println(">> Agent Cloning Delete "+ cloneID);

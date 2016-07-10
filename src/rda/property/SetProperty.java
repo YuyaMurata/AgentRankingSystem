@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public interface SetProperty {
 	public static final Property prop = new Property(true);
 	 
-	public static final String AGENT_TYPE = "useragent";
+	public static final String AGENT_TYPE = "aggregateagent";
         
         public static final String NAME_RULE = "R#";
         
