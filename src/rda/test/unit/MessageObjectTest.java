@@ -13,7 +13,7 @@ import rda.agent.queue.MessageObject;
  */
 public class MessageObjectTest {
     public static void main(String[] args) {
-        MessageObject msg = new MessageObject("Test", "Target", 1, 0);
+        MessageObject msg = new MessageObject("Target", 1);
         try {
             Thread.sleep(100);
         } catch (InterruptedException ex) {

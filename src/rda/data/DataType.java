@@ -5,14 +5,14 @@
  */
 package rda.data;
 
-import rda.agent.queue.MessageObject;
+import rda.data.test.TestData;
 
 /**
  *
  * @author kaeru
  */
 public interface DataType{
-    public abstract MessageObject nextData(Long time);
+    public abstract TestData nextData(Long time);
     public abstract String getName();
     
     @Override

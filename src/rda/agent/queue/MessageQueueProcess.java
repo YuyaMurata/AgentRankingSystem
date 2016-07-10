@@ -30,7 +30,7 @@ public abstract class MessageQueueProcess extends Thread{
             Object msgpack = get();
             
             if(msgpack != null)
-                agent.sendMessage((List)msgpack);
+                agent.sendMessage(msgpack);
             
         }
         System.out.println(">> Stop--MessageQueue of "+agent.getID()+" shutdown message processing");

@@ -2,12 +2,14 @@ package rdarank.agent.user.message;
 
 import com.ibm.agent.exa.Message;
 import java.util.List;
+import rda.agent.template.MessageTemplate;
 
 public class UpdateUserMessage extends Message{
 
-	public List data;
+    //Compound Data
+    public MessageTemplate messageData;
 
-	public void setParams(List data){
-		this.data = data;
-	}
+    public void setParams(MessageTemplate messageData){
+        this.messageData = messageData;
+    }
 }

@@ -12,7 +12,7 @@ import com.ibm.agent.exa.client.AgentClient;
 import com.ibm.agent.exa.client.AgentExecutor;
 import rda.agent.client.AgentConnection;
 import rda.agent.queue.MessageQueue;
-import rdarank.agent.rank.updater.UpdateRank;
+import rdarank.agent.user.updater.UpdateUser;
 import rdarank.agent.user.message.InitUserMessage;
 //import rda.manager.AgentMessageQueueManager;
 
@@ -87,7 +87,7 @@ public class CreateRankAgent implements AgentExecutor, Serializable{
             
             //Create AgentQueue
             MessageQueue mq = new MessageQueue(agID, size, queuewait, agentwait);
-            mq.setAgentType(new UpdateRank(agID));
+            mq.setAgentType(new UpdateUser(agID));
             
             return mq;
         } catch (AgentException e) {

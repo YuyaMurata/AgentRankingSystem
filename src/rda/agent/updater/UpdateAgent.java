@@ -10,11 +10,11 @@ import com.ibm.agent.exa.client.AgentClient;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-import java.util.List;
 import rda.agent.client.AgentConnection;
 import rda.agent.template.AgentType;
 import rda.agent.message.UpdateMessage;
-import rda.manager.LoggerManager;
+import rda.agent.queue.MessageObject;
+import rda.agent.template.MessageTemplate;
 
 public class UpdateAgent extends AgentType {
     /**
@@ -33,8 +33,8 @@ public class UpdateAgent extends AgentType {
     }
 
     AgentKey agentKey;
-    List data;
-    public UpdateAgent(AgentKey agentKey, List data) {
+    MessageTemplate data;
+    public UpdateAgent(AgentKey agentKey, MessageTemplate data) {
         // TODO 自動生成されたコンストラクター・スタブ
         this.agentKey = agentKey;
         this.data = data;
@@ -49,7 +49,7 @@ public class UpdateAgent extends AgentType {
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         this.agentKey = (AgentKey) in.readObject();
-        this.data = (List) in.readObject();
+        this.data = (MessageTemplate) in.readObject();
     }
 
     @Override
@@ -90,7 +90,7 @@ public class UpdateAgent extends AgentType {
             
             agentKey = new AgentKey(AGENT_TYPE, new Object[]{agID});
                 
-            UpdateAgent executor = new UpdateAgent(agentKey, (List)data);
+            UpdateAgent executor = new UpdateAgent(agentKey, (MessageObject)data);
             
             Object reply = client.execute(agentKey, executor);
             //if(reply != null){

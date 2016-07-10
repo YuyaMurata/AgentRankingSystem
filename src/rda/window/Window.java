@@ -7,7 +7,7 @@ package rda.window;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import rda.agent.template.MessageTemplate;
+import rda.data.test.DataTemplate;
 import rda.manager.AgentMessageQueueManager;
 
 /**
@@ -40,10 +40,11 @@ public class Window{
         destID = id;
     }
   
-    public void pack(Object msg){
-        if(((MessageTemplate)msg).sentinel != -1) win.add(msg);
+    public void pack(Object obj){
+        DataTemplate data = (DataTemplate) obj; 
+        if(data.sentinel != -1) win.add(data.getData());
         
-        if((win.size() >= size) || (((MessageTemplate)msg).sentinel == -1)) manager.addExecutable(this);
+        if((win.size() >= size) || (data.sentinel == -1)) manager.addExecutable(this);
     }
     
     public List unpack(){

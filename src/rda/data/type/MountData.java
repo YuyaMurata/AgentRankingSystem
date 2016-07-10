@@ -3,6 +3,7 @@ package rda.data.type;
 import rda.agent.queue.MessageObject;
 import rda.data.Data;
 import rda.data.DataType;
+import rda.data.test.TestData;
 
 public class MountData implements DataType{
     private final String name;
@@ -41,18 +42,18 @@ public class MountData implements DataType{
     }
 
     @Override
-    public MessageObject nextData(Long time) {
+    public TestData nextData(Long time) {
         count++;
         
-        MessageObject msg = data.getData();
+        TestData test = (TestData) data.getData();
         
-        if(count == (time * volume)) msg = data.getPoison();
+        if(count == (time * volume)) test = (TestData) data.getPoison();
         if(count > (time * volume)) {
-            msg = null;
+            test = null;
             count = -1L;
         }
         
-        return msg;
+        return test;
     }
 
     @Override

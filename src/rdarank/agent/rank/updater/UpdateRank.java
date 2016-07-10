@@ -7,9 +7,14 @@ import com.ibm.agent.exa.AgentKey;
 import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.exa.MessageFactory;
 import com.ibm.agent.exa.client.AgentClient;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.List;
 import rda.agent.client.AgentConnection;
+import rda.agent.queue.MessageObject;
 import rda.agent.template.AgentType;
+import rda.agent.template.MessageTemplate;
 import rdarank.agent.user.message.UpdateUserMessage;
 import rda.manager.LoggerManager;
 
@@ -18,7 +23,7 @@ public class UpdateRank extends AgentType {
     *
     */
     private static final long serialVersionUID = -4245098133759745980L;
-    private static final String AGENT_TYPE = "useragent";
+    private static final String AGENT_TYPE = "rankagent";
     private static final String MESSAGE_TYPE = "updateRankAgent";
     private static AgentConnection agcon;
     private String agID;
@@ -30,11 +35,23 @@ public class UpdateRank extends AgentType {
     }
 
     AgentKey agentKey;
-    List data;
-    public UpdateRank(AgentKey agentKey, List data) {
+    MessageTemplate data;
+    public UpdateRank(AgentKey agentKey, MessageTemplate data) {
         // TODO 自動生成されたコンストラクター・スタブ
         this.agentKey = agentKey;
         this.data = data;
+    }
+    
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(agentKey);
+        out.writeObject(data);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        this.agentKey = (AgentKey) in.readObject();
+        this.data = (MessageTemplate) in.readObject();
     }
 
     @Override
@@ -72,7 +89,7 @@ public class UpdateRank extends AgentType {
         try {
             AgentClient client = agcon.getConnection();
                 
-            UpdateRank executor = new UpdateRank(agentKey, (List)data);
+            UpdateRank executor = new UpdateRank(agentKey, (MessageObject)data);
             
             Object reply = client.execute(agentKey, executor);
             if(reply != null){

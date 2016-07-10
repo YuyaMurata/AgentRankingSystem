@@ -1,4 +1,4 @@
-package rdarank.agent.rank.handler;
+package rda.agent.handler;
 
 import java.sql.Timestamp;
 
@@ -8,28 +8,29 @@ import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageHandler;
 import com.ibm.agent.exa.TxID;
 import java.util.List;
+import rda.Aggregateagent;
 import rda.agent.queue.MessageObject;
-import rdarank.Rankagent;
-import rdarank.Ranktable;
-import rdarank.agent.rank.message.UpdateRankMessage;
+import rda.agent.message.UpdateMessage;
 
-public class UpdateRankHandler extends MessageHandler{
+public class UpdateHandler extends MessageHandler{
 
     @Override
     public Object onMessage(Message msg) throws Exception {
         // TODO 自動生成されたメソッド・スタブ
-        // TODO 自動生成されたメソッド・スタブ
-        UpdateRankMessage updateMsg = (UpdateRankMessage) msg;
+        UpdateMessage updateMsg = (UpdateMessage) msg;
         MessageObject msgObj = (MessageObject) updateMsg.messageData;
         
         // マスターエンティティを取得
-        Rankagent agent = (Rankagent)getEntity();
+        Aggregateagent agent = (Aggregateagent)getEntity();
         
         // トランザクションIDを取得
         TxID tx = getTx();
+        long updateData = 0;
         for(Object data : (List)msgObj.data){
-            //UpdateRank Object
+            updateData =  updateData + (int)data;
         }
+        
+        agent.setData(tx, agent.getData(tx)+updateData);
         
         //Agent Status
         //Connection

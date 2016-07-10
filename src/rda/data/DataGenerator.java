@@ -1,6 +1,6 @@
 package rda.data;
 
-import rda.agent.queue.MessageObject;
+import rda.data.test.TestData;
 
 
 public class DataGenerator {
@@ -10,7 +10,7 @@ public class DataGenerator {
         this.type = type;
     }
     
-    public MessageObject generate(Long time){
+    public TestData generate(Long time){
         return type.nextData(time);
     }
     

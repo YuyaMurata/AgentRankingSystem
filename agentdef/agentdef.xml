@@ -8,7 +8,7 @@
 			<attribute name="Data" type="long" />
 			<attribute name="ConnectionCount" type="long" />
 			<attribute name="MessageLatency" type="long" />
-            <attribute name="MessageQueueLength" type="long" />
+                        <attribute name="MessageQueueLength" type="long" />
 			<attribute name="Log" type="userlog" />
 		</entity>
 		<entity type="profile">
@@ -33,7 +33,7 @@
                         <attribute name="TotalUsers" type="long" />
 			<attribute name="ConnectionCount" type="long" />
 			<attribute name="MessageLatency" type="long" />
-            <attribute name="MessageQueueLength" type="long" />
+                        <attribute name="MessageQueueLength" type="long" />
 			<attribute name="Log" type="ranklog" />
 		</entity>
                 <entity type="ranktable">
@@ -78,7 +78,6 @@
 			<handler message="readUserAgent" class="rdarank.agent.user.handler.ReadUserHandler"/>
 			<handler message="updateUserAgent" class="rdarank.agent.user.handler.UpdateUserHandler"/>
 			<handler message="readLogUserAgent" class="rdarank.agent.user.handler.ReadLogUserHandler"/>
-
 			<handler message="disposeUserAgent" class="rdarank.agent.user.handler.DisposeUserHandler"/>
 		</agent>
                 
@@ -90,7 +89,6 @@
 			<handler message="updateRanking" class="rdarank.agent.rank.handler.UpdateRankingHandler"/>
                         <handler message="queryRanking" class="rdarank.agent.rank.handler.QuetyRankingHandler"/>
 			<handler message="readLogRankAgent" class="rdarank.agent.rank.handler.ReadLogRankHandler"/>
-
 			<handler message="disposeRankAgent" class="rdarank.agent.rank.handler.DisposeRankHandler"/>
 		</agent>
 	</agents>

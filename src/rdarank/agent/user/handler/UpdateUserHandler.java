@@ -17,30 +17,34 @@ public class UpdateUserHandler extends MessageHandler{
     @Override
     public Object onMessage(Message msg) throws Exception {
         // TODO 自動生成されたメソッド・スタブ
+        // TODO 自動生成されたメソッド・スタブ
         UpdateUserMessage updateMsg = (UpdateUserMessage) msg;
-
+        MessageObject msgObj = (MessageObject) updateMsg.messageData;
+        
         // マスターエンティティを取得
-        Useragent user = (Useragent)getEntity();
+       Useragent agent = (Useragent)getEntity();
         
         // トランザクションIDを取得
         TxID tx = getTx();
         long updateData = 0;
-        Long avgLatency = 0L;        
-        for(MessageObject msgobj : (List<MessageObject>)updateMsg.data){
-            updateData =  updateData + msgobj.data;
-            avgLatency = avgLatency + msgobj.latency();
+        for(Object data : (List)msgObj.data){
+            updateData =  updateData + (int)data;
         }
-        if(avgLatency > 0) avgLatency = avgLatency / updateMsg.data.size();
         
-        user.setData(tx, user.getData(tx)+updateData);
-
-        long updateCount = user.getConnectionCount(tx) + 1;
-        user.setConnectionCount(tx, updateCount);
+        agent.setData(tx, agent.getData(tx)+updateData);
+        
+        //Agent Status
+        //Connection
+        agent.setConnectionCount(tx, agent.getConnectionCount(tx) + 1);
+        //Message Latency
+        agent.setMessageLatency(tx, msgObj.latency());
+        //Agent Message Queue
+        //agent.setMessageQueueLength(tx, msgObj.getLength());
 
         // Update Log Records
-        Log log = user.getLog(tx, "update");
+        Log log = agent.getLog(tx, "update");
         if(log == null)
-            log = user.createLog(tx, "update");
+            log = agent.createLog(tx, "update");
         
         // Update LastAccessTime
         Long time = System.currentTimeMillis();
@@ -48,8 +52,8 @@ public class UpdateUserHandler extends MessageHandler{
         log.setLastAccessTime(tx, updateTime);
         log.setCurrentTime(tx, time);
         
-        Long message = avgLatency;
+        //Long message = avgLatency;
         
-        return message;
+        return 0L;
     }
 }

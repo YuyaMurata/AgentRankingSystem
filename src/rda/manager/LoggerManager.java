@@ -69,8 +69,14 @@ public class LoggerManager {
         System.out.println("> MessageLatency:\n"+obj.toString(map));
         AgentLogPrint.printMessageLatency(map);
         
-        map = obj.toMap("Length", 2);
-        System.out.println("> QueueLength:\n"+obj.toString(map));
+        //Agent Inner QueueLength
+        //map = obj.toMap("Length", 2);
+        //System.out.println("> QueueLength:\n"+obj.toString(map));
+        
+        //MessageQueue Observer QueueLength
+        AgentMessageQueueManager agent = AgentMessageQueueManager.getInstance();
+        System.out.println("> QueueLength:\n"+agent.observerToString());
+        AgentLogPrint.printMessageQueueLog(agent.observerToMap());
     }
     
     public void printAgentDBLifeData(Long time){

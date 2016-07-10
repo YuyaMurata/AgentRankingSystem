@@ -1,8 +1,8 @@
 package rda.data.type;
 
-import rda.agent.queue.MessageObject;
 import rda.data.Data;
 import rda.data.DataType;
+import rda.data.test.TestData;
 
 public class ImpulseData implements DataType{
     private static final Long impulse = 1000000L;
@@ -41,19 +41,19 @@ public class ImpulseData implements DataType{
     }
 
     @Override
-    public MessageObject nextData(Long time) {
+    public TestData nextData(Long time) {
         if((time % burst != 0) && (count == -1)) count = volume.longValue()-1;
         count++;
         
-        MessageObject msg = data.getData();
+        TestData test = (TestData) data.getData();
         
-        if(count == volume.longValue()) msg = data.getPoison();
+        if(count == volume.longValue()) test = (TestData) data.getPoison();
         if(count > volume.longValue()) {
-            msg = null;
+            test = null;
             count = -1L;
         }
         
-        return msg;
+        return test;
     }
 
     @Override

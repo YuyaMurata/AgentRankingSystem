@@ -12,24 +12,26 @@ import java.io.Serializable;
  * @author kaeru
  */
 public abstract class MessageTemplate implements Serializable{
-    public String id, toID; 
-    public int sentinel;
     private long timestamp;
+    private int length;
     
-    public MessageTemplate(String id, String toID, int sentinel) {
+    public MessageTemplate() {
         // TODO 自動生成されたコンストラクター・スタブ
-        this.id = id;
-        this.sentinel = sentinel;
-        this.toID = toID;
         this.timestamp = System.currentTimeMillis();
     }
-    
-    public abstract void setData(Object data);
-    
+
     @Override
     public abstract String toString();
     
     public Long latency(){
         return System.currentTimeMillis() - timestamp;
+    }
+    
+    public void setLength(int length){
+        this.length = length;
+    }
+    
+    public int getLength(){
+        return length;
     }
 }

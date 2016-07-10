@@ -21,7 +21,7 @@ public class WindowTest {
         for(int i=0; i < 100; i++){
             String id = "id="+(i%10);
             String toID = "did="+(i%3);
-            msgList.add(new MessageObject(id, toID, 1, (i%30)-1));
+            msgList.add(new MessageObject(toID, 1));
         }
         
         /*//TestPrint

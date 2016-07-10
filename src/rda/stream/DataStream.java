@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 import rda.agent.queue.MessageObject;
 import rda.agent.queue.MessageQueue;
 import rda.agent.queue.MessageQueueEvent;
-import rda.agent.sender.SendAgentMessage;
+import rda.data.test.TestData;
 import rda.manager.AgentMessageQueueManager;
 import rda.manager.TestCaseManager;
 import rda.window.Window;
@@ -28,14 +28,14 @@ public class DataStream implements Runnable{
     private Long time, term, total=0L;
     private long delay, period;
     private Boolean runnable;
-    private WindowController window;
+    private WindowController windowCTRL;
     private static TestCaseManager tcmanager = TestCaseManager.getInstance();
 
     public DataStream(Map streamMap) {
         this.term = (Long)streamMap.get("TIME_RUN");
         this.period = (Long)streamMap.get("TIME_PERIOD");
         
-        window = new WindowController((Integer)streamMap.get("WINDOW_SIZE"),
+        windowCTRL = new WindowController((Integer)streamMap.get("WINDOW_SIZE"),
                                           (Long)streamMap.get("ALIVE_TIME"),
                                           (Integer)streamMap.get("POOLSIZE"));
     }
@@ -49,30 +49,33 @@ public class DataStream implements Runnable{
     
     private void stream(Long t){
         Map mqMap = AgentMessageQueueManager.getInstance().getMQMap();
-        MessageObject msg;
-        Window msgPack;
+        TestData data;
+        Window window;
 
-        while(((msg = tcmanager.datagen.generate(t)) != null) && runnable){
+        while(((data = tcmanager.datagen.generate(t)) != null) && runnable){
             try {
-                window.pack(msg);
+                windowCTRL.pack(data);
                 
-                if((msgPack = window.get()) == null) continue;
+                if((window = windowCTRL.get()) == null) continue;
                 
                 //Get Destination ID
-                String agID = msgPack.getDestID();
+                String agID = window.getDestID();
                 
                 //Get MessageQueue
                 MessageQueue mq = (MessageQueue)mqMap.get(agID);
             
+                //Translation Window To Message
+                MessageObject msg = new MessageObject(agID, window.unpack());
+                
                 //MessageSender
-                mq.put(msgPack.unpack());
+                mq.put(msg);
                 
                 //Agent Put Handler
                 //new SendAgentMessage().sendMessage(msgPack);
                 
-                total = total+msgPack.unpack().size();
+                total = total+window.unpack().size();
                 
-                window.remove();
+                windowCTRL.remove();
             } catch (MessageQueueEvent mqev) {
                     mqev.printEvent();
             } catch (Exception e){
@@ -108,7 +111,7 @@ public class DataStream implements Runnable{
         } catch (InterruptedException ex) {
             schedule.shutdownNow();
         }
-        window.close();
+        windowCTRL.close();
         
         tcmanager.debugTestGenerateCounts(total);
     }
