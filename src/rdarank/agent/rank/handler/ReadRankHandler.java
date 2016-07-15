@@ -1,11 +1,9 @@
 package rdarank.agent.rank.handler;
 
-import rda.Profile;
-import rda.Useragent;
 import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageHandler;
 import com.ibm.agent.exa.TxID;
-import rdarank.agent.user.reader.UserInfo;
+import rdarank.Rankagent;
 
 public class ReadRankHandler extends MessageHandler{
 
@@ -14,24 +12,12 @@ public class ReadRankHandler extends MessageHandler{
 		// TODO 自動生成されたメソッド・スタブ
 
 		// マスターエンティティを取得
-		Useragent user = (Useragent)getEntity();
+		Rankagent rank = (Rankagent)getEntity();
 
 		// トランザクションIDを取得
 		TxID tx = getTx();
 
-		Profile prof = user.getProfile(tx);
-
-		UserInfo info = new UserInfo(
-				/*UserID*/	user.getUserID(tx),
-				/*Name*/ 	prof.getName(tx),
-				/*Sex*/ 	prof.getSex(tx),
-				/*Age*/		prof.getAge(tx),
-				/*address*/	prof.getAddress(tx),
-				/*data*/	user.getData(tx),
-                                /*count */      user.getConnectionCount(tx)
-                                );
-
-		return info;
+		return 0L;
 	}
 
 }

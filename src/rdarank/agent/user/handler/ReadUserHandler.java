@@ -1,10 +1,10 @@
 package rdarank.agent.user.handler;
 
-import rda.Profile;
-import rda.Useragent;
 import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageHandler;
 import com.ibm.agent.exa.TxID;
+import rdarank.Profile;
+import rdarank.Useragent;
 import rdarank.agent.user.reader.UserInfo;
 
 public class ReadUserHandler extends MessageHandler{
