@@ -60,14 +60,14 @@
 		<extension name="DefineExtension">
 			<param name="class" value="com.ibm.agent.exa.launcher.AgentExtension"/>
 			<param name="threads" value="128"/>
-			<param name="datasource" value="rda"/>
+			<param name="datasource" value="rdarank"/>
 			<param name="user" value="@CETA_SOLIDDB_USER@"/>
 			<param name="password" value="@CETA_SOLIDDB_PASSWORD@"/>
 			<param name="config" value="agentdef.xml"/>
 			<!-- <param name="standalone" value="true"/> -->
 			<!-- to use ValueLoggingAccelerator, ValueLoggingServerExtenstion must be executed at solidDB servers -->
 			<param name="accelerator" value="com.ibm.agent.exa.replicate.accelerator.ValueLoggingAccelerator"/>
-			<param name="accelerator_maxretry" value="5"/>
+			<param name="accelerator_maxretry" value="1"/>
 			<param name="accelerator_retrywait" value="3000"/>
 			<!-- to use netbind.def, the same file must be configured for ValueLoggingServerExtenstion -->
 			<!-- <param name="accelerator_netbind" value="..\netbind.def"/> -->

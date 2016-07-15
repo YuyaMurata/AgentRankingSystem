@@ -13,6 +13,7 @@ done
 if [ "$FLG_F" = "TRUE" ]; then
     echo "delete of classes folder"
     rm -fR $CETA_HOME/classes/rda
+    rm -fR $CETA_HOME/classes/rdarank
     rm -fR $CETA_HOME/classes/test
 fi
 
