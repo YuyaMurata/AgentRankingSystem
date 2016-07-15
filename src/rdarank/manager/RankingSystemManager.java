@@ -80,7 +80,7 @@ public class RankingSystemManager  implements SetProperty{
         
         UserAgentManager user = UserAgentManager.getInstance();
         user.initUserAgent(userAgentParam);
-        user.createNumberOfAgents((Integer)userAgentParam.get("AMOUNT_OF_AGENT"));
+        user.createNumberOfAgents((Integer)userAgentParam.get("AMOUNT_OF_AGENTS"));
         
         if(user.getReserveMode() == 1){
             List<String> reserveID = new ArrayList<>();
