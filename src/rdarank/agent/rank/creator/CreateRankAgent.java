@@ -12,17 +12,18 @@ import com.ibm.agent.exa.client.AgentClient;
 import com.ibm.agent.exa.client.AgentExecutor;
 import rda.agent.client.AgentConnection;
 import rda.agent.queue.MessageQueue;
-import rdarank.agent.user.updater.UpdateUser;
-import rdarank.agent.user.message.InitUserMessage;
+import rda.manager.AgentMessageQueueManager;
+import rdarank.agent.rank.message.InitRankMessage;
+import rdarank.agent.rank.updater.UpdateRank;
 //import rda.manager.AgentMessageQueueManager;
 
 public class CreateRankAgent implements AgentExecutor, Serializable{
     /**
     * 
     */
-    private static final long serialVersionUID = 856847026370330593L;
-    public static final String AGENT_TYPE = "useragent";
-    static final String MESSAGE_TYPE = "initUserAgent";
+    private static final long serialVersionUID = 56847026370330593L;
+    public static final String AGENT_TYPE = "rankagent";
+    static final String MESSAGE_TYPE = "initRankAgent";
 	
     public CreateRankAgent() {
         // TODO 自動生成されたコンストラクター・スタブ
@@ -30,10 +31,9 @@ public class CreateRankAgent implements AgentExecutor, Serializable{
 	
     AgentKey agentKey;
     HashMap<String, String> prof;
-    public CreateRankAgent(AgentKey agentKey, HashMap<String, String> prof) {
+    public CreateRankAgent(AgentKey agentKey) {
         // TODO 自動生成されたコンストラクター・スタブ
         this.agentKey = agentKey;
-        this.prof = prof;
     }
 	
     @Override
@@ -55,10 +55,10 @@ public class CreateRankAgent implements AgentExecutor, Serializable{
             agentManager.createAgent(agentKey);
 	
             MessageFactory factory = MessageFactory.getFactory();
-            InitUserMessage msg = (InitUserMessage)factory.getMessage(MESSAGE_TYPE);
+            InitRankMessage msg = (InitRankMessage)factory.getMessage(MESSAGE_TYPE);
 		
-            msg.setParams(prof.get("Name"), prof.get("Sex"), 
-                        prof.get("Age"), prof.get("Address"));
+            //Set InitMessage Data
+            msg.setParams();
 		
             Object ret = agentManager.sendMessage(agentKey, msg);
 		
@@ -69,29 +69,29 @@ public class CreateRankAgent implements AgentExecutor, Serializable{
         return null;
     }
 	
-    public Object create(String agID, Integer size, Long queuewait, Long agentwait){
+    public void create(String agID, Integer size, Long queuewait, Long agentwait){
         try {
-            AgentConnection ag = AgentConnection.getInstance();
+            AgentConnection agconn = AgentConnection.getInstance();            
+            AgentClient client = agconn.getConnection();
             
-            AgentClient client = ag.getConnection();
-                
             agentKey = new AgentKey(AGENT_TYPE,new Object[]{agID});
             
             //Create Agent
-            CreateRankAgent executor = new CreateRankAgent(agentKey, prof);
+            CreateRankAgent executor = new CreateRankAgent(agentKey);
             Object reply = client.execute(agentKey, executor);
             
             System.out.println("Agent[" + agentKey + "] was created. Reply is [" + reply + "]");
             
-            ag.returnConnection(client);
+            agconn.returnConnection(client);
             
             //Create AgentQueue
             MessageQueue mq = new MessageQueue(agID, size, queuewait, agentwait);
-            mq.setAgentType(new UpdateUser(agID));
+            mq.setAgentType(new UpdateRank(agID));
+            AgentMessageQueueManager.getInstance().register(mq);
             
-            return mq;
+            //return mq;
         } catch (AgentException e) {
-            return null;
+            //return null;
         }
     }
 }

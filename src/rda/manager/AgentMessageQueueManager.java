@@ -33,7 +33,7 @@ public class AgentMessageQueueManager {
         return manager;
     }
     
-    public void initAgentMessageQueueManager(Map agentMQParam){
+    public void initAgentMessageQueueManager(Map agentMQParam, Map idParam){
         this.queueLength = (Integer)agentMQParam.get("QUEUE_LENGTH");
         this.queuewait = (Long)agentMQParam.get("QUEUE_WAIT");
         this.agentwait = (Long)agentMQParam.get("AGENT_WAIT");
@@ -41,13 +41,17 @@ public class AgentMessageQueueManager {
         this.reserveMode = (Integer)agentMQParam.get("RESERVE_MODE");
         //this.runnable = true;
         
+        //Init IDManager
+        this.id = new IDManager(idParam);
+        
+        //Init AgentCloning
         AgentCloning.setAutoMode(agentMode);
     }
     
     //IDManager setter, getter
-    public void setIDManager(IDManager id){
+    /*public void setIDManager(IDManager id){
         this.id = id;
-    }
+    }*/
     
     public IDManager getIDManager(){
         return id;
@@ -79,22 +83,13 @@ public class AgentMessageQueueManager {
     
     //Agentの複製 e.g.("R#01_Clone")
     public String createCloneAgent(String originalID, Object originalState){
-        String agID;
-        
-        if((agID = id.getReserveID()) == null){
-            agID = id.genID();
-            CreateAgent rankAgent = new CreateAgent();
-            rankAgent.create(agID, queueLength, queuewait, agentwait);
-        } else {
-            System.out.println(">> Get Reserve Agent = "+agID);
-        }
-        
-        ((MessageQueue)getAgent(agID)).setOriginalQueue(originalID, originalState);
+        String agID = createAgent();
+        ((MessageQueue)getAgent(agID)).setOriginalQueue(originalState);
         
         return agID;
     }
     
-    public void registerAgentID(String primalID, String referID){
+/*    public void registerAgentID(String primalID, String referID){
         id.regID(primalID, referID);
     }
     
@@ -105,7 +100,7 @@ public class AgentMessageQueueManager {
     public void deleteAgentID(String primalID, String referID){
         id.deleteID(primalID, referID);
     }
-    
+*/    
     //MessageQueueの実行管理
     public Boolean getState(){
         return runnable;

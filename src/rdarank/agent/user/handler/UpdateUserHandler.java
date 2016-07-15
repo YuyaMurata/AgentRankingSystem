@@ -2,14 +2,13 @@ package rdarank.agent.user.handler;
 
 import java.sql.Timestamp;
 
-import rda.Log;
-import rda.Useragent;
-
 import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageHandler;
 import com.ibm.agent.exa.TxID;
 import java.util.List;
 import rda.agent.queue.MessageObject;
+import rdarank.Useragent;
+import rdarank.Userlog;
 import rdarank.agent.user.message.UpdateUserMessage;
 
 public class UpdateUserHandler extends MessageHandler{
@@ -42,7 +41,7 @@ public class UpdateUserHandler extends MessageHandler{
         //agent.setMessageQueueLength(tx, msgObj.getLength());
 
         // Update Log Records
-        Log log = agent.getLog(tx, "update");
+        Userlog log = agent.getLog(tx, "update");
         if(log == null)
             log = agent.createLog(tx, "update");
         

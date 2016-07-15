@@ -2,7 +2,6 @@ package rdarank.agent.rank.handler;
 
 import java.sql.Timestamp;
 
-import rda.Log;
 
 import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageHandler;
@@ -10,6 +9,7 @@ import com.ibm.agent.exa.TxID;
 import java.util.List;
 import rda.agent.queue.MessageObject;
 import rdarank.Rankagent;
+import rdarank.Ranklog;
 import rdarank.Ranktable;
 import rdarank.agent.rank.message.UpdateRankMessage;
 
@@ -40,7 +40,7 @@ public class UpdateRankHandler extends MessageHandler{
         //agent.setMessageQueueLength(tx, msgObj.getLength());
 
         // Update Log Records
-        Log log = agent.getLog(tx, "update");
+        Ranklog log = agent.getLog(tx, "update");
         if(log == null)
             log = agent.createLog(tx, "update");
         

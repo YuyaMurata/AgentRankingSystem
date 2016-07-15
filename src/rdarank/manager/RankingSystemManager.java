@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rda.manager;
+package rdarank.manager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,18 +11,20 @@ import java.util.List;
 import java.util.Map;
 import rda.agent.client.AgentConnection;
 import rda.log.AgentLogPrint;
+import rda.manager.LoggerManager;
+import rda.manager.TestCaseManager;
 import rda.property.SetProperty;
 import rda.stream.DataStream;
 
 /**
  *
- * @author 悠也
+ * @author kaeru
  */
-public class SystemManager implements SetProperty{
-    private static SystemManager manager = new SystemManager();
-    private SystemManager(){}
+public class RankingSystemManager  implements SetProperty{
+    private static RankingSystemManager manager = new RankingSystemManager();
+    private RankingSystemManager(){}
     
-    public static SystemManager getInstance(){
+    public static RankingSystemManager getInstance(){
         return manager;
     }
     
@@ -30,40 +32,66 @@ public class SystemManager implements SetProperty{
         System.out.println(">>Launch System");
         
         dataSettings(preDataMap(), preProfMap());
-        //agentSettings(NAME_RULE, NUMBER_OF_RANK_AGENTS, preAgentMap(), preIDMap(), POOLSIZE);
+        agentSettings(preUserAgentMap(), preRankAgentMap(), POOLSIZE);
         loggerSettings(preLoggerMap());
         streamSettings(preStreamMap());
     }
     
     public void shutdownSystem(){
-        AgentMessageQueueManager agManager = AgentMessageQueueManager.getInstance();
-        agManager.doShutdown();
+        //UserAgent Shutdown
+        UserAgentManager user = UserAgentManager.getInstance();
+        user.doShutdown();
+        
+        //RankAgent Shutdown
+        //RankAgentManager rank = RankAgentManager.getInstance();
+        //rank.doShutdown();
         
         System.out.println(">> Shutdown System...");
     }
     
-    private void agentSettings(String rule, Integer numberOfAgents, Map agentParam, Map idParam, Integer poolsize){
+    private void agentSettings(Map userAgentParam, Map rankAgentParam, Integer poolsize){
         AgentConnection agconn = AgentConnection.getInstance();
         agconn.setPoolSize(poolsize);
         
-        AgentMessageQueueManager agManager = AgentMessageQueueManager.getInstance();
-        agManager.initAgentMessageQueueManager(agentParam, idParam);
-        agManager.createNumberOfAgents(numberOfAgents);
+        //RankAgent Initialize
+        /*
+        RankAgentManager rank = RankAgentManager.getInstance();
+        rank.initRankAgent(rankAgentParam);
+        rank.createNumberOfAgents((Integer)rankAgentParam.get("AMOUNT_OF_AGENT"));
         
-        if(agManager.getReserveMode() == 1){
+        if(rank.getReserveMode() == 1){
             List<String> reserveID = new ArrayList<>();
-            for(int i=0; i < (Integer)agentParam.get("AMOUNT_RESERVE_AGENT"); i++){
-                String agentID =  agManager.createAgent();
+            for(int i=0; i < (Integer)rankAgentParam.get("AMOUNT_RESERVE_AGENT"); i++){
+                String agentID =  rank.createAgent();
                 reserveID.add(agentID);
             }
-            for(String id : reserveID) agManager.getIDManager().setReserveID(id);
+            for(String id : reserveID) rank.getIDManager().setReserveID(id);
         }
         
-        //User Set SendMessage Destination
+        System.out.println(">>> Finished Set RankAgents & IDs");
+        */
+        
+        
+        //UserAgent Initialize
+        //UserAgent Attributed Initialize
         TestCaseManager tcManager = TestCaseManager.getInstance();
         tcManager.profgen.addUserProfileToAgent();
+        tcManager.profgen.addUserAgentCommunication();
         
-        System.out.println(">>> Finished Set Agents & IDs");
+        UserAgentManager user = UserAgentManager.getInstance();
+        user.initUserAgent(userAgentParam);
+        user.createNumberOfAgents((Integer)userAgentParam.get("AMOUNT_OF_AGENT"));
+        
+        if(user.getReserveMode() == 1){
+            List<String> reserveID = new ArrayList<>();
+            for(int i=0; i < (Integer)userAgentParam.get("AMOUNT_RESERVE_AGENT"); i++){
+                String agentID =  user.createAgent();
+                reserveID.add(agentID);
+            }
+            for(String id : reserveID) user.getIDManager().setReserveID(id);
+        }
+        
+        System.out.println(">>> Finished Set UserAgents & IDs");
     }
     
     private void dataSettings(Map dataParam, Map profParam){
@@ -94,7 +122,26 @@ public class SystemManager implements SetProperty{
         return stream;
     }
     
-    private Map preAgentMap(){
+    //UserAgent Parameter
+    private Map preUserAgentMap(){
+        Map map = new HashMap();
+        map.put("AMOUNT_OF_AGENTS", NUMBER_OF_USERS);
+        map.put("QUEUE_LENGTH", QUEUE_LENGTH);
+        map.put("QUEUE_WAIT", QUEUE_WAIT);
+        map.put("AGENT_WAIT", AGENT_WAIT);
+        map.put("AGENT_MODE", AGENT_MODE_AUTONOMY);
+        map.put("RESERVE_MODE", AGENT_MODE_RESERVE);
+        map.put("AMOUNT_RESERVE_AGENT", NUMBER_OF_RESERVE);
+        map.put("POOLSIZE", POOLSIZE);
+        map.put("RULE", NAME_RULE_USER);
+        map.put("SEED", ID_SEED);
+        AgentLogPrint.printPropertySettings("Agent", map);
+        
+        return map;
+    }
+    
+    //RanklAgent Parameter
+    private Map preRankAgentMap(){
         Map map = new HashMap();
         map.put("AMOUNT_OF_AGENTS", NUMBER_OF_RANK_AGENTS);
         map.put("QUEUE_LENGTH", QUEUE_LENGTH);
@@ -104,17 +151,9 @@ public class SystemManager implements SetProperty{
         map.put("RESERVE_MODE", AGENT_MODE_RESERVE);
         map.put("AMOUNT_RESERVE_AGENT", NUMBER_OF_RESERVE);
         map.put("POOLSIZE", POOLSIZE);
-        AgentLogPrint.printPropertySettings("Agent", map);
-        
-        return map;
-    }
-    
-    private Map preIDMap(){
-        Map map = new HashMap();
-        map.put("AMOUNT_OF_AGENTS", NUMBER_OF_RANK_AGENTS);
-        //map.put("RULE", NAME_RULE);
+        map.put("RULE", NAME_RULE_RANK);
         map.put("SEED", ID_SEED);
-        AgentLogPrint.printPropertySettings("ID", map);
+        AgentLogPrint.printPropertySettings("Agent", map);
         
         return map;
     }
@@ -123,8 +162,8 @@ public class SystemManager implements SetProperty{
         Map map = new HashMap();
         map.put("AMOUNT_USER", NUMBER_OF_USERS);
         map.put("MODE", DATA_MODE_PROFILE);
-        map.put("RULE", NAME_RULE_USER);
         map.put("SEED", PROF_SEED);
+        map.put("RULE", NAME_RULE_USER);
         AgentLogPrint.printPropertySettings("UserProfile", map);
         
         return map;

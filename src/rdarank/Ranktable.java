@@ -13,6 +13,7 @@ import com.ibm.agent.exa.TxID;
  * attribute name="Rank" type="LONG" <br>
  * attribute name="Data" type="LONG" <br>
  * attribute name="ConnectionCount" type="LONG" <br>
+ * attribute name="CurrentTime" type="LONG" <br>
  * attribute name="LastAccessTime" type="TIMESTAMP" <br>
 **/
 public class Ranktable extends HPAEntity {
@@ -57,9 +58,14 @@ public class Ranktable extends HPAEntity {
     public static final int CONNECTIONCOUNT = 4;
 
     /**
+    * Column index of CurrentTime
+    **/
+    public static final int CURRENTTIME = 5;
+
+    /**
     * Column index of LastAccessTime
     **/
-    public static final int LASTACCESSTIME = 5;
+    public static final int LASTACCESSTIME = 6;
 
     /**
      * This constructor is used by the runtime.
@@ -151,11 +157,29 @@ public class Ranktable extends HPAEntity {
     }
 
     /**
+     * @return CurrentTime
+     **/
+    public final long getCurrentTime(TxID tx) {
+        // generated code
+        return getLong(tx,5);
+    }
+
+    /**
+     * Set a value to CurrentTime. 
+     * @param tx a transaction context
+     * @param value a value to be set to CurrentTime
+     **/
+    public final void  setCurrentTime(TxID tx, long value) throws AgentException {
+        // generated code
+        setLong(tx,5,value);
+    }
+
+    /**
      * @return LastAccessTime
      **/
     public final java.sql.Timestamp getLastAccessTime(TxID tx) {
         // generated code
-        return getTimestamp(tx,5);
+        return getTimestamp(tx,6);
     }
 
     /**
@@ -165,7 +189,7 @@ public class Ranktable extends HPAEntity {
      **/
     public final void  setLastAccessTime(TxID tx, java.sql.Timestamp value) throws AgentException {
         // generated code
-        setTimestamp(tx,5,value);
+        setTimestamp(tx,6,value);
     }
 
 }

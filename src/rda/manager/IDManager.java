@@ -29,11 +29,17 @@ public class IDManager {
     public IDManager(Map idParam){
         this.rule = (String)idParam.get("RULE");
         rand.setSeed((Long)idParam.get("SEED"));
-        this.dformat= new DecimalFormat("0000");
+        
+        StringBuilder digit = new StringBuilder();
+        Integer n = (Integer) idParam.get("AMOUNT_OF_AGENTS");
+        for(int i=0; i < n.toString().length()+1; i++)
+            digit.append("0");
+        
+        dformat= new DecimalFormat(digit.toString());
     }
     
     private Integer serialID = 0;
-    public synchronized String genID(){      
+    public synchronized String genID(){
         String agID = rule+dformat.format(serialID++);
         return agID;
     }

@@ -11,7 +11,6 @@ import java.util.concurrent.TimeUnit;
 import rda.agent.template.AgentType;
 import rda.clone.AgentCloning;
 import rda.manager.AgentMessageQueueManager;
-import rda.window.Window;
 
 /**
  *
@@ -66,31 +65,28 @@ public class MessageQueue extends MessageQueueProcess{
     
     //Load Balancer Cloning updgrade
     public void eventClone()  throws MessageQueueEvent{
-        String id = AgentMessageQueueManager.getInstance().getIDManager().getOrigID(name);
-        String cloneID = AgentCloning.cloning(id , queue);
-        MessageQueueEvent.printState("cloning", originalID, cloneID);
+        String cloneID = AgentCloning.cloning(name, queue);
+        MessageQueueEvent.printState("cloning", cloneID);
         
-        throw new MessageQueueEvent(name, cloneID, id);
+        throw new MessageQueueEvent(name, cloneID);
     }
     
     //Load Balancer Cloning degrade
     public void eventDelete() {
-        String deleteID = AgentCloning.delete(originalID, name);
-        MessageQueueEvent.printState("delete", originalID, deleteID);
+        MessageQueueEvent.printState("delete", name);
+        String deleteID = AgentCloning.delete(name);
     }
     
     //Only AgnetClone
     private LinkedBlockingDeque orgQueue;
-    private String originalID;
-    public void setOriginalQueue(String originalID, Object originalState){
-        this.originalID = originalID;
+    public void setOriginalQueue(Object originalState){
         this.orgQueue =  (LinkedBlockingDeque) originalState;
         
         this.checkClone = true;
         
         //Work Stealing
         Object obj;
-        int i= orgQueue.size() / 2;
+        int i = size / 2;
         while((obj = orgQueue.pollFirst()) != null){
             i--;
             if(i <= 0) break;

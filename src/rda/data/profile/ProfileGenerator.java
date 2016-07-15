@@ -11,6 +11,7 @@ public class ProfileGenerator {
     private static final ProfileGenerator profgen; 
     private static final RandomDataGenerator rand = new RandomDataGenerator();
     private static Integer mu, sigma, mode;
+    private static String rule;
         
     static {
         profgen = new ProfileGenerator();
@@ -23,11 +24,12 @@ public class ProfileGenerator {
         return profgen;
     }
     
-    public void initProfile(Integer numberOfUser, Integer mode, Long seed){
+    public void initProfile(Integer numberOfUser, Integer mode, String rule, Long seed){
         //Random Parameter
-        rand.reSeed(Integer.MAX_VALUE);
+        rand.reSeed(seed);
         mu = 100/2;
         sigma = 100/10;
+        this.rule = rule;
         
         generate(numberOfUser, mode);
     }
@@ -36,7 +38,7 @@ public class ProfileGenerator {
     private List<String> userList = new ArrayList<>();
     private void generate(Integer n, Integer mode){
         StringBuilder digit = new StringBuilder();
-        for(int i=0; i < n.toString().length(); i++)
+        for(int i=0; i < n.toString().length()+1; i++)
             digit.append("0");
         
         DecimalFormat dformat= new DecimalFormat(digit.toString());
@@ -45,7 +47,7 @@ public class ProfileGenerator {
         this.mode = mode;
         
         for(int i=0; i < n; i++){
-            String uid = "usid-"+dformat.format(i);
+            String uid = rule+dformat.format(i);
             HashMap prof = genUserProfile(uid);
             profMap.put(uid, prof);
             userList.add(uid);
@@ -95,10 +97,27 @@ public class ProfileGenerator {
         //Address
         prof.put("Address", "Address-" + id);
         
-        //TargetID
-        prof.put("TargetID", 
-        AgentMessageQueueManager.getInstance().getIDManager().ageToID((Integer)prof.get("Age")));
-       
         return prof;
+    }
+    
+    public void addUserProfileToAgent(){
+        for(String userID : userList){
+            HashMap prof = profMap.get(userID);
+            
+            //TargetID
+            prof.put("TargetID", userID); 
+            //AgentMessageQueueManager.getInstance().getIDManager().ageToID((Integer)prof.get("Age")));
+        }
+    }
+    
+    //Adter CreateRankAgent
+    public void addUserAgentCommunication(){
+        for(String userID : userList){
+            HashMap prof = profMap.get(userID);
+            
+            //Communication AgentID
+            prof.put("Agent", "Not Define RankAgent ID"); 
+            //AgentMessageQueueManager.getInstance().getIDManager().ageToID((Integer)prof.get("Age")));
+        }
     }
 }

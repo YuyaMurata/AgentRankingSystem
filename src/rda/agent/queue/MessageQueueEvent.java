@@ -1,18 +1,17 @@
 package rda.agent.queue;
 
 import rda.log.AgentLogPrint;
-import rda.window.Window;
-
+import rda.manager.AgentMessageQueueManager;
+import rda.manager.IDManager;
 
 public class MessageQueueEvent extends Exception{
-    /**
-    *
-    */
+    private static IDManager id = AgentMessageQueueManager.getInstance().getIDManager();
     private final String name, clonename, original;
-    public MessageQueueEvent(String name, String clonename, String original) {
+    
+    public MessageQueueEvent(String name, String clonename) {
         this.name = name;
         this.clonename = clonename;
-        this.original = original;
+        this.original = id.getOrigID(name);
     }
 
     public void printEvent(){
@@ -22,7 +21,7 @@ public class MessageQueueEvent extends Exception{
         //}
     }
     
-    public static void printState(String state, String origin, String clone){
-        AgentLogPrint.printAgentState(state, origin, clone);
+    public static void printState(String state, String cloneID){
+        AgentLogPrint.printAgentState(state, id.getOrigID(cloneID), cloneID);
     }
 }

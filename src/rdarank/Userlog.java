@@ -10,6 +10,7 @@ import com.ibm.agent.exa.TxID;
  * <p>entity type="userlog tablename="userlog <br>
  * attribute name="UserID" type="STRING" primarykey="true" relationto="UserID" <br>
  * attribute name="AccessID" type="STRING" primarykey="true" <br>
+ * attribute name="CurrentTime" type="LONG" <br>
  * attribute name="LastAccessTime" type="TIMESTAMP" <br>
 **/
 public class Userlog extends HPAEntity {
@@ -39,9 +40,14 @@ public class Userlog extends HPAEntity {
     public static final int ACCESSID = 1;
 
     /**
+    * Column index of CurrentTime
+    **/
+    public static final int CURRENTTIME = 2;
+
+    /**
     * Column index of LastAccessTime
     **/
-    public static final int LASTACCESSTIME = 2;
+    public static final int LASTACCESSTIME = 3;
 
     /**
      * This constructor is used by the runtime.
@@ -79,11 +85,29 @@ public class Userlog extends HPAEntity {
     }
 
     /**
+     * @return CurrentTime
+     **/
+    public final long getCurrentTime(TxID tx) {
+        // generated code
+        return getLong(tx,2);
+    }
+
+    /**
+     * Set a value to CurrentTime. 
+     * @param tx a transaction context
+     * @param value a value to be set to CurrentTime
+     **/
+    public final void  setCurrentTime(TxID tx, long value) throws AgentException {
+        // generated code
+        setLong(tx,2,value);
+    }
+
+    /**
      * @return LastAccessTime
      **/
     public final java.sql.Timestamp getLastAccessTime(TxID tx) {
         // generated code
-        return getTimestamp(tx,2);
+        return getTimestamp(tx,3);
     }
 
     /**
@@ -93,7 +117,7 @@ public class Userlog extends HPAEntity {
      **/
     public final void  setLastAccessTime(TxID tx, java.sql.Timestamp value) throws AgentException {
         // generated code
-        setTimestamp(tx,2,value);
+        setTimestamp(tx,3,value);
     }
 
 }
