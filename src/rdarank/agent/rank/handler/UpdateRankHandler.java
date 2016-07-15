@@ -10,7 +10,6 @@ import java.util.List;
 import rda.agent.queue.MessageObject;
 import rdarank.Rankagent;
 import rdarank.Ranklog;
-import rdarank.Ranktable;
 import rdarank.agent.rank.message.UpdateRankMessage;
 
 public class UpdateRankHandler extends MessageHandler{
