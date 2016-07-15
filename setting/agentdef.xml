@@ -90,7 +90,7 @@
 			<handler message="readRankAgent" class="rdarank.agent.rank.handler.ReadRankHandler"/>
                         <handler message="updateRankAgent" class="rdarank.agent.rank.handler.UpdateRankHandler"/>
 			<handler message="updateRanking" class="rdarank.agent.rank.handler.UpdateRankingHandler"/>
-                        <handler message="queryRanking" class="rdarank.agent.rank.handler.QuetyRankingHandler"/>
+                        <handler message="queryRanking" class="rdarank.agent.rank.handler.QueryRankingHandler"/>
 			<handler message="readLogRankAgent" class="rdarank.agent.rank.handler.ReadLogRankHandler"/>
 			<handler message="disposeRankAgent" class="rdarank.agent.rank.handler.DisposeRankHandler"/>
 		</agent>
