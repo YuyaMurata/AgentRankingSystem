@@ -6,6 +6,7 @@
 			<attribute name="UserID" type="string" primarykey="true" maxlength="16"/>
 			<attribute name="Profile" type="profile" singleentity="true"/>
 			<attribute name="Data" type="long" />
+                        <attribute name="CommunicationID" type="string" maxlength="16"/>
 			<attribute name="ConnectionCount" type="long" />
 			<attribute name="MessageLatency" type="long" />
                         <attribute name="MessageQueueLength" type="long" />
@@ -58,6 +59,7 @@
 		<message type="initUserAgent" class="rdarank.agent.user.message.InitUserMessage"/>
 		<message type="readUserAgent" />
 		<message type="updateUserAgent" class="rdarank.agent.user.message.UpdateUserMessage"/>
+                <message type="updateCommunicationID" class="rdarank.agent.user.message.UpdateCommunicationIDMessage"/>
 		<message type="readLogUserAgent"/>
                 <message type="disposeUserAgent" />
                 
@@ -77,6 +79,7 @@
 			<handler message="initUserAgent" class="rdarank.agent.user.handler.InitUserHandler"/>
 			<handler message="readUserAgent" class="rdarank.agent.user.handler.ReadUserHandler"/>
 			<handler message="updateUserAgent" class="rdarank.agent.user.handler.UpdateUserHandler"/>
+                        <handler message="updateCommunicationID" class="rdarank.agent.user.handler.UpdateCommunicationIDHandler"/>
 			<handler message="readLogUserAgent" class="rdarank.agent.user.handler.ReadLogUserHandler"/>
 			<handler message="disposeUserAgent" class="rdarank.agent.user.handler.DisposeUserHandler"/>
 		</agent>

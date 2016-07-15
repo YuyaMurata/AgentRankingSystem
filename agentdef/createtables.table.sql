@@ -7,6 +7,7 @@
 --			<attribute name="UserID" type="string" primarykey="true" maxlength="16"/>
 --			<attribute name="Profile" type="profile" singleentity="true"/>
 --			<attribute name="Data" type="long" />
+--                      <attribute name="CommunicationID" type="string" maxlength="16"/>
 --			<attribute name="ConnectionCount" type="long" />
 --			<attribute name="MessageLatency" type="long" />
 --                      <attribute name="MessageQueueLength" type="long" />
@@ -30,6 +31,7 @@
 CREATE TRANSIENT TABLE useragent (
 	UserID VARCHAR(16) NOT NULL,
 	Data INTEGER,
+        CommunicationID VARCHAR(16)
 	ConnectionCount BIGINT,
 	MessageLatency BIGINT,
         MessageQueueLength BIGINT,
