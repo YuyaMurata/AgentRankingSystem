@@ -68,9 +68,8 @@ public class CreateUserAgent implements AgentExecutor, Serializable{
 		
             return ret;
         } catch (AgentException | IllegalAccessException | InstantiationException e) {
+            return e;
         }
-		
-        return null;
     }
 	
     public void create(String agID, Integer size, Long queuewait, Long agentwait){
