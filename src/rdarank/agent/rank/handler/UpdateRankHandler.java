@@ -18,7 +18,6 @@ public class UpdateRankHandler extends MessageHandler{
     @Override
     public Object onMessage(Message msg) throws Exception {
         // TODO 自動生成されたメソッド・スタブ
-        // TODO 自動生成されたメソッド・スタブ
         UpdateRankMessage updateMsg = (UpdateRankMessage) msg;
         MessageObject msgObj = (MessageObject) updateMsg.messageData;
         
