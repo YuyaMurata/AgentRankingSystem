@@ -11,9 +11,12 @@ import com.ibm.agent.exa.Message;
  *
  * @author kaeru
  */
-public class UpdateRankingMessage extends Message{
+public class QueryRankingMessage extends Message{
     //User Data
+    public Long userData;
 
-    public void setParams(){
+    public void setParams(Long userData){
+        this.userData = userData;
     }
+    
 }
