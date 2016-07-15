@@ -14,10 +14,10 @@ import com.ibm.agent.exa.client.AgentExecutor;
 import rda.agent.client.AgentConnection;
 import rda.agent.queue.MessageQueue;
 import rda.data.profile.ProfileGenerator;
-import rda.manager.AgentMessageQueueManager;
 import rda.manager.TestCaseManager;
 import rdarank.agent.user.message.InitUserMessage;
 import rdarank.agent.user.updater.UpdateUser;
+import rdarank.manager.UserAgentManager;
 
 public class CreateUserAgent implements AgentExecutor, Serializable{
     /**
@@ -93,7 +93,7 @@ public class CreateUserAgent implements AgentExecutor, Serializable{
             //Create AgentQueue
             MessageQueue mq = new MessageQueue(agID, size, queuewait, agentwait);
             mq.setAgentType(new UpdateUser(agID));
-            AgentMessageQueueManager.getInstance().register(mq);
+            UserAgentManager.getInstance().register(mq);
             
             //return mq;
         } catch (AgentException e) {
