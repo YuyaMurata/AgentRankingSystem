@@ -15,6 +15,7 @@ import java.util.Iterator;
  * attribute name="UserID" type="STRING" primarykey="true" <br>
  * attribute name="Profile" type="profile" <br>
  * attribute name="Data" type="LONG" <br>
+ * attribute name="CommunicationID" type="STRING" <br>
  * attribute name="ConnectionCount" type="LONG" <br>
  * attribute name="MessageLatency" type="LONG" <br>
  * attribute name="MessageQueueLength" type="LONG" <br>
@@ -47,24 +48,29 @@ public class Useragent extends HPAEntity {
     public static final int DATA = 2;
 
     /**
+    * Column index of CommunicationID
+    **/
+    public static final int COMMUNICATIONID = 3;
+
+    /**
     * Column index of ConnectionCount
     **/
-    public static final int CONNECTIONCOUNT = 3;
+    public static final int CONNECTIONCOUNT = 4;
 
     /**
     * Column index of MessageLatency
     **/
-    public static final int MESSAGELATENCY = 4;
+    public static final int MESSAGELATENCY = 5;
 
     /**
     * Column index of MessageQueueLength
     **/
-    public static final int MESSAGEQUEUELENGTH = 5;
+    public static final int MESSAGEQUEUELENGTH = 6;
 
     /**
     * Column index of Log
     **/
-    public static final int LOG = 6;
+    public static final int LOG = 7;
 
     /**
      * This constructor is used by the runtime.
@@ -148,11 +154,32 @@ public class Useragent extends HPAEntity {
     }
 
     /**
+     * @return CommunicationID
+     **/
+    public final String getCommunicationID(TxID tx) {
+        // generated code
+        return getString(tx,3);
+    }
+
+    /**
+     * Set a value to CommunicationID. 
+     * @param tx a transaction context
+     * @param value a value to be set to CommunicationID
+     **/
+    public final void  setCommunicationID(TxID tx, String value) throws AgentException {
+        // generated code
+        if (value != null && value.length() > 16) {
+            throw new AgentException("CommunicationID > maxlength(16)");
+        }
+        setString(tx,3,value);
+    }
+
+    /**
      * @return ConnectionCount
      **/
     public final long getConnectionCount(TxID tx) {
         // generated code
-        return getLong(tx,3);
+        return getLong(tx,4);
     }
 
     /**
@@ -162,7 +189,7 @@ public class Useragent extends HPAEntity {
      **/
     public final void  setConnectionCount(TxID tx, long value) throws AgentException {
         // generated code
-        setLong(tx,3,value);
+        setLong(tx,4,value);
     }
 
     /**
@@ -170,7 +197,7 @@ public class Useragent extends HPAEntity {
      **/
     public final long getMessageLatency(TxID tx) {
         // generated code
-        return getLong(tx,4);
+        return getLong(tx,5);
     }
 
     /**
@@ -180,7 +207,7 @@ public class Useragent extends HPAEntity {
      **/
     public final void  setMessageLatency(TxID tx, long value) throws AgentException {
         // generated code
-        setLong(tx,4,value);
+        setLong(tx,5,value);
     }
 
     /**
@@ -188,7 +215,7 @@ public class Useragent extends HPAEntity {
      **/
     public final long getMessageQueueLength(TxID tx) {
         // generated code
-        return getLong(tx,5);
+        return getLong(tx,6);
     }
 
     /**
@@ -198,7 +225,7 @@ public class Useragent extends HPAEntity {
      **/
     public final void  setMessageQueueLength(TxID tx, long value) throws AgentException {
         // generated code
-        setLong(tx,5,value);
+        setLong(tx,6,value);
     }
 
     /**
@@ -210,7 +237,7 @@ public class Useragent extends HPAEntity {
      **/
     public final EntitySet getLog(TxID tx) throws AgentException {
         // generated code
-        return getEntitySet(tx,6);
+        return getEntitySet(tx,7);
     }
 
     /**
@@ -222,7 +249,7 @@ public class Useragent extends HPAEntity {
      **/
     public final Userlog getLog(TxID tx,String AccessID) throws AgentException {
         // generated code
-        EntitySet es = getEntitySet(tx,6);
+        EntitySet es = getEntitySet(tx,7);
         Entity parent = es.getParent();
         Object[] primaryKeys = new Object[]{parent.getObject(tx,0),AccessID};
         EntityKey ek = new EntityKey("userlog", primaryKeys);
@@ -241,7 +268,7 @@ public class Useragent extends HPAEntity {
         if (AccessID.length() > 16) {
             throw new AgentException("AccessID > maxlength(16)");
         }
-        EntitySet es = getEntitySet(tx,6);
+        EntitySet es = getEntitySet(tx,7);
         Object[] primaryKeys = new Object[]{null,AccessID};
         Userlog entity = (Userlog)es.createEntity(tx,primaryKeys);
         return entity;
@@ -253,7 +280,7 @@ public class Useragent extends HPAEntity {
      **/
     public final Iterator<Entity> getLogIterator(TxID tx) throws AgentException {
         // generated code
-        EntitySet es = getEntitySet(tx,6);
+        EntitySet es = getEntitySet(tx,7);
         return es.iterator(tx);
     }
 
