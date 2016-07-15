@@ -17,7 +17,7 @@
 CREATE TRANSIENT TABLE useragent (
 	UserID VARCHAR(16) NOT NULL,
 	Data INTEGER,
-        CommunicationID VARCHAR(16)
+        CommunicationID VARCHAR(16),
 	ConnectionCount BIGINT,
 	MessageLatency BIGINT,
         MessageQueueLength BIGINT,
