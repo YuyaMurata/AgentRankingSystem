@@ -31,7 +31,7 @@ public class AgentConnection {
         conf.setMaxIdle(poolsize);
         conf.setMaxTotal(poolsize);
         
-        this._pool = new GenericObjectPool<>(new AgentClientFactory("localhost:2809", "rda", "agent"), conf);
+        this._pool = new GenericObjectPool<>(new AgentClientFactory("localhost:2809", "rdarank", "agent"), conf);
         
         System.out.println("***********************************************************");
         System.out.println("total:"+((GenericObjectPool) _pool).getMaxTotal()
