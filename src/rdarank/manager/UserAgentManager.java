@@ -14,8 +14,10 @@ import rda.agent.queue.MessageQueue;
 import rda.agent.queue.QueueObserver;
 import rda.clone.AgentCloning;
 import rda.manager.IDManager;
+import rda.manager.LoggerManager;
 import rda.window.WindowController;
 import rdarank.agent.user.creator.CreateUserAgent;
+import rdarank.agent.user.log.UserAgentLogPrinter;
 
 /**
  *
@@ -47,6 +49,10 @@ public class UserAgentManager {
         
         //Init IDManager
         this.userID = new IDManager(userAgentMapParam);
+        
+        //Init LogPrinter
+        UserAgentLogPrinter log = new UserAgentLogPrinter("useragent");
+        LoggerManager.getInstance().setLogPrinter(log);
         
         AgentCloning.setAutoMode(0);
     }

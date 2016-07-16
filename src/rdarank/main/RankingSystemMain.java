@@ -17,7 +17,7 @@ public class RankingSystemMain {
     public static void main(String[] args) {
         prepare();
         execute();
-        //logger();
+        logger();
         shutdown();
     }
     

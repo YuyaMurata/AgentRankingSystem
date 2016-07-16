@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import rda.agent.template.AgentLogPrinterTemplate;
 import rda.db.DBAccess;
 import rda.db.SQLReturnObject;
 import rda.log.AgentLogPrint;
@@ -31,6 +32,10 @@ public class LoggerManager {
     public void initLoggerManager(Map loggerMap){
         this.db = new DBAccess();
         this.log = new LogSchedule(loggerMap);
+    }
+    
+    public void setLogPrinter(AgentLogPrinterTemplate logPrinter){
+        log.setLogPrinter(logPrinter);
     }
     
     public void startLogger(){

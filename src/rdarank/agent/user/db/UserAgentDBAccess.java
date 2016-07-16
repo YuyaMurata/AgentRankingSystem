@@ -3,43 +3,38 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rda.db;
+package rdarank.agent.user.db;
 
+import com.ibm.agent.exa.AgentManager;
+import com.ibm.agent.exa.client.AgentClient;
+import com.ibm.agent.exa.client.AgentExecutor;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.Properties;
-import com.ibm.agent.exa.AgentManager;
-import com.ibm.agent.exa.client.AgentClient;
-import com.ibm.agent.exa.client.AgentExecutor;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import rda.agent.client.AgentConnection;
+import rda.db.DBAccess;
+import rda.db.SQLReturnObject;
 
 /**
- * JDBCで対応するリージョンのレプリカ用solidDBにアクセスする．
- * エージェントエグゼキュータは，エージェント実行環境のサーバにて，
- * そのサーバのリージョンに対応するレプリカ用solidDBにJDBCで
- * 接続して，そのリージョンの顧客属性レコードの数を得る．最終的に
- * 全リージョンの顧客属性レコードの数を表示する．
+ *
+ * @author kaeru
  */
-public class DBAccess implements AgentExecutor, Serializable {
+public class UserAgentDBAccess implements AgentExecutor, Serializable {
     /**
     * 
     */
-    private static final long serialVersionUID = -8284826433740843048L;
+    private static final long serialVersionUID = -884826433740843048L;
 
-    public DBAccess() {}
-
-    String sqlstmt;
-    public DBAccess(String sqlstmt) {
-        this.sqlstmt = sqlstmt;
+    public UserAgentDBAccess() {
     }
     
     @Override
@@ -71,40 +66,25 @@ public class DBAccess implements AgentExecutor, Serializable {
             con = DriverManager.getConnection("jdbc:ceta:rdarank", props);
 
             // AgentDataを得るSQLを生成し，検索を行う．
-            stmt = con.prepareStatement(sqlstmt);
+            stmt = con.prepareStatement("select * from useragent");
             ResultSet rs = stmt.executeQuery();
             
             //IDとDataを取得
             List<Map> result = new ArrayList<>();
-            if(sqlstmt.contains("agent")){
-                Map tran = new HashMap();
-                Map late = new HashMap();
-                Map length = new HashMap();
-                while(rs.next()){
-                    tran.put(rs.getString(1), rs.getLong(2));
-                    late.put(rs.getString(1), rs.getLong(4));
-                    length.put(rs.getString(1), rs.getLong(5));
-                }
-                result.add(tran);
-                result.add(late);
-                result.add(length);
+            Map tran = new HashMap();
+            Map late = new HashMap();
+            Map length = new HashMap();
+            while(rs.next()){
+                tran.put(rs.getString(1), rs.getLong(2));
+                late.put(rs.getString(1), rs.getLong(5));
+                length.put(rs.getString(1), rs.getLong(6));
+            }
+            result.add(tran);
+            result.add(late);
+            result.add(length);
                 
                 return result;
-            }
-            
-            if(sqlstmt.contains("log")){
-                Map life = new HashMap();
-                while(rs.next()){
-                    if(rs.getString(2).contains("update"))
-                        life.put(rs.getString(1), rs.getLong(3));
-                }
-                result.add(life);
                 
-                return result;
-            }
-            
-            return null;
-            
         } catch(Exception e) {
             e.printStackTrace();
             return e;
@@ -126,14 +106,12 @@ public class DBAccess implements AgentExecutor, Serializable {
         }
     }
     
-    public SQLReturnObject query(String sql) {        
+    public SQLReturnObject query() {        
         try {
-            //System.out.println("region names:" + RegionCatalog.getInstance("localhost:2809").getRegionNameList());
-            //System.out.println("SQL{"+sql+"}");
             AgentConnection con = AgentConnection.getInstance();
             AgentClient client = con.getConnection();
             
-            DBAccess executor = new DBAccess(sql);
+            DBAccess executor = new DBAccess();
             
             Object ret = client.execute(executor);
             Collection<Object> col = (Collection<Object>)ret;
