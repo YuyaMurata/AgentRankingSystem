@@ -47,7 +47,7 @@ public class UserAgentManager {
         //Init IDManager
         this.userID = new IDManager(userAgentMapParam);
         
-        AgentCloning.setAutoMode(agentMode);
+        AgentCloning.setAutoMode(0);
     }
     
     public IDManager getIDManager(){
