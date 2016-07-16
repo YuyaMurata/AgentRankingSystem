@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import rda.agent.client.AgentConnection;
-import rda.db.DBAccess;
 import rda.db.SQLReturnObject;
 
 /**
@@ -112,7 +111,7 @@ public class UserAgentDBAccess implements AgentExecutor, Serializable {
             AgentConnection con = AgentConnection.getInstance();
             AgentClient client = con.getConnection();
             
-            DBAccess executor = new DBAccess();
+            UserAgentDBAccess executor = new UserAgentDBAccess();
             
             Object ret = client.execute(executor);
             Collection<Object> col = (Collection<Object>)ret;
