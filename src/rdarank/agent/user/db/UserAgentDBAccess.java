@@ -32,7 +32,7 @@ public class UserAgentDBAccess implements AgentExecutor, Serializable {
     /**
     * 
     */
-    private static final long serialVersionUID = -884826433740843048L;
+    private static final long serialVersionUID = -4826433740843048L;
 
     public UserAgentDBAccess() {
     }
