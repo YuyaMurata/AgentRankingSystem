@@ -160,7 +160,7 @@ public class RankingSystemManager  implements SetProperty{
     
     private Map preProfMap(){
         Map map = new HashMap();
-        map.put("AMOUNT_USER", NUMBER_OF_USERS);
+        map.put("AMOUNT_USERS", NUMBER_OF_USERS);
         map.put("MODE", DATA_MODE_PROFILE);
         map.put("SEED", PROF_SEED);
         map.put("RULE", NAME_RULE_USER);
