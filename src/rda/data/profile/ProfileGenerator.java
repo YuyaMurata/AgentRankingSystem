@@ -115,7 +115,7 @@ public class ProfileGenerator {
             HashMap prof = profMap.get(userID);
             
             //Communication AgentID
-            prof.put("Agent", "Not Define RankAgent ID"); 
+            prof.put("Agent", "Not Define ID"); 
             //AgentMessageQueueManager.getInstance().getIDManager().ageToID((Integer)prof.get("Age")));
         }
     }
