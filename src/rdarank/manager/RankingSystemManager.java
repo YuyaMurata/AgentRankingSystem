@@ -32,8 +32,8 @@ public class RankingSystemManager  implements SetProperty{
         System.out.println(">>Launch System");
         
         dataSettings(preDataMap(), preProfMap());
-        agentSettings(preUserAgentMap(), preRankAgentMap(), POOLSIZE);
         loggerSettings(preLoggerMap());
+        agentSettings(preUserAgentMap(), preRankAgentMap(), POOLSIZE);
         streamSettings(preStreamMap());
     }
     
