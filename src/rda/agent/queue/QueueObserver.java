@@ -24,7 +24,7 @@ public class QueueObserver {
         return name;
     }
     
-    public Integer notifyState(){
-        return queue.size();
+    public Long notifyState(){
+        return (long)queue.size();
     }
 }
