@@ -15,29 +15,25 @@ import rda.manager.AgentMessageQueueManager;
  * @author kaeru
  */
 public class Window{
-    private String originID, destID;
+    private String destID;
     private Integer size;
     private WindowController manager;
     private List win = new CopyOnWriteArrayList();
 
     public Window(WindowController manager, String id, Integer limit) {
-        this.originID = id;
+        this.destID = id;
         this.size = limit;
         this.manager = manager;
         
         //this.destID = AgentMessageQueueManager.getInstance().getIDManager().getDestID(originID);
     }
     
-    public String getOrigID(){
-        return originID;
+    public String getKeyID(){
+        return destID;
     }
     
     public String getDestID(){
-        return AgentMessageQueueManager.getInstance().getIDManager().getDestID(originID);
-    }
-    
-    public void setDestID(String id){
-        destID = id;
+        return this.destID;
     }
   
     public void pack(Object obj){

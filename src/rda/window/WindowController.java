@@ -37,7 +37,7 @@ public class WindowController{
     public void addExecutable(Window window){
         if(!executableQueue.contains(window)){
             executableQueue.add(window);
-            windowMap.remove(window.getOrigID());
+            windowMap.remove(window.getKeyID());
         }
     }
     

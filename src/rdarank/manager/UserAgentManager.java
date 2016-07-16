@@ -14,6 +14,7 @@ import rda.agent.queue.MessageQueue;
 import rda.agent.queue.QueueObserver;
 import rda.clone.AgentCloning;
 import rda.manager.IDManager;
+import rda.window.WindowController;
 import rdarank.agent.user.creator.CreateUserAgent;
 
 /**
