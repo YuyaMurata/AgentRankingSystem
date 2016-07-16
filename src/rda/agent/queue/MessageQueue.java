@@ -10,20 +10,23 @@ import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
 import rda.agent.template.AgentType;
 import rda.clone.AgentCloning;
-import rda.manager.AgentMessageQueueManager;
+import rda.manager.AgentManager;
 
 /**
  *
  * @author 悠也
  */
 public class MessageQueue extends MessageQueueProcess{
+    private AgentManager manager;
     private BlockingQueue<Object> queue;
     private String name;
     private AgentType agent;
     private Integer size;
     private long getwait, putwait;
     
-    public MessageQueue(String name, Integer size, Long queuewait, Long agentwait){
+    public MessageQueue(AgentManager manager, String name, Integer size, Long queuewait, Long agentwait){
+        this.manager = manager;
+        
         this.name = name;
         this.size = size;
         this.getwait = agentwait;
@@ -36,7 +39,7 @@ public class MessageQueue extends MessageQueueProcess{
     }
     
     private void register(QueueObserver observe){
-        AgentMessageQueueManager.getInstance().add(observe);
+        manager.add(observe);
     }
     
     @Override
@@ -106,7 +109,7 @@ public class MessageQueue extends MessageQueueProcess{
     //MessageQueue Process Overrides
     @Override
     public Boolean getRunnable() {
-        return AgentMessageQueueManager.getInstance().getState();
+        return manager.getState();
     }
 
     @Override

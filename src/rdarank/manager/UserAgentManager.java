@@ -13,6 +13,7 @@ import java.util.Map;
 import rda.agent.queue.MessageQueue;
 import rda.agent.queue.QueueObserver;
 import rda.clone.AgentCloning;
+import rda.manager.AgentManager;
 import rda.manager.IDManager;
 import rda.manager.LoggerManager;
 import rda.window.WindowController;
@@ -23,7 +24,7 @@ import rdarank.agent.user.log.UserAgentLogPrinter;
  *
  * @author kaeru
  */
-public class UserAgentManager {
+public class UserAgentManager extends AgentManager{
     private static UserAgentManager manager = new UserAgentManager();
     private static Boolean runnable = true;
     
@@ -32,6 +33,8 @@ public class UserAgentManager {
     private Integer queueLength;
     private Long queuewait, agentwait;
     private Integer agentMode, reserveMode;
+    
+    private List<QueueObserver> observes;
     
     private UserAgentManager() {
     }
@@ -46,6 +49,8 @@ public class UserAgentManager {
         this.agentwait = (Long)userAgentMapParam.get("AGENT_WAIT");
         this.agentMode = (Integer)userAgentMapParam.get("AGENT_MODE");
         this.reserveMode = (Integer)userAgentMapParam.get("RESERVE_MODE");
+        
+        this.observes = new ArrayList();
         
         //Init IDManager
         this.userID = new IDManager(userAgentMapParam);
@@ -104,13 +109,12 @@ public class UserAgentManager {
     }
     
     //Logger用にMQの監視オブジェクトを登録
-    private static List<QueueObserver> observeList = new ArrayList<>();
-    public void add(Object observe){
-       observeList.add((QueueObserver) observe);
+    public void add(QueueObserver observe) {
+        observes.add(observe);
     }
     
     public List<QueueObserver> getObserver(){
-        return observeList;
+        return observes;
     }
     
     //ManagerにMessageQueueを登録

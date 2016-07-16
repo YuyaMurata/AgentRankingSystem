@@ -85,7 +85,7 @@ public class CreateRankAgent implements AgentExecutor, Serializable{
             agconn.returnConnection(client);
             
             //Create AgentQueue
-            MessageQueue mq = new MessageQueue(agID, size, queuewait, agentwait);
+            MessageQueue mq = new MessageQueue(AgentMessageQueueManager.getInstance(), agID, size, queuewait, agentwait);
             mq.setAgentType(new UpdateRank(agID));
             AgentMessageQueueManager.getInstance().register(mq);
             

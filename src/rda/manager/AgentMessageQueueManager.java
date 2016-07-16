@@ -18,7 +18,7 @@ import rda.clone.AgentCloning;
  *
  * @author 悠也
  */
-public class AgentMessageQueueManager {
+public class AgentMessageQueueManager extends AgentManager{
     private static AgentMessageQueueManager manager = new AgentMessageQueueManager();
     private Boolean runnable = true;
     private Integer queueLength;
@@ -113,9 +113,9 @@ public class AgentMessageQueueManager {
     
     //Logger用にMQの監視オブジェクトを登録
     private static List<QueueObserver> observeList = new ArrayList<>();
-    public void add(Object observe){
-       observeList.add((QueueObserver) observe);
-    }
+    //public void add(Object observe){
+    //   observeList.add((QueueObserver) observe);
+    //}
     
     public List<QueueObserver> getObserver(){
         return observeList;
@@ -187,5 +187,10 @@ public class AgentMessageQueueManager {
         sb.append(sbsize);
         
         return sb.toString();
+    }
+
+    @Override
+    public void add(QueueObserver observe) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

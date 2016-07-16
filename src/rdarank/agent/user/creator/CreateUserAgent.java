@@ -92,7 +92,7 @@ public class CreateUserAgent implements AgentExecutor, Serializable{
             agconn.returnConnection(client);
             
             //Create AgentQueue
-            MessageQueue mq = new MessageQueue(agID, size, queuewait, agentwait);
+            MessageQueue mq = new MessageQueue(UserAgentManager.getInstance(), agID, size, queuewait, agentwait);
             mq.setAgentType(new UpdateUser(agID));
             UserAgentManager.getInstance().register(mq);
             
