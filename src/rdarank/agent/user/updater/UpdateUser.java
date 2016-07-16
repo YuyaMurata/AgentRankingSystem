@@ -10,7 +10,6 @@ import com.ibm.agent.exa.client.AgentClient;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-import java.util.List;
 import rda.agent.client.AgentConnection;
 import rda.agent.queue.MessageObject;
 import rda.agent.template.AgentType;
@@ -100,7 +99,7 @@ public class UpdateUser extends AgentType {
                     LoggerManager.getInstance().putMSGLatency(agID, (Long)reply);
                 }catch(Exception e){
                     e.printStackTrace();
-                    System.out.println("rda.agent.rank.updater.UpdateRank.sendMessage()"+reply);
+                    System.out.println("rdarank.agent.user.updater.UpdateUser.sendMessage()"+reply);
                 }
             }
             
