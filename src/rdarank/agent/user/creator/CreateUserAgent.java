@@ -32,7 +32,7 @@ public class CreateUserAgent implements AgentExecutor, Serializable{
     }
 	
     AgentKey agentKey;
-    Map<String, String> prof;
+    Map prof;
     public CreateUserAgent(AgentKey agentKey, Map prof) {
         // TODO 自動生成されたコンストラクター・スタブ
         this.agentKey = agentKey;
@@ -60,9 +60,9 @@ public class CreateUserAgent implements AgentExecutor, Serializable{
             MessageFactory factory = MessageFactory.getFactory();
             InitUserMessage msg = (InitUserMessage)factory.getMessage(MESSAGE_TYPE);
 		
-            msg.setParams(prof.get("Name"), prof.get("Sex"), 
-                            prof.get("Age"), prof.get("Address"),
-                            prof.get("Agent"));
+            msg.setParams(  (String)prof.get("Name"), (String)prof.get("Sex"), 
+                            ((Integer) prof.get("Age")).toString(),  (String)prof.get("Address"),
+                            (String) prof.get("Agent"));
 		
             Object ret = agentManager.sendMessage(agentKey, msg);
 		
