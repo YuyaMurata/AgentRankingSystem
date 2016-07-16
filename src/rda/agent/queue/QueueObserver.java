@@ -25,6 +25,6 @@ public class QueueObserver {
     }
     
     public Long notifyState(){
-        return (long)queue.size();
+        return new Long(queue.size());
     }
 }
