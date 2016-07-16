@@ -40,7 +40,7 @@ public class UserAgentLogPrinter extends AgentLogPrinterTemplate{
         for(int i=0; i < manager.getObserver().size(); i++){
             place.append(",{}");
             field.add(manager.getObserver().get(i).getName());
-            data.add(manager.getObserver().get(i).notifyState());
+            data.add(manager.getObserver().get(i).notifyState().longValue());
         }
         
         map.put("Place", place.toString());
