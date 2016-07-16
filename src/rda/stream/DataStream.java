@@ -17,6 +17,7 @@ import rda.manager.AgentMessageQueueManager;
 import rda.manager.TestCaseManager;
 import rda.window.Window;
 import rda.window.WindowController;
+import rdarank.manager.UserAgentManager;
 
 /**
  *
@@ -48,7 +49,7 @@ public class DataStream implements Runnable{
     }
     
     private void stream(Long t){
-        Map mqMap = AgentMessageQueueManager.getInstance().getMQMap();
+        Map mqMap = UserAgentManager.getInstance().getMQMap();
         TestData data;
         Window window;
 
