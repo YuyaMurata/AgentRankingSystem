@@ -75,6 +75,7 @@ public class UserAgentDBAccess implements AgentExecutor, Serializable {
             Map late = new HashMap();
             Map length = new HashMap();
             while(rs.next()){
+                System.out.println(rs.getString(1));
                 tran.put(rs.getString(1), rs.getLong(2));
                 late.put(rs.getString(1), rs.getLong(5));
                 length.put(rs.getString(1), rs.getLong(6));
@@ -83,7 +84,7 @@ public class UserAgentDBAccess implements AgentExecutor, Serializable {
             result.add(late);
             result.add(length);
                 
-                return result;
+            return result;
                 
         } catch(Exception e) {
             e.printStackTrace();

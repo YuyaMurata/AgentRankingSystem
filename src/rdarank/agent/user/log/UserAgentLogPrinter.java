@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 import rda.agent.template.AgentLogPrinterTemplate;
 import rda.db.SQLReturnObject;
 import rda.log.AgentLogPrint;
-import rda.manager.LoggerManager;
 import rdarank.agent.user.db.UserAgentDBAccess;
 import rdarank.manager.UserAgentManager;
 
