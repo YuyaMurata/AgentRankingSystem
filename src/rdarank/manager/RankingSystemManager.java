@@ -5,6 +5,7 @@
  */
 package rdarank.manager;
 
+import rdarank.agent.user.manager.UserAgentManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,7 @@ import rda.manager.LoggerManager;
 import rda.manager.TestCaseManager;
 import rda.property.SetProperty;
 import rda.stream.DataStream;
+import rdarank.agent.rank.manager.RankAgentManager;
 
 /**
  *
@@ -54,7 +56,7 @@ public class RankingSystemManager  implements SetProperty{
         agconn.setPoolSize(poolsize);
         
         //RankAgent Initialize
-        /*
+        System.out.println("< Initialise RankAgents >");
         RankAgentManager rank = RankAgentManager.getInstance();
         rank.initRankAgent(rankAgentParam);
         rank.createNumberOfAgents((Integer)rankAgentParam.get("AMOUNT_OF_AGENT"));
@@ -69,8 +71,6 @@ public class RankingSystemManager  implements SetProperty{
         }
         
         System.out.println(">>> Finished Set RankAgents & IDs");
-        */
-        
         
         //UserAgent Initialize
         //UserAgent Attributed Initialize
@@ -78,6 +78,7 @@ public class RankingSystemManager  implements SetProperty{
         tcManager.profgen.addUserProfileToAgent();
         tcManager.profgen.addUserAgentCommunication();
         
+        System.out.println("< Initialise UserAgents >");
         UserAgentManager user = UserAgentManager.getInstance();
         user.initUserAgent(userAgentParam);
         user.createNumberOfAgents((Integer)userAgentParam.get("AMOUNT_OF_AGENTS"));

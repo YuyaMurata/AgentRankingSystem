@@ -14,7 +14,7 @@ import rda.agent.client.AgentConnection;
 import rda.agent.queue.MessageQueue;
 import rdarank.agent.rank.message.InitRankMessage;
 import rdarank.agent.rank.updater.UpdateRank;
-import rdarank.manager.RankAgentManager;
+import rdarank.agent.rank.manager.RankAgentManager;
 
 public class CreateRankAgent implements AgentExecutor, Serializable{
     /**

@@ -16,7 +16,7 @@ import rda.data.test.TestData;
 import rda.manager.TestCaseManager;
 import rda.window.Window;
 import rda.window.WindowController;
-import rdarank.manager.UserAgentManager;
+import rdarank.agent.user.manager.UserAgentManager;
 
 /**
  *

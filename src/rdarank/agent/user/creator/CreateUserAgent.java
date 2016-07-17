@@ -17,7 +17,7 @@ import rda.data.profile.ProfileGenerator;
 import rda.manager.TestCaseManager;
 import rdarank.agent.user.message.InitUserMessage;
 import rdarank.agent.user.updater.UpdateUser;
-import rdarank.manager.UserAgentManager;
+import rdarank.agent.user.manager.UserAgentManager;
 
 public class CreateUserAgent implements AgentExecutor, Serializable{
     /**

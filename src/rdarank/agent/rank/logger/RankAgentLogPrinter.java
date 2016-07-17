@@ -14,7 +14,7 @@ import rda.agent.template.AgentLogPrinterTemplate;
 import rda.db.SQLReturnObject;
 import rda.log.AgentLogPrint;
 import rdarank.agent.rank.db.RankAgentDBAccess;
-import rdarank.manager.RankAgentManager;
+import rdarank.agent.rank.manager.RankAgentManager;
 
 /**
  *
