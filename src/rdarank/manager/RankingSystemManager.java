@@ -59,7 +59,7 @@ public class RankingSystemManager  implements SetProperty{
         System.out.println("< Initialise RankAgents >");
         RankAgentManager rank = RankAgentManager.getInstance();
         rank.initRankAgent(rankAgentParam);
-        rank.createNumberOfAgents((Integer)rankAgentParam.get("AMOUNT_OF_AGENT"));
+        rank.createNumberOfAgents((Integer)rankAgentParam.get("AMOUNT_OF_AGENTS"));
         
         if(rank.getReserveMode() == 1){
             List<String> reserveID = new ArrayList<>();
