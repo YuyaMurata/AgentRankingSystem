@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rdarank.agent.user.log;
+package rdarank.agent.rank.logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,20 +13,20 @@ import java.util.stream.Collectors;
 import rda.agent.template.AgentLogPrinterTemplate;
 import rda.db.SQLReturnObject;
 import rda.log.AgentLogPrint;
-import rdarank.agent.user.db.UserAgentDBAccess;
-import rdarank.manager.UserAgentManager;
+import rdarank.agent.rank.db.RankAgentDBAccess;
+import rdarank.manager.RankAgentManager;
 
 /**
  *
  * @author kaeru
  */
-public class UserAgentLogPrinter extends AgentLogPrinterTemplate{
-    private static UserAgentManager manager = UserAgentManager.getInstance();
-    private UserAgentDBAccess db;
+public class RankAgentLogPrinter extends AgentLogPrinterTemplate{
+    private static RankAgentManager manager = RankAgentManager.getInstance();
+    private RankAgentDBAccess db;
     private String agenttype;
     
-    public UserAgentLogPrinter(String agenttype){
-        this.db = new UserAgentDBAccess();
+    public RankAgentLogPrinter(String agenttype){
+        this.db = new RankAgentDBAccess();
         this.agenttype = agenttype;
     }
     

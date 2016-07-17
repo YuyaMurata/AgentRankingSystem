@@ -13,7 +13,6 @@ import rda.agent.queue.MessageObject;
 import rda.agent.queue.MessageQueue;
 import rda.agent.queue.MessageQueueEvent;
 import rda.data.test.TestData;
-import rda.manager.AgentMessageQueueManager;
 import rda.manager.TestCaseManager;
 import rda.window.Window;
 import rda.window.WindowController;

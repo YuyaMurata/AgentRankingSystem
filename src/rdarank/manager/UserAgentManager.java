@@ -18,7 +18,7 @@ import rda.manager.IDManager;
 import rda.manager.LoggerManager;
 import rda.window.WindowController;
 import rdarank.agent.user.creator.CreateUserAgent;
-import rdarank.agent.user.log.UserAgentLogPrinter;
+import rdarank.agent.user.logger.UserAgentLogPrinter;
 
 /**
  *
@@ -59,7 +59,8 @@ public class UserAgentManager extends AgentManager{
         UserAgentLogPrinter log = new UserAgentLogPrinter("useragent");
         LoggerManager.getInstance().setLogPrinter(log);
         
-        AgentCloning.setAutoMode(0);
+        //Init AgentCloning Mode
+        automode = 0;
     }
     
     public IDManager getIDManager(){
@@ -136,8 +137,11 @@ public class UserAgentManager extends AgentManager{
         return messageQueueMap.size() - userID.getNumReserves();
     }
     
-    public Integer getAutoMode(){
-        return agentMode;
+    //AgentCloning Mode Select
+    private Integer automode;
+    @Override
+    public Boolean getAutoMode(){
+        return automode == 0;
     }
     
     public Integer getReserveMode(){

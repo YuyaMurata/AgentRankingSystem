@@ -8,7 +8,6 @@ package rda.window;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import rda.data.test.DataTemplate;
-import rda.manager.AgentMessageQueueManager;
 
 /**
  *

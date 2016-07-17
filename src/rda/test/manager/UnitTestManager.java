@@ -5,7 +5,6 @@
  */
 package rda.test.manager;
 
-import rda.manager.AgentMessageQueueManager;
 import rda.manager.IDManager;
 import rda.test.param.TestParameter;
 
@@ -21,9 +20,9 @@ public class UnitTestManager extends TestParameter{
     }
     
     public void prepareManager(){
-        AgentMessageQueueManager ag = AgentMessageQueueManager.getInstance();
-        ag.initAgentMessageQueueManager(agentMQParam, idParam);
-        this.id = ag.getIDManager();
+        //AgentMessageQueueManager ag = AgentMessageQueueManager.getInstance();
+        //ag.initAgentMessageQueueManager(agentMQParam, idParam);
+        //this.id = ag.getIDManager();
     }
     
     public void createPseudoAgents(){

@@ -7,7 +7,6 @@ package rda.log;
 
 import java.util.List;
 import java.util.Map;
-import rda.manager.AgentMessageQueueManager;
 
 /**
  *
@@ -44,8 +43,7 @@ public class AgentLogPrint {
         logger.printMQEvent(logger.dataMarker, "Event,{},{},{}", new Object[]{origin, dest, clone});
     }
     
-    public static void printAgentState(String state, String origin, String clone){
-        Integer num = AgentMessageQueueManager.getInstance().getNumAgents();
+    public static void printAgentState(String state, String origin, String clone, Integer num){
         logger.printMQEvent(logger.stateMarker, "Event,{},{},{},{}", new Object[]{state, origin, clone, num});
     }
     

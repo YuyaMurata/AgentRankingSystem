@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 import rda.agent.template.AgentType;
 import rda.clone.AgentCloning;
 import rda.manager.AgentManager;
+import rda.manager.IDManager;
 
 /**
  *
@@ -68,16 +69,18 @@ public class MessageQueue extends MessageQueueProcess{
     
     //Load Balancer Cloning updgrade
     public void eventClone()  throws MessageQueueEvent{
-        String cloneID = AgentCloning.cloning(name, queue);
-        MessageQueueEvent.printState("cloning", cloneID);
+        IDManager id = manager.getIDManager();
+        String cloneID = AgentCloning.cloning(manager, name, queue);
+        MessageQueueEvent.printState("cloning", id.getOrigID(name), cloneID, manager.getNumAgents());
         
-        throw new MessageQueueEvent(name, cloneID);
+        throw new MessageQueueEvent(name, id.getOrigID(name), cloneID);
     }
     
     //Load Balancer Cloning degrade
     public void eventDelete() {
-        MessageQueueEvent.printState("delete", name);
-        String deleteID = AgentCloning.delete(name);
+        IDManager id = manager.getIDManager();
+        MessageQueueEvent.printState("delete", name, id.getOrigID(name), manager.getNumAgents());
+        String deleteID = AgentCloning.delete(manager, name);
     }
     
     //Only AgnetClone
