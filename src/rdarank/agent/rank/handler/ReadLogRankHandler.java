@@ -8,7 +8,7 @@ import com.ibm.agent.exa.TxID;
 import com.ibm.agent.exa.entity.Entity;
 import rdarank.Rankagent;
 import rdarank.Ranklog;
-import rdarank.agent.user.logger.LogInfo;
+import rdarank.agent.rank.logger.LogInfo;
 
 public class ReadLogRankHandler extends MessageHandler{
 
@@ -36,7 +36,7 @@ public class ReadLogRankHandler extends MessageHandler{
 		}
 
 		LogInfo info = new LogInfo(
-				/*userID*/      rank.getRankID(tx),
+				/*rankID*/      rank.getRankID(tx),
 				/*connectCount*/rank.getConnectionCount(tx),
 				/*accessLog*/ 		accessIDList.toString(),
 				/*accessTime*/		accessTimeList.toString());

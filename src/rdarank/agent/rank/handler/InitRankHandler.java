@@ -2,14 +2,12 @@ package rdarank.agent.rank.handler;
 
 import java.sql.Timestamp;
 
-import rdarank.agent.user.message.InitUserMessage;
-
 import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageHandler;
 import com.ibm.agent.exa.TxID;
-import rdarank.Profile;
-import rdarank.Useragent;
-import rdarank.Userlog;
+import rdarank.Rankagent;
+import rdarank.Ranklog;
+import rdarank.agent.rank.message.InitRankMessage;
 
 /**
  *　INITメッセージのメッセージハンドラ．エージェントのデータの初期化を行う．
@@ -18,38 +16,27 @@ public class InitRankHandler extends MessageHandler {
 	@Override
 	public Object onMessage(Message msg) throws Exception {
 		try {
-			InitUserMessage initMsg = (InitUserMessage)msg;
+			InitRankMessage initMsg = (InitRankMessage)msg;
 
 			// マスターエンティティを取得
-			Useragent user = (Useragent)getEntity();
+			Rankagent rank = (Rankagent)getEntity();
 
 			// トランザクションIDを取得
 			TxID tx = getTx();
-			Profile prof = user.createProfile(tx);
 
-			//Set User Profile
-			// 名前をセット
-			prof.setName(tx, initMsg.name);
-			// 性別をセット
-			prof.setSex(tx, initMsg.sex);
-			// 年齢をセット
-			prof.setAge(tx, initMsg.age);
-			// 住所をセット
-			prof.setAddress(tx, initMsg.address);
-			// 登録日
-                        Long time = System.currentTimeMillis();
-			Timestamp registerTime = new Timestamp(time);
-			prof.setLastAccessTime(tx, registerTime);
-
-			//UserAgent初期化
-			//GPSデータのクリア
-			user.setData(tx, 0);
+			//RankAgent初期化
+			//User数のクリア
+			rank.setTotalUsers(tx, 0);
 			//更新回数のクリア
-			user.setConnectionCount(tx, 0);
-
+			rank.setConnectionCount(tx, 0L);
+                        
+                        // 登録日
+                        Long time = System.currentTimeMillis();
+                        Timestamp registerTime = new Timestamp(time);
+                        
 			// set User Log
-			Userlog log = user.createLog(tx, "init");
-
+			Ranklog log = rank.createLog(tx, "init");
+                        
 			// 最終更新日
 			log.setLastAccessTime(tx, registerTime);
                         log.setCurrentTime(tx, time);

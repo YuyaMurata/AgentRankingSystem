@@ -15,7 +15,6 @@ import rda.agent.queue.MessageQueue;
 import rdarank.agent.rank.message.InitRankMessage;
 import rdarank.agent.rank.updater.UpdateRank;
 import rdarank.manager.RankAgentManager;
-//import rda.manager.AgentMessageQueueManager;
 
 public class CreateRankAgent implements AgentExecutor, Serializable{
     /**
@@ -30,7 +29,6 @@ public class CreateRankAgent implements AgentExecutor, Serializable{
     }
 	
     AgentKey agentKey;
-    HashMap<String, String> prof;
     public CreateRankAgent(AgentKey agentKey) {
         // TODO 自動生成されたコンストラクター・スタブ
         this.agentKey = agentKey;

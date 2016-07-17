@@ -30,7 +30,7 @@ public class RankAgentLogPrinter extends AgentLogPrinterTemplate{
         this.agenttype = agenttype;
     }
     
-    //UserAgent MessageQueue Status
+    //RankAgent MessageQueue Status
     private void printAgentObserver(){
         StringBuilder place = new StringBuilder("MessageQueue");
         List field = new ArrayList();
@@ -52,7 +52,7 @@ public class RankAgentLogPrinter extends AgentLogPrinterTemplate{
         AgentLogPrint.printMessageQueueLog(map);
     }
     
-    //UserAgent Database
+    //RankAgent Database
     private void printAgentDBData(){
         SQLReturnObject obj = db.query();
         

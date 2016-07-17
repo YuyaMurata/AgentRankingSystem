@@ -10,13 +10,12 @@ import com.ibm.agent.exa.client.AgentClient;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-import java.util.List;
 import rda.agent.client.AgentConnection;
 import rda.agent.queue.MessageObject;
 import rda.agent.template.AgentType;
 import rda.agent.template.MessageTemplate;
-import rdarank.agent.user.message.UpdateUserMessage;
 import rda.manager.LoggerManager;
+import rdarank.agent.rank.message.UpdateRankMessage;
 
 public class UpdateRank extends AgentType {
     /**
@@ -68,7 +67,7 @@ public class UpdateRank extends AgentType {
             AgentManager agentManager = AgentManager.getAgentManager();
                 
             MessageFactory factory = MessageFactory.getFactory();
-            UpdateUserMessage msg = (UpdateUserMessage)factory.getMessage(MESSAGE_TYPE);
+            UpdateRankMessage msg = (UpdateRankMessage)factory.getMessage(MESSAGE_TYPE);
             msg.setParams(data);
 
             //Sync Message

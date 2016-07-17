@@ -13,18 +13,18 @@ public class LogInfo implements Serializable{
 	}
 	
 	/*
-	 * <attribute name="UserID" type="string" primarykey="true" relationto="UserID" maxlength="16"/>
+	 * <attribute name="RankID" type="string" primarykey="true" relationto="RankID" maxlength="16"/>
 	 * <attribute name="AccessID" type="string" primarykey="true" maxlength="16"/>
 	 * <attribute name="LastAccessTime" type="timestamp" />
 	 */
-	String userID;
+	String rankID;
 	long connectCount;
 	String accessLog;
 	String accessTime;
 	
 	public LogInfo(String userID, long connectCount, String accessLog, String accessTime) {
 		// TODO 自動生成されたコンストラクター・スタブ
-		this.userID = userID;
+		this.rankID = userID;
 		this.connectCount = connectCount;
 		this.accessLog = accessLog;
 		this.accessTime = accessTime;
@@ -34,7 +34,7 @@ public class LogInfo implements Serializable{
 	public String toString(){
 		StringBuilder sb = new StringBuilder();
 
-		sb.append(userID);
+		sb.append(rankID);
 		sb.append(",");
 		sb.append(connectCount);
 		sb.append("\n");

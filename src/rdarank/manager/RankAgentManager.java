@@ -25,7 +25,7 @@ public class RankAgentManager extends AgentManager{
     private static RankAgentManager manager = new RankAgentManager();
     private static Boolean runnable = true;
     
-    private IDManager userID;
+    private IDManager rankID;
     
     private Integer queueLength;
     private Long queuewait, agentwait;
@@ -40,7 +40,7 @@ public class RankAgentManager extends AgentManager{
         return manager;
     }
     
-    public void initUserAgent(Map rankAgentMapParam){
+    public void initRankAgent(Map rankAgentMapParam){
         this.queueLength = (Integer)rankAgentMapParam.get("QUEUE_LENGTH");
         this.queuewait = (Long)rankAgentMapParam.get("QUEUE_WAIT");
         this.agentwait = (Long)rankAgentMapParam.get("AGENT_WAIT");
@@ -50,7 +50,7 @@ public class RankAgentManager extends AgentManager{
         this.observes = new ArrayList();
         
         //Init IDManager
-        this.userID = new IDManager(rankAgentMapParam);
+        this.rankID = new IDManager(rankAgentMapParam);
         
         //Init LogPrinter
         RankAgentLogPrinter log = new RankAgentLogPrinter("rankagent");
@@ -60,15 +60,16 @@ public class RankAgentManager extends AgentManager{
         automode = 0;
     }
     
+    @Override
     public IDManager getIDManager(){
-        return userID;
+        return rankID;
     }
     
     //Agentの複数生成 e.g.("R#", 10)
     public void createNumberOfAgents(Integer numOfAgents){
         for(int i=0; i < numOfAgents; i++){
             String agentID = createAgent();
-            userID.initRegID(agentID);
+            rankID.initRegID(agentID);
         }
     }
     
@@ -77,8 +78,8 @@ public class RankAgentManager extends AgentManager{
         String agID;
         Object agent = null;
         
-        if((agID = userID.getReserveID()) == null){
-            agID = userID.genID();
+        if((agID = rankID.getReserveID()) == null){
+            agID = rankID.genID();
             CreateRankAgent rankAgent = new CreateRankAgent();
             rankAgent.create(agID, queueLength, queuewait, agentwait);
         } else {
@@ -97,6 +98,7 @@ public class RankAgentManager extends AgentManager{
     }
     
     //MessageQueueの実行管理
+    @Override
     public Boolean getState(){
         return runnable;
     }
@@ -107,6 +109,7 @@ public class RankAgentManager extends AgentManager{
     }
     
     //Logger用にMQの監視オブジェクトを登録
+    @Override
     public void add(QueueObserver observe) {
         observes.add(observe);
     }
@@ -131,7 +134,7 @@ public class RankAgentManager extends AgentManager{
     }
     
     public Integer getNumAgents(){
-        return messageQueueMap.size() - userID.getNumReserves();
+        return messageQueueMap.size() - rankID.getNumReserves();
     }
     
     //AgentCloning Mode Select
