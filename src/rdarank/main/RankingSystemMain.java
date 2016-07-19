@@ -16,8 +16,8 @@ public class RankingSystemMain {
     
     public static void main(String[] args) {
         prepare();
-        execute();
-        logger();
+        //execute();
+        //logger();
         shutdown();
     }
     
@@ -34,8 +34,8 @@ public class RankingSystemMain {
     }
     
     private static void shutdown(){
-        manager.dataStream().stop();
-        manager.stopLogger();
+        //manager.dataStream().stop();
+        //manager.stopLogger();
         manager.shutdownSystem();
     }
 }
