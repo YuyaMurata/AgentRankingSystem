@@ -45,8 +45,8 @@ public class RankingSystemManager  implements SetProperty{
         user.doShutdown();
         
         //RankAgent Shutdown
-        //RankAgentManager rank = RankAgentManager.getInstance();
-        //rank.doShutdown();
+        RankAgentManager rank = RankAgentManager.getInstance();
+        rank.doShutdown();
         
         System.out.println(">> Shutdown System...");
     }
