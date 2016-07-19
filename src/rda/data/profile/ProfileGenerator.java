@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.apache.commons.math3.random.RandomDataGenerator;
+import rdarank.agent.rank.manager.RankAgentManager;
 
 public class ProfileGenerator {
     private static final ProfileGenerator profgen; 
@@ -115,8 +116,8 @@ public class ProfileGenerator {
             HashMap prof = profMap.get(userID);
             
             //Communication AgentID
-            prof.put("Agent", "Not Define ID"); 
-            //AgentMessageQueueManager.getInstance().getIDManager().ageToID((Integer)prof.get("Age")));
+            String rankID = RankAgentManager.getInstance().getIDManager().ageToID((Integer)prof.get("Age"));
+            prof.put("Agent", rankID);
         }
     }
 }

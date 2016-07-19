@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import rda.agent.queue.MessageQueue;
 import rda.agent.queue.QueueObserver;
+import rda.data.profile.ProfileGenerator;
 import rda.manager.AgentManager;
 import rda.manager.IDManager;
 import rda.manager.LoggerManager;
@@ -158,5 +159,10 @@ public class RankAgentManager extends AgentManager{
     @Override
     public WindowController getWindowController() {
         return this.windowCTRL;
+    }
+    
+    //Only Test
+    public String getHashToRankID(String id){
+        return (String) ProfileGenerator.getInstance().getProf(id).get("Agent");
     }
 }
