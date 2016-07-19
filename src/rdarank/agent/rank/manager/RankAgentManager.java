@@ -162,7 +162,7 @@ public class RankAgentManager extends AgentManager{
     }
     
     //Only Test
-    public String getHashToRankID(String id){
+    public String getToRankID(String id){
         return (String) ProfileGenerator.getInstance().getProf(id).get("Agent");
     }
 }

@@ -17,6 +17,7 @@ import rda.manager.AgentManager;
 import rda.manager.TestCaseManager;
 import rda.window.Window;
 import rda.window.WindowController;
+import rdarank.agent.rank.manager.RankAgentManager;
 import rdarank.agent.user.manager.UserAgentManager;
 
 /**
@@ -71,6 +72,12 @@ public class DataStream implements Runnable{
                 
                 //Agent Put Handler
                 //new SendAgentMessage().sendMessage(msgPack);
+                
+                //Test RankAgent
+                agID = RankAgentManager.getInstance().getToRankID(window.getDestID());
+                //Translation Window To Message
+                MessageObject rankmsg = new MessageObject(agID, window.unpack());
+                ((MessageQueue)RankAgentManager.getInstance().getMQMap().get(agID)).put(rankmsg);
                 
                 total = total+window.unpack().size();
                 

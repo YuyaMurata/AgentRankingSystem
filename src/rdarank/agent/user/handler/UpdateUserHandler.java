@@ -16,7 +16,6 @@ public class UpdateUserHandler extends MessageHandler{
     @Override
     public Object onMessage(Message msg) throws Exception {
         // TODO 自動生成されたメソッド・スタブ
-        // TODO 自動生成されたメソッド・スタブ
         UpdateUserMessage updateMsg = (UpdateUserMessage) msg;
         MessageObject msgObj = (MessageObject) updateMsg.messageData;
         

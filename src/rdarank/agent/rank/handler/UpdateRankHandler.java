@@ -10,6 +10,7 @@ import java.util.List;
 import rda.agent.queue.MessageObject;
 import rdarank.Rankagent;
 import rdarank.Ranklog;
+import rdarank.Ranktable;
 import rdarank.agent.rank.message.UpdateRankMessage;
 
 public class UpdateRankHandler extends MessageHandler{
@@ -26,7 +27,25 @@ public class UpdateRankHandler extends MessageHandler{
         // トランザクションIDを取得
         TxID tx = getTx();
         for(Object data : (List)msgObj.data){
+            String userID = msgObj.id;
+            
+            long d = 0;
+            
             //UpdateRank Object
+            Ranktable table = agent.getRankTable(tx, userID);
+            if(table == null){
+                table = agent.createRankTable(tx, userID);
+                long n = agent.getTotalUsers(tx) + 1;
+                agent.setTotalUsers(tx, n);
+                
+                //Test Data
+                d = (int)data;
+            }else {
+                //Test Data
+                d = table.getData(tx) + (int)data;
+            }
+            
+            table.setData(tx, d);
         }
         
         //Agent Status
