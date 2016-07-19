@@ -21,12 +21,15 @@ public class UpdateRank extends AgentType {
     /**
     *
     */
-    private static final long serialVersionUID = -4245098133759745980L;
+    private static final long serialVersionUID = -42450933759745980L;
     private static final String AGENT_TYPE = "rankagent";
     private static final String MESSAGE_TYPE = "updateRankAgent";
     private static AgentConnection agcon;
     private String agID;
-        
+
+    public UpdateRank() {
+    }
+    
     public UpdateRank(String agID){
         this.agID = agID;
         this.agcon = AgentConnection.getInstance();
