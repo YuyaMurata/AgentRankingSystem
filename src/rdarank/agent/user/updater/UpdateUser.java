@@ -94,14 +94,14 @@ public class UpdateUser extends AgentType {
             UpdateUser executor = new UpdateUser(agentKey, (MessageObject)data);
             
             Object reply = client.execute(agentKey, executor);
-            if(reply != null){
+            /*if(reply != null){
                 try{
                     LoggerManager.getInstance().putMSGLatency(agID, (Long)reply);
                 }catch(Exception e){
                     e.printStackTrace();
                     System.out.println("rdarank.agent.user.updater.UpdateUser.sendMessage()"+reply);
                 }
-            }
+            }*/
             
             agcon.returnConnection(client);
         } catch (AgentException e) {

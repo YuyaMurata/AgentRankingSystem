@@ -43,10 +43,10 @@ public class LoggerManager {
         log.stop();
     }
     
-    private Map latencyMap = new ConcurrentHashMap();
-    public void putMSGLatency(String agID, Long latency){
-        latencyMap.put(agID, latency);
-    }
+    //private Map latencyMap = new ConcurrentHashMap();
+    //public void putMSGLatency(String agID, Long latency){
+    //    latencyMap.put(agID, latency);
+    //}
     
     public void printTestcaseData(Long time){
         String n = TestCaseManager.getInstance().datagen.toString(time);
