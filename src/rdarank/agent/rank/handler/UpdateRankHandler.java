@@ -27,7 +27,7 @@ public class UpdateRankHandler extends MessageHandler{
         // トランザクションIDを取得
         TxID tx = getTx();
         for(Object data : (List)msgObj.data){
-            String userID = msgObj.id;
+            String userID = "test#00";
             
             long d = 0;
             
