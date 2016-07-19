@@ -12,7 +12,6 @@ import java.util.Map;
 
 import rda.agent.queue.MessageQueue;
 import rda.agent.queue.QueueObserver;
-import rda.clone.AgentCloning;
 import rda.manager.AgentManager;
 import rda.manager.IDManager;
 import rda.manager.LoggerManager;
@@ -29,6 +28,7 @@ public class UserAgentManager extends AgentManager{
     private static Boolean runnable = true;
     
     private IDManager userID;
+    private WindowController windowCTRL;
     
     private Integer queueLength;
     private Long queuewait, agentwait;
@@ -61,6 +61,11 @@ public class UserAgentManager extends AgentManager{
         
         //Init AgentCloning Mode
         automode = 0;
+        
+        //Init WindowController
+        this.windowCTRL = new WindowController((Integer)userAgentMapParam.get("WINDOW_SIZE"),
+                                          (Long)userAgentMapParam.get("ALIVE_TIME"),
+                                          (Integer)userAgentMapParam.get("POOLSIZE"));
     }
     
     public IDManager getIDManager(){
@@ -146,5 +151,10 @@ public class UserAgentManager extends AgentManager{
     
     public Integer getReserveMode(){
         return reserveMode;
+    }
+
+    @Override
+    public WindowController getWindowController() {
+        return this.windowCTRL;
     }
 }

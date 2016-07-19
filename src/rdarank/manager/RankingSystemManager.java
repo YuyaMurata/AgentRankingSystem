@@ -116,7 +116,7 @@ public class RankingSystemManager  implements SetProperty{
     
     private DataStream stream;
     private void streamSettings(Map streamMap){
-        this.stream = new DataStream(streamMap);
+        this.stream = new DataStream(UserAgentManager.getInstance(), streamMap);
     }
     
     public DataStream dataStream(){
@@ -136,6 +136,9 @@ public class RankingSystemManager  implements SetProperty{
         map.put("POOLSIZE", POOLSIZE);
         map.put("RULE", NAME_RULE_USER);
         map.put("SEED", ID_SEED);
+        map.put("ALIVE_TIME", TIME_WAIT);
+        map.put("WINDOW_SIZE", WINDOW_SIZE);
+        map.put("POOLSIZE", POOLSIZE);
         AgentLogPrint.printPropertySettings("Agent", map);
         
         return map;
@@ -154,6 +157,9 @@ public class RankingSystemManager  implements SetProperty{
         map.put("POOLSIZE", POOLSIZE);
         map.put("RULE", NAME_RULE_RANK);
         map.put("SEED", ID_SEED);
+        map.put("ALIVE_TIME", TIME_WAIT);
+        map.put("WINDOW_SIZE", WINDOW_SIZE);
+        map.put("POOLSIZE", POOLSIZE);
         AgentLogPrint.printPropertySettings("Agent", map);
         
         return map;
@@ -189,9 +195,7 @@ public class RankingSystemManager  implements SetProperty{
         Map map = new HashMap();
         map.put("TIME_RUN", TIME_RUN);
         map.put("TIME_PERIOD", TIME_PERIOD);
-        map.put("ALIVE_TIME", TIME_WAIT);
-        map.put("WINDOW_SIZE", WINDOW_SIZE);
-        map.put("POOLSIZE", POOLSIZE);
+        
         AgentLogPrint.printPropertySettings("Stream", map);
         
         return map;

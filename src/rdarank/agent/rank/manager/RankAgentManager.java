@@ -14,6 +14,7 @@ import rda.agent.queue.QueueObserver;
 import rda.manager.AgentManager;
 import rda.manager.IDManager;
 import rda.manager.LoggerManager;
+import rda.window.WindowController;
 import rdarank.agent.rank.creator.CreateRankAgent;
 import rdarank.agent.rank.logger.RankAgentLogPrinter;
 
@@ -26,6 +27,7 @@ public class RankAgentManager extends AgentManager{
     private static Boolean runnable = true;
     
     private IDManager rankID;
+    private WindowController windowCTRL;
     
     private Integer queueLength;
     private Long queuewait, agentwait;
@@ -58,6 +60,11 @@ public class RankAgentManager extends AgentManager{
         
         //Init AgentCloning Mode
         automode = 0;
+        
+        //Init WindowController
+        this.windowCTRL = new WindowController((Integer)rankAgentMapParam.get("WINDOW_SIZE"),
+                                          (Long)rankAgentMapParam.get("ALIVE_TIME"),
+                                          (Integer)rankAgentMapParam.get("POOLSIZE"));
     }
     
     @Override
@@ -146,5 +153,10 @@ public class RankAgentManager extends AgentManager{
     
     public Integer getReserveMode(){
         return reserveMode;
+    }
+
+    @Override
+    public WindowController getWindowController() {
+        return this.windowCTRL;
     }
 }
