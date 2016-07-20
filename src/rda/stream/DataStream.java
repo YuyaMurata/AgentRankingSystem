@@ -73,10 +73,10 @@ public class DataStream implements Runnable{
                 //Agent Put Handler
                 //new SendAgentMessage().sendMessage(msgPack);
                 
-                //Test RankAgent
-                agID = RankAgentManager.getInstance().getToRankID(agID);
                 //Translation Window To Message
                 MessageObject rankmsg = new MessageObject(agID, window.unpack());
+                //Test RankAgent
+                agID = RankAgentManager.getInstance().getToRankID(agID);
                 ((MessageQueue)RankAgentManager.getInstance().getMQMap().get(agID)).put(rankmsg);
                 
                 total = total+window.unpack().size();
