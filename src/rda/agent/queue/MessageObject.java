@@ -10,6 +10,7 @@ public class MessageObject extends MessageTemplate{
     public MessageObject(String destID, Object data) {
         // TODO 自動生成されたコンストラクター・スタブ
         super();
+        this.id = destID;
         this.data = data;
     }
     

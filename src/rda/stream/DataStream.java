@@ -76,8 +76,6 @@ public class DataStream implements Runnable{
                 //Translation Window To Message
                 MessageObject rankmsg = new MessageObject(agID, window.unpack());
                 
-                System.out.println("rankmsg="+rankmsg.id);
-                
                 //Test RankAgent
                 agID = RankAgentManager.getInstance().getToRankID(agID);
                 ((MessageQueue)RankAgentManager.getInstance().getMQMap().get(agID)).put(rankmsg);
