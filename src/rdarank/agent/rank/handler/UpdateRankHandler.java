@@ -39,17 +39,28 @@ public class UpdateRankHandler extends MessageHandler{
         for(Object id : tableMap.keySet()){
             Ranktable table = agent.getRankTable(tx, (String)id);
             long d = 0;
+            long count;
             
             if(table == null){
                 table = agent.createRankTable(tx, (String)id);
+                table.setRank(tx, 1);
+                count = 1;
                 
                 long n = agent.getTotalUsers(tx) + 1;
                 agent.setTotalUsers(tx, n);
             } else {
                 d = table.getData(tx);
+                count = table.getConnectionCount(tx) + 1;
             }
             
             table.setData(tx, d + (int)tableMap.get(id));
+            
+            //Table Status
+            table.setConnectionCount(tx, count);
+            Long time = System.currentTimeMillis();
+            Timestamp updateTime = new Timestamp(time);
+            table.setCurrentTime(tx, time);
+            table.setLastAccessTime(tx, updateTime);
         }
         
         //Agent Status
