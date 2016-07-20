@@ -6,6 +6,8 @@ import java.sql.Timestamp;
 import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageHandler;
 import com.ibm.agent.exa.TxID;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.List;
 import rda.agent.queue.MessageObject;
 import rdarank.Rankagent;
@@ -26,26 +28,28 @@ public class UpdateRankHandler extends MessageHandler{
         
         // トランザクションIDを取得
         TxID tx = getTx();
+        
+        Map tableMap = new HashMap();
         for(Object data : (List)msgObj.data){
-            String userID = "test#00";
-            
+            //Test
+            if(tableMap.get(msgObj.id) == null) tableMap.put(msgObj.id, (int)data);
+            else tableMap.put(msgObj.id, (int)tableMap.get(msgObj.id) + (int)data);
+        }
+        
+        for(Object id : tableMap.keySet()){
+            Ranktable table = agent.getRankTable(tx, (String)id);
             long d = 0;
             
-            //UpdateRank Object
-            Ranktable table = agent.getRankTable(tx, userID);
             if(table == null){
-                table = agent.createRankTable(tx, userID);
+                table = agent.createRankTable(tx, (String)id);
+                
                 long n = agent.getTotalUsers(tx) + 1;
                 agent.setTotalUsers(tx, n);
-                
-                //Test Data
-                d = (int)data;
-            }else {
-                //Test Data
-                d = table.getData(tx) + (int)data;
+            } else {
+                d = table.getData(tx);
             }
             
-            table.setData(tx, d);
+            table.setData(tx, d + (int)tableMap.get(id));
         }
         
         //Agent Status
