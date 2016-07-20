@@ -37,6 +37,8 @@ public class UpdateRankHandler extends MessageHandler{
         }
         
         for(Object id : tableMap.keySet()){
+            System.out.println(" >> ---- RankAgent :: " + (String)id + "="+ tableMap.get(id));
+            
             Ranktable table = agent.getRankTable(tx, (String)id);
             long d = 0;
             
