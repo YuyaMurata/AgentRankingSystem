@@ -21,7 +21,7 @@
 			<!-- <extension ref="EncriptorExtension"/> -->
 			<extension ref="DefineExtension"/>
 			<extension ref="CommExtension"/>
-			<!-- <extension ref="MessageQueueExtension"/> -->
+			<extension ref="AgentIntaractionExtension"/>
 			<!-- <extension ref="RankManagerExtension"/> -->
 			<!-- <extension ref="ExaMonStatsExtension"/> -->
 			<!-- <extension ref="JvmMonStatsExtension"/> -->
