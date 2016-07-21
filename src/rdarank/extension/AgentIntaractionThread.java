@@ -23,9 +23,9 @@ public class AgentIntaractionThread implements Runnable{
     
     //private static final AgentIntaractionExtension extension = AgentIntaractionExtension.getInstance();
 
-    private Queue queue;
+    private BlockingQueue queue;
     public AgentIntaractionThread(Queue queue) {
-        this.queue = queue;
+        this.queue = (BlockingQueue) queue;
     }
     
     public void start(){

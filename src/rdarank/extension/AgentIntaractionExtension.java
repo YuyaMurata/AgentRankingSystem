@@ -92,16 +92,13 @@ public class AgentIntaractionExtension implements Extension{
 	
         //AgentIntaraction Thread
         thread = new AgentIntaractionThread(this.queue);
-        //thread.start();
+        thread.start();
     }
     
     public void communicateAgent(MessageObject msg){
         if(msg == null) return ;
-        try{
-            this.queue.offer(msg);
-            System.out.println(msg.toString());
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+
+        this.queue.offer(msg);
+        //System.out.println(msg.toString());
     }
 }
