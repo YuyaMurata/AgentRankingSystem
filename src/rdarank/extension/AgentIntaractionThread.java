@@ -5,6 +5,7 @@
  */
 package rdarank.extension;
 
+import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Executors;
@@ -22,8 +23,8 @@ public class AgentIntaractionThread implements Runnable{
     
     //private static final AgentIntaractionExtension extension = AgentIntaractionExtension.getInstance();
 
-    private ConcurrentLinkedQueue queue;
-    public AgentIntaractionThread(ConcurrentLinkedQueue queue) {
+    private Queue queue;
+    public AgentIntaractionThread(Queue queue) {
         this.queue = queue;
     }
     

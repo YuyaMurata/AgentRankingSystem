@@ -9,6 +9,7 @@ import com.ibm.agent.soliddb.extension.Extension;
 import java.util.Properties;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 import rda.agent.queue.MessageObject;
 
 /**
@@ -18,7 +19,7 @@ import rda.agent.queue.MessageObject;
 public class AgentIntaractionExtension implements Extension{
     private static AgentIntaractionExtension extention = new AgentIntaractionExtension();
     private AgentIntaractionThread thread;
-    private ConcurrentLinkedQueue queue;
+    private BlockingQueue queue = new LinkedBlockingQueue();
     
     public static AgentIntaractionExtension getInstance(){
         return extention;
@@ -90,7 +91,6 @@ public class AgentIntaractionExtension implements Extension{
         System.out.println("***             ***      ********* ");
 	
         //AgentIntaraction Thread
-        this.queue = new ConcurrentLinkedQueue<>();
         thread = new AgentIntaractionThread(this.queue);
         //thread.start();
     }
