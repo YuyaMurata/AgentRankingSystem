@@ -31,8 +31,8 @@ public class UpdateUserHandler extends MessageHandler{
         for(Object data : (List)msgObj.data){
             updateData =  updateData + (int)data;
         }
-        //updateData = updateData + agent.getData(tx);
-        agent.setData(tx, updateData + agent.getData(tx));
+        if(agent.getData(tx) != 0) updateData = updateData + agent.getData(tx);
+        agent.setData(tx, updateData);
         
         //Agent Status
         //Connection
