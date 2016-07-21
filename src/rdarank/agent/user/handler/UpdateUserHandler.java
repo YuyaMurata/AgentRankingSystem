@@ -56,12 +56,12 @@ public class UpdateUserHandler extends MessageHandler{
         //Long message = avgLatency;
         
         //Agent Communication
-        AgentIntaractionExtension extension = AgentIntaractionExtension.getInstance();
+        /*AgentIntaractionExtension extension = AgentIntaractionExtension.getInstance();
         Map dataMap = new HashMap();
         dataMap.put("id", agent.getUserID(tx));
         dataMap.put("data", updateData);
         extension.communicateAgent(new MessageObject(agent.getCommunicationID(tx), dataMap));
-        
+        */
         return 0L;
     }
 }
