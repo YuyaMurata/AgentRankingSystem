@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  *
  * @author kaeru
  */
-public class AgentIntaractionExtension extends AgentIntaractionThread implements Extension{
+public class AgentIntaractionExtension implements Extension{
     private static AgentIntaractionExtension extention = new AgentIntaractionExtension();
     private AgentIntaractionThread thread;
     
@@ -90,6 +90,8 @@ public class AgentIntaractionExtension extends AgentIntaractionThread implements
         System.out.println(" ***           ***       ********* ");
         System.out.println("***             ***      ********* ");
 	
+        //AgentIntaraction Thread
+        thread = new AgentIntaractionThread();
         thread.start();
     }
     
@@ -100,7 +102,6 @@ public class AgentIntaractionExtension extends AgentIntaractionThread implements
         dataList.add(data);
     }
 
-    @Override
     public Map getStatus() {
         if(idList.isEmpty()) return null;
         

@@ -14,9 +14,11 @@ import java.util.concurrent.TimeUnit;
  *
  * @author kaeru
  */
-public abstract class AgentIntaractionThread implements Runnable{
+public class AgentIntaractionThread implements Runnable{
     private static final String name = "AgentIntaraction Thread";
     private final ScheduledExecutorService schedule = Executors.newSingleThreadScheduledExecutor();
+    
+    private static final AgentIntaractionExtension extension = AgentIntaractionExtension.getInstance();
     
     public void start(){
         System.out.println("> "+name + " : Start !");
@@ -35,13 +37,11 @@ public abstract class AgentIntaractionThread implements Runnable{
         System.out.println("> " + name +" : Stop !");
     }
     
-    public abstract Map getStatus();
-    
     @Override
     public void run() {
-       if(getStatus() != null){
-           System.out.println("> IDList : "+getStatus().get("id"));
-           System.out.println("> DataList : "+getStatus().get("id"));
+       if(extension.getStatus() != null){
+           System.out.println("> IDList : "+extension.getStatus().get("id"));
+           System.out.println("> DataList : "+extension.getStatus().get("id"));
        }
     }
     
