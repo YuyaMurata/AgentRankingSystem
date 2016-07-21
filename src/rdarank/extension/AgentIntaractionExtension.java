@@ -6,17 +6,9 @@
 package rdarank.extension;
 
 import com.ibm.agent.soliddb.extension.Extension;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.stream.Collectors;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import rda.agent.queue.MessageObject;
 
 /**
@@ -26,7 +18,7 @@ import rda.agent.queue.MessageObject;
 public class AgentIntaractionExtension implements Extension{
     private static AgentIntaractionExtension extention = new AgentIntaractionExtension();
     private AgentIntaractionThread thread;
-    private BlockingQueue<Object> queue;
+    private ConcurrentLinkedQueue queue;
     
     public static AgentIntaractionExtension getInstance(){
         return extention;
@@ -98,7 +90,7 @@ public class AgentIntaractionExtension implements Extension{
         System.out.println("***             ***      ********* ");
 	
         //AgentIntaraction Thread
-        this.queue = new LinkedBlockingQueue<>();
+        this.queue = new ConcurrentLinkedQueue<>();
         thread = new AgentIntaractionThread(this.queue);
         //thread.start();
     }
