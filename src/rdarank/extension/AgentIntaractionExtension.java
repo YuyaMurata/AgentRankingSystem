@@ -100,25 +100,12 @@ public class AgentIntaractionExtension implements Extension{
         //AgentIntaraction Thread
         this.queue = new LinkedBlockingQueue<>();
         thread = new AgentIntaractionThread(this.queue);
-        //thread.start();
+        thread.start();
     }
     
     private Map map = new ConcurrentHashMap();
     public void communicateAgent(MessageObject msg){
-        //this.queue.add(msg);
-        System.out.println(msg.toString());
-    }
-
-    public void printStatus(Map status) {
-        if(map.isEmpty()) return ;
-        
-        String s1 = ((Set<String>)status.keySet()).stream()
-                    .collect(Collectors.joining(","));
-        
-        String s2 = ((Collection<Long>)status.values()).stream()
-                    .map(n -> n.toString())
-                    .collect(Collectors.joining(","));
-        
-        System.out.println(s1 + "\n" + s2);
+        this.queue.add(msg);
+        //System.out.println(msg.toString());
     }
 }
