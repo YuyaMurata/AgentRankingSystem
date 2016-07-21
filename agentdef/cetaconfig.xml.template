@@ -98,8 +98,8 @@
 		<extension name="EncriptorExtension">
 			<param name="class" value="com.ibm.agent.exa.des.DESEncriptExtension"/>
 		</extension>
-		<!--<extension name="MessageQueueExtension">
-			<param name="class" value="ranksys.mq.MessageQueueExtension"/>
-		</extension> -->
+		<extension name="AgentIntaractionExtension">
+			<param name="class" value="rdarank.extension.AgentIntaractionExtension"/>
+		</extension>
 	</extensions>
 </ceta>
