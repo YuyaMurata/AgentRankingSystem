@@ -47,6 +47,7 @@ public class AgentIntaractionThread implements Runnable{
     
     @Override
     public void run() {
+        try{
         Object msg = queue.poll();
         //if(extension.getStatus() != null){
         //    System.out.println("> IDList : "+extension.getStatus().get("id"));
@@ -54,6 +55,9 @@ public class AgentIntaractionThread implements Runnable{
         //}
         if(msg != null)
             System.out.println("> AgentIntaraction : "+((MessageObject)msg).toString()+" - queue_size = "+queue.size());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
     
 }
