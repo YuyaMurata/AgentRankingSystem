@@ -39,10 +39,10 @@ public class AgentIntaractionThread implements Runnable{
     
     @Override
     public void run() {
-       if(extension.getStatus() != null){
-           System.out.println("> IDList : "+extension.getStatus().get("id"));
-           System.out.println("> DataList : "+extension.getStatus().get("id"));
-       }
+       //if(extension.getStatus() != null){
+       //    System.out.println("> IDList : "+extension.getStatus().get("id"));
+       //    System.out.println("> DataList : "+extension.getStatus().get("id"));
+       //}
     }
     
 }

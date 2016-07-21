@@ -6,10 +6,13 @@
 package rdarank.extension;
 
 import com.ibm.agent.soliddb.extension.Extension;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
@@ -91,31 +94,25 @@ public class AgentIntaractionExtension implements Extension{
         System.out.println("***             ***      ********* ");
 	
         //AgentIntaraction Thread
-        thread = new AgentIntaractionThread();
-        thread.start();
+        //thread = new AgentIntaractionThread();
+        //thread.start();
     }
     
-    private List idList = new CopyOnWriteArrayList<>();
-    private List dataList = new CopyOnWriteArrayList<>();
+    private Map map = new ConcurrentHashMap();
     public void communicateAgent(String id, long data){
-        idList.add(id);
-        dataList.add(data);
+        map.put(id, data);  
     }
 
-    public Map getStatus() {
-        if(idList.isEmpty()) return null;
+    public void printStatus() {
+        if(map.isEmpty()) return ;
         
-        String s1 = ((List<String>)idList).stream()
+        String s1 = ((Set<String>)map.keySet()).stream()
                     .collect(Collectors.joining(","));
         
-        String s2 = ((List<Long>)dataList).stream()
+        String s2 = ((Collection<Long>)map.values()).stream()
                     .map(n -> n.toString())
                     .collect(Collectors.joining(","));
         
-        Map map = new HashMap();
-        map.put("id", s1);
-        map.put("data", s2);
-        
-        return map;
+        System.out.println(s1 + "\n" + s2);
     }
 }
