@@ -10,6 +10,7 @@ import rda.agent.queue.MessageObject;
 import rdarank.Useragent;
 import rdarank.Userlog;
 import rdarank.agent.user.message.UpdateUserMessage;
+import rdarank.extension.AgentIntaractionExtension;
 
 public class UpdateUserHandler extends MessageHandler{
 
@@ -51,6 +52,10 @@ public class UpdateUserHandler extends MessageHandler{
         log.setCurrentTime(tx, time);
         
         //Long message = avgLatency;
+        
+        //Agent Communication
+        AgentIntaractionExtension extension = AgentIntaractionExtension.getInstance();
+        extension.communicateAgent(agent.getUserID(tx), updateData);
         
         return 0L;
     }

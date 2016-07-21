@@ -6,15 +6,20 @@
 package rdarank.extension;
 
 import com.ibm.agent.soliddb.extension.Extension;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
 
 /**
  *
  * @author kaeru
  */
-public class AgentIntaractionExtension implements Extension{
+public class AgentIntaractionExtension extends AgentIntaractionThread implements Extension{
     private static AgentIntaractionExtension extention = new AgentIntaractionExtension();
-    
+    private AgentIntaractionThread thread;
     
     public static AgentIntaractionExtension getInstance(){
         return extention;
@@ -55,6 +60,7 @@ public class AgentIntaractionExtension implements Extension{
 
     @Override
     public void shutdown() {
+        thread.stop();
     }
     
     
@@ -83,6 +89,32 @@ public class AgentIntaractionExtension implements Extension{
         System.out.println("  ***************           ***    ");
         System.out.println(" ***           ***       ********* ");
         System.out.println("***             ***      ********* ");
-		
+	
+        thread.start();
+    }
+    
+    private List idList = new CopyOnWriteArrayList<>();
+    private List dataList = new CopyOnWriteArrayList<>();
+    public void communicateAgent(String id, long data){
+        idList.add(id);
+        dataList.add(data);
+    }
+
+    @Override
+    public Map getStatus() {
+        if(idList.isEmpty()) return null;
+        
+        String s1 = ((List<String>)idList).stream()
+                    .collect(Collectors.joining(","));
+        
+        String s2 = ((List<Long>)dataList).stream()
+                    .map(n -> n.toString())
+                    .collect(Collectors.joining(","));
+        
+        Map map = new HashMap();
+        map.put("id", s1);
+        map.put("data", s2);
+        
+        return map;
     }
 }
