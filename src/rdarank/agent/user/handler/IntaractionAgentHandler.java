@@ -34,7 +34,7 @@ public class IntaractionAgentHandler extends MessageHandler{
         dataMap.put("id", agent.getUserID(tx));
         dataMap.put("data", agent.getData(tx));
         
-        //extension.communicateAgent(new MessageObject(agent.getCommunicationID(tx), dataMap));
+        extension.communicateAgent(new MessageObject(agent.getCommunicationID(tx), dataMap));
         
         return null;
     }
