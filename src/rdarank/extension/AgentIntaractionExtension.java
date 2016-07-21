@@ -101,15 +101,16 @@ public class AgentIntaractionExtension implements Extension{
     private Map map = new ConcurrentHashMap();
     public void communicateAgent(String id, long data){
         map.put(id, data);  
+        printStatus(map);
     }
 
-    public void printStatus() {
+    public void printStatus(Map status) {
         if(map.isEmpty()) return ;
         
-        String s1 = ((Set<String>)map.keySet()).stream()
+        String s1 = ((Set<String>)status.keySet()).stream()
                     .collect(Collectors.joining(","));
         
-        String s2 = ((Collection<Long>)map.values()).stream()
+        String s2 = ((Collection<Long>)status.values()).stream()
                     .map(n -> n.toString())
                     .collect(Collectors.joining(","));
         
