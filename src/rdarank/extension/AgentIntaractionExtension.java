@@ -15,7 +15,6 @@ import java.util.Properties;
 public class AgentIntaractionExtension implements Extension{
     private static AgentIntaractionExtension extention = new AgentIntaractionExtension();
     
-    private AgentIntaractionExtension(){}
     
     public static AgentIntaractionExtension getInstance(){
         return extention;
