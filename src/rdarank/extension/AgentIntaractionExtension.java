@@ -91,7 +91,7 @@ public class AgentIntaractionExtension implements Extension{
         System.out.println("***             ***      ********* ");
 	
         //AgentIntaraction Thread
-        thread = new AgentIntaractionThread(this.queue);
+        thread = new AgentIntaractionThread();
         thread.start();
     }
     
@@ -104,5 +104,9 @@ public class AgentIntaractionExtension implements Extension{
     
     public Object getMessage(){
         return this.queue.poll();
+    }
+    
+    public Integer getQueueSize(){
+        return this.queue.size();
     }
 }

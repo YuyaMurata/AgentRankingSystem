@@ -22,11 +22,6 @@ public class AgentIntaractionThread implements Runnable{
     private final ScheduledExecutorService schedule = Executors.newSingleThreadScheduledExecutor();
     
     private static final AgentIntaractionExtension extension = AgentIntaractionExtension.getInstance();
-
-    private BlockingQueue queue;
-    public AgentIntaractionThread(Queue queue) {
-        this.queue = (BlockingQueue) queue;
-    }
     
     public void start(){
         System.out.println("> "+name + " : Start !");
@@ -47,14 +42,10 @@ public class AgentIntaractionThread implements Runnable{
     
     @Override
     public void run() {
-        try{
         Object msg = extension.getMessage();
 
         if(msg != null)
-            System.out.println("> AgentIntaraction : "+((MessageObject)msg).toString()+" - queue_size = "+queue.size());
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+            System.out.println("> AgentIntaraction : "+((MessageObject)msg).toString()+" - queue_size = "+extension.getQueueSize());
     }
     
 }
