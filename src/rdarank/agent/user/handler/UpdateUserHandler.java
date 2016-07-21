@@ -5,14 +5,11 @@ import java.sql.Timestamp;
 import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageHandler;
 import com.ibm.agent.exa.TxID;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import rda.agent.queue.MessageObject;
 import rdarank.Useragent;
 import rdarank.Userlog;
 import rdarank.agent.user.message.UpdateUserMessage;
-import rdarank.extension.AgentIntaractionExtension;
 
 public class UpdateUserHandler extends MessageHandler{
 
@@ -32,7 +29,6 @@ public class UpdateUserHandler extends MessageHandler{
         for(Object data : (List)msgObj.data){
             updateData =  updateData + (int)data;
         }
-        
         agent.setData(tx, updateData + agent.getData(tx));
         
         //Agent Status
