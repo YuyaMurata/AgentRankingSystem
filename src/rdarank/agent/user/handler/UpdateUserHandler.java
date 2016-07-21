@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import rda.agent.queue.MessageObject;
-import rda.data.test.DataTemplate;
 import rdarank.Useragent;
 import rdarank.Userlog;
 import rdarank.agent.user.message.UpdateUserMessage;
