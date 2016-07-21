@@ -100,7 +100,7 @@ public class AgentIntaractionExtension implements Extension{
         //AgentIntaraction Thread
         this.queue = new LinkedBlockingQueue<>();
         thread = new AgentIntaractionThread(this.queue);
-        thread.start();
+        //thread.start();
     }
     
     public void communicateAgent(MessageObject msg){
