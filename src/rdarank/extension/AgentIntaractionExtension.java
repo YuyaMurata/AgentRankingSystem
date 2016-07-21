@@ -96,7 +96,7 @@ public class AgentIntaractionExtension implements Extension{
     }
     
     public void communicateAgent(MessageObject msg){
-        this.queue.add(msg);
+        this.queue.offer(msg);
         System.out.println(msg.toString());
     }
 }
