@@ -106,7 +106,7 @@ public class AgentIntaractionExtension implements Extension{
     private Map map = new ConcurrentHashMap();
     public void communicateAgent(MessageObject msg){
         //this.queue.add(msg);
-        map.putAll((Map) msg.data);
+        map = (Map) msg.data;
         printStatus(map);
     }
 
