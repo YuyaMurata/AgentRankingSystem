@@ -50,23 +50,28 @@ public class UserAgentLogPrinter extends AgentLogPrinterTemplate{
         //MessageQueue Observer QueueLength
         System.out.println("> QueueLength:\n"+mapToString(map));
         AgentLogPrint.printMessageQueueLog(map);
+        
+        //Agent Inner QueueLength
+        //SQLReturnObject obj = db.query();
+        //Map map = obj.toMap("Length", 2);
+        //System.out.println("> QueueLength:\n"+obj.toString(map));
     }
     
     //UserAgent Database
-    private void printAgentDBData(){
+    private void printAgentTransaction(){
         SQLReturnObject obj = db.query();
         
         Map map = obj.toMap("Transaction", 0);
         System.out.println("> DataTransaction:\n"+mapToString(map));
         AgentLogPrint.printAgentTransaction(map);
+    }
+    
+    private void printAgentLatency(){
+        SQLReturnObject obj = db.query();
         
-        map = obj.toMap("Latency", 1);
+        Map map = obj.toMap("Latency", 1);
         System.out.println("> MessageLatency:\n"+mapToString(map));
         AgentLogPrint.printMessageLatency(map);
-        
-        //Agent Inner QueueLength
-        //map = obj.toMap("Length", 2);
-        //System.out.println("> QueueLength:\n"+obj.toString(map));
     }
     
     private String mapToString(Map map){
@@ -91,7 +96,8 @@ public class UserAgentLogPrinter extends AgentLogPrinterTemplate{
     @Override
     public void printer() {
         System.out.println(agenttype+" - Log Printer : ");
-        printAgentDBData();
-        printAgentObserver();
+        printAgentTransaction();
+        //printAgentLatency();
+        //printAgentObserver();
     }
 }
