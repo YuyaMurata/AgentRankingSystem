@@ -16,6 +16,6 @@ public class MessageObject extends MessageTemplate{
     
     @Override
     public String toString() {
-        return id + ": datasize=" + ((List)data).size();
+        return id + ": datasize=" + data;
     }
 }

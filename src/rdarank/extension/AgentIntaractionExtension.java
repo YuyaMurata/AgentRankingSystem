@@ -12,9 +12,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.stream.Collectors;
+import rda.agent.queue.MessageObject;
 
 /**
  *
@@ -23,6 +26,7 @@ import java.util.stream.Collectors;
 public class AgentIntaractionExtension implements Extension{
     private static AgentIntaractionExtension extention = new AgentIntaractionExtension();
     private AgentIntaractionThread thread;
+    private BlockingQueue<Object> queue;
     
     public static AgentIntaractionExtension getInstance(){
         return extention;
@@ -94,13 +98,15 @@ public class AgentIntaractionExtension implements Extension{
         System.out.println("***             ***      ********* ");
 	
         //AgentIntaraction Thread
-        //thread = new AgentIntaractionThread();
+        this.queue = new LinkedBlockingQueue<>();
+        thread = new AgentIntaractionThread(this.queue);
         //thread.start();
     }
     
     private Map map = new ConcurrentHashMap();
-    public void communicateAgent(String id, long data){
-        map.put(id, data);  
+    public void communicateAgent(MessageObject msg){
+        this.queue.add(msg);
+        map.putAll((Map) msg.data);
         printStatus(map);
     }
 

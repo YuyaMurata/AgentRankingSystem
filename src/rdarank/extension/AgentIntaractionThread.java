@@ -5,10 +5,11 @@
  */
 package rdarank.extension;
 
-import java.util.Map;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import rda.agent.queue.MessageObject;
 
 /**
  *
@@ -18,7 +19,12 @@ public class AgentIntaractionThread implements Runnable{
     private static final String name = "AgentIntaraction Thread";
     private final ScheduledExecutorService schedule = Executors.newSingleThreadScheduledExecutor();
     
-    private static final AgentIntaractionExtension extension = AgentIntaractionExtension.getInstance();
+    //private static final AgentIntaractionExtension extension = AgentIntaractionExtension.getInstance();
+
+    private BlockingQueue queue;
+    public AgentIntaractionThread(BlockingQueue queue) {
+        this.queue = queue;
+    }
     
     public void start(){
         System.out.println("> "+name + " : Start !");
@@ -39,10 +45,12 @@ public class AgentIntaractionThread implements Runnable{
     
     @Override
     public void run() {
-       //if(extension.getStatus() != null){
-       //    System.out.println("> IDList : "+extension.getStatus().get("id"));
-       //    System.out.println("> DataList : "+extension.getStatus().get("id"));
-       //}
+        Object msg = queue.poll();
+        //if(extension.getStatus() != null){
+        //    System.out.println("> IDList : "+extension.getStatus().get("id"));
+        //    System.out.println("> DataList : "+extension.getStatus().get("id"));
+        //}
+        System.out.println("> AgentIntaraction : "+((MessageObject)msg).toString()+" - queue_size = "+queue.size());
     }
     
 }

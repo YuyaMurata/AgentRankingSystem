@@ -5,8 +5,11 @@ import java.sql.Timestamp;
 import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageHandler;
 import com.ibm.agent.exa.TxID;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import rda.agent.queue.MessageObject;
+import rda.data.test.DataTemplate;
 import rdarank.Useragent;
 import rdarank.Userlog;
 import rdarank.agent.user.message.UpdateUserMessage;
@@ -55,7 +58,10 @@ public class UpdateUserHandler extends MessageHandler{
         
         //Agent Communication
         AgentIntaractionExtension extension = AgentIntaractionExtension.getInstance();
-        extension.communicateAgent(agent.getUserID(tx), updateData);
+        Map dataMap = new HashMap();
+        dataMap.put("id", agent.getUserID(tx));
+        dataMap.put("data", updateData);
+        extension.communicateAgent(new MessageObject(agent.getCommunicationID(tx), dataMap));
         
         return 0L;
     }
