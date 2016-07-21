@@ -23,16 +23,17 @@ public class UpdateUserHandler extends MessageHandler{
         MessageObject msgObj = (MessageObject) updateMsg.messageData;
         
         // マスターエンティティを取得
-       Useragent agent = (Useragent)getEntity();
+        Useragent agent = (Useragent)getEntity();
         
         // トランザクションIDを取得
         TxID tx = getTx();
+        
         long updateData = 0;
         for(Object data : (List)msgObj.data){
             updateData =  updateData + (int)data;
         }
-        if(agent.getData(tx) != 0) updateData = updateData + agent.getData(tx);
-        agent.setData(tx, updateData);
+        
+        agent.setData(tx, updateData + agent.getData(tx));
         
         //Agent Status
         //Connection
@@ -55,13 +56,7 @@ public class UpdateUserHandler extends MessageHandler{
         
         //Long message = avgLatency;
         
-        //Agent Communication
-        /*AgentIntaractionExtension extension = AgentIntaractionExtension.getInstance();
-        Map dataMap = new HashMap();
-        dataMap.put("id", agent.getUserID(tx));
-        dataMap.put("data", updateData);
-        extension.communicateAgent(new MessageObject(agent.getCommunicationID(tx), dataMap));
-        */
+        
         return 0L;
     }
 }

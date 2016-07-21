@@ -62,6 +62,8 @@
                 <message type="updateCommunicationID" class="rdarank.agent.user.message.UpdateCommunicationIDMessage"/>
 		<message type="readLogUserAgent"/>
                 <message type="disposeUserAgent" />
+                <message type="intaractionAgent" />
+                
                 
                 <!--RankAgent Messages -->
 		<message type="initRankAgent" class="rdarank.agent.rank.message.InitRankMessage"/>
@@ -78,7 +80,10 @@
 		<agent type="useragent">
 			<handler message="initUserAgent" class="rdarank.agent.user.handler.InitUserHandler"/>
 			<handler message="readUserAgent" class="rdarank.agent.user.handler.ReadUserHandler"/>
-			<handler message="updateUserAgent" class="rdarank.agent.user.handler.UpdateUserHandler"/>
+			<handler message="updateUserAgent" class="rdarank.agent.user.handler.UpdateUserHandler">
+                            <postmessage message="intaractionAgent"/>
+			</handler>
+                        <handler message="intaractionAgent" class="rdarank.agent.user.handler.IntaractionAgentHandler"/>
                         <handler message="updateCommunicationID" class="rdarank.agent.user.handler.UpdateCommunicationIDHandler"/>
 			<handler message="readLogUserAgent" class="rdarank.agent.user.handler.ReadLogUserHandler"/>
 			<handler message="disposeUserAgent" class="rdarank.agent.user.handler.DisposeUserHandler"/>
