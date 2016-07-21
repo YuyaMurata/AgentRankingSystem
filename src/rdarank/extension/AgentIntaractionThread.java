@@ -52,7 +52,8 @@ public class AgentIntaractionThread implements Runnable{
         //    System.out.println("> IDList : "+extension.getStatus().get("id"));
         //    System.out.println("> DataList : "+extension.getStatus().get("id"));
         //}
-        System.out.println("> AgentIntaraction : "+((MessageObject)msg).toString()+" - queue_size = "+queue.size());
+        if(msg != null)
+            System.out.println("> AgentIntaraction : "+((MessageObject)msg).toString()+" - queue_size = "+queue.size());
     }
     
 }
