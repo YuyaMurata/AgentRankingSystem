@@ -74,7 +74,7 @@ public class AllAgentDBAccess implements AgentExecutor, Serializable {
             while(rs.next()){
                 //System.out.println(rs.getString(1));
                 if(rs.getString(2).contains("update"))
-                log.put(rs.getString(1), rs.getLong(3));
+                log.put(rs.getString(1), rs.getLong(4));
             }
             
             result.add(log);
@@ -111,8 +111,6 @@ public class AllAgentDBAccess implements AgentExecutor, Serializable {
             
             Object ret = client.execute(executor);
             Collection<Object> col = (Collection<Object>)ret;
-            
-            System.out.println("SystemDB : "+col);
             
             SQLReturnObject sqlResults = new SQLReturnObject();
             List<Map> results = new ArrayList<>();
