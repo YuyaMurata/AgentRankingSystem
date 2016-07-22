@@ -31,7 +31,7 @@ public class AllAgentDBAccess implements AgentExecutor, Serializable {
     /**
     * 
     */
-    private static final long serialVersionUID = -3826433740843048L;
+    private static final long serialVersionUID = -1826433740843048L;
 
     public AllAgentDBAccess() {
     }
@@ -65,7 +65,7 @@ public class AllAgentDBAccess implements AgentExecutor, Serializable {
             con = DriverManager.getConnection("jdbc:ceta:rdarank", props);
 
             // AgentDataを得るSQLを生成し，検索を行う．
-            stmt = con.prepareStatement("select * from userlog");
+            stmt = con.prepareStatement("select * from userlog where accessid='update'");
             ResultSet rs = stmt.executeQuery();
             
             //IDとDataを取得
@@ -111,6 +111,8 @@ public class AllAgentDBAccess implements AgentExecutor, Serializable {
             
             Object ret = client.execute(executor);
             Collection<Object> col = (Collection<Object>)ret;
+            
+            System.out.println("SystemDB : "+col);
             
             SQLReturnObject sqlResults = new SQLReturnObject();
             List<Map> results = new ArrayList<>();
