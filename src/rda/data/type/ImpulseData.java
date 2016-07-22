@@ -47,7 +47,6 @@ public class ImpulseData implements DataType{
         
         TestData test = (TestData) data.getData();
         
-        if(count == volume.longValue()) test = (TestData) data.getPoison();
         if(count > volume.longValue()) {
             test = null;
             count = -1L;

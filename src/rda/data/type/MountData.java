@@ -1,6 +1,5 @@
 package rda.data.type;
 
-import rda.agent.queue.MessageObject;
 import rda.data.Data;
 import rda.data.DataType;
 import rda.data.test.TestData;
@@ -47,7 +46,6 @@ public class MountData implements DataType{
         
         TestData test = (TestData) data.getData();
         
-        if(count == (time * volume)) test = (TestData) data.getPoison();
         if(count > (time * volume)) {
             test = null;
             count = -1L;

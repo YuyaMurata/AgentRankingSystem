@@ -10,13 +10,11 @@ package rda.data.test;
  * @author kaeru
  */
 public abstract class DataTemplate {
-    public String id, toID; 
-    public int sentinel;
+    public String id, toID;
     
-    public DataTemplate(String id, String toID, int sentinel) {
+    public DataTemplate(String id, String toID) {
         // TODO 自動生成されたコンストラクター・スタブ
         this.id = id;
-        this.sentinel = sentinel;
         this.toID = toID;
     }
     

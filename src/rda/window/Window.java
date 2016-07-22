@@ -23,26 +23,28 @@ public class Window{
         this.destID = id;
         this.size = limit;
         this.manager = manager;
-        
-        //this.destID = AgentMessageQueueManager.getInstance().getIDManager().getDestID(originID);
-    }
-    
-    public String getKeyID(){
-        return destID;
     }
     
     public String getDestID(){
-        return this.destID;
+        return destID;
+    }
+    
+    public void setDestID(String id){
+        destID = id;
     }
   
     public void pack(Object obj){
         DataTemplate data = (DataTemplate) obj; 
-        if(data.sentinel != -1) win.add(data.getData());
+        win.add(data.getData());
         
-        if((win.size() >= size) || (data.sentinel == -1)) manager.addExecutable(this);
+        if(win.size() >= size) manager.addExecutable(this);
     }
     
     public List unpack(){
         return this.win;
+    }
+    
+    public Integer getSize(){
+        return this.win.size();
     }
 }

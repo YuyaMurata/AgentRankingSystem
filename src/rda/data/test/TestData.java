@@ -13,8 +13,8 @@ public class TestData extends DataTemplate{
     
     public int data;
 
-    public TestData(String id, String toID, int sentinel) {
-        super(id, toID, sentinel);
+    public TestData(String id, String toID) {
+        super(id, toID);
     }
     
     @Override
