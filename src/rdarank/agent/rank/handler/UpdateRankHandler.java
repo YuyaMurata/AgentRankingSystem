@@ -14,6 +14,7 @@ import rdarank.Rankagent;
 import rdarank.Ranklog;
 import rdarank.Ranktable;
 import rdarank.agent.rank.message.UpdateRankMessage;
+import rdarank.agent.user.data.UserData;
 
 public class UpdateRankHandler extends MessageHandler{
 
@@ -31,9 +32,10 @@ public class UpdateRankHandler extends MessageHandler{
         
         Map tableMap = new HashMap();
         for(Object data : (List)msgObj.data){
+            Map user = (Map) ((UserData) data).getData();
+            
             //Test
-            if(tableMap.get(msgObj.id) == null) tableMap.put(msgObj.id, (int)data);
-            else tableMap.put(msgObj.id, (int)tableMap.get(msgObj.id) + (int)data);
+            tableMap.put(user.get("id"), user.get("data"));
         }
         
         for(Object id : tableMap.keySet()){
@@ -49,11 +51,10 @@ public class UpdateRankHandler extends MessageHandler{
                 long n = agent.getTotalUsers(tx) + 1;
                 agent.setTotalUsers(tx, n);
             } else {
-                d = table.getData(tx);
                 count = table.getConnectionCount(tx) + 1;
             }
             
-            table.setData(tx, d + (int)tableMap.get(id));
+            table.setData(tx, (Long)tableMap.get(id));
             
             //Table Status
             table.setConnectionCount(tx, count);
