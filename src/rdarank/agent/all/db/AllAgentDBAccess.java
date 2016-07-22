@@ -65,7 +65,7 @@ public class AllAgentDBAccess implements AgentExecutor, Serializable {
             con = DriverManager.getConnection("jdbc:ceta:rdarank", props);
 
             // AgentDataを得るSQLを生成し，検索を行う．
-            stmt = con.prepareStatement("select * from userlog where accessid='update'");
+            stmt = con.prepareStatement("select * from userlog");
             ResultSet rs = stmt.executeQuery();
             
             //IDとDataを取得
@@ -73,6 +73,7 @@ public class AllAgentDBAccess implements AgentExecutor, Serializable {
             Map log = new HashMap();
             while(rs.next()){
                 //System.out.println(rs.getString(1));
+                if(rs.getString(2).contains("update"))
                 log.put(rs.getString(1), rs.getLong(3));
             }
             
