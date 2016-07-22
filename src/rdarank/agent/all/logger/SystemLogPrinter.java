@@ -19,9 +19,11 @@ import rdarank.agent.all.db.AllAgentDBAccess;
  */
 public class SystemLogPrinter  extends AgentLogPrinterTemplate{
     private AllAgentDBAccess db;
+    private Long start;
 
-    public SystemLogPrinter() {
+    public SystemLogPrinter(Long start) {
         this.db = new AllAgentDBAccess();
+        this.start = start;
     }
     
     //RankAgent Database Transaction
@@ -53,11 +55,8 @@ public class SystemLogPrinter  extends AgentLogPrinterTemplate{
         return sb.toString();
     }
     
-    public void printer(Long systemStart) {
-        printAgentLifeTime(systemStart);
-    }
-    
     @Override
     public void printer() {
+        printAgentLifeTime(start);
     }
 }
