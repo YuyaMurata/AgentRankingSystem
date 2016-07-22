@@ -48,7 +48,7 @@ public class DataStream implements Runnable{
     }
     
     private void stream(Long t){
-        Map mqMap = UserAgentManager.getInstance().getMQMap();
+        Map mqMap = manager.getMQMap();
         TestData data;
         Window window;
 
