@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 import rda.agent.queue.MessageObject;
 import rdarank.Useragent;
+import rdarank.agent.user.data.UserData;
 import rdarank.extension.AgentIntaractionExtension;
 
 /**
@@ -29,12 +30,15 @@ public class IntaractionAgentHandler extends MessageHandler{
         // トランザクションIDを取得
         TxID tx = getTx();
         
-        //Agent Communication
+        //UserData
         Map dataMap = new HashMap();
         dataMap.put("id", agent.getUserID(tx));
         dataMap.put("data", agent.getData(tx));
+        UserData userData = new UserData(agent.getUserID(tx), agent.getCommunicationID(tx));
+        userData.setData(dataMap);
         
-        extension.communicateAgent(new MessageObject(agent.getCommunicationID(tx), dataMap));
+        //Agent Communication
+        extension.communicateAgent(userData);
         
         return null;
     }

@@ -39,10 +39,11 @@ public class AgentIntaractionThread implements Runnable{
     
     @Override
     public void run() {
-        Object msg = extension.getMessage();
-
-        if(msg != null)
-            System.out.println("> AgentIntaraction : "+((MessageObject)msg).toString()+" - queue_size = "+extension.getQueueSize());
+        Object window = extension.getWindowController().get();
+        if(window == null) return ;
+        
+        extension.transport(window);
+        
+        extension.getWindowController().remove();
     }
-    
 }

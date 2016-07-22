@@ -7,10 +7,13 @@ package rdarank.extension;
 
 import com.ibm.agent.soliddb.extension.Extension;
 import java.util.Properties;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 import rda.agent.queue.MessageObject;
+import rda.agent.queue.MessageQueue;
+import rda.agent.queue.MessageQueueEvent;
+import rda.data.test.DataTemplate;
+import rda.window.Window;
+import rda.window.WindowController;
+import rdarank.agent.rank.manager.RankAgentManager;
 
 /**
  *
@@ -19,7 +22,8 @@ import rda.agent.queue.MessageObject;
 public class AgentIntaractionExtension implements Extension{
     private static AgentIntaractionExtension extention = new AgentIntaractionExtension();
     private AgentIntaractionThread thread;
-    private BlockingQueue queue = new LinkedBlockingQueue();
+    
+    private WindowController windowCTRL;
     
     public static AgentIntaractionExtension getInstance(){
         return extention;
@@ -90,23 +94,47 @@ public class AgentIntaractionExtension implements Extension{
         System.out.println(" ***           ***       ********* ");
         System.out.println("***             ***      ********* ");
 	
+        //Init WindowController
+        this.windowCTRL = new WindowController(1000, 100L, 1);
+        
         //AgentIntaraction Thread
         thread = new AgentIntaractionThread();
         thread.start();
     }
     
-    public void communicateAgent(MessageObject msg){
-        if(msg == null) return ;
-
-        this.queue.offer(msg);
-        //System.out.println(msg.toString());
+    public WindowController getWindowController() {
+        return this.windowCTRL;
     }
     
-    public Object getMessage(){
-        return this.queue.poll();
+    public void transport(Object obj){
+        //Transport OtherServer Extension
+        // ***
+        
+        try{
+            //Window
+            Window window = (Window) obj;
+        
+            //Get Destination ID
+            String agID = window.getDestID();
+                
+            //Get MessageQueue
+            MessageQueue mq = (MessageQueue)RankAgentManager.getInstance().getMQMap().get(agID);
+            
+            //Translation Window To Message
+            MessageObject msg = new MessageObject(agID, window.unpack());
+        
+            mq.put(msg);
+            
+        }catch(MessageQueueEvent mqev){
+            mqev.printEvent();
+        } catch (Exception e){
+            e.printStackTrace();
+        }    
     }
     
-    public Integer getQueueSize(){
-        return this.queue.size();
+    public void communicateAgent(DataTemplate data){
+        if(data == null) return ;
+        
+        windowCTRL.pack(data);
     }
 }
