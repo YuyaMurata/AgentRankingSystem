@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rdarank.agent.all;
+package rdarank.agent.all.reader;
 
 import com.ibm.agent.exa.AgentKey;
 import com.ibm.agent.exa.AgentManager;

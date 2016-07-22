@@ -47,7 +47,6 @@ public class UserAgentManager extends AgentManager{
         this.queueLength = (Integer)userAgentMapParam.get("QUEUE_LENGTH");
         this.queuewait = (Long)userAgentMapParam.get("QUEUE_WAIT");
         this.agentwait = (Long)userAgentMapParam.get("AGENT_WAIT");
-        this.agentMode = (Integer)userAgentMapParam.get("AGENT_MODE");
         this.reserveMode = (Integer)userAgentMapParam.get("RESERVE_MODE");
         
         this.observes = new ArrayList();
@@ -60,7 +59,8 @@ public class UserAgentManager extends AgentManager{
         LoggerManager.getInstance().setLogPrinter(log);
         
         //Init AgentCloning Mode
-        automode = 0;
+        //this.agentMode = (Integer)userAgentMapParam.get("AGENT_MODE");
+        this.agentMode = 0;
         
         //Init WindowController
         this.windowCTRL = new WindowController((Integer)userAgentMapParam.get("WINDOW_SIZE"),
@@ -112,6 +112,7 @@ public class UserAgentManager extends AgentManager{
     //全てのMessageQueueを終了する
     public void doShutdown(){
         runnable = false;
+        windowCTRL.close();
     }
     
     //Logger用にMQの監視オブジェクトを登録
@@ -143,10 +144,9 @@ public class UserAgentManager extends AgentManager{
     }
     
     //AgentCloning Mode Select
-    private Integer automode;
     @Override
     public Boolean getAutoMode(){
-        return automode == 0;
+        return this.agentMode == 0;
     }
     
     public Integer getReserveMode(){

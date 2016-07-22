@@ -66,6 +66,7 @@ public class UserAgentLogPrinter extends AgentLogPrinterTemplate{
         AgentLogPrint.printAgentTransaction(map);
     }
     
+    //Message Latency
     private void printAgentLatency(){
         SQLReturnObject obj = db.query();
         

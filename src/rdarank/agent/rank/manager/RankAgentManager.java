@@ -47,7 +47,6 @@ public class RankAgentManager extends AgentManager{
         this.queueLength = (Integer)rankAgentMapParam.get("QUEUE_LENGTH");
         this.queuewait = (Long)rankAgentMapParam.get("QUEUE_WAIT");
         this.agentwait = (Long)rankAgentMapParam.get("AGENT_WAIT");
-        this.agentMode = (Integer)rankAgentMapParam.get("AGENT_MODE");
         this.reserveMode = (Integer)rankAgentMapParam.get("RESERVE_MODE");
         
         this.observes = new ArrayList();
@@ -60,7 +59,8 @@ public class RankAgentManager extends AgentManager{
         LoggerManager.getInstance().setLogPrinter(log);
         
         //Init AgentCloning Mode
-        automode = 0;
+        //this.agentMode = (Integer)rankAgentMapParam.get("AGENT_MODE");
+        this.agentMode = 0;
         
         //Init WindowController
         this.windowCTRL = new WindowController((Integer)rankAgentMapParam.get("WINDOW_SIZE"),
@@ -114,6 +114,7 @@ public class RankAgentManager extends AgentManager{
     //全てのMessageQueueを終了する
     public void doShutdown(){
         runnable = false;
+        windowCTRL.close();
     }
     
     //Logger用にMQの監視オブジェクトを登録
@@ -146,10 +147,9 @@ public class RankAgentManager extends AgentManager{
     }
     
     //AgentCloning Mode Select
-    private Integer automode;
     @Override
     public Boolean getAutoMode(){
-        return automode == 0;
+        return this.agentMode == 0;
     }
     
     public Integer getReserveMode(){
