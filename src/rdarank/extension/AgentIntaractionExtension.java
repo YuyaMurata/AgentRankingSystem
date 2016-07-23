@@ -14,6 +14,7 @@ import rda.data.test.DataTemplate;
 import rda.window.Window;
 import rda.window.WindowController;
 import rdarank.agent.rank.manager.RankAgentManager;
+import rdarank.agent.user.data.UserData;
 
 /**
  *
@@ -135,6 +136,8 @@ public class AgentIntaractionExtension implements Extension{
     public void communicateAgent(DataTemplate data){
         try{
         if(data == null) return ;
+        
+            System.out.println(" > User Data = "+((UserData)data).toString());
         
         windowCTRL.pack(data);
         }catch(Exception e){
