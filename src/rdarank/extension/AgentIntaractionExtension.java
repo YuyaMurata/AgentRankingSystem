@@ -24,7 +24,7 @@ public class AgentIntaractionExtension implements Extension{
     private static AgentIntaractionExtension extention = new AgentIntaractionExtension();
     private AgentIntaractionThread thread;
     
-    private WindowController windowCTRL;
+    private WindowController windowCTRL  = new WindowController(1000, 100L, 1);;
     
     public static AgentIntaractionExtension getInstance(){
         return extention;
@@ -96,7 +96,7 @@ public class AgentIntaractionExtension implements Extension{
         System.out.println("***             ***      ********* ");
 	
         //Init WindowController
-        this.windowCTRL = new WindowController(1000, 100L, 1);
+        //this.windowCTRL = new WindowController(1000, 100L, 1);
         
         //AgentIntaraction Thread
         thread = new AgentIntaractionThread();
@@ -137,9 +137,9 @@ public class AgentIntaractionExtension implements Extension{
         try{
         if(data == null) return ;
         
-            System.out.println(" > User Data = "+((UserData)data).toString());
+            //System.out.println(" > User Data = "+((UserData)data).toString());
         
-        windowCTRL.pack(data);
+            windowCTRL.pack(data);
         }catch(Exception e){
             e.printStackTrace();
         }
