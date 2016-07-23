@@ -133,8 +133,12 @@ public class AgentIntaractionExtension implements Extension{
     }
     
     public void communicateAgent(DataTemplate data){
+        try{
         if(data == null) return ;
         
         windowCTRL.pack(data);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }
