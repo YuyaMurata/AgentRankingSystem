@@ -35,9 +35,16 @@ public class RankingSystemMain2 {
     
     private static void periodDataStream(){
         System.out.println("Start Data Stream");
+        
         ExecuteDataStream data = new ExecuteDataStream();
         
-        data.stream();
+        for(int i=0; i < 5; i++){
+            data.stream();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+            }
+        }
     }
     
     private static void shutdownSystem(){
