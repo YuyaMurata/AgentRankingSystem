@@ -27,7 +27,7 @@ public class WindowController{
         if(windowMap.get(destID) == null){
             Window window = new Window(this, destID, size);
             windowMap.put(destID, window);
-        }
+        } 
         
         try{
             windowMap.get(destID).pack(data);

@@ -13,7 +13,7 @@ import java.util.Map;
 import rda.agent.queue.MessageObject;
 import rdarank.Useragent;
 import rdarank.agent.user.data.UserData;
-import rdarank.extension.AgentIntaractionExtension;
+import rda.extension.intaraction.AgentIntaractionExtension;
 
 /**
  *

@@ -22,7 +22,7 @@ import rdarank.agent.rank.manager.RankAgentManager;
  *
  * @author kaeru
  */
-public class RankingSystemManager  implements SetProperty{
+public class RankingSystemManager implements SetProperty{
     private static RankingSystemManager manager = new RankingSystemManager();
     private RankingSystemManager(){}
     

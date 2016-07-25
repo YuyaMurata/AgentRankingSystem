@@ -21,8 +21,10 @@
 			<!-- <extension ref="EncriptorExtension"/> -->
 			<extension ref="DefineExtension"/>
 			<extension ref="CommExtension"/>
+                        
+                        <!-- RDA Extension Define -->
 			<extension ref="AgentIntaractionExtension"/>
-			<!-- <extension ref="RankManagerExtension"/> -->
+                        <extension ref="SystemManagerExtension"/>
 			<!-- <extension ref="ExaMonStatsExtension"/> -->
 			<!-- <extension ref="JvmMonStatsExtension"/> -->
 		</plainServer>
@@ -98,8 +100,13 @@
 		<extension name="EncriptorExtension">
 			<param name="class" value="com.ibm.agent.exa.des.DESEncriptExtension"/>
 		</extension>
+                
+                <!-- RDA Extension Define -->
 		<extension name="AgentIntaractionExtension">
-			<param name="class" value="rdarank.extension.AgentIntaractionExtension"/>
+			<param name="class" value="rda.extension.intaraction.AgentIntaractionExtension"/>
+		</extension>
+                <extension name="SystemManagerExtension">
+			<param name="class" value="rda.extension.manager.SystemManagerExtension"/>
 		</extension>
 	</extensions>
 </ceta>

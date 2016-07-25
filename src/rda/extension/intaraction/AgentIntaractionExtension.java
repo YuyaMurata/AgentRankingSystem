@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rdarank.extension;
+package rda.extension.intaraction;
 
 import com.ibm.agent.soliddb.extension.Extension;
 import java.util.Properties;
@@ -14,7 +14,6 @@ import rda.data.test.DataTemplate;
 import rda.window.Window;
 import rda.window.WindowController;
 import rdarank.agent.rank.manager.RankAgentManager;
-import rdarank.agent.user.data.UserData;
 
 /**
  *
@@ -24,7 +23,7 @@ public class AgentIntaractionExtension implements Extension{
     private static AgentIntaractionExtension extention = new AgentIntaractionExtension();
     private AgentIntaractionThread thread;
     
-    private WindowController windowCTRL  = new WindowController(1000, 100L, 1);;
+    private WindowController windowCTRL  = new WindowController(1000, 100L, 1);
     
     public static AgentIntaractionExtension getInstance(){
         return extention;
