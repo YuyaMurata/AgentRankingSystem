@@ -19,10 +19,10 @@ public class RankingSystemMain2 {
         launchSystem();
         
         //Execute
-        //periodDataStream();
+        periodDataStream();
         
         //Shutdown
-        //shutdownSystem();
+        shutdownSystem();
     }
     
     private static void launchSystem(){
