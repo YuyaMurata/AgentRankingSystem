@@ -21,7 +21,7 @@ import rda.agent.client.AgentConnection;
  * @author kaeru
  */
 public class LaunchSystem implements AgentExecutor, Serializable {
-    private static final String AGENT_TYPE = "systemmanageragent";
+    private static final String AGENT_TYPE ="systemmanageragent";
     private static final String MESSAGE_TYPE = "launchSystem";
     private static AgentConnection agcon = AgentConnection.getInstance();
     
@@ -58,7 +58,7 @@ public class LaunchSystem implements AgentExecutor, Serializable {
     public void launch(){
         try{
             AgentClient client = agcon.getConnection();
-            AgentKey agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
+            agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
             
             System.out.println("Agent Key = "+agentKey);
             
