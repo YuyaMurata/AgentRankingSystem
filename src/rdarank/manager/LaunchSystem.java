@@ -10,10 +10,12 @@ import com.ibm.agent.exa.AgentKey;
 import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageFactory;
+import com.ibm.agent.exa.SimpleMessage;
 import com.ibm.agent.exa.client.AgentClient;
 import com.ibm.agent.exa.client.AgentExecutor;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Map;
 import rda.agent.client.AgentConnection;
 
 /**
@@ -30,8 +32,10 @@ public class LaunchSystem implements AgentExecutor, Serializable {
     public LaunchSystem() {}
     
     AgentKey agentKey;
-    public LaunchSystem(AgentKey agentKey) {
+    Map prop;
+    public LaunchSystem(AgentKey agentKey, Map prop) {
         this.agentKey = agentKey;
+        this.prop = prop;
     }
     
     @Override
@@ -47,8 +51,8 @@ public class LaunchSystem implements AgentExecutor, Serializable {
         try {
             AgentManager agentManager = AgentManager.getAgentManager();
             
-            MessageFactory factory = MessageFactory.getFactory();
-            Message msg = factory.getMessage(MESSAGE_TYPE);
+            SimpleMessage msg = (SimpleMessage)MessageFactory.getFactory().getMessage(MESSAGE_TYPE);
+            msg.set("property", prop);
             
             //Sync Message
             Object ret = agentManager.sendMessage(agentKey, msg);
@@ -61,14 +65,14 @@ public class LaunchSystem implements AgentExecutor, Serializable {
         }
     }
     
-    public void launch(){
+    public void launch(Map prop){
         try{
             AgentClient client = agcon.getConnection();
             agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
             
             System.out.println("Agent Key = "+agentKey);
             
-            LaunchSystem executor = new LaunchSystem(agentKey);
+            LaunchSystem executor = new LaunchSystem(agentKey, prop);
             Object reply = client.execute(agentKey, executor);
             
             System.out.println(reply);

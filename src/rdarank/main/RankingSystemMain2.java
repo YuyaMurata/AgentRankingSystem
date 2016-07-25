@@ -6,6 +6,7 @@
 package rdarank.main;
 
 import rdarank.manager.ExecuteDataStream;
+import rdarank.manager.LaunchSettingsMap;
 import rdarank.manager.LaunchSystem;
 import rdarank.manager.ShutdownSystem;
 
@@ -30,7 +31,10 @@ public class RankingSystemMain2 {
         System.out.println("Launch Ranking System");
         LaunchSystem system = new LaunchSystem();
         
-        system.launch();
+        //SetProperty To Map
+        LaunchSettingsMap settings = new LaunchSettingsMap();
+        
+        system.launch(settings.getPropMap());
     }
     
     private static void periodDataStream(){

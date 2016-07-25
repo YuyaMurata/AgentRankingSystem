@@ -142,7 +142,7 @@ public class RankingSystemManager implements SetProperty{
     
     //UserAgent Parameter
     private Map preUserAgentMap(){
-        Map map = new HashMap();
+        /*Map map = new HashMap();
         map.put("AMOUNT_OF_AGENTS", NUMBER_OF_USERS);
         map.put("QUEUE_LENGTH", QUEUE_LENGTH);
         map.put("QUEUE_WAIT", QUEUE_WAIT);
@@ -155,15 +155,16 @@ public class RankingSystemManager implements SetProperty{
         map.put("SEED", ID_SEED);
         map.put("ALIVE_TIME", TIME_WAIT);
         map.put("WINDOW_SIZE", WINDOW_SIZE);
-        map.put("POOLSIZE", POOLSIZE);
-        AgentLogPrint.printPropertySettings("Agent", map);
+        map.put("POOLSIZE", POOLSIZE);*/
+        AgentLogPrint.printPropertySettings("Agent", props.get("user"));
         
-        return map;
+        //return map;
+        return props.get("user");
     }
     
     //RanklAgent Parameter
     private Map preRankAgentMap(){
-        Map map = new HashMap();
+        /*Map map = new HashMap();
         map.put("AMOUNT_OF_AGENTS", NUMBER_OF_RANK_AGENTS);
         map.put("QUEUE_LENGTH", QUEUE_LENGTH);
         map.put("QUEUE_WAIT", QUEUE_WAIT);
@@ -176,25 +177,27 @@ public class RankingSystemManager implements SetProperty{
         map.put("SEED", ID_SEED);
         map.put("ALIVE_TIME", TIME_WAIT);
         map.put("WINDOW_SIZE", WINDOW_SIZE);
-        map.put("POOLSIZE", POOLSIZE);
-        AgentLogPrint.printPropertySettings("Agent", map);
+        map.put("POOLSIZE", POOLSIZE);*/
+        AgentLogPrint.printPropertySettings("Agent", props.get("rank"));
         
-        return map;
+        //return map;
+        return props.get("rank");
     }
     
     private Map preProfMap(){
-        Map map = new HashMap();
+        /*Map map = new HashMap();
         map.put("AMOUNT_USERS", NUMBER_OF_USERS);
         map.put("MODE", DATA_MODE_PROFILE);
         map.put("SEED", PROF_SEED);
-        map.put("RULE", NAME_RULE_USER);
-        AgentLogPrint.printPropertySettings("UserProfile", map);
+        map.put("RULE", NAME_RULE_USER);*/
+        AgentLogPrint.printPropertySettings("UserProfile", props.get("profile"));
         
-        return map;
+        //return map;
+        return props.get("profile");
     }
     
     private Map preDataMap(){
-        Map map = new HashMap();
+        /*Map map = new HashMap();
         map.put("TIME_RUN", TIME_RUN);
         map.put("TIME_PERIOD", TIME_PERIOD); 
         map.put("DATA_VOLUME", DATA_VOLUME); 
@@ -202,28 +205,37 @@ public class RankingSystemManager implements SetProperty{
         map.put("AGENT_DEFAULT_VALUE", AGENT_DEFAULT_VALUE);
         map.put("SELECT_TYPE", DATA_SELECT_TYPE);
         map.put("MODE", DATA_MODE_GENERATE);
-        map.put("SEED", DATA_SEED);
-        AgentLogPrint.printPropertySettings("Data", map);
+        map.put("SEED", DATA_SEED);*/
+        AgentLogPrint.printPropertySettings("Data", props.get("datagen"));
         
-        return map;
+        //return map;
+        return props.get("datagen");
     }
     
     private Map preStreamMap(){
-        Map map = new HashMap();
+        /*Map map = new HashMap();
         map.put("TIME_RUN", TIME_RUN);
         map.put("TIME_PERIOD", TIME_PERIOD);
+        */
         
-        AgentLogPrint.printPropertySettings("Stream", map);
+        AgentLogPrint.printPropertySettings("Stream", props.get("stream"));
         
-        return map;
+        //return map;
+        return props.get("stream");
     }
     
     private Map preLoggerMap(){
-        Map map = new HashMap();
+        /*Map map = new HashMap();
         map.put("TIME_RUN", TIME_RUN);
-        map.put("TIME_PERIOD", LOG_PERIOD);
-        AgentLogPrint.printPropertySettings("Logger", map);
+        map.put("TIME_PERIOD", LOG_PERIOD);*/
+        AgentLogPrint.printPropertySettings("Logger", props.get("logger"));
         
-        return map;
+        //return map;
+        return props.get("logger");
+    }
+    
+    private HashMap<String, Map> props;
+    public void setPropMap(Map map){
+        this.props = (HashMap<String, Map>)map;
     }
 }
