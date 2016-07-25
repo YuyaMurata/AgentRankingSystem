@@ -9,6 +9,7 @@ import com.ibm.agent.exa.AgentException;
 import com.ibm.agent.exa.AgentKey;
 import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.soliddb.extension.Extension;
+import java.util.Map;
 import java.util.Properties;
 import rda.property.SetProperty;
 import rdarank.manager.RankingSystemManager;
@@ -115,10 +116,11 @@ public class SystemManagerExtension  implements Extension, SetProperty{
     
     //Rankig System Manager
     private RankingSystemManager manager;
-    public void startRankingSystem(){
+    public void startRankingSystem(Map props){
         manager = RankingSystemManager.getInstance();
         
         //Setting Property & Initialise Agent
+        manager.setPropMap(props);
         manager.launchSystem();
         
         //Data Stream Generator Initialize

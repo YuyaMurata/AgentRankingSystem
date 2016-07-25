@@ -30,7 +30,7 @@ public class LaunchSystemHandler extends MessageHandler{
         SystemManagerExtension extension = SystemManagerExtension.getInstance();
         
         try{
-            extension.startRankingSystem();
+            extension.startRankingSystem(prop);
             
             return "SystemManager Launch RankingSystem !";
         }catch(Exception e){
