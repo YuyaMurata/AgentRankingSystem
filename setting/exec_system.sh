@@ -21,7 +21,8 @@ source ./set_classpath.sh
 
     #vmstat -n -S m -a 1 | awk '{print strftime("%Y-%m-%d %H:%M:%S.000"), $0} { system(":") }' > vmstat.log &
 
-    java -cp $CLASSPATH -Xms4096m -Xmx4096m rdarank.main.RankingSystemMain
+    #java -cp $CLASSPATH -Xms4096m -Xmx4096m rdarank.main.RankingSystemMain
+    java -cp $CLASSPATH -Xms4096m -Xmx4096m rdarank.main.RankingSystemMain2
     #java -cp $CLASSPATH rda.test.ReadTest
 
     #java -cp $CLASSPATH rda.agent.disposer.Dispose
