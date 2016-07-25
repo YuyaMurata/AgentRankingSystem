@@ -16,6 +16,7 @@ import rda.manager.LoggerManager;
 import rda.manager.TestCaseManager;
 import rda.property.SetProperty;
 import rda.stream.DataStream;
+import rda.stream.TimeToDataStream;
 import rdarank.agent.rank.manager.RankAgentManager;
 
 /**
@@ -36,7 +37,12 @@ public class RankingSystemManager implements SetProperty{
         dataSettings(preDataMap(), preProfMap());
         loggerSettings(preLoggerMap());
         agentSettings(preUserAgentMap(), preRankAgentMap(), POOLSIZE);
-        streamSettings(preStreamMap());
+    }
+    
+    public void setDataStreamGenerator(){
+        streamSettings();
+        //Thread Type
+        //streamSettings(preStreamMap());
     }
     
     public void shutdownSystem(){
@@ -114,6 +120,17 @@ public class RankingSystemManager implements SetProperty{
         LoggerManager.getInstance().stopLogger();
     }
     
+    //DataStream Generator
+    private TimeToDataStream timeStream;
+    private void streamSettings(){
+        this.timeStream = new TimeToDataStream(UserAgentManager.getInstance());
+    }
+    
+    public TimeToDataStream timeDataStream(){
+        return timeStream;
+    }
+    
+    //Thread Type DataStream Generator
     private DataStream stream;
     private void streamSettings(Map streamMap){
         this.stream = new DataStream(UserAgentManager.getInstance(), streamMap);

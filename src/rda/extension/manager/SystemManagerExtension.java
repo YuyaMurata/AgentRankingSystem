@@ -7,12 +7,14 @@ package rda.extension.manager;
 
 import com.ibm.agent.soliddb.extension.Extension;
 import java.util.Properties;
+import rda.property.SetProperty;
+import rdarank.manager.RankingSystemManager;
 
 /**
  *
  * @author kaeru
  */
-public class SystemManagerExtension  implements Extension{
+public class SystemManagerExtension  implements Extension, SetProperty{
     private static SystemManagerExtension extention = new SystemManagerExtension();
     
     
@@ -82,5 +84,21 @@ public class SystemManagerExtension  implements Extension{
         System.out.println("    ***      ***          **       ***      ***    ");
         System.out.println("    ***      ************ ************      ***    ");
         System.out.println("    ***      ************  **********       ***    ");
+    }
+    
+    //Rankig System Manager
+    private RankingSystemManager manager;
+    public void startRankingSystem(){
+        manager = RankingSystemManager.getInstance();
+        
+        //Setting Property & Initialise Agent
+        manager.launchSystem();
+        
+        //Data Stream Generator Initialize
+        manager.setDataStreamGenerator();
+    }
+    
+    public void dataGenerate(Long time){
+        manager.timeDataStream().stream(time);
     }
 }

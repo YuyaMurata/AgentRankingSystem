@@ -52,6 +52,16 @@
 			<attribute name="CurrentTime" type="long"/>
 			<attribute name="LastAccessTime" type="timestamp" />
 		</entity>
+                
+                <!--SystemManager Extension define-->
+                <entity type="systemmanageragent">
+                    <attribute name="ID" type="string" primarykey="true"/>
+		</entity>
+                
+                <!--AgentIntaraction Extension define-->
+                <entity type="intaractionmanageragent">
+                    <attribute name="ID" type="string" primarykey="true"/>
+		</entity>
 	</entities>
 	<messages>
 		<!--system define-->
@@ -73,6 +83,14 @@
                 <message type="queryRanking" class="rdarank.agent.rank.message.QueryRankingMessage"/>
 		<message type="readLogRankAgent"/>
                 <message type="disposeRankAgent" />
+                
+                <!--SystemManager Extension define-->
+                <message type="launchSystem" />
+                <message type="dataGenerate" />
+                <message type="shutdownSystem" />
+                
+                <!--AgentIntaraction Extension define-->
+                <message type="intaractionAgent" />
                 
 	</messages>
 	<agents>
@@ -99,5 +117,17 @@
 			<handler message="readLogRankAgent" class="rdarank.agent.rank.handler.ReadLogRankHandler"/>
 			<handler message="disposeRankAgent" class="rdarank.agent.rank.handler.DisposeRankHandler"/>
 		</agent>
+                
+                <!--SystemManager Extension define-->
+                <agent type="systemmanageragent">
+                    <handler message="launchSystem" class="rda.extension.manager.handler.LaunchSystemHandler"/>
+                    <handler message="dataGenerate" class="rda.extension.manager.handler.DataGenerateHandler"/>
+                    <handler message="shutdownSystem" class="rda.extension.manager.handler.ShutdownSystemHandler"/>
+                </agent>
+                
+                <!--AgentIntaraction Extension define-->
+                <agent type="intaractionmanageragent">
+                    <handler message="intaractionAgent" class="rda.extension.intaraction.handler.IntaractionAgentHandler"/>
+                </agent>
 	</agents>
 </agentdef>

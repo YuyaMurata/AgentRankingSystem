@@ -120,3 +120,25 @@ CREATE TRANSIENT TABLE ranklog(
 	PRIMARY KEY(RankID, AccessID)
 );
 COMMIT WORK;
+
+--<!--SystemManager Extension define-->
+--                <entity type="systemmanageragent">
+--                    <attribute name="ID" type="string" primarykey="true"/>
+--		</entity>
+
+CREATE TRANSIENT TABLE systemmanageragent(
+	ID VARCHAR(16) NOT NULL,
+	PRIMARY KEY(ID)
+);
+COMMIT WORK;
+              
+--                <!--AgentIntaraction Extension define-->
+--                <entity type="intaractionmanageragent">
+--                    <attribute name="ID" type="string" primarykey="true"/>
+--		</entity>
+
+CREATE TRANSIENT TABLE intaractionmanageragent(
+	ID VARCHAR(16) NOT NULL,
+	PRIMARY KEY(ID)
+);
+COMMIT WORK;
