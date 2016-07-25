@@ -102,7 +102,7 @@ public class AgentIntaractionExtension implements Extension{
         System.out.println("***             ***      ********* ");
 	
         //Set Agent
-        /*AgentManager am = AgentManager.getAgentManager();
+        AgentManager am = AgentManager.getAgentManager();
         try{
             //AgentIntaractionManager Extension AgentKey
             extensionAgentKey = new AgentKey("intaractionmanageragent", new Object[]{"intaractionmanageragent"});
@@ -114,7 +114,7 @@ public class AgentIntaractionExtension implements Extension{
                 am.createAgent(extensionAgentKey);
             }
         } catch (AgentException ex) {
-        }*/
+        }
         
         //Init WindowController
         //this.windowCTRL = new WindowController(1000, 100L, 1);
