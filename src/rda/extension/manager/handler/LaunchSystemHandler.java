@@ -22,21 +22,15 @@ public class LaunchSystemHandler extends MessageHandler{
         System.out.println("Launch System Handler 1");
         
         //Launch System
-        /*SystemManagerExtension extension = SystemManagerExtension.getInstance();
-        
-        System.out.println("Launch System Handler 2");
+        SystemManagerExtension extension = SystemManagerExtension.getInstance();
         
         try{
             extension.startRankingSystem();
             
-            System.out.println("Launch System Handler 3");
-            
             return "SystemManager Launch RankingSystem !";
         }catch(Exception e){
             return e;
-        }*/
-        
-        return "Success Launch RankingSystem !";
+        }
         
     }
     
