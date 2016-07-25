@@ -64,7 +64,7 @@ public class AgentIntaractionExtension implements Extension{
 
     @Override
     public void shutdown() {
-        thread.stop();
+        //thread.stop();
     }
     
     
@@ -98,8 +98,8 @@ public class AgentIntaractionExtension implements Extension{
         //this.windowCTRL = new WindowController(1000, 100L, 1);
         
         //AgentIntaraction Thread
-        thread = new AgentIntaractionThread();
-        thread.start();
+        //thread = new AgentIntaractionThread();
+        //thread.start();
     }
     
     public WindowController getWindowController() {
@@ -138,7 +138,7 @@ public class AgentIntaractionExtension implements Extension{
         
             //System.out.println(" > User Data = "+((UserData)data).toString());
         
-            windowCTRL.pack(data);
+            //windowCTRL.pack(data);
         }catch(Exception e){
             e.printStackTrace();
         }

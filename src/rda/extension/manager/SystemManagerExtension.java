@@ -57,6 +57,12 @@ public class SystemManagerExtension  implements Extension, SetProperty{
 
     @Override
     public void shutdown() {
+        //Only Thread Type
+        //manager.dataStream().stop();
+        
+        manager.stopLogger();
+        
+        manager.shutdownSystem();
     }
     
     
@@ -96,6 +102,9 @@ public class SystemManagerExtension  implements Extension, SetProperty{
         
         //Data Stream Generator Initialize
         manager.setDataStreamGenerator();
+        
+        //Start Logger
+        manager.startLogger();
     }
     
     public void dataGenerate(Long time){
