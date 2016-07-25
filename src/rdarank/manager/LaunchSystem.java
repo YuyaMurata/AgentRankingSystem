@@ -50,7 +50,7 @@ public class LaunchSystem implements AgentExecutor, Serializable {
             return ret;
         } catch (IllegalAccessException | InstantiationException e) {
             // TODO 自動生成された catch ブロック
-            return 0L;
+            return e;
         }
     }
     
@@ -62,8 +62,11 @@ public class LaunchSystem implements AgentExecutor, Serializable {
             LaunchSystem executor = new LaunchSystem();
             Object reply = client.execute(agentKey, executor);
             
+            System.out.println(reply);
+            
             agcon.returnConnection(client);
         } catch (AgentException ex) {
+            ex.printStackTrace();
         }
     }
 }
