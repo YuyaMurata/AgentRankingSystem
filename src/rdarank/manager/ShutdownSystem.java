@@ -23,7 +23,7 @@ import rda.agent.client.AgentConnection;
 public class ShutdownSystem implements AgentExecutor, Serializable {
     private static final String AGENT_TYPE = "systemmanageragent";
     private static final String MESSAGE_TYPE = "shutdownSystem";
-    private static AgentConnection agcon;
+    private static AgentConnection agcon = AgentConnection.getInstance();
     
     AgentKey agentKey;
     public ShutdownSystem() {}

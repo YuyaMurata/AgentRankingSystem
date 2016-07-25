@@ -23,7 +23,7 @@ import rda.agent.client.AgentConnection;
 public class ExecuteDataStream implements AgentExecutor, Serializable {
     private static final String AGENT_TYPE = "systemmanageragent";
     private static final String MESSAGE_TYPE = "dataGenerate";
-    private static AgentConnection agcon;
+    private static AgentConnection agcon = AgentConnection.getInstance();
     
     AgentKey agentKey;
     public ExecuteDataStream() {}
