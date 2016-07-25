@@ -98,7 +98,7 @@ public class SystemManagerExtension  implements Extension, SetProperty{
         System.out.println("    ***      ************  **********       ***    ");
         
         //Set Agent
-        /*AgentManager am = AgentManager.getAgentManager();
+        AgentManager am = AgentManager.getAgentManager();
         try{
             //SystemManager Extension AgentKey
             extensionAgentKey = new AgentKey("systemmanageragent", new Object[]{"systemmanageragent"});
@@ -110,7 +110,7 @@ public class SystemManagerExtension  implements Extension, SetProperty{
                 am.createAgent(extensionAgentKey);
             }
         } catch (AgentException ex) {
-        }*/
+        }
     }
     
     //Rankig System Manager
