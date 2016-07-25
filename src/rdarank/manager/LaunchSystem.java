@@ -8,8 +8,8 @@ package rdarank.manager;
 import com.ibm.agent.exa.AgentException;
 import com.ibm.agent.exa.AgentKey;
 import com.ibm.agent.exa.AgentManager;
+import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageFactory;
-import com.ibm.agent.exa.SimpleMessage;
 import com.ibm.agent.exa.client.AgentClient;
 import com.ibm.agent.exa.client.AgentExecutor;
 import java.io.Serializable;
@@ -40,8 +40,9 @@ public class LaunchSystem implements AgentExecutor, Serializable {
         // TODO 自動生成されたメソッド・スタブ
         try {
             AgentManager agentManager = AgentManager.getAgentManager();
-                
-            SimpleMessage msg = (SimpleMessage)MessageFactory.getFactory().getMessage(MESSAGE_TYPE);
+            
+            MessageFactory factory = MessageFactory.getFactory();
+            Message msg = factory.getMessage(MESSAGE_TYPE);
             
             //Sync Message
             Object ret = agentManager.sendMessage(agentKey, msg);
