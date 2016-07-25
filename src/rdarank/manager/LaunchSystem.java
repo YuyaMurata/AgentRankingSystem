@@ -21,6 +21,8 @@ import rda.agent.client.AgentConnection;
  * @author kaeru
  */
 public class LaunchSystem implements AgentExecutor, Serializable {
+    private static final long serialVersionUID = -138177910350145867L;
+    
     private static final String AGENT_TYPE ="systemmanageragent";
     private static final String MESSAGE_TYPE = "launchSystem";
     private static AgentConnection agcon = AgentConnection.getInstance();
