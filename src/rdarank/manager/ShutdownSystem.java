@@ -25,8 +25,12 @@ public class ShutdownSystem implements AgentExecutor, Serializable {
     private static final String MESSAGE_TYPE = "shutdownSystem";
     private static AgentConnection agcon = AgentConnection.getInstance();
     
-    AgentKey agentKey;
     public ShutdownSystem() {}
+    
+    AgentKey agentKey;
+    public ShutdownSystem(AgentKey agentKey) {
+        this.agentKey = agentKey;
+    }
     
     @Override
     public Object complete(Collection<Object> results) {
@@ -50,7 +54,7 @@ public class ShutdownSystem implements AgentExecutor, Serializable {
             return ret;
         } catch (IllegalAccessException | InstantiationException e) {
             // TODO 自動生成された catch ブロック
-            return 0L;
+            return e;
         }
     }
     
@@ -59,8 +63,10 @@ public class ShutdownSystem implements AgentExecutor, Serializable {
             AgentClient client = agcon.getConnection();
             AgentKey agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
             
-            ShutdownSystem executor = new ShutdownSystem();
+            ShutdownSystem executor = new ShutdownSystem(agentKey);
             Object reply = client.execute(agentKey, executor);
+            
+            System.out.println(reply);
             
             agcon.returnConnection(client);
         } catch (AgentException ex) {

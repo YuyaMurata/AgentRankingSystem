@@ -21,10 +21,10 @@ public class DataGenerateHandler extends MessageHandler{
         // TODO 自動生成されたメソッド・スタブ
         
         //DataGenerate
-        SystemManagerExtension extension = SystemManagerExtension.getInstance();
-        extension.dataGenerate(time++);
+        //SystemManagerExtension extension = SystemManagerExtension.getInstance();
+        //extension.dataGenerate(time++);
         
-        return 0L;
+        return "Execute DataGenerate !";
     }
     
 }

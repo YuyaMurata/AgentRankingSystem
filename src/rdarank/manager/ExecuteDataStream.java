@@ -8,6 +8,7 @@ package rdarank.manager;
 import com.ibm.agent.exa.AgentException;
 import com.ibm.agent.exa.AgentKey;
 import com.ibm.agent.exa.AgentManager;
+import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageFactory;
 import com.ibm.agent.exa.SimpleMessage;
 import com.ibm.agent.exa.client.AgentClient;
@@ -24,9 +25,14 @@ public class ExecuteDataStream implements AgentExecutor, Serializable {
     private static final String AGENT_TYPE = "systemmanageragent";
     private static final String MESSAGE_TYPE = "dataGenerate";
     private static AgentConnection agcon = AgentConnection.getInstance();
+
+    public ExecuteDataStream() {
+    }
     
     AgentKey agentKey;
-    public ExecuteDataStream() {}
+    public ExecuteDataStream(AgentKey agentKey) {
+        this.agentKey = agentKey;
+    }
     
     @Override
     public Object complete(Collection<Object> results) {
@@ -41,7 +47,7 @@ public class ExecuteDataStream implements AgentExecutor, Serializable {
         try {
             AgentManager agentManager = AgentManager.getAgentManager();
                 
-            SimpleMessage msg = (SimpleMessage)MessageFactory.getFactory().getMessage(MESSAGE_TYPE);
+            Message msg = (Message)MessageFactory.getFactory().getMessage(MESSAGE_TYPE);
             
             //Sync Message
             Object ret = agentManager.sendMessage(agentKey, msg);
@@ -50,7 +56,7 @@ public class ExecuteDataStream implements AgentExecutor, Serializable {
             return ret;
         } catch (IllegalAccessException | InstantiationException e) {
             // TODO 自動生成された catch ブロック
-            return 0L;
+            return e;
         }
     }
     
@@ -59,8 +65,10 @@ public class ExecuteDataStream implements AgentExecutor, Serializable {
             AgentClient client = agcon.getConnection();
             AgentKey agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
             
-            ExecuteDataStream executor = new ExecuteDataStream();
+            ExecuteDataStream executor = new ExecuteDataStream(agentKey);
             Object reply = client.execute(agentKey, executor);
+            
+            System.out.println(reply);
             
             agcon.returnConnection(client);
         } catch (AgentException ex) {
