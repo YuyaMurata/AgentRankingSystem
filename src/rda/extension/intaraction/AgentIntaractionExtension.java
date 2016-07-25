@@ -5,6 +5,9 @@
  */
 package rda.extension.intaraction;
 
+import com.ibm.agent.exa.AgentException;
+import com.ibm.agent.exa.AgentKey;
+import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.soliddb.extension.Extension;
 import java.util.Properties;
 import rda.agent.queue.MessageObject;
@@ -27,6 +30,10 @@ public class AgentIntaractionExtension implements Extension{
     
     public static AgentIntaractionExtension getInstance(){
         return extention;
+    }
+    
+    AgentKey extensionAgentKey;
+    public AgentIntaractionExtension() {
     }
     
     // リージョン名
@@ -94,6 +101,21 @@ public class AgentIntaractionExtension implements Extension{
         System.out.println(" ***           ***       ********* ");
         System.out.println("***             ***      ********* ");
 	
+        //Set Agent
+        AgentManager am = AgentManager.getAgentManager();
+        try{
+            //AgentIntaractionManager Extension AgentKey
+            extensionAgentKey = new AgentKey("intaractionmanageragent", new Object[]{"intaractionmanageragent"});
+            
+            //CreateAgent
+            if(am.exists(extensionAgentKey)){
+                System.out.println("IntaractionManagerAgent already exists");
+            }else {
+                am.createAgent(extensionAgentKey);
+            }
+        } catch (AgentException ex) {
+        }
+        
         //Init WindowController
         //this.windowCTRL = new WindowController(1000, 100L, 1);
         
