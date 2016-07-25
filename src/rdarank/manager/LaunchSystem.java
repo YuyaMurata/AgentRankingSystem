@@ -26,9 +26,13 @@ public class LaunchSystem implements AgentExecutor, Serializable {
     private static final String AGENT_TYPE ="systemmanageragent";
     private static final String MESSAGE_TYPE = "launchSystem";
     private static AgentConnection agcon = AgentConnection.getInstance();
+
+    public LaunchSystem() {}
     
     AgentKey agentKey;
-    public LaunchSystem() {}
+    public LaunchSystem(AgentKey agentKey) {
+        this.agentKey = agentKey;
+    }
     
     @Override
     public Object complete(Collection<Object> results) {
@@ -64,7 +68,7 @@ public class LaunchSystem implements AgentExecutor, Serializable {
             
             System.out.println("Agent Key = "+agentKey);
             
-            LaunchSystem executor = new LaunchSystem();
+            LaunchSystem executor = new LaunchSystem(agentKey);
             Object reply = client.execute(agentKey, executor);
             
             System.out.println(reply);
