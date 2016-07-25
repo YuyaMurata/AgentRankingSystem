@@ -19,11 +19,17 @@ public class LaunchSystemHandler extends MessageHandler{
     public Object onMessage(Message msg) throws Exception {
         // TODO 自動生成されたメソッド・スタブ
         
+        System.out.println("Launch System Handler 1");
+        
         //Launch System
         SystemManagerExtension extension = SystemManagerExtension.getInstance();
         
+        System.out.println("Launch System Handler 2");
+        
         try{
             extension.startRankingSystem();
+            
+            System.out.println("Launch System Handler 3");
             
             return "SystemManager Launch RankingSystem !";
         }catch(Exception e){
