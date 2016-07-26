@@ -97,6 +97,12 @@ public class ProfileGenerator {
         //Address
         prof.put("Address", "Address-" + id);
         
+        //Target
+        prof.put("TargetID", "Not Define");
+        
+        //Intaraction
+        prof.put("Agent", "Not Define");
+        
         return prof;
     }
     
