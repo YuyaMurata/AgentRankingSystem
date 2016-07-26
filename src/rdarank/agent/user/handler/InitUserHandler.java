@@ -45,7 +45,8 @@ public class InitUserHandler extends MessageHandler {
             //GPSデータのクリア
             user.setData(tx, 0);
             //CommunicationID
-            user.setCommunicationID(tx, initMsg.comAgentID);
+            if(initMsg.comAgentID == "") user.setCommunicationID(tx, "Not Define ID");
+            else user.setCommunicationID(tx, initMsg.comAgentID);
             //更新回数のクリア
             user.setConnectionCount(tx, 0);
 
