@@ -9,6 +9,7 @@ import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.exa.MessageFactory;
 import com.ibm.agent.exa.client.AgentClient;
 import com.ibm.agent.exa.client.AgentExecutor;
+
 import rda.agent.client.AgentConnection;
 import rda.agent.queue.MessageQueue;
 import rdarank.agent.rank.message.InitRankMessage;
@@ -55,7 +56,7 @@ public class CreateRankAgent implements AgentExecutor, Serializable{
             InitRankMessage msg = (InitRankMessage)factory.getMessage(MESSAGE_TYPE);
 		
             //Set InitMessage Data
-            msg.setParams();
+            msg.setParams("No Message");
 		
             Object ret = agentManager.sendMessage(agentKey, msg);
 		

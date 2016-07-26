@@ -9,14 +9,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import rda.agent.queue.MessageQueue;
 import rda.agent.queue.QueueObserver;
 import rda.manager.AgentManager;
 import rda.manager.IDManager;
 import rda.manager.LoggerManager;
 import rda.window.WindowController;
+
 import rdarank.agent.rank.creator.CreateRankAgent;
-import rdarank.agent.rank.creator.CreateRankAgentEx;
 import rdarank.agent.rank.logger.RankAgentLogPrinter;
 
 /**

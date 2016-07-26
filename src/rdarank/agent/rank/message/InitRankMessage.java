@@ -7,8 +7,10 @@ import com.ibm.agent.exa.Message;
  * 初期化のためのデータをパラメータに持つ
  */
 public class InitRankMessage extends Message {
-	
+	String mes;
+        
 	// パラメータをセット
-	public void setParams() {
+	public void setParams(String mes) {
+            this.mes = mes;
 	}
 }

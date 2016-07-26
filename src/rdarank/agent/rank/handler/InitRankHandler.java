@@ -34,7 +34,7 @@ public class InitRankHandler extends MessageHandler {
                         Long time = System.currentTimeMillis();
                         Timestamp registerTime = new Timestamp(time);
                         
-			// set User Log
+			// set Rank Log
 			Ranklog log = rank.createLog(tx, "init");
                         
 			// 最終更新日
