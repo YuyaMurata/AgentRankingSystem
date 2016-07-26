@@ -64,7 +64,7 @@ public class RankingSystemManager {
         System.out.println("< Initialise RankAgents >");
         RankAgentManager rank = RankAgentManager.getInstance();
         rank.initRankAgent(rankAgentParam);
-        //rank.createNumberOfAgents((Integer)rankAgentParam.get("AMOUNT_OF_AGENTS"));
+        rank.createNumberOfAgents((Integer)rankAgentParam.get("AMOUNT_OF_AGENTS"));
         
         if(rank.getReserveMode()){
             List<String> reserveID = new ArrayList<>();
