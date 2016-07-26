@@ -2,7 +2,6 @@ package rdarank.agent.rank.creator;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.HashMap;
 
 import com.ibm.agent.exa.AgentException;
 import com.ibm.agent.exa.AgentKey;
