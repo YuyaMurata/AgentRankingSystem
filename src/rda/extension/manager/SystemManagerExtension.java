@@ -11,14 +11,13 @@ import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.soliddb.extension.Extension;
 import java.util.Map;
 import java.util.Properties;
-import rda.property.SetProperty;
 import rdarank.manager.RankingSystemManager;
 
 /**
  *
  * @author kaeru
  */
-public class SystemManagerExtension  implements Extension, SetProperty{
+public class SystemManagerExtension  implements Extension{
     private static SystemManagerExtension extention = new SystemManagerExtension();
     
     public static SystemManagerExtension getInstance(){
