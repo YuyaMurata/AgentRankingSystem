@@ -64,7 +64,7 @@ public class RankingSystemManager {
         System.out.println("< Initialise RankAgents >");
         RankAgentManager rank = RankAgentManager.getInstance();
         rank.initRankAgent(rankAgentParam);
-        //rank.createNumberOfAgents((Integer)rankAgentParam.get("AMOUNT_OF_AGENTS"));
+        rank.createNumberOfAgents((Integer)rankAgentParam.get("AMOUNT_OF_AGENTS"));
         
         if(rank.getReserveMode()){
             List<String> reserveID = new ArrayList<>();
@@ -153,7 +153,7 @@ public class RankingSystemManager {
         map.put("ALIVE_TIME", TIME_WAIT);
         map.put("WINDOW_SIZE", WINDOW_SIZE);
         map.put("POOLSIZE", POOLSIZE);*/
-        AgentLogPrint.printPropertySettings("Agent", props.get("user"));
+        AgentLogPrint.printPropertySettings("UserAgent", props.get("user"));
         
         //return map;
         return props.get("user");
@@ -175,7 +175,7 @@ public class RankingSystemManager {
         map.put("ALIVE_TIME", TIME_WAIT);
         map.put("WINDOW_SIZE", WINDOW_SIZE);
         map.put("POOLSIZE", POOLSIZE);*/
-        AgentLogPrint.printPropertySettings("Agent", props.get("rank"));
+        AgentLogPrint.printPropertySettings("RankAgent", props.get("rank"));
         
         //return map;
         return props.get("rank");
