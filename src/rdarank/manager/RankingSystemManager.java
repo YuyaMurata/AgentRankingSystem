@@ -66,7 +66,7 @@ public class RankingSystemManager {
         rank.initRankAgent(rankAgentParam);
         rank.createNumberOfAgents((Integer)rankAgentParam.get("AMOUNT_OF_AGENTS"));
         
-        if(rank.getReserveMode() == 1){
+        if(rank.getReserveMode()){
             List<String> reserveID = new ArrayList<>();
             for(int i=0; i < (Integer)rankAgentParam.get("AMOUNT_RESERVE_AGENT"); i++){
                 String agentID =  rank.createAgent();
@@ -86,7 +86,7 @@ public class RankingSystemManager {
         user.initUserAgent(userAgentParam);
         user.createNumberOfAgents((Integer)userAgentParam.get("AMOUNT_OF_AGENTS"));
         
-        if(user.getReserveMode() == 1){
+        if(user.getReserveMode()){
             List<String> reserveID = new ArrayList<>();
             for(int i=0; i < (Integer)userAgentParam.get("AMOUNT_RESERVE_AGENT"); i++){
                 String agentID =  user.createAgent();

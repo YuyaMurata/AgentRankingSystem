@@ -14,7 +14,7 @@ import rda.manager.IDManager;
  */
 public class AgentCloning {
     public static String cloning(AgentManager manager, String sourceID, Object originalState){
-        if(manager.getAutoMode()) return "";
+        if(!manager.getAutoMode()) return "";
         
         IDManager id = manager.getIDManager();
         String originalID = id.getOrigID(sourceID);
@@ -29,7 +29,7 @@ public class AgentCloning {
     }
     
     public static String delete(AgentManager manager, String deleteID){
-        if(manager.getAutoMode()) return "";
+        if(!manager.getAutoMode()) return "";
         
         IDManager id = manager.getIDManager();
         String originalID = id.getOrigID(deleteID);

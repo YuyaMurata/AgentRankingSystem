@@ -146,11 +146,11 @@ public class UserAgentManager extends AgentManager{
     //AgentCloning Mode Select
     @Override
     public Boolean getAutoMode(){
-        return this.agentMode == 0;
+        return this.agentMode == 1;
     }
     
-    public Integer getReserveMode(){
-        return reserveMode;
+    public Boolean getReserveMode(){
+        return reserveMode == 1;
     }
 
     @Override
