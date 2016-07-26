@@ -26,7 +26,7 @@ public class AgentIntaractionExtension implements Extension{
     private static AgentIntaractionExtension extention = new AgentIntaractionExtension();
     private AgentIntaractionThread thread;
     
-    private WindowController windowCTRL  = new WindowController(1000, 100L, 1);
+    private WindowController windowCTRL;
     
     public static AgentIntaractionExtension getInstance(){
         return extention;
@@ -132,7 +132,7 @@ public class AgentIntaractionExtension implements Extension{
         //Transport OtherServer Extension
         // ***
         
-        try{
+        /*try{
             //Window
             Window window = (Window) obj;
         
@@ -151,7 +151,7 @@ public class AgentIntaractionExtension implements Extension{
             mqev.printEvent();
         } catch (Exception e){
             e.printStackTrace();
-        }    
+        }*/    
     }
     
     public void communicateAgent(DataTemplate data){

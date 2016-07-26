@@ -143,7 +143,7 @@ public class RankingSystemManager {
         return props.get("user");
     }
     
-    //RanklAgent Parameter
+    //RankAgent Parameter
     private Map preRankAgentMap(){
         AgentLogPrint.printPropertySettings("RankAgent", props.get("rank"));
         return props.get("rank");

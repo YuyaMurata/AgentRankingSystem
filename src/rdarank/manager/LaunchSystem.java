@@ -70,7 +70,7 @@ public class LaunchSystem implements AgentExecutor, Serializable {
             AgentClient client = agcon.getConnection();
             agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
             
-            System.out.println("Agent Key = "+agentKey);
+            //System.out.println("Agent Key = "+agentKey);
             
             LaunchSystem executor = new LaunchSystem(agentKey, prop);
             Object reply = client.execute(agentKey, executor);
