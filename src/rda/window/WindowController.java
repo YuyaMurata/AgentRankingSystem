@@ -17,8 +17,8 @@ public class WindowController{
         this.size = limit;
         
         //Alive Thread
-        this.aliveThread = new WindowAliveThread(this, aliveTime);
-        this.aliveThread.start();
+        //this.aliveThread = new WindowAliveThread(this, aliveTime);
+        //this.aliveThread.start();
     }
         
     public void pack(Object data){
