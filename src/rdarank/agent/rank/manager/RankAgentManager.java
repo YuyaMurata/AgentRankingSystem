@@ -90,6 +90,7 @@ public class RankAgentManager extends AgentManager{
         
         if((agID = rankID.getReserveID()) == null){
             agID = rankID.genID();
+            System.out.println("Create RankAgent:"+agID);
             CreateRankAgent rankAgent = new CreateRankAgent();
             rankAgent.create(agID, queueLength, queuewait, agentwait);
         } else {
