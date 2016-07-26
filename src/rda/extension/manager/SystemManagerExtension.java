@@ -120,11 +120,6 @@ public class SystemManagerExtension  implements Extension{
     public void startRankingSystem(Map props){
         manager = RankingSystemManager.getInstance();
         
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException ex) {
-        }
-        
         //Setting Property & Initialise Agent
         manager.setPropMap(props);
         manager.launchSystem();
