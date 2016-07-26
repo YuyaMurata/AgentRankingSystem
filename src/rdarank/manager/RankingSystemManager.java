@@ -14,7 +14,6 @@ import rda.agent.client.AgentConnection;
 import rda.log.AgentLogPrint;
 import rda.manager.LoggerManager;
 import rda.manager.TestCaseManager;
-import rda.property.SetProperty;
 import rda.stream.DataStream;
 import rda.stream.TimeToDataStream;
 import rdarank.agent.rank.manager.RankAgentManager;
@@ -23,7 +22,7 @@ import rdarank.agent.rank.manager.RankAgentManager;
  *
  * @author kaeru
  */
-public class RankingSystemManager implements SetProperty{
+public class RankingSystemManager {
     private static RankingSystemManager manager = new RankingSystemManager();
     private RankingSystemManager(){}
     
@@ -36,7 +35,7 @@ public class RankingSystemManager implements SetProperty{
         
         dataSettings(preDataMap(), preProfMap());
         loggerSettings(preLoggerMap());
-        agentSettings(preUserAgentMap(), preRankAgentMap(), POOLSIZE);
+        agentSettings(preUserAgentMap(), preRankAgentMap(), 8);
     }
     
     public void setDataStreamGenerator(){
