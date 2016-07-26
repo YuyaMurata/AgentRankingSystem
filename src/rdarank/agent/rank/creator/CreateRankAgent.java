@@ -87,8 +87,7 @@ public class CreateRankAgent implements AgentExecutor, Serializable{
             RankAgentManager.getInstance().register(mq);
             
             //return mq;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (AgentException e) {
             //return null;
         }
     }
