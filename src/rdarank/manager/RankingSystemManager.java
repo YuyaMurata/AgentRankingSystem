@@ -139,95 +139,33 @@ public class RankingSystemManager {
     
     //UserAgent Parameter
     private Map preUserAgentMap(){
-        /*Map map = new HashMap();
-        map.put("AMOUNT_OF_AGENTS", NUMBER_OF_USERS);
-        map.put("QUEUE_LENGTH", QUEUE_LENGTH);
-        map.put("QUEUE_WAIT", QUEUE_WAIT);
-        map.put("AGENT_WAIT", AGENT_WAIT);
-        map.put("AGENT_MODE", AGENT_MODE_AUTONOMY);
-        map.put("RESERVE_MODE", AGENT_MODE_RESERVE);
-        map.put("AMOUNT_RESERVE_AGENT", NUMBER_OF_RESERVE);
-        map.put("POOLSIZE", POOLSIZE);
-        map.put("RULE", NAME_RULE_USER);
-        map.put("SEED", ID_SEED);
-        map.put("ALIVE_TIME", TIME_WAIT);
-        map.put("WINDOW_SIZE", WINDOW_SIZE);
-        map.put("POOLSIZE", POOLSIZE);*/
         AgentLogPrint.printPropertySettings("UserAgent", props.get("user"));
-        
-        //return map;
         return props.get("user");
     }
     
     //RanklAgent Parameter
     private Map preRankAgentMap(){
-        /*Map map = new HashMap();
-        map.put("AMOUNT_OF_AGENTS", NUMBER_OF_RANK_AGENTS);
-        map.put("QUEUE_LENGTH", QUEUE_LENGTH);
-        map.put("QUEUE_WAIT", QUEUE_WAIT);
-        map.put("AGENT_WAIT", AGENT_WAIT);
-        map.put("AGENT_MODE", AGENT_MODE_AUTONOMY);
-        map.put("RESERVE_MODE", AGENT_MODE_RESERVE);
-        map.put("AMOUNT_RESERVE_AGENT", NUMBER_OF_RESERVE);
-        map.put("POOLSIZE", POOLSIZE);
-        map.put("RULE", NAME_RULE_RANK);
-        map.put("SEED", ID_SEED);
-        map.put("ALIVE_TIME", TIME_WAIT);
-        map.put("WINDOW_SIZE", WINDOW_SIZE);
-        map.put("POOLSIZE", POOLSIZE);*/
         AgentLogPrint.printPropertySettings("RankAgent", props.get("rank"));
-        
-        //return map;
         return props.get("rank");
     }
     
     private Map preProfMap(){
-        /*Map map = new HashMap();
-        map.put("AMOUNT_USERS", NUMBER_OF_USERS);
-        map.put("MODE", DATA_MODE_PROFILE);
-        map.put("SEED", PROF_SEED);
-        map.put("RULE", NAME_RULE_USER);*/
         AgentLogPrint.printPropertySettings("UserProfile", props.get("profile"));
-        
-        //return map;
         return props.get("profile");
     }
     
     private Map preDataMap(){
-        /*Map map = new HashMap();
-        map.put("TIME_RUN", TIME_RUN);
-        map.put("TIME_PERIOD", TIME_PERIOD); 
-        map.put("DATA_VOLUME", DATA_VOLUME); 
-        map.put("AMOUNT_USER", NUMBER_OF_USERS); 
-        map.put("AGENT_DEFAULT_VALUE", AGENT_DEFAULT_VALUE);
-        map.put("SELECT_TYPE", DATA_SELECT_TYPE);
-        map.put("MODE", DATA_MODE_GENERATE);
-        map.put("SEED", DATA_SEED);*/
         AgentLogPrint.printPropertySettings("Data", props.get("datagen"));
-        
-        //return map;
         return props.get("datagen");
     }
     
     private Map preStreamMap(){
-        /*Map map = new HashMap();
-        map.put("TIME_RUN", TIME_RUN);
-        map.put("TIME_PERIOD", TIME_PERIOD);
-        */
-        
         AgentLogPrint.printPropertySettings("Stream", props.get("stream"));
-        
-        //return map;
         return props.get("stream");
     }
     
     private Map preLoggerMap(){
-        /*Map map = new HashMap();
-        map.put("TIME_RUN", TIME_RUN);
-        map.put("TIME_PERIOD", LOG_PERIOD);*/
         AgentLogPrint.printPropertySettings("Logger", props.get("logger"));
-        
-        //return map;
         return props.get("logger");
     }
     
