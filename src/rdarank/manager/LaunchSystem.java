@@ -16,6 +16,8 @@ import com.ibm.agent.exa.client.AgentExecutor;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import rda.agent.client.AgentConnection;
 
 /**
@@ -55,13 +57,15 @@ public class LaunchSystem implements AgentExecutor, Serializable {
             msg.set("property", prop);
             
             //Sync Message
-            Object ret = agentManager.sendMessage(agentKey, msg);
-            //agentManager.putMessage(agentKey, msg);
+            //Object ret = agentManager.sendMessage(agentKey, msg);
+            agentManager.putMessage(agentKey, msg);
 
-            return ret;
+            return "Finish !";
         } catch (IllegalAccessException | InstantiationException e) {
             // TODO 自動生成された catch ブロック
             return e;
+        } catch (AgentException ex) {
+            return ex;
         }
     }
     
