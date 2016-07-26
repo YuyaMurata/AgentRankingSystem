@@ -11,6 +11,8 @@ import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.soliddb.extension.Extension;
 import java.util.Map;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import rdarank.manager.RankingSystemManager;
 
 /**
@@ -117,6 +119,11 @@ public class SystemManagerExtension  implements Extension{
     private RankingSystemManager manager;
     public void startRankingSystem(Map props){
         manager = RankingSystemManager.getInstance();
+        
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+        }
         
         //Setting Property & Initialise Agent
         manager.setPropMap(props);
