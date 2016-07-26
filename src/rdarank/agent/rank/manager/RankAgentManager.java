@@ -11,13 +11,11 @@ import java.util.List;
 import java.util.Map;
 import rda.agent.queue.MessageQueue;
 import rda.agent.queue.QueueObserver;
-import rda.data.profile.ProfileGenerator;
 import rda.manager.AgentManager;
 import rda.manager.IDManager;
 import rda.manager.LoggerManager;
 import rda.window.WindowController;
 import rdarank.agent.rank.creator.CreateRankAgent;
-import rdarank.agent.rank.creator.CreateRankAgentEx;
 import rdarank.agent.rank.logger.RankAgentLogPrinter;
 
 /**
@@ -67,8 +65,6 @@ public class RankAgentManager extends AgentManager{
         this.windowCTRL = new WindowController((Integer)rankAgentMapParam.get("WINDOW_SIZE"),
                                           (Long)rankAgentMapParam.get("ALIVE_TIME"),
                                           (Integer)rankAgentMapParam.get("POOLSIZE"));
-        
-        System.out.println("< Success Initialise RankAgents >");
     }
     
     @Override
@@ -92,7 +88,7 @@ public class RankAgentManager extends AgentManager{
         if((agID = rankID.getReserveID()) == null){
             agID = rankID.genID();
             System.out.println("Create RankAgent:"+agID);
-            CreateRankAgentEx rankAgent = new CreateRankAgentEx();
+            CreateRankAgent rankAgent = new CreateRankAgent();
             rankAgent.create(agID, queueLength, queuewait, agentwait);
         } else {
             System.out.println(">> Get Reserve Agent = "+agID);
@@ -163,10 +159,5 @@ public class RankAgentManager extends AgentManager{
     @Override
     public WindowController getWindowController() {
         return this.windowCTRL;
-    }
-    
-    //Only Test
-    public String getToRankID(String id){
-        return (String) ProfileGenerator.getInstance().getProf(id).get("Agent");
     }
 }

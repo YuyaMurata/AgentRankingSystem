@@ -58,7 +58,7 @@ public class LaunchSettingsMap implements SetProperty{
         map.put("ALIVE_TIME", TIME_WAIT);
         map.put("WINDOW_SIZE", WINDOW_SIZE);
         map.put("POOLSIZE", POOLSIZE);
-        AgentLogPrint.printPropertySettings("Agent", map);
+        AgentLogPrint.printPropertySettings("UserAgent", map);
         
         return map;
     }
@@ -79,7 +79,7 @@ public class LaunchSettingsMap implements SetProperty{
         map.put("ALIVE_TIME", TIME_WAIT);
         map.put("WINDOW_SIZE", WINDOW_SIZE);
         map.put("POOLSIZE", POOLSIZE);
-        AgentLogPrint.printPropertySettings("Agent", map);
+        AgentLogPrint.printPropertySettings("RankAgent", map);
         
         return map;
     }
