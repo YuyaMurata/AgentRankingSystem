@@ -66,6 +66,8 @@ public class RankAgentManager extends AgentManager{
         this.windowCTRL = new WindowController((Integer)rankAgentMapParam.get("WINDOW_SIZE"),
                                           (Long)rankAgentMapParam.get("ALIVE_TIME"),
                                           (Integer)rankAgentMapParam.get("POOLSIZE"));
+        
+        System.out.println("< Success Initialise RankAgents >");
     }
     
     @Override
