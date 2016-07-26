@@ -72,7 +72,11 @@ public class CreateRankAgent implements AgentExecutor, Serializable{
             AgentConnection agconn = AgentConnection.getInstance();            
             AgentClient client = agconn.getConnection();
             
+            System.out.println("> GetConnection Agent Client");
+            
             agentKey = new AgentKey(AGENT_TYPE,new Object[]{agID});
+            
+            System.out.println("> Agent key = "+agentKey);
             
             //Create Agent
             CreateRankAgent executor = new CreateRankAgent(agentKey);
