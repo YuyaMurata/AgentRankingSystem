@@ -32,6 +32,7 @@ public class UpdateRankHandler extends MessageHandler{
         
         Map tableMap = new HashMap();
         for(Object data : (List)msgObj.data){
+            System.out.println("UpdateRankHandler : "+((UserData) data).toString());
             Map user = (Map) ((UserData) data).getData();
             
             //Test
