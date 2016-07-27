@@ -30,7 +30,7 @@ public class AgentIntaractionExtension implements Extension{
     private static AgentIntaractionExtension extention = new AgentIntaractionExtension();
     private AgentIntaractionThread thread;
     
-    private WindowController windowCTRL;
+    private WindowController windowCTRL  = new WindowController(1000, 100L, 1);
     
     public static AgentIntaractionExtension getInstance(){
         return extention;
@@ -121,7 +121,7 @@ public class AgentIntaractionExtension implements Extension{
         }
         
         //Init WindowController
-        this.windowCTRL = new WindowController(1000, 100L, 1);
+        //this.windowCTRL
         
         //AgentIntaraction Thread
         thread = new AgentIntaractionThread();
