@@ -87,7 +87,7 @@ public class RankingSystemManager {
         System.out.println("< Initialise RankAgents >");
         
         CreateRankAgent rankAgent = new CreateRankAgent();
-        rankAgent.create("R#000", 100, 10L, 10L);
+        rankAgent.create("C#000", 100, 10L, 10L);
         
         /*RankAgentManager rank = RankAgentManager.getInstance();
         rank.initRankAgent(rankAgentParam);
