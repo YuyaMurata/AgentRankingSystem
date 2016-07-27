@@ -62,26 +62,11 @@ public class RankingSystemManager {
         AgentConnection agconn = AgentConnection.getInstance();
         agconn.setPoolSize(poolsize);
         
-        //RankAgent Initialize
-        System.out.println("< Initialise RankAgents >");
-        RankAgentManager rank = RankAgentManager.getInstance();
-        rank.initRankAgent(rankAgentParam);
-        rank.createNumberOfAgents((Integer)rankAgentParam.get("AMOUNT_OF_AGENTS"));
-        
-        if(rank.getReserveMode()){
-            List<String> reserveID = new ArrayList<>();
-            for(int i=0; i < (Integer)rankAgentParam.get("AMOUNT_RESERVE_AGENT"); i++){
-                String agentID =  rank.createAgent();
-                reserveID.add(agentID);
-            }
-            for(String id : reserveID) rank.getIDManager().setReserveID(id);
-        }
-        
         //UserAgent Initialize
         //UserAgent Attributed Initialize
         TestCaseManager tcManager = TestCaseManager.getInstance();
         tcManager.profgen.addUserProfileToAgent();
-        tcManager.profgen.addUserAgentCommunication();
+        //tcManager.profgen.addUserAgentCommunication();
         
         System.out.println("< Initialise UserAgents >");
         UserAgentManager user = UserAgentManager.getInstance();
@@ -95,6 +80,21 @@ public class RankingSystemManager {
                 reserveID.add(agentID);
             }
             for(String id : reserveID) user.getIDManager().setReserveID(id);
+        }
+        
+        //RankAgent Initialize
+        System.out.println("< Initialise RankAgents >");
+        RankAgentManager rank = RankAgentManager.getInstance();
+        rank.initRankAgent(rankAgentParam);
+        rank.createNumberOfAgents((Integer)rankAgentParam.get("AMOUNT_OF_AGENTS"));
+        
+        if(rank.getReserveMode()){
+            List<String> reserveID = new ArrayList<>();
+            for(int i=0; i < (Integer)rankAgentParam.get("AMOUNT_RESERVE_AGENT"); i++){
+                String agentID =  rank.createAgent();
+                reserveID.add(agentID);
+            }
+            for(String id : reserveID) rank.getIDManager().setReserveID(id);
         }
         
         System.out.println(">>> Finished Set UserAgents & IDs");
