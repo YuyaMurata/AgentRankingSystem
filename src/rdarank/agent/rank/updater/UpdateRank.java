@@ -104,7 +104,7 @@ public class UpdateRank extends AgentType {
                 }
             }*/
             
-            System.out.println("Finish ! UpdateRank : "+agentKey);
+            System.out.println("Finish ! UpdateRank : "+reply);
             
             agcon.returnConnection(client);
         } catch (AgentException e) {
