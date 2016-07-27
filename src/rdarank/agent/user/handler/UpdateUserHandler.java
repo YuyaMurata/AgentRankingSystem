@@ -5,8 +5,9 @@ import java.sql.Timestamp;
 import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageHandler;
 import com.ibm.agent.exa.TxID;
-import java.util.List;
+
 import rda.agent.queue.MessageObject;
+
 import rdarank.Useragent;
 import rdarank.Userlog;
 import rdarank.agent.user.message.UpdateUserMessage;
@@ -26,7 +27,7 @@ public class UpdateUserHandler extends MessageHandler{
         TxID tx = getTx();
         
         long updateData = 0;
-        for(Object data : (List)msgObj.data){
+        for(Object data : msgObj.data){
             updateData =  updateData + (int)data;
         }
         agent.setData(tx, updateData + agent.getData(tx));
