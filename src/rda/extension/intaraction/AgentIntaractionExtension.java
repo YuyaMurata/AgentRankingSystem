@@ -75,7 +75,7 @@ public class AgentIntaractionExtension implements Extension{
 
     @Override
     public void shutdown() {
-        //thread.stop();
+        thread.stop();
     }
     
     

@@ -14,7 +14,6 @@ import rda.agent.client.AgentConnection;
 import rda.agent.queue.MessageObject;
 import rda.agent.template.AgentType;
 import rda.agent.template.MessageTemplate;
-import rda.manager.LoggerManager;
 import rdarank.agent.rank.message.UpdateRankMessage;
 
 public class UpdateRank extends AgentType {
@@ -93,6 +92,8 @@ public class UpdateRank extends AgentType {
                 
             UpdateRank executor = new UpdateRank(agentKey, (MessageObject)data);
             
+            System.out.println("UpdateRank : "+agentKey);
+            
             Object reply = client.execute(agentKey, executor);
             /*if(reply != null){
                 try{
@@ -102,6 +103,8 @@ public class UpdateRank extends AgentType {
                     System.out.println("rda.agent.rank.updater.UpdateRank.sendMessage()"+reply);
                 }
             }*/
+            
+            System.out.println("Finish ! UpdateRank : "+agentKey);
             
             agcon.returnConnection(client);
         } catch (AgentException e) {
