@@ -42,6 +42,7 @@ public class AgentIntaractionThread implements Runnable{
         Object window = extension.getWindowController().get();
         if(window == null) return ;
         
+        System.out.println("Transport Window !");
         extension.transport(window);
         
         extension.getWindowController().remove();

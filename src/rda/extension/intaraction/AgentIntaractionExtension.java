@@ -149,6 +149,8 @@ public class AgentIntaractionExtension implements Extension{
             //Translation Window To Message
             MessageObject msg = new MessageObject(agID, window.unpack());
         
+            System.out.println("MQ_"+mq.getName() + " put Window : "+window.getDestID()+" size="+window.getSize());
+            
             mq.put(msg);
             
         }catch(MessageQueueEvent mqev){
