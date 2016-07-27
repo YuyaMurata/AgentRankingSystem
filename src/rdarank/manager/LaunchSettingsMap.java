@@ -74,7 +74,7 @@ public class LaunchSettingsMap implements SetProperty{
         map.put("RESERVE_MODE", AGENT_MODE_RESERVE);
         map.put("AMOUNT_RESERVE_AGENT", NUMBER_OF_RESERVE);
         map.put("POOLSIZE", POOLSIZE);
-        map.put("RULE", NAME_RULE_RANK);
+        map.put("RULE", "C#"/*NAME_RULE_RANK*/);
         map.put("SEED", ID_SEED);
         map.put("ALIVE_TIME", TIME_WAIT);
         map.put("WINDOW_SIZE", WINDOW_SIZE);
