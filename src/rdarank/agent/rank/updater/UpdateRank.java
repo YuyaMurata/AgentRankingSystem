@@ -92,7 +92,7 @@ public class UpdateRank extends AgentType {
                 
             UpdateRank executor = new UpdateRank(agentKey, (MessageObject)data);
             
-            System.out.println("UpdateRank : "+agentKey + ((MessageObject)data).getLength());
+            System.out.println("UpdateRank : "+agentKey +" = "+ ((MessageObject)data).getLength());
             
             Object reply = client.execute(agentKey, executor);
             /*if(reply != null){
