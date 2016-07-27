@@ -15,6 +15,7 @@ import rda.agent.client.AgentConnection;
 import rda.agent.queue.MessageQueue;
 import rda.data.profile.ProfileGenerator;
 import rda.manager.TestCaseManager;
+
 import rdarank.agent.user.message.InitUserMessage;
 import rdarank.agent.user.updater.UpdateUser;
 import rdarank.agent.user.manager.UserAgentManager;

@@ -5,7 +5,6 @@
  */
 package rdarank.manager;
 
-import rdarank.agent.user.manager.UserAgentManager;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +15,9 @@ import rda.manager.LoggerManager;
 import rda.manager.TestCaseManager;
 import rda.stream.DataStream;
 import rda.stream.TimeToDataStream;
+
 import rdarank.agent.rank.manager.RankAgentManager;
+import rdarank.agent.user.manager.UserAgentManager;
 
 /**
  *
@@ -57,6 +58,7 @@ public class RankingSystemManager {
     }
     
     private void agentSettings(Map userAgentParam, Map rankAgentParam, Integer poolsize){
+        //AgentClient ObjectPool Initialize
         AgentConnection agconn = AgentConnection.getInstance();
         agconn.setPoolSize(poolsize);
         

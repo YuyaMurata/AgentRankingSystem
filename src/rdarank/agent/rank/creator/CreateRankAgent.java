@@ -12,6 +12,7 @@ import com.ibm.agent.exa.client.AgentExecutor;
 
 import rda.agent.client.AgentConnection;
 import rda.agent.queue.MessageQueue;
+
 import rdarank.agent.rank.message.InitRankMessage;
 import rdarank.agent.rank.updater.UpdateRank;
 import rdarank.agent.rank.manager.RankAgentManager;
