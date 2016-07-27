@@ -5,16 +5,16 @@
  */
 package rda.log;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
 import rda.agent.template.AgentLogPrinterTemplate;
 import rda.manager.LoggerManager;
-import rda.manager.TestCaseManager;
 import rdarank.agent.all.logger.SystemLogPrinter;
 
 /**
@@ -32,7 +32,7 @@ public class LogSchedule implements Runnable{
     public LogSchedule(Map loggerMap) {
         this.period = (Long)loggerMap.get("TIME_PERIOD");
         this.term = (Long)loggerMap.get("TIME_RUN") * (1000 / period);
-        this.log = new ArrayList();
+        this.log = new CopyOnWriteArrayList<>();
     }
     
     public void setLogPrinter(AgentLogPrinterTemplate logPrinter){
