@@ -50,7 +50,7 @@ public class CreateRankAgent implements AgentExecutor, Serializable{
                 return "agent (" + agentKey + ") already exists";
             }
             
-            System.out.println("RankAgent AgentManager");
+            System.out.println("RankAgent AgentManager"+agentKey);
 		
             agentManager.createAgent(agentKey);
 	
