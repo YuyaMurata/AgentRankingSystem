@@ -15,6 +15,7 @@ import rda.agent.queue.MessageObject;
 import rda.agent.template.AgentType;
 import rda.agent.template.MessageTemplate;
 import rdarank.agent.rank.message.UpdateRankMessage;
+import rdarank.agent.user.data.UserData;
 
 public class UpdateRank extends AgentType {
     /**
@@ -91,6 +92,11 @@ public class UpdateRank extends AgentType {
             AgentClient client = agcon.getConnection();
                 
             UpdateRank executor = new UpdateRank(agentKey, (MessageObject)data);
+            
+            //TestPrint
+            for(Object d : ((MessageObject)data).data){
+                System.out.println("> UpdateRank :: "+((UserData)d).toString());
+            }
             
             Object reply = client.execute(agentKey, executor);
             /*if(reply != null){
