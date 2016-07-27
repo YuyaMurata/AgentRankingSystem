@@ -20,7 +20,7 @@ public class CreateRankAgent implements AgentExecutor, Serializable{
     /**
     * 
     */
-    private static final long serialVersionUID = 56847026370330593L;
+    private static final long serialVersionUID = 111847026370330593L;
     public static final String AGENT_TYPE = "rankagent";
     static final String MESSAGE_TYPE = "initRankAgent";
 	
@@ -49,17 +49,25 @@ public class CreateRankAgent implements AgentExecutor, Serializable{
             if (agentManager.exists(agentKey)) {
                 return "agent (" + agentKey + ") already exists";
             }
+            
+            System.out.println("RankAgent AgentManager");
 		
             agentManager.createAgent(agentKey);
 	
+            System.out.println("Create RankAgent AgentManager");
+            
             MessageFactory factory = MessageFactory.getFactory();
             InitRankMessage msg = (InitRankMessage)factory.getMessage(MESSAGE_TYPE);
-		
+            
+            System.out.println("RankAgent Message");
+            
             //Set InitMessage Data
             msg.setParams("No Message");
 		
             Object ret = agentManager.sendMessage(agentKey, msg);
-		
+            
+            System.out.println("RankAgent AgentManager : "+ret);
+            
             return ret;
         } catch (AgentException | IllegalAccessException | InstantiationException e) {
         }
@@ -73,7 +81,9 @@ public class CreateRankAgent implements AgentExecutor, Serializable{
             AgentClient client = agconn.getConnection();
             
             agentKey = new AgentKey(AGENT_TYPE,new Object[]{agID});
-
+            
+            System.out.println("AgentKey Generate : "+agentKey);
+            
             //Create Agent
             CreateRankAgent executor = new CreateRankAgent(agentKey);
             Object reply = client.execute(agentKey, executor);
@@ -88,7 +98,8 @@ public class CreateRankAgent implements AgentExecutor, Serializable{
             RankAgentManager.getInstance().register(mq);
             
             //return mq;
-        } catch (AgentException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
             //return null;
         }
     }
