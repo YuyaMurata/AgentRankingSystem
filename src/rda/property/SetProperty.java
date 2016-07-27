@@ -9,7 +9,7 @@ public interface SetProperty {
         
         public static final String NAME_RULE_RANK = "C#";
         public static final String NAME_RULE_USER = "U#";
-        
+         
 	//Server Property
 	/**
 	 * file:server.property
