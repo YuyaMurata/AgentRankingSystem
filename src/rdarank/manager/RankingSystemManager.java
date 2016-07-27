@@ -15,7 +15,6 @@ import rda.manager.LoggerManager;
 import rda.manager.TestCaseManager;
 import rda.stream.DataStream;
 import rda.stream.TimeToDataStream;
-import rdarank.agent.rank.creator.CreateRankAgent;
 
 import rdarank.agent.rank.manager.RankAgentManager;
 import rdarank.agent.user.manager.UserAgentManager;
@@ -84,7 +83,7 @@ public class RankingSystemManager {
         //UserAgent Attributed Initialize
         TestCaseManager tcManager = TestCaseManager.getInstance();
         tcManager.profgen.addUserProfileToAgent();
-        //tcManager.profgen.addUserAgentCommunication();
+        tcManager.profgen.addUserAgentCommunication();
         
         System.out.println("< Initialise UserAgents >");
         UserAgentManager user = UserAgentManager.getInstance();
