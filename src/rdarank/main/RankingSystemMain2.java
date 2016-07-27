@@ -5,7 +5,6 @@
  */
 package rdarank.main;
 
-import rdarank.agent.rank.creator.CreateRankAgent;
 import rdarank.manager.ExecuteDataStream;
 import rdarank.manager.LaunchSettingsMap;
 import rdarank.manager.LaunchSystem;
@@ -17,18 +16,14 @@ import rdarank.manager.ShutdownSystem;
  */
 public class RankingSystemMain2 {
     public static void main(String[] args) {
-        /*//Launch
+        //Launch
         launchSystem();
         
         //Execute
         periodDataStream();
         
         //Shutdown
-        shutdownSystem();*/
-        
-        //Test
-        CreateRankAgent rankAgent = new CreateRankAgent();
-        rankAgent.create("R#000", 1000, 10L, 10L);
+        shutdownSystem();
     }
     
     private static void launchSystem(){

@@ -30,7 +30,8 @@ public class CreateRankAgent implements AgentExecutor, Serializable{
     }
 	
     AgentKey agentKey;
-    public CreateRankAgent(AgentKey agentKey) {
+    String mes;
+    public CreateRankAgent(AgentKey agentKey, String mes) {
         // TODO 自動生成されたコンストラクター・スタブ
         this.agentKey = agentKey;
     }
@@ -63,7 +64,7 @@ public class CreateRankAgent implements AgentExecutor, Serializable{
             System.out.println("RankAgent Message");
             
             //Set InitMessage Data
-            msg.setParams("No Message");
+            msg.setParams(mes);
 		
             Object ret = agentManager.sendMessage(agentKey, msg);
             
@@ -86,7 +87,7 @@ public class CreateRankAgent implements AgentExecutor, Serializable{
             System.out.println("AgentKey Generate : "+agentKey);
             
             //Create Agent
-            CreateRankAgent executor = new CreateRankAgent(agentKey);
+            CreateRankAgent executor = new CreateRankAgent(agentKey, "No Message");
             Object reply = client.execute(agentKey, executor);
             
             System.out.println("Agent[" + agentKey + "] was created. Reply is [" + reply + "]");
