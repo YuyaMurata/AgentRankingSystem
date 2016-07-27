@@ -7,7 +7,7 @@ public interface SetProperty {
 	 
 	public static final String AGENT_TYPE = "aggregateagent";
         
-        public static final String NAME_RULE_RANK = "R#";
+        public static final String NAME_RULE_RANK = "C#";
         public static final String NAME_RULE_USER = "U#";
         
 	//Server Property
