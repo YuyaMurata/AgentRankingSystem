@@ -9,14 +9,18 @@ import com.ibm.agent.exa.AgentException;
 import com.ibm.agent.exa.AgentKey;
 import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.soliddb.extension.Extension;
+
 import java.util.Properties;
+
 import rda.agent.queue.MessageObject;
 import rda.agent.queue.MessageQueue;
 import rda.agent.queue.MessageQueueEvent;
 import rda.data.test.DataTemplate;
 import rda.window.Window;
 import rda.window.WindowController;
+
 import rdarank.agent.rank.manager.RankAgentManager;
+import rdarank.agent.user.data.UserData;
 
 /**
  *
@@ -117,11 +121,11 @@ public class AgentIntaractionExtension implements Extension{
         }
         
         //Init WindowController
-        //this.windowCTRL = new WindowController(1000, 100L, 1);
+        this.windowCTRL = new WindowController(1000, 100L, 1);
         
         //AgentIntaraction Thread
-        //thread = new AgentIntaractionThread();
-        //thread.start();
+        thread = new AgentIntaractionThread();
+        thread.start();
     }
     
     public WindowController getWindowController() {
@@ -132,7 +136,7 @@ public class AgentIntaractionExtension implements Extension{
         //Transport OtherServer Extension
         // ***
         
-        /*try{
+        try{
             //Window
             Window window = (Window) obj;
         
@@ -151,16 +155,16 @@ public class AgentIntaractionExtension implements Extension{
             mqev.printEvent();
         } catch (Exception e){
             e.printStackTrace();
-        }*/    
+        }    
     }
     
     public void communicateAgent(DataTemplate data){
         try{
         if(data == null) return ;
         
-            //System.out.println(" > User Data = "+((UserData)data).toString());
+            System.out.println(" > User Data = "+((UserData)data).toString());
         
-            //windowCTRL.pack(data);
+            windowCTRL.pack(data);
         }catch(Exception e){
             e.printStackTrace();
         }
