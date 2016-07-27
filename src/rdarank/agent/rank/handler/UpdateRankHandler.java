@@ -31,11 +31,11 @@ public class UpdateRankHandler extends MessageHandler{
         TxID tx = getTx();
         
         Map tableMap = new HashMap();
-        for(Object data : (List)msgObj.data){
+        for(Object data : msgObj.data){
             Map user = (Map) ((UserData) data).getData();
-            
+            System.out.println("Handler UserData - "+user);
             //Test
-            tableMap.put(user.get("id"), user.get("data"));
+            //tableMap.put(user.get("id"), user.get("data"));
         }
         /*
         for(Object id : tableMap.keySet()){
