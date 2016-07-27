@@ -5,7 +5,6 @@
  */
 package rdarank.agent.user.data;
 
-import java.util.Map;
 import rda.data.test.DataTemplate;
 
 /**
@@ -13,7 +12,7 @@ import rda.data.test.DataTemplate;
  * @author kaeru
  */
 public class UserData extends DataTemplate{
-    private Map data;
+    private Long data;
     
     public UserData(String userID, String rankID){
         super(userID, rankID);
@@ -21,7 +20,7 @@ public class UserData extends DataTemplate{
     
     @Override
     public void setData(Object data) {
-        this.data = (Map) data;
+        this.data = (Long) data;
     }
 
     @Override
@@ -31,7 +30,7 @@ public class UserData extends DataTemplate{
 
     @Override
     public String toString() {
-        return data.get("id") + ","+data.get("data") + " -> " + toID;
+        return id + ","+data + " -> " + toID;
     }
     
 }

@@ -120,9 +120,6 @@ public class AgentIntaractionExtension implements Extension{
         } catch (AgentException ex) {
         }
         
-        //Init WindowController
-        //this.windowCTRL
-        
         //AgentIntaraction Thread
         thread = new AgentIntaractionThread();
         thread.start();

@@ -31,11 +31,8 @@ public class IntaractionAgentHandler extends MessageHandler{
         TxID tx = getTx();
         
         //UserData
-        Map dataMap = new HashMap();
-        dataMap.put("id", agent.getUserID(tx));
-        dataMap.put("data", agent.getData(tx));
         UserData userData = new UserData(agent.getUserID(tx), agent.getCommunicationID(tx));
-        userData.setData(dataMap);
+        userData.setData(agent.getData(tx));
         
         //Agent Communication
         extension.communicateAgent(userData);
