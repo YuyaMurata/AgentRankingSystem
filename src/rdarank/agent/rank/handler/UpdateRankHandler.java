@@ -32,12 +32,10 @@ public class UpdateRankHandler extends MessageHandler{
         
         Map tableMap = new HashMap();
         for(Object data : (List)msgObj.data){
-            if(data == null) System.out.println("UserData is null !!"); 
-            else System.out.println("UpdateRankHandler : "+data);
-            /*Map user = (Map) ((UserData) data).getData();
+            Map user = (Map) ((UserData) data).getData();
             
             //Test
-            tableMap.put(user.get("id"), user.get("data"));*/
+            tableMap.put(user.get("id"), user.get("data"));
         }
         /*
         for(Object id : tableMap.keySet()){
