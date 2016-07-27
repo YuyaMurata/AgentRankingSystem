@@ -33,12 +33,12 @@ public class UpdateRankHandler extends MessageHandler{
         Map tableMap = new HashMap();
         for(Object data : (List)msgObj.data){
             System.out.println("UpdateRankHandler : "+((UserData) data).toString());
-            Map user = (Map) ((UserData) data).getData();
+            /*Map user = (Map) ((UserData) data).getData();
             
             //Test
-            tableMap.put(user.get("id"), user.get("data"));
+            tableMap.put(user.get("id"), user.get("data"));*/
         }
-        
+        /*
         for(Object id : tableMap.keySet()){
             Ranktable table = agent.getRankTable(tx, (String)id);
             long d = 0;
@@ -85,7 +85,7 @@ public class UpdateRankHandler extends MessageHandler{
         log.setCurrentTime(tx, time);
         
         //Long message = avgLatency;
-        
+        */
         return 0L;
     }
 }
