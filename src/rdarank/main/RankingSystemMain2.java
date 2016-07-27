@@ -42,14 +42,14 @@ public class RankingSystemMain2 {
         
         ExecuteDataStream data = new ExecuteDataStream();
         
-        /*for(int i=0; i < 5; i++){
+        for(int i=0; i < 5; i++){
+            System.out.println("Execute Elapsed Time : "+i+" [sec]");
             data.stream();
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
             }
-        }*/
-        data.stream();
+        }
     }
     
     private static void shutdownSystem(){
