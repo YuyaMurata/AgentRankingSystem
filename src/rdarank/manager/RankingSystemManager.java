@@ -15,6 +15,7 @@ import rda.manager.LoggerManager;
 import rda.manager.TestCaseManager;
 import rda.stream.DataStream;
 import rda.stream.TimeToDataStream;
+import rdarank.agent.rank.creator.CreateRankAgent;
 
 import rdarank.agent.rank.manager.RankAgentManager;
 import rdarank.agent.user.manager.UserAgentManager;
@@ -84,7 +85,11 @@ public class RankingSystemManager {
         
         //RankAgent Initialize
         System.out.println("< Initialise RankAgents >");
-        RankAgentManager rank = RankAgentManager.getInstance();
+        
+        CreateRankAgent rankAgent = new CreateRankAgent();
+        rankAgent.create("R#000", 100, 10L, 10L);
+        
+        /*RankAgentManager rank = RankAgentManager.getInstance();
         rank.initRankAgent(rankAgentParam);
         rank.createNumberOfAgents((Integer)rankAgentParam.get("AMOUNT_OF_AGENTS"));
         
@@ -97,7 +102,7 @@ public class RankingSystemManager {
             for(String id : reserveID) rank.getIDManager().setReserveID(id);
         }
         
-        System.out.println(">>> Finished Set UserAgents & IDs");
+        System.out.println(">>> Finished Set UserAgents & IDs");*/
     }
     
     private void dataSettings(Map dataParam, Map profParam){
