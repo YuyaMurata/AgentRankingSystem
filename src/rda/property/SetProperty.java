@@ -7,9 +7,6 @@ public interface SetProperty {
 	 
 	public static final String AGENT_TYPE = "aggregateagent";
         
-        public static final String NAME_RULE_RANK = "RC#";
-        public static final String NAME_RULE_USER = "U#";
-         
 	//Server Property
 	/**
 	 * file:server.property
@@ -45,6 +42,9 @@ public interface SetProperty {
          * time.delay
 	 * number.rank.agent
 	 */
+        
+        public static final String NAME_RULE_RANK = prop.getValue("agent", "name.rule.rank");
+        public static final String NAME_RULE_USER = prop.getValue("agent", "name.rule.user");
 	public static final Long TIME_RUN = Long.valueOf(prop.getValue("agent", "time.run"));
 	public static final Long TIME_PERIOD = Long.valueOf(prop.getValue("agent", "time.period")); // ms
         public static final Long TIME_DELAY = Long.valueOf(prop.getValue("agent", "time.delay")) * 1000; // sec
