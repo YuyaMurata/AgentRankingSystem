@@ -15,7 +15,6 @@ import rda.agent.queue.MessageObject;
 import rda.agent.template.AgentType;
 import rda.agent.template.MessageTemplate;
 import rdarank.agent.rank.message.UpdateRankMessage;
-import rdarank.agent.user.data.UserData;
 
 public class UpdateRank extends AgentType {
     /**
