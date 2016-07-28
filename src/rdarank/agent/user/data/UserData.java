@@ -5,6 +5,7 @@
  */
 package rdarank.agent.user.data;
 
+import java.util.HashMap;
 import java.util.Map;
 import rda.data.test.DataTemplate;
 
@@ -13,7 +14,7 @@ import rda.data.test.DataTemplate;
  * @author kaeru
  */
 public class UserData extends DataTemplate{
-    private Map data;
+    private Map data = new HashMap();
     
     public UserData(String userID, String rankID){
         super(userID, rankID);
@@ -21,7 +22,7 @@ public class UserData extends DataTemplate{
     
     @Override
     public void setData(Object data) {
-        this.data.put(id,(Long) data);
+        this.data.put(id, data);
     }
 
     @Override
