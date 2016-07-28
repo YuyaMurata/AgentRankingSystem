@@ -7,6 +7,7 @@ package rda.extension.manager.handler;
 
 import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageHandler;
+import rda.extension.intaraction.AgentIntaractionExtension;
 import rda.extension.manager.SystemManagerExtension;
 
 /**
@@ -22,6 +23,9 @@ public class ShutdownSystemHandler extends MessageHandler{
         //Shutdown
         SystemManagerExtension extension = SystemManagerExtension.getInstance();
         extension.shutdown();
+        
+        AgentIntaractionExtension intaraction = AgentIntaractionExtension.getInstance();
+        intaraction.shutdown();
         
         return "Shutdown RankingSystem !";
     }

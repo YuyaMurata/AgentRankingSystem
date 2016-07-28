@@ -66,7 +66,6 @@ public class SystemManagerExtension  implements Extension{
     public void shutdown() {
         //Only Thread Type
         //manager.dataStream().stop();
-        AgentIntaractionExtension.getInstance().shutdown();
         manager.stopLogger();
         manager.shutdownSystem();
     }
