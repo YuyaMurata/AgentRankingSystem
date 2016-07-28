@@ -148,7 +148,7 @@ public class AgentIntaractionExtension implements Extension{
             
             //TestPrint
             for(Object d : msg.data){
-                System.out.println("> Transport --- UpdateRank :: "+d);
+                System.out.println("> Transport --- UpdateRank :: "+d.getClass().getName());
             }
             
             System.out.println("MQ_"+mq.getID() + " put Window : "+window.getDestID()+" size="+window.getSize());
