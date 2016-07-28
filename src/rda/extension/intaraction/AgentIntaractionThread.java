@@ -8,6 +8,7 @@ package rda.extension.intaraction;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import rda.window.Window;
 
 /**
  *
@@ -41,7 +42,7 @@ public class AgentIntaractionThread implements Runnable{
         Object window = extension.getWindowController().get();
         if(window == null) return ;
         
-        System.out.println("Transport Window !");
+        System.out.println("Transport Window ! wsize=" + ((Window)window).getSize());
         extension.transport(window);
         
         extension.getWindowController().remove();
