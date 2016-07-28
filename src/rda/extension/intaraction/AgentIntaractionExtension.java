@@ -147,9 +147,9 @@ public class AgentIntaractionExtension implements Extension{
             MessageObject msg = new MessageObject(agID, window.unpack());
             
             //TestPrint
-            for(Object d : msg.data){
-                System.out.println("> Transport --- UpdateRank :: "+d.getClass().getName());
-            }
+            //for(Object d : msg.data){
+            //    System.out.println("> Transport --- UpdateRank :: "+d.getClass().getName());
+            //}
             
             System.out.println("MQ_"+mq.getID() + " put Window : "+window.getDestID()+" size="+window.getSize());
             

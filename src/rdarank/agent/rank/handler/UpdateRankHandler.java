@@ -14,7 +14,6 @@ import rdarank.Rankagent;
 import rdarank.Ranklog;
 import rdarank.Ranktable;
 import rdarank.agent.rank.message.UpdateRankMessage;
-import rdarank.agent.user.data.UserData;
 
 public class UpdateRankHandler extends MessageHandler{
 
@@ -32,13 +31,10 @@ public class UpdateRankHandler extends MessageHandler{
         
         Map tableMap = new HashMap();
         for(Object data : msgObj.data){
-            UserData user = (UserData) data;
-            System.out.println("Handler UserData - "+user.toString());
-            
-            //Test
-            tableMap.put(user.id, user.getData());
+            Map user = (Map) data; 
+            tableMap.putAll(user);
         }
-        /*
+        
         for(Object id : tableMap.keySet()){
             Ranktable table = agent.getRankTable(tx, (String)id);
             long d = 0;
@@ -85,7 +81,6 @@ public class UpdateRankHandler extends MessageHandler{
         log.setCurrentTime(tx, time);
         
         //Long message = avgLatency;
-        */
         return 0L;
     }
 }
