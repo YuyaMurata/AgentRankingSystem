@@ -92,11 +92,6 @@ public class UpdateRank extends AgentType {
                 
             UpdateRank executor = new UpdateRank(agentKey, (MessageObject)data);
             
-            //TestPrint
-            //for(Object d : ((MessageObject)data).data){
-            //    System.out.println("> UpdateRank :: "+((UserData)d).toString());
-            //}
-            
             Object reply = client.execute(agentKey, executor);
             /*if(reply != null){
                 try{
