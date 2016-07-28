@@ -146,12 +146,7 @@ public class AgentIntaractionExtension implements Extension{
             //Translation Window To Message
             MessageObject msg = new MessageObject(agID, window.unpack());
             
-            //TestPrint
-            //for(Object d : msg.data){
-            //    System.out.println("> Transport --- UpdateRank :: "+d.getClass().getName());
-            //}
-            
-            System.out.println("MQ_"+mq.getID() + " put Window : "+window.getDestID()+" size="+window.getSize());
+            //System.out.println("MQ_"+mq.getID() + " put Window : "+window.getDestID()+" size="+window.getSize());
             
             mq.put(msg);
             
@@ -163,14 +158,8 @@ public class AgentIntaractionExtension implements Extension{
     }
     
     public void communicateAgent(DataTemplate data){
-        try{
         if(data == null) return ;
         
-            System.out.println(" > User Data = "+((UserData)data).toString());
-        
-            windowCTRL.pack(data);
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        windowCTRL.pack(data);
     }
 }

@@ -11,6 +11,7 @@ import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.soliddb.extension.Extension;
 import java.util.Map;
 import java.util.Properties;
+import rda.extension.intaraction.AgentIntaractionExtension;
 import rdarank.manager.RankingSystemManager;
 
 /**
@@ -65,9 +66,8 @@ public class SystemManagerExtension  implements Extension{
     public void shutdown() {
         //Only Thread Type
         //manager.dataStream().stop();
-        
+        AgentIntaractionExtension.getInstance().shutdown();
         manager.stopLogger();
-        
         manager.shutdownSystem();
     }
     

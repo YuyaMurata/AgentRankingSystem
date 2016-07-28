@@ -21,7 +21,7 @@ public class AgentIntaractionThread implements Runnable{
     
     public void start(){
         System.out.println("> "+name + " : Start !");
-        schedule.scheduleAtFixedRate(this, 0, 1000, TimeUnit.MILLISECONDS);
+        schedule.scheduleAtFixedRate(this, 0, 100, TimeUnit.MILLISECONDS);
     }
     
     public void stop(){
