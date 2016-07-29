@@ -25,7 +25,7 @@ public class ShutdownSystemHandler extends MessageHandler{
         extension.shutdown();
         
         AgentIntaractionExtension intaraction = AgentIntaractionExtension.getInstance();
-        intaraction.shutdown();
+        //intaraction.shutdown();
         
         return "Shutdown RankingSystem !";
     }
