@@ -36,7 +36,7 @@
 	</serverGroups>
 	<regions>
 		<region name="ag0"/>
-		<region name="ag1"/>
+		<!--<region name="ag1"/>-->
 		<!--
 		<region name="ag2">
 			<dbfile dir="..\dbfile"/>

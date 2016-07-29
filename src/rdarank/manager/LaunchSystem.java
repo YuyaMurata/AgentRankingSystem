@@ -55,7 +55,7 @@ public class LaunchSystem implements AgentExecutor, Serializable {
             msg.set("property", prop);
             
             //Sync Message
-            Object ret = agentManager.sendMessage(msg);
+            Object ret = agentManager.sendMessage(agentKey, msg);
             //agentManager.putMessage(agentKey, msg);
 
             return ret;
