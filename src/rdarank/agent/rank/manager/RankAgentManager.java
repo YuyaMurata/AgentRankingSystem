@@ -18,6 +18,7 @@ import rda.manager.LoggerManager;
 import rda.window.WindowController;
 
 import rdarank.agent.rank.creator.CreateRankAgent;
+import rdarank.agent.rank.creator.CreateRankAgentEx;
 import rdarank.agent.rank.logger.RankAgentLogPrinter;
 
 /**
@@ -93,7 +94,7 @@ public class RankAgentManager extends AgentManager{
         
         if((agID = rankID.getReserveID()) == null){
             agID = rankID.genID();
-            CreateRankAgent rankAgent = new CreateRankAgent();
+            CreateRankAgentEx rankAgent = new CreateRankAgentEx();
             rankAgent.create(agID, queueLength, queuewait, agentwait);
         } else {
             System.out.println(">> Get Reserve Agent = "+agID);
