@@ -5,6 +5,7 @@
  */
 package rdarank.main;
 
+import rda.property.SetProperty;
 import rdarank.manager.ExecuteDataStream;
 import rdarank.manager.LaunchSettingsMap;
 import rdarank.manager.LaunchSystem;
@@ -15,7 +16,7 @@ import rdarank.manager.ShutdownSystem;
  *
  * @author kaeru
  */
-public class RankingSystemMain2 {
+public class RankingSystemMain2 implements SetProperty{
     public static void main(String[] args) {
         //Launch
         launchSystem();
@@ -49,11 +50,11 @@ public class RankingSystemMain2 {
         
         ExecuteDataStream data = new ExecuteDataStream();
         
-        for(int i=0; i < 5; i++){
+        for(int i=0; i < TIME_RUN; i++){
             System.out.println("Execute Elapsed Time : "+i+" [sec]");
             data.stream();
             try {
-                Thread.sleep(1000);
+                Thread.sleep(TIME_PERIOD);
             } catch (InterruptedException ex) {
             }
         }
