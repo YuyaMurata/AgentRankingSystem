@@ -21,11 +21,12 @@ public class ShutdownSystemHandler extends MessageHandler{
         // TODO 自動生成されたメソッド・スタブ
         
         //Shutdown
+        AgentIntaractionExtension intaraction = AgentIntaractionExtension.getInstance();
+        intaraction.shutdown();
+        
         SystemManagerExtension extension = SystemManagerExtension.getInstance();
         extension.shutdown();
         
-        AgentIntaractionExtension intaraction = AgentIntaractionExtension.getInstance();
-        intaraction.shutdown();
         
         return "Shutdown RankingSystem !";
     }
