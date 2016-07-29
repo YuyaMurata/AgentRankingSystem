@@ -15,20 +15,20 @@ import rdarank.agent.rank.message.QueryRankingMessage;
  *
  * @author kaeru
  */
-public class QueryRankingHandler  extends MessageHandler{
+public class QueryRankingHandler extends MessageHandler {
 
     @Override
     public Object onMessage(Message msg) throws Exception {
         // TODO 自動生成されたメソッド・スタブ
         QueryRankingMessage updateMsg = (QueryRankingMessage) msg;
-        
+
         // マスターエンティティを取得
-        Rankagent agent = (Rankagent)getEntity();
-        
+        Rankagent agent = (Rankagent) getEntity();
+
         // トランザクションIDを取得
         TxID tx = getTx();
-        
+
         return 0L;
     }
-    
+
 }
