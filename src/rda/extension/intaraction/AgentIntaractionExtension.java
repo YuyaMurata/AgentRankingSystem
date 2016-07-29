@@ -87,7 +87,6 @@ public class AgentIntaractionExtension implements Extension{
             // し，そうであればサービスを開始する．
             // ただし，サンプルの構成では，かならずプライマリである．
             startService();
-            //for(int i=0; i < numQueue; i++) mq[i] = new MessageQueue(i);
         }
     }
     
