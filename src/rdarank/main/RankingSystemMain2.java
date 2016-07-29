@@ -57,11 +57,6 @@ public class RankingSystemMain2 {
             } catch (InterruptedException ex) {
             }
         }
-        
-        try {
-                Thread.sleep(5000);
-            } catch (InterruptedException ex) {
-            }
     }
     
     private static void shutdownSystem(){
