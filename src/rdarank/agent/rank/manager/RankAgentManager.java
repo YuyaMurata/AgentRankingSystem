@@ -55,10 +55,6 @@ public class RankAgentManager extends AgentManager{
         //Init IDManager
         this.rankID = new IDManager(rankAgentMapParam);
         
-        //Init LogPrinter
-        RankAgentLogPrinter log = new RankAgentLogPrinter("rankagent");
-        LoggerManager.getInstance().setLogPrinter(log);
-        
         //Init AgentCloning Mode
         //this.agentMode = (Integer)rankAgentMapParam.get("AGENT_MODE");
         this.agentMode = 0;
@@ -69,6 +65,12 @@ public class RankAgentManager extends AgentManager{
                                           (Integer)rankAgentMapParam.get("POOLSIZE"));
         
         System.out.println("Finish Initialize RankAgentManager !");
+    }
+    
+    public void setLogger(){
+        //Init LogPrinter
+        RankAgentLogPrinter log = new RankAgentLogPrinter("rankagent");
+        LoggerManager.getInstance().setLogPrinter(log);
     }
     
     @Override

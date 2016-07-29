@@ -10,38 +10,38 @@ import rdarank.Rankagent;
 import rdarank.Ranklog;
 import rdarank.agent.rank.logger.LogInfo;
 
-public class ReadLogRankHandler extends MessageHandler{
+public class ReadLogRankHandler extends MessageHandler {
 
-	@Override
-	public Object onMessage(Message msg) throws Exception {
-		// TODO 自動生成されたメソッド・スタブ
-		// マスターエンティティを取得
-                Rankagent rank = (Rankagent)getEntity();
+    @Override
+    public Object onMessage(Message msg) throws Exception {
+        // TODO 自動生成されたメソッド・スタブ
+        // マスターエンティティを取得
+        Rankagent rank = (Rankagent) getEntity();
 
-		// トランザクションIDを取得
-		TxID tx = getTx();
+        // トランザクションIDを取得
+        TxID tx = getTx();
 
-		StringBuilder accessIDList = new StringBuilder();
-		StringBuilder accessTimeList = new StringBuilder();
-		Iterator<Entity> it = rank.getLogIterator(tx);
-		while(it.hasNext()){
-			Ranklog log = (Ranklog) it.next();
-			//AccessLogの取得
-			accessIDList.append(log.getAccessID(tx));
-			accessIDList.append(",");
+        StringBuilder accessIDList = new StringBuilder();
+        StringBuilder accessTimeList = new StringBuilder();
+        Iterator<Entity> it = rank.getLogIterator(tx);
+        while (it.hasNext()) {
+            Ranklog log = (Ranklog) it.next();
+            //AccessLogの取得
+            accessIDList.append(log.getAccessID(tx));
+            accessIDList.append(",");
 
-			//AccessTimeの取得
-			accessTimeList.append(log.getLastAccessTime(tx));
-			accessTimeList.append(",");
-		}
+            //AccessTimeの取得
+            accessTimeList.append(log.getLastAccessTime(tx));
+            accessTimeList.append(",");
+        }
 
-		LogInfo info = new LogInfo(
-				/*rankID*/      rank.getRankID(tx),
-				/*connectCount*/rank.getConnectionCount(tx),
-				/*accessLog*/ 		accessIDList.toString(),
-				/*accessTime*/		accessTimeList.toString());
+        LogInfo info = new LogInfo(
+                /*rankID*/rank.getRankID(tx),
+                /*connectCount*/ rank.getConnectionCount(tx),
+                /*accessLog*/ accessIDList.toString(),
+                /*accessTime*/ accessTimeList.toString());
 
-		return info;
-	}
+        return info;
+    }
 
 }

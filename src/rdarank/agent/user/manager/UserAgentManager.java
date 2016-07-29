@@ -55,10 +55,6 @@ public class UserAgentManager extends AgentManager{
         //Init IDManager
         this.userID = new IDManager(userAgentMapParam);
         
-        //Init LogPrinter
-        UserAgentLogPrinter log = new UserAgentLogPrinter("useragent");
-        LoggerManager.getInstance().setLogPrinter(log);
-        
         //Init AgentCloning Mode
         //this.agentMode = (Integer)userAgentMapParam.get("AGENT_MODE");
         this.agentMode = 0;
@@ -67,6 +63,12 @@ public class UserAgentManager extends AgentManager{
         this.windowCTRL = new WindowController((Integer)userAgentMapParam.get("WINDOW_SIZE"),
                                           (Long)userAgentMapParam.get("ALIVE_TIME"),
                                           (Integer)userAgentMapParam.get("POOLSIZE"));
+    }
+    
+    public void setLogger(){
+        //Init LogPrinter
+        UserAgentLogPrinter log = new UserAgentLogPrinter("useragent");
+        LoggerManager.getInstance().setLogPrinter(log);
     }
     
     public IDManager getIDManager(){

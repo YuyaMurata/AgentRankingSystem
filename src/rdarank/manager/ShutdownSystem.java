@@ -21,32 +21,35 @@ import rda.agent.client.AgentConnection;
  * @author kaeru
  */
 public class ShutdownSystem implements AgentExecutor, Serializable {
+
     private static final String AGENT_TYPE = "systemmanageragent";
     private static final String MESSAGE_TYPE = "shutdownSystem";
     private static AgentConnection agcon = AgentConnection.getInstance();
-    
-    public ShutdownSystem() {}
-    
+
+    public ShutdownSystem() {
+    }
+
     AgentKey agentKey;
+
     public ShutdownSystem(AgentKey agentKey) {
         this.agentKey = agentKey;
     }
-    
+
     @Override
     public Object complete(Collection<Object> results) {
         // TODO 自動生成されたメソッド・スタブ
         Object[] ret = results.toArray();
         return ret[0];
     }
-    
+
     @Override
     public Object execute() {
         // TODO 自動生成されたメソッド・スタブ
         try {
             AgentManager agentManager = AgentManager.getAgentManager();
-                
-            SimpleMessage msg = (SimpleMessage)MessageFactory.getFactory().getMessage(MESSAGE_TYPE);
-            
+
+            SimpleMessage msg = (SimpleMessage) MessageFactory.getFactory().getMessage(MESSAGE_TYPE);
+
             //Sync Message
             Object ret = agentManager.sendMessage(agentKey, msg);
             //agentManager.putMessage(agentKey, msg);
@@ -57,20 +60,19 @@ public class ShutdownSystem implements AgentExecutor, Serializable {
             return e;
         }
     }
-    
-    public void shutdownm(){
-        try{
+
+    public void shutdownm() {
+        try {
             AgentClient client = agcon.getConnection();
             AgentKey agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
-            
+
             ShutdownSystem executor = new ShutdownSystem(agentKey);
             Object reply = client.execute(agentKey, executor);
-            
+
             System.out.println(reply);
-            
+
             agcon.returnConnection(client);
         } catch (AgentException ex) {
         }
     }
 }
-

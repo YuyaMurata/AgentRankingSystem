@@ -5,46 +5,39 @@
  */
 package rda.extension.intaraction;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import rda.extension.manager.SystemManagerExtension;
 import rda.window.Window;
 
 /**
  *
  * @author kaeru
  */
-public class AgentIntaractionThread implements Runnable{
+public class AgentIntaractionThread extends Thread {
+
     private static final String name = "AgentIntaraction Thread";
-    private final ScheduledExecutorService schedule = Executors.newSingleThreadScheduledExecutor();
-    
     private static final AgentIntaractionExtension extension = AgentIntaractionExtension.getInstance();
-    
-    public void start(){
-        System.out.println("> "+name + " : Start !");
-        schedule.scheduleAtFixedRate(this, 0, 100, TimeUnit.MILLISECONDS);
-    }
-    
-    public void stop(){
-        try {
-            schedule.shutdown();
-            if(!schedule.awaitTermination(0, TimeUnit.SECONDS))
-                schedule.shutdownNow();
-        } catch (InterruptedException ex) {
-            schedule.shutdownNow();
-        }
-        
-        System.out.println("> " + name +" : Stop !");
-    }
-    
+
     @Override
     public void run() {
-        Object window = extension.getWindowController().get();
-        if(window == null) return ;
+        System.out.println(name + " Start !");
+
+        while (SystemManagerExtension.getInstance().getState()) {
+            Object window = extension.getWindowController().get();
+            if (window == null) {
+                try {
+                    Thread.sleep(100L);
+                } catch (InterruptedException ex) {
+                }
+
+            } else {
+                System.out.println("Transport Window ! wsize=" + ((Window) window).getSize());
+                extension.transport(window);
+                extension.getWindowController().remove();
+            }
+        }
         
-        System.out.println("Transport Window ! wsize=" + ((Window)window).getSize());
-        extension.transport(window);
-        
-        extension.getWindowController().remove();
+        extension.getWindowController().close();
+        System.out.println(name + " Stop !");
+
     }
 }

@@ -11,30 +11,32 @@ import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.soliddb.extension.Extension;
 import java.util.Map;
 import java.util.Properties;
-import rda.extension.intaraction.AgentIntaractionExtension;
 import rdarank.manager.RankingSystemManager;
 
 /**
  *
  * @author kaeru
  */
-public class SystemManagerExtension  implements Extension{
+public class SystemManagerExtension implements Extension {
+
     private static SystemManagerExtension extention = new SystemManagerExtension();
-    
-    public static SystemManagerExtension getInstance(){
+
+    public static SystemManagerExtension getInstance() {
         return extention;
     }
-    
+
     AgentKey extensionAgentKey;
+
     public SystemManagerExtension() {
     }
-    
+
     // リージョン名
     String regionName;
+
     @Override
     public void initialize(String serverTypeName, Properties params) throws Exception {
     }
-    
+
     @Override
     public void primaryChanged() throws Exception {
     }
@@ -64,13 +66,14 @@ public class SystemManagerExtension  implements Extension{
 
     @Override
     public void shutdown() {
+        this.state = false;
+        
         //Only Thread Type
         //manager.dataStream().stop();
-        manager.stopLogger();
+        //manager.stopLogger();
         manager.shutdownSystem();
     }
-    
-    
+
     @Override
     public void start(int serverRole, String regionName) throws Exception {
         // リージョン名のセット
@@ -83,10 +86,10 @@ public class SystemManagerExtension  implements Extension{
             startService();
         }
     }
-    
-    private void startService(){
+
+    private void startService() {
         System.out.println("Start SystemManager Extension");
-		
+
         System.out.println("************ ************  **********  ************");
         System.out.println("************ ************ ************ ************");
         System.out.println("    ***      ***          ***       **      ***    ");
@@ -95,40 +98,47 @@ public class SystemManagerExtension  implements Extension{
         System.out.println("    ***      ***          **       ***      ***    ");
         System.out.println("    ***      ************ ************      ***    ");
         System.out.println("    ***      ************  **********       ***    ");
-        
+
         //Set Agent
         AgentManager am = AgentManager.getAgentManager();
-        try{
+        try {
             //SystemManager Extension AgentKey
             extensionAgentKey = new AgentKey("systemmanageragent", new Object[]{"systemmanageragent"});
-            
+
             //CreateAgent
-            if(am.exists(extensionAgentKey)){
+            if (am.exists(extensionAgentKey)) {
                 System.out.println("SystemManagerAgent already exists");
-            }else {
+            } else {
                 am.createAgent(extensionAgentKey);
             }
         } catch (AgentException ex) {
         }
     }
-    
+
     //Rankig System Manager
     private RankingSystemManager manager;
-    public void startRankingSystem(Map props){
+    private Boolean state = true;
+    public void startRankingSystem(Map props) {
         manager = RankingSystemManager.getInstance();
-        
+
         //Setting Property & Initialise Agent
         manager.setPropMap(props);
         manager.launchSystem();
-        
+
         //Data Stream Generator Initialize
         manager.setDataStreamGenerator();
-        
+
         //Start Logger
-        manager.startLogger();
+        //manager.startLogger();
+        
+        this.state = true;
+    }
+
+    public void dataGenerate(Long time) {
+        manager.timeDataStream().stream(time);
     }
     
-    public void dataGenerate(Long time){
-        manager.timeDataStream().stream(time);
+    public Boolean getState(){
+        return this.state;
     }
 }
