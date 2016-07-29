@@ -33,7 +33,7 @@ public class FlatData  implements DataType{
         //initialise
         data.init(numberOfUser, valueOfUser, datamode, seed);
         
-        count = -1L;
+        count = 0L;
     }
     
     @Override
@@ -45,7 +45,7 @@ public class FlatData  implements DataType{
         
         if(count > volume.longValue()) {
             test = null;
-            count = -1L;
+            count = 0L;
         }
         
         return test;
