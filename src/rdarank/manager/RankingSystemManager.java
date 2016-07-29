@@ -123,12 +123,18 @@ public class RankingSystemManager {
     }
 
     public void startLogger() {
-        loggerSettings(preLoggerMap());
         LoggerManager.getInstance().startLogger();
     }
 
     public void stopLogger() {
         LoggerManager.getInstance().stopLogger();
+    }
+    
+    //Monitor 
+    public void launchMonitor(){
+        System.out.println(">>Launch Monitor");
+        dataSettings(preDataMap(), preProfMap());
+        loggerSettings(preLoggerMap());
     }
 
     //DataStream Generator
