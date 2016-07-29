@@ -50,7 +50,7 @@ public class RankingSystemMain2 implements SetProperty{
         
         ExecuteDataStream data = new ExecuteDataStream();
         
-        for(int i=0; i < TIME_RUN; i++){
+        for(int i=1; i < TIME_RUN+1; i++){
             System.out.println("Execute Elapsed Time : "+i+" [sec]");
             data.stream();
             try {
