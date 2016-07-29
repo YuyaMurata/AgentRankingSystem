@@ -40,6 +40,7 @@ public class RankingSystemMain2 {
         //
         RankingSystemManager manager = RankingSystemManager.getInstance();
         manager.setPropMap(settings.getPropMap());
+        manager.launchMonitor();
         manager.startLogger();
     }
     
