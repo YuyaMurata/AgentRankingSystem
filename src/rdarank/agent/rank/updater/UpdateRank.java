@@ -73,11 +73,15 @@ public class UpdateRank extends AgentType {
             MessageFactory factory = MessageFactory.getFactory();
             UpdateRankMessage msg = (UpdateRankMessage) factory.getMessage(MESSAGE_TYPE);
             msg.setParams(data);
-
+            
+            System.out.println("RankAgent : "+agentKey);
+            
             //Sync Message
             Object ret = agentManager.sendMessage(agentKey, msg);
             //agentManager.putMessage(agentKey, msg);
 
+            System.out.println("Finished RankAgent : "+agentKey);
+            
             return ret;
         } catch (IllegalAccessException | InstantiationException e) {
             // TODO 自動生成された catch ブロック
