@@ -20,7 +20,6 @@ import rda.window.Window;
 import rda.window.WindowController;
 
 import rdarank.agent.rank.manager.RankAgentManager;
-import rdarank.agent.user.data.UserData;
 
 /**
  *
@@ -75,6 +74,7 @@ public class AgentIntaractionExtension implements Extension{
 
     @Override
     public void shutdown() {
+        windowCTRL.close();
         thread.stop();
     }
     
