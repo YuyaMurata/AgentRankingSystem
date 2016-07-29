@@ -122,7 +122,7 @@ public class ProfileGenerator {
             HashMap prof = profMap.get(userID);
             
             //Test
-            String rankID = "RC#00" + (userID.hashCode() % 10);
+            String rankID = "RC#00" + (Math.abs(userID.hashCode()) % 10);
             
             //Communication AgentID
             //String rankID = RankAgentManager.getInstance().getIDManager().ageToID((Integer)prof.get("Age"));
