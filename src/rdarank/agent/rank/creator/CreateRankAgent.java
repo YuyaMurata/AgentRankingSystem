@@ -52,8 +52,12 @@ public class CreateRankAgent implements AgentExecutor, Serializable{
                 return "agent (" + agentKey + ") already exists";
             }
         	
+            System.out.println("RankAgent : "+agentKey);
+            
             agentManager.createAgent(agentKey);
-	
+            
+            System.out.println("Finished RankAgent : "+agentKey);
+            
             MessageFactory factory = MessageFactory.getFactory();
             InitRankMessage msg = (InitRankMessage)factory.getMessage(MESSAGE_TYPE);
             
