@@ -79,7 +79,6 @@ public class CreateUserAgent implements AgentExecutor, Serializable{
             AgentClient client = agconn.getConnection();
             
             agentKey = new AgentKey(AGENT_TYPE,new Object[]{agID});
-            System.out.println("Create User Agent = "+agentKey);
             
             //Profile Generator
             ProfileGenerator profgen = TestCaseManager.getInstance().profgen;
