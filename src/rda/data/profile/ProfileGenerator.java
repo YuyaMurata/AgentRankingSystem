@@ -121,9 +121,13 @@ public class ProfileGenerator {
         for(String userID : userList){
             HashMap prof = profMap.get(userID);
             
+            //Test
+            String rankID = "RC#00" + (userID.hashCode() % 10);
+            
             //Communication AgentID
-            String rankID = RankAgentManager.getInstance().getIDManager().ageToID((Integer)prof.get("Age"));
+            //String rankID = RankAgentManager.getInstance().getIDManager().ageToID((Integer)prof.get("Age"));
             prof.put("Agent", rankID);
+            
         }
     }
 }
