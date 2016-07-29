@@ -20,106 +20,123 @@ import java.util.TreeMap;
  * @author kaeru
  */
 public class IDManager {
+
     private String rule;
     private DecimalFormat dformat;
     private TreeMap ageMap = new TreeMap();
     private Map regAgentMap = new HashMap();
     private Random rand = new Random();
-    
-    public IDManager(Map idParam){
-        this.rule = (String)idParam.get("RULE");
-        rand.setSeed((Long)idParam.get("SEED"));
-        
+    private Integer num;
+
+    public IDManager(Map idParam) {
+        this.rule = (String) idParam.get("RULE");
+        rand.setSeed((Long) idParam.get("SEED"));
+
         StringBuilder digit = new StringBuilder();
-        Integer n = (Integer) idParam.get("AMOUNT_OF_AGENTS");
-        for(int i=0; i < n.toString().length()+1; i++)
+        this.num = (Integer) idParam.get("AMOUNT_OF_AGENTS");
+        for (int i = 0; i < this.num.toString().length() + 1; i++) {
             digit.append("0");
-        
-        dformat= new DecimalFormat(digit.toString());
+        }
+
+        dformat = new DecimalFormat(digit.toString());
     }
-    
+
     private Integer serialID = 0;
-    public synchronized String genID(){
-        String agID = rule+dformat.format(serialID++);
+
+    public synchronized String genID() {
+        String agID = rule + dformat.format(serialID++);
         return agID;
     }
-    
+
     private Integer reserverID;
     private static Queue<String> reserve = new ArrayDeque();
-    public void setReserveID(String agID){
+
+    public void setReserveID(String agID) {
         reserve.offer(agID);
     }
-    
-    public String getReserveID(){
+
+    public String getReserveID() {
         return reserve.poll();
     }
-    
-    public Integer getNumReserves(){
+
+    public Integer getNumReserves() {
         return reserve.size();
     }
-    
+
     //Register InitAgent
-    public synchronized void initRegID(String id){
-        //Original IDを10件に絞る
-        if(serialID-1 < 10){
+    public synchronized void initRegID(String id) {
+        //Agent数が10以下のとき
+        if (this.num <= 10) {
+            List agList = new ArrayList();
+            agList.add(id);
+            regAgentMap.put(id, agList);
+            ageMap.put(serialID * (100 / this.num), id);
+
+            //ID Mapping
+            idMap.put(id, id);
+        } else //Original IDを10件に絞る
+        if (serialID - 1 < 10) {
             List agList = new ArrayList();
             agList.add(id);
             regAgentMap.put(id, agList);
             ageMap.put(serialID * 10, id);
-            
+
             //ID Mapping
             idMap.put(id, id);
         } else {
-            List agList = (List)regAgentMap.get(ageMap.get(((serialID % 10)+1) * 10));
+            List agList = (List) regAgentMap.get(ageMap.get(((serialID % 10) + 1) * 10));
             agList.add(id);
-            
+
             //ID Mapping
-            idMap.put(id, ageMap.get(((serialID % 10)+1) * 10));
+            idMap.put(id, ageMap.get(((serialID % 10) + 1) * 10));
         }
     }
-    
+
     private Map idMap = new HashMap<>();
-    public synchronized void regID(String origID, String id){
-        ((List)regAgentMap.get(origID)).add(id);
-        
+
+    public synchronized void regID(String origID, String id) {
+        ((List) regAgentMap.get(origID)).add(id);
+
         //ID Mapping
         idMap.put(id, origID);
     }
-    
-    public synchronized void deleteID(String origID, String id){
-        ((List)regAgentMap.get(origID)).remove(id);
+
+    public synchronized void deleteID(String origID, String id) {
+        ((List) regAgentMap.get(origID)).remove(id);
         setReserveID(id);
-        
+
         //ID Mapping
         idMap.remove(id);
     }
-    
-    public String ageToID(Integer age){
+
+    public String ageToID(Integer age) {
         return (String) ageMap.ceilingEntry(age).getValue();
     }
-    
-    public String getDestID(String origID){
+
+    public String getDestID(String origID) {
         List destAgentList = (List) regAgentMap.get(origID);
-        return (String)destAgentList.get(rand.nextInt(destAgentList.size()));
+        return (String) destAgentList.get(rand.nextInt(destAgentList.size()));
     }
-    
-    public String getOrigID(String agID){
-        return (String)idMap.get(agID);
+
+    public String getOrigID(String agID) {
+        return (String) idMap.get(agID);
     }
-    
+
     //Test Print
-    public String toString(){
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("<IDManager>\n");
-        
+
         sb.append("<<Age To AgentID>>\n");
-        for(Object key : ageMap.keySet())
-            sb.append(key+":"+ageMap.get(key)+"\n");
-        
+        for (Object key : ageMap.keySet()) {
+            sb.append(key + ":" + ageMap.get(key) + "\n");
+        }
+
         sb.append("<<Register Key and Lists>>\n");
-        for(Object key : regAgentMap.keySet())
-            sb.append(key+":"+regAgentMap.get(key)+"\n");
-        
+        for (Object key : regAgentMap.keySet()) {
+            sb.append(key + ":" + regAgentMap.get(key) + "\n");
+        }
+
         return sb.toString();
     }
 }
