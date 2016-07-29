@@ -55,12 +55,8 @@ public class CreateUserAgent implements AgentExecutor, Serializable{
             if (agentManager.exists(agentKey)) {
                 return "agent (" + agentKey + ") already exists";
             }
-	    
-            System.out.println("CreateUserAgents : "+agentKey);
             
             agentManager.createAgent(agentKey);
-	
-            System.out.println("Finished CreateUserAgents : "+agentKey);
             
             MessageFactory factory = MessageFactory.getFactory();
             InitUserMessage msg = (InitUserMessage)factory.getMessage(MESSAGE_TYPE);
@@ -87,6 +83,8 @@ public class CreateUserAgent implements AgentExecutor, Serializable{
             //Profile Generator
             ProfileGenerator profgen = TestCaseManager.getInstance().profgen;
             Map profile = profgen.getProf(agID);
+            
+            System.out.println("agentKey (Useragent) = "+agentKey);
             
             //Create Agent
             CreateUserAgent executor = new CreateUserAgent(agentKey, profile);
