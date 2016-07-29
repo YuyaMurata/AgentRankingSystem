@@ -38,7 +38,7 @@ public class FlatData  implements DataType{
     
     @Override
     public TestData nextData(Long time) {
-        if((time == 0) && (count == -1)) count = volume.longValue()-1; 
+        //if((time == 0) && (count == -1)) count = volume.longValue()-1; 
         
         count++;
         TestData test = (TestData) data.getData();
