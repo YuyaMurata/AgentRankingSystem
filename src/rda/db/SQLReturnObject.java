@@ -29,7 +29,7 @@ public class SQLReturnObject {
         List data = new ArrayList(results.get(index).values());
         Map map = new HashMap();
         
-        if(str.contains("Transaction")){
+        if(!str.contains("Latency")){
             field.add("Total");
             Long total = 0L;
             for(Long n : (List<Long>)data)
