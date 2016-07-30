@@ -30,7 +30,7 @@ public class AgentIntaractionThread extends Thread {
                 }
 
             } else {
-                System.out.println("Transport Window ! wsize=" + ((Window) window).getSize());
+                //System.out.println("Transport Window ! wsize=" + ((Window) window).getSize());
                 extension.transport(window);
                 extension.getWindowController().remove();
             }
