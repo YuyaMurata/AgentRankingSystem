@@ -70,16 +70,16 @@ public class RankAgentDBAccess  implements AgentExecutor, Serializable {
             
             //IDとDataを取得
             List<Map> result = new ArrayList<>();
-            Map tran = new HashMap();
+            Map users = new HashMap();
             Map late = new HashMap();
             Map length = new HashMap();
             while(rs.next()){
                 //System.out.println(rs.getString(1));
-                tran.put(rs.getString(1), rs.getLong(2));
+                users.put(rs.getString(1), rs.getLong(2));
                 late.put(rs.getString(1), rs.getLong(4));
                 length.put(rs.getString(1), rs.getLong(5));
             }
-            result.add(tran);
+            result.add(users);
             result.add(late);
             result.add(length);
                 

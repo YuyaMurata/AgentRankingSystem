@@ -58,11 +58,11 @@ public class RankAgentLogPrinter extends AgentLogPrinterTemplate{
     }
     
     //RankAgent Database Transaction
-    private void printAgentTransaction(){
+    private void printAgentStore(){
         SQLReturnObject obj = db.query();
         
-        Map map = obj.toMap("Transaction", 0);
-        System.out.println("> DataTransaction:\n"+mapToString(map));
+        Map map = obj.toMap("NumberOfUsers", 0);
+        System.out.println("> NumberOfUsers:\n"+mapToString(map));
         AgentLogPrint.printAgentTransaction(map);
     }
     
@@ -98,8 +98,8 @@ public class RankAgentLogPrinter extends AgentLogPrinterTemplate{
     @Override
     public void printer() {
         System.out.println(agenttype+" - Log Printer : ");
-        //printAgentTransaction();
-        //printAgentLatency();
+        printAgentStore();
+        printAgentLatency();
         //printAgentObserver();
     }
 }
