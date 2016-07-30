@@ -56,8 +56,8 @@ public class RankAgentManager extends AgentManager{
         this.rankID = new IDManager(rankAgentMapParam);
         
         //Init AgentCloning Mode
-        //this.agentMode = (Integer)rankAgentMapParam.get("AGENT_MODE");
-        this.agentMode = 0;
+        this.agentMode = (Integer)rankAgentMapParam.get("AGENT_MODE");
+        //this.agentMode = 0;
         
         //Init WindowController
         this.windowCTRL = new WindowController((Integer)rankAgentMapParam.get("WINDOW_SIZE"),
