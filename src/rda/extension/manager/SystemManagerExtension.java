@@ -11,6 +11,7 @@ import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.soliddb.extension.Extension;
 import java.util.Map;
 import java.util.Properties;
+import rda.agent.template.AgentLogPrinterTemplate;
 import rdarank.manager.RankingSystemManager;
 
 /**
@@ -70,7 +71,7 @@ public class SystemManagerExtension implements Extension {
         
         //Only Thread Type
         //manager.dataStream().stop();
-        //manager.stopLogger();
+        manager.stopLogger();
         manager.shutdownSystem();
     }
 
@@ -129,7 +130,7 @@ public class SystemManagerExtension implements Extension {
         manager.setDataStreamGenerator();
 
         //Start Logger
-        //manager.startLogger();
+        manager.startLogger();
         
         this.state = true;
     }
