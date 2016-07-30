@@ -17,7 +17,6 @@ import rda.manager.IDManager;
 import rda.manager.LoggerManager;
 import rda.window.WindowController;
 
-import rdarank.agent.rank.creator.CreateRankAgent;
 import rdarank.agent.rank.creator.CreateRankAgentEx;
 import rdarank.agent.rank.logger.RankAgentLogPrinter;
 

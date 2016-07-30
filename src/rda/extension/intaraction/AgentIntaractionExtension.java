@@ -16,6 +16,7 @@ import rda.agent.queue.MessageObject;
 import rda.agent.queue.MessageQueue;
 import rda.agent.queue.MessageQueueEvent;
 import rda.data.test.DataTemplate;
+import rda.manager.IDManager;
 import rda.window.Window;
 import rda.window.WindowController;
 
@@ -129,13 +130,14 @@ public class AgentIntaractionExtension implements Extension{
     public void transport(Object obj){
         //Transport OtherServer Extension
         // ***
+        IDManager id = RankAgentManager.getInstance().getIDManager();
         
         try{
             //Window
             Window window = (Window) obj;
         
             //Get Destination ID
-            String agID = window.getDestID();
+            String agID = id.getDestID(window.getDestID());
                 
             //Get MessageQueue
             MessageQueue mq = (MessageQueue)RankAgentManager.getInstance().getMQMap().get(agID);
