@@ -45,7 +45,7 @@ public class SystemManagerLogPrinter extends AgentLogPrinterTemplate{
         map.put("Data", data);
         
         //MessageQueue Observer QueueLength
-        System.out.println("> QueueLength:\n"+mapToString(map));
+        System.out.println("> UserAgent : QueueLength \n"+mapToString(map));
         //AgentLogPrint.printMessageQueueLog(map);
         
         //Agent Inner QueueLength
@@ -73,7 +73,7 @@ public class SystemManagerLogPrinter extends AgentLogPrinterTemplate{
         map.put("Data", data);
         
         //MessageQueue Observer QueueLength
-        System.out.println("> QueueLength:\n"+mapToString(map));
+        System.out.println("> RankAgent : QueueLength\n"+mapToString(map));
         //AgentLogPrint.printMessageQueueLog(map);
         
         //Agent Inner QueueLength
@@ -106,10 +106,10 @@ public class SystemManagerLogPrinter extends AgentLogPrinterTemplate{
     public void printer() {
         System.out.println(agenttype+" - Log Printer : ");
         
-        System.out.println("> useragent : ");
+        //System.out.println("> useragent : ");
         printUserAgentObserver();
         
-        System.out.println("> rankagent : ");
+        //System.out.println("> rankagent : ");
         printRankAgentObserver();
     }
     
