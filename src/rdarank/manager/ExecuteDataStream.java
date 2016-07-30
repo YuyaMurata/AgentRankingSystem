@@ -50,11 +50,11 @@ public class ExecuteDataStream implements AgentExecutor, Serializable {
             Message msg = (Message)MessageFactory.getFactory().getMessage(MESSAGE_TYPE);
             
             //Sync Message
-            Object ret = agentManager.sendMessage(agentKey, msg);
-            //agentManager.putMessage(agentKey, msg);
+            Object ret = null;//agentManager.sendMessage(agentKey, msg);
+            agentManager.putMessage(agentKey, msg);
 
             return ret;
-        } catch (IllegalAccessException | InstantiationException e) {
+        } catch (Exception e) {
             // TODO 自動生成された catch ブロック
             return e;
         }
@@ -68,7 +68,7 @@ public class ExecuteDataStream implements AgentExecutor, Serializable {
             ExecuteDataStream executor = new ExecuteDataStream(agentKey);
             Object reply = client.execute(agentKey, executor);
             
-            System.out.println(reply);
+            //System.out.println(reply);
             
             agcon.returnConnection(client);
         } catch (AgentException ex) {
