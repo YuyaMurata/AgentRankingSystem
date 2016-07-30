@@ -46,7 +46,7 @@ public class SystemManagerLogPrinter extends AgentLogPrinterTemplate{
         
         //MessageQueue Observer QueueLength
         System.out.println("> QueueLength:\n"+mapToString(map));
-        AgentLogPrint.printMessageQueueLog(map);
+        //AgentLogPrint.printMessageQueueLog(map);
         
         //Agent Inner QueueLength
         //SQLReturnObject obj = db.query();
@@ -74,7 +74,7 @@ public class SystemManagerLogPrinter extends AgentLogPrinterTemplate{
         
         //MessageQueue Observer QueueLength
         System.out.println("> QueueLength:\n"+mapToString(map));
-        AgentLogPrint.printMessageQueueLog(map);
+        //AgentLogPrint.printMessageQueueLog(map);
         
         //Agent Inner QueueLength
         //SQLReturnObject obj = db.query();
