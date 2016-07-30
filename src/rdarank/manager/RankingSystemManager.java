@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 import rda.agent.client.AgentConnection;
+import rda.agent.template.AgentLogPrinterTemplate;
+import rda.extension.manager.logger.SystemManagerLogPrinter;
 import rda.log.AgentLogPrint;
 import rda.manager.LoggerManager;
 import rda.manager.TestCaseManager;
@@ -40,6 +42,7 @@ public class RankingSystemManager {
 
         dataSettings(preDataMap(), preProfMap());
         agentSettings(preUserAgentMap(), preRankAgentMap(), 8);
+        managerLoggerSettings(preLoggerMap(), new SystemManagerLogPrinter("systemmanager"));
     }
 
     public void setDataStreamGenerator() {
@@ -120,6 +123,11 @@ public class RankingSystemManager {
         LoggerManager.getInstance().initLoggerManager(loggerMap);
         RankAgentManager.getInstance().setLogger();
         UserAgentManager.getInstance().setLogger();
+    }
+    
+    private void managerLoggerSettings(Map loggerMap, AgentLogPrinterTemplate log){
+        LoggerManager.getInstance().initLoggerManager(loggerMap);
+        LoggerManager.getInstance().setLogPrinter(log);
     }
 
     public void startLogger() {
