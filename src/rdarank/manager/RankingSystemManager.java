@@ -40,9 +40,9 @@ public class RankingSystemManager {
     public void launchSystem() {
         System.out.println(">>Launch System");
 
+        managerLoggerSettings(preLoggerMap(), new SystemManagerLogPrinter("systemmanager"));
         dataSettings(preDataMap(), preProfMap());
         agentSettings(preUserAgentMap(), preRankAgentMap(), 8);
-        managerLoggerSettings(preLoggerMap(), new SystemManagerLogPrinter("systemmanager"));
     }
 
     public void setDataStreamGenerator() {
@@ -126,6 +126,7 @@ public class RankingSystemManager {
     }
     
     private void managerLoggerSettings(Map loggerMap, AgentLogPrinterTemplate log){
+        System.out.println("< Initialize Logger >");
         LoggerManager.getInstance().initLoggerManager(loggerMap);
         LoggerManager.getInstance().setLogPrinter(log);
     }
@@ -143,6 +144,7 @@ public class RankingSystemManager {
         System.out.println(">>Launch Monitor");
         dataSettings(preDataMap(), preProfMap());
         loggerSettings(preLoggerMap());
+         System.out.println(">>> Finished Set Logger & Printer");
     }
 
     //DataStream Generator
