@@ -112,14 +112,21 @@ public class IDManager {
     public String ageToID(Integer age) {
         return (String) ageMap.ceilingEntry(age).getValue();
     }
+    
+    public String getOrigID(String agID) {
+        return (String) idMap.get(agID);
+    }
 
+    //Random
     public String getDestID(String origID) {
         List destAgentList = (List) regAgentMap.get(origID);
         return (String) destAgentList.get(rand.nextInt(destAgentList.size()));
     }
-
-    public String getOrigID(String agID) {
-        return (String) idMap.get(agID);
+    
+    //Hash
+    public String getDestID(String origID, String userID) {
+        List destAgentList = (List) regAgentMap.get(origID);
+        return (String) destAgentList.get(Math.abs(userID.hashCode()) % destAgentList.size());
     }
 
     //Test Print
