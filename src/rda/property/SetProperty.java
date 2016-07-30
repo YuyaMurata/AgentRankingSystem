@@ -28,7 +28,6 @@ public interface SetProperty {
 	 * wait.queue
 	 */
 	public static final Integer WINDOW_SIZE = Integer.valueOf(prop.getValue("queue", "size.window"));
-	public static final Integer NUMBER_OF_QUEUE = Integer.valueOf(prop.getValue("queue", "number.queue"));
 	public static final Integer QUEUE_LENGTH = Integer.valueOf(prop.getValue("queue", "length.queue"));
 	public static final Long QUEUE_WAIT = Long.valueOf(prop.getValue("queue", "wait.queue"));
 

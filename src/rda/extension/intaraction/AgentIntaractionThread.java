@@ -6,7 +6,6 @@
 package rda.extension.intaraction;
 
 import rda.extension.manager.SystemManagerExtension;
-import rda.window.Window;
 
 /**
  *
@@ -25,7 +24,7 @@ public class AgentIntaractionThread extends Thread {
             Object window = extension.getWindowController().get();
             if (window == null) {
                 try {
-                    Thread.sleep(100L);
+                    Thread.sleep(10L);
                 } catch (InterruptedException ex) {
                 }
 
