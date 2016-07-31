@@ -122,7 +122,7 @@ public class RankingSystemManager {
     private void loggerSettings(Map loggerMap) {
         LoggerManager.getInstance().initLoggerManager(loggerMap);
         RankAgentManager.getInstance().setLogger();
-        UserAgentManager.getInstance().setLogger();
+        //UserAgentManager.getInstance().setLogger();
     }
     
     private void managerLoggerSettings(Map loggerMap, AgentLogPrinterTemplate log){
