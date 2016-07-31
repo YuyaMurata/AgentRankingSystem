@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 import rda.agent.template.AgentLogPrinterTemplate;
 import rda.manager.LoggerManager;
 import rdarank.agent.all.logger.SystemLogPrinter;
+import rdarank.agent.user.manager.UserAgentManager;
 
 /**
  *
@@ -90,6 +91,7 @@ public class LogSchedule implements Runnable{
         loggerTime("StopTime", String.valueOf(stop));
         
         //LoggerManager.getInstance().printAgentDBLifeData(start);
+        UserAgentManager.getInstance().setLogger();
         setLogPrinter(new SystemLogPrinter(start));
         
         //LoggerManager.getInstance().printAgentTranTotal();
