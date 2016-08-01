@@ -19,19 +19,19 @@ public class AgentConnection {
     private static final AgentConnection connector = new AgentConnection();
     
     private AgentConnection(){
-        createObjectPool(8);
+        createObjectPool(8, new String[]{"localhost:2809", "rdarank", "agent"});
     }
     
     public static AgentConnection getInstance(){
         return connector;
     }
     
-    private void createObjectPool(Integer poolsize){
+    private void createObjectPool(Integer poolsize, String[] aghost){
         GenericObjectPoolConfig conf = new GenericObjectPoolConfig();
         conf.setMaxIdle(poolsize);
         conf.setMaxTotal(poolsize);
         
-        this._pool = new GenericObjectPool<>(new AgentClientFactory("localhost:2809", "rdarank", "agent"), conf);
+        this._pool = new GenericObjectPool<>(new AgentClientFactory(aghost[0], aghost[1], aghost[2]), conf);
         
         System.out.println("***********************************************************");
         System.out.println("total:"+((GenericObjectPool) _pool).getMaxTotal()
@@ -40,11 +40,25 @@ public class AgentConnection {
         System.out.println("***********************************************************");
     }
     
-    public void setPoolSize(Integer poolsize){
-        createObjectPool(poolsize);
+    public void setPoolSize(Integer poolsize, String[] aghost){
+        createObjectPool(poolsize, aghost);
     }
     
     public AgentClient getConnection(){
+        AgentClient ag = null;
+        
+        try {
+            ag = _pool.borrowObject();
+            
+            return ag;
+        } catch (Exception ex) {
+            System.out.println("Not Connect AgentClient!");
+        }
+        
+        return ag;
+    }
+    
+    public AgentClient getConnection(String id){
         AgentClient ag = null;
         
         try {
