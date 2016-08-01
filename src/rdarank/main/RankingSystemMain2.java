@@ -31,11 +31,12 @@ public class RankingSystemMain2 implements SetProperty{
     private static void launchSystem(){
         //Launch System
         System.out.println("Launch Ranking System");
-        LaunchSystem system = new LaunchSystem();
         
         //SetProperty To Map
         LaunchSettingsMap settings = new LaunchSettingsMap();
         
+        //Launch Executor
+        LaunchSystem system = new LaunchSystem();
         system.launch(settings.getPropMap());
         
         //
