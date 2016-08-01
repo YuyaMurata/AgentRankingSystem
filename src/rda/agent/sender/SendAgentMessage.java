@@ -10,6 +10,8 @@ import com.ibm.agent.exa.AgentKey;
 import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.exa.MessageFactory;
 import com.ibm.agent.exa.client.AgentClient;
+import com.ibm.agent.exa.client.AgentExecutor;
+import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
@@ -24,7 +26,7 @@ import rda.window.Window;
  *
  * @author kaeru
  */
-public class SendAgentMessage extends AgentType{
+public class SendAgentMessage extends AgentType  implements AgentExecutor, Externalizable{
     private static final long serialVersionUID = -853123152041L;
     
     private static final String MESSAGE_TYPE = "putmessage";

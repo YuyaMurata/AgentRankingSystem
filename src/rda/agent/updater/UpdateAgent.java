@@ -7,6 +7,8 @@ import com.ibm.agent.exa.AgentKey;
 import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.exa.MessageFactory;
 import com.ibm.agent.exa.client.AgentClient;
+import com.ibm.agent.exa.client.AgentExecutor;
+import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
@@ -16,7 +18,7 @@ import rda.agent.message.UpdateMessage;
 import rda.agent.queue.MessageObject;
 import rda.agent.template.MessageTemplate;
 
-public class UpdateAgent extends AgentType {
+public class UpdateAgent extends AgentType  implements AgentExecutor, Externalizable{
     /**
     *
     */
