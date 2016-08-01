@@ -135,7 +135,8 @@ public class AgentIntaractionExtension implements Extension{
         
             //Get Destination ID
             String agID = window.getDestID();
-                
+            
+            long start = System.currentTimeMillis();
             //Get MessageQueue
             MessageQueue mq = (MessageQueue)RankAgentManager.getInstance().getMQMap().get(agID);
             
@@ -143,6 +144,8 @@ public class AgentIntaractionExtension implements Extension{
             MessageObject msg = new MessageObject(agID, window.unpack());
             
             mq.put(msg);
+            
+            System.out.println("rda.extension.intaraction.AgentIntaractionExtension.transport() :: "+(System.currentTimeMillis()-start)+" [msec]");
             
         }catch(MessageQueueEvent mqev){
             mqev.printEvent();
