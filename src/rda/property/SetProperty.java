@@ -17,7 +17,8 @@ public interface SetProperty {
 	 */
 	public static final Integer NUMBER_OF_SERVER = Integer.valueOf(prop.getValue("server", "number.server"));
 	public static final Integer SERVER_THREAD = Integer.valueOf(prop.getValue("server","number.thread"));
-	public static ArrayList<String> HOST_ADDRESS = prop.setHost(NUMBER_OF_SERVER);
+	public static final String SERVER_LIST = prop.getValue("server", "list.server");
+        public static final Integer SERVER_POOLSIZE = Integer.valueOf(prop.getValue("server", "pool.size"));
 
 	//Queue Property
 	/**

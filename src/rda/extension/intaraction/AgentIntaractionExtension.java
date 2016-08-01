@@ -11,10 +11,13 @@ import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.soliddb.extension.Extension;
 
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import rda.agent.queue.MessageObject;
 import rda.agent.queue.MessageQueue;
 import rda.agent.queue.MessageQueueEvent;
+import rda.agent.template.MessageTemplate;
 import rda.data.test.DataTemplate;
 import rda.window.Window;
 import rda.window.WindowController;
@@ -126,29 +129,20 @@ public class AgentIntaractionExtension implements Extension{
         return this.windowCTRL;
     }
     
-    public void transport(Object obj){
+    public Boolean transport(MessageObject msg){
         //Transport OtherServer Extension
         // ***
-        try{
-            //Window
-            Window window = (Window) obj;
+        //Get MessageQueue
+        MessageQueue mq = (MessageQueue)RankAgentManager.getInstance().getMQMap().get(msg.id);
         
-            //Get Destination ID
-            String agID = window.getDestID();
-            
-            //Get MessageQueue
-            MessageQueue mq = (MessageQueue)RankAgentManager.getInstance().getMQMap().get(agID);
-            
-            //Translation Window To Message
-            MessageObject msg = new MessageObject(agID, window.unpack());
-            
+        try {
             mq.put(msg);
-            
-        }catch(MessageQueueEvent mqev){
+        } catch (MessageQueueEvent mqev) {
             mqev.printEvent();
-        } catch (Exception e){
-            e.printStackTrace();
-        }    
+            return false;
+        }
+        
+        return true;
     }
     
     public void communicateAgent(DataTemplate data){

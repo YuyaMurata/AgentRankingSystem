@@ -39,6 +39,12 @@ public class LaunchSettingsMap implements SetProperty{
         //Logger
         prop.put("logger", preLoggerMap());
         
+        //Manager Extension
+        prop.put("manager", preManagerMap());
+        
+        //Server
+        prop.put("server", preServerMap());
+        
         return prop;
     }
     
@@ -125,6 +131,24 @@ public class LaunchSettingsMap implements SetProperty{
         map.put("TIME_RUN", TIME_RUN);
         map.put("TIME_PERIOD", LOG_PERIOD);
         AgentLogPrint.printPropertySettings("Logger", map);
+        
+        return map;
+    }
+    
+    private Map preManagerMap(){
+        Map map = new HashMap();
+        map.put("DEPLOY_PATTERN", 0); // 0 is local
+        AgentLogPrint.printPropertySettings("Manager", map);
+        
+        return map;
+    }
+    
+    private Map preServerMap(){
+        Map map = new HashMap();
+        map.put("SERVER_LIST", SERVER_LIST);
+        map.put("SERVER_THREAD", SERVER_THREAD);
+        map.put("POOLSIZE", SERVER_POOLSIZE);
+        AgentLogPrint.printPropertySettings("Server", map);
         
         return map;
     }

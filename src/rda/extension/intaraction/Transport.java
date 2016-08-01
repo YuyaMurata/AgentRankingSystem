@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package rdarank.manager;
+package rda.extension.intaraction;
 
 import com.ibm.agent.exa.AgentException;
 import com.ibm.agent.exa.AgentKey;
@@ -12,32 +12,41 @@ import com.ibm.agent.exa.MessageFactory;
 import com.ibm.agent.exa.SimpleMessage;
 import com.ibm.agent.exa.client.AgentClient;
 import com.ibm.agent.exa.client.AgentExecutor;
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.Collection;
 import rda.agent.client.AgentConnection;
-import rda.agent.client.DistributedAgentConnection;
-import rdarank.server.DistributedServerConnection;
+import rda.agent.queue.MessageObject;
 
 /**
  *
  * @author kaeru
  */
-public class ShutdownSystem implements AgentExecutor, Serializable {
+public class Transport implements AgentExecutor, Externalizable{
+    private static final String AGENT_TYPE ="intaractionmanageragent";
+    private static final String MESSAGE_TYPE="intaractionAgent";
 
-    private static final String AGENT_TYPE = "systemmanageragent";
-    private static final String MESSAGE_TYPE = "shutdownSystem";
-    //private static AgentConnection agcon = AgentConnection.getInstance();
+    public Transport(){}
     
-    private static DistributedAgentConnection agcon;
-
-    public ShutdownSystem() {
-        agcon = DistributedServerConnection.getInstance().getConnection(0);
-    }
-
     AgentKey agentKey;
-
-    public ShutdownSystem(AgentKey agentKey) {
-        this.agentKey = agentKey;
+    MessageObject msg;
+    public Transport(AgentKey agentKey, MessageObject msg) {
+        this.agentKey = this.agentKey;
+        this.msg = msg;
+    }
+    
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(agentKey);
+        out.writeObject(msg);
+    }
+    
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        this.agentKey = (AgentKey) in.readObject();
+        this.msg = (MessageObject) in.readObject();
     }
 
     @Override
@@ -52,8 +61,9 @@ public class ShutdownSystem implements AgentExecutor, Serializable {
         // TODO 自動生成されたメソッド・スタブ
         try {
             AgentManager agentManager = AgentManager.getAgentManager();
-
-            SimpleMessage msg = (SimpleMessage) MessageFactory.getFactory().getMessage(MESSAGE_TYPE);
+                
+            SimpleMessage msg = (SimpleMessage)MessageFactory.getFactory().getMessage(MESSAGE_TYPE);
+            msg.set("message", msg);
 
             //Sync Message
             Object ret = agentManager.sendMessage(agentKey, msg);
@@ -62,22 +72,22 @@ public class ShutdownSystem implements AgentExecutor, Serializable {
             return ret;
         } catch (IllegalAccessException | InstantiationException e) {
             // TODO 自動生成された catch ブロック
-            return e;
+            return 0L;
         }
     }
-
-    public void shutdownm() {
-        try {
-            AgentClient client = agcon.getConnection();
-            AgentKey agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
-
-            ShutdownSystem executor = new ShutdownSystem(agentKey);
+    
+    public void sendMessage(AgentClient client, MessageObject msg){
+        try{
+            agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
+            
+            //System.out.println("Agent Key = "+agentKey);
+            
+            Transport executor = new Transport(agentKey, msg);
             Object reply = client.execute(agentKey, executor);
-
+            
             System.out.println(reply);
-
-            agcon.returnConnection(client);
         } catch (AgentException ex) {
+            ex.printStackTrace();
         }
     }
 }

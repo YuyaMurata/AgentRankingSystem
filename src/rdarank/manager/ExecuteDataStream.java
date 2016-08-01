@@ -16,6 +16,8 @@ import com.ibm.agent.exa.client.AgentExecutor;
 import java.io.Serializable;
 import java.util.Collection;
 import rda.agent.client.AgentConnection;
+import rda.agent.client.DistributedAgentConnection;
+import rdarank.server.DistributedServerConnection;
 
 /**
  *
@@ -24,9 +26,12 @@ import rda.agent.client.AgentConnection;
 public class ExecuteDataStream implements AgentExecutor, Serializable {
     private static final String AGENT_TYPE = "systemmanageragent";
     private static final String MESSAGE_TYPE = "dataGenerate";
-    private static AgentConnection agcon = AgentConnection.getInstance();
+    //private static AgentConnection agcon = AgentConnection.getInstance();
+    
+    private static DistributedAgentConnection agcon;
 
     public ExecuteDataStream() {
+        agcon = DistributedServerConnection.getInstance().getConnection(0);
     }
     
     AgentKey agentKey;

@@ -121,10 +121,12 @@ public class SystemManagerExtension implements Extension {
     private Boolean state = true;
     public void startRankingSystem(Map props) {
         manager = RankingSystemManager.getInstance();
-
+        
         //Setting Property & Initialise Agent
         manager.setPropMap(props);
         manager.launchSystem();
+        
+        pattern = (Integer) ((Map)props.get("manager")).get("DEPLOY_PATTERN");
 
         //Data Stream Generator Initialize
         manager.setDataStreamGenerator();
@@ -141,5 +143,10 @@ public class SystemManagerExtension implements Extension {
     
     public Boolean getState(){
         return this.state;
+    }
+    
+    private Integer pattern;
+    public Integer getDeployPattern(){
+        return this.pattern;
     }
 }

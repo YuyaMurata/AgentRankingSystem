@@ -8,7 +8,6 @@ package rdarank.manager;
 import com.ibm.agent.exa.AgentException;
 import com.ibm.agent.exa.AgentKey;
 import com.ibm.agent.exa.AgentManager;
-import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageFactory;
 import com.ibm.agent.exa.SimpleMessage;
 import com.ibm.agent.exa.client.AgentClient;
@@ -17,6 +16,8 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
 import rda.agent.client.AgentConnection;
+import rda.agent.client.DistributedAgentConnection;
+import rdarank.server.DistributedServerConnection;
 
 /**
  *
@@ -27,9 +28,12 @@ public class LaunchSystem implements AgentExecutor, Serializable {
     
     private static final String AGENT_TYPE ="systemmanageragent";
     private static final String MESSAGE_TYPE = "launchSystem";
-    private static AgentConnection agcon = AgentConnection.getInstance();
-
-    public LaunchSystem() {}
+    //private static AgentConnection agcon = AgentConnection.getInstance();
+    private static DistributedAgentConnection agcon;
+    
+    public LaunchSystem() {
+        agcon = DistributedServerConnection.getInstance().getConnection(0);
+    }
     
     AgentKey agentKey;
     Map prop;

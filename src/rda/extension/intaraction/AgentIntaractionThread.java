@@ -5,7 +5,11 @@
  */
 package rda.extension.intaraction;
 
+import com.ibm.agent.exa.client.AgentClient;
+import rda.agent.client.AgentConnection;
+import rda.agent.queue.MessageObject;
 import rda.extension.manager.SystemManagerExtension;
+import rda.window.Window;
 
 /**
  *
@@ -21,20 +25,31 @@ public class AgentIntaractionThread extends Thread {
         System.out.println(name + " Start !");
 
         while (SystemManagerExtension.getInstance().getState()) {
-            Object window = extension.getWindowController().get();
+            Window window = extension.getWindowController().get();
             if (window == null) {
                 try {
                     Thread.sleep(10L);
                 } catch (InterruptedException ex) {
                 }
-
             } else {
                 //System.out.println("Transport Window ! wsize=" + ((Window) window).getSize());
-                extension.transport(window);
-                extension.getWindowController().remove();
+                //Translation Window To Message
+                MessageObject msg = new MessageObject(window.getDestID(), window.unpack());
+
+                //local
+                if (extension.transport(msg)) {
+                    extension.getWindowController().remove();
+                }
+
+                //dist deploy
+                if (SystemManagerExtension.getInstance().getDeployPattern() == 1) {
+                    AgentClient client = AgentConnection.getInstance().getConnection();
+                    Transport trans = new Transport();
+                    trans.sendMessage(client, msg);
+                }
             }
         }
-        
+
         extension.getWindowController().close();
         System.out.println(name + " Stop !");
 

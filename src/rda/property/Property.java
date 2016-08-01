@@ -87,13 +87,6 @@ public class Property {
         }
     }
     
-    public ArrayList<String> setHost(int numServer){
-        ArrayList<String> host = new ArrayList<>();
-            for(int i=0; i < numServer; i++)
-                host.add(getValue("server", "h"+i+".server"));
-        return host;
-    }
-    
     private void loadPropertyALL(){
         System.out.println("*************** -Load Property File- ***************");
         
