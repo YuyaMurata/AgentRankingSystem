@@ -29,20 +29,20 @@ public class RankingSystemMain2 implements SetProperty{
     }
     
     private static void launchSystem(){
-        //Launch System
-        System.out.println("Launch Ranking System");
-        
         //SetProperty To Map
         LaunchSettingsMap settings = new LaunchSettingsMap();
         
-        //Launch Executor
-        LaunchSystem system = new LaunchSystem();
-        system.launch(settings.getPropMap());
-        
-        //
+        //Init MonitorSystem Manager
         RankingSystemManager manager = RankingSystemManager.getInstance();
         manager.setPropMap(settings.getPropMap());
         manager.launchMonitor();
+        
+        //Launch System
+        System.out.println("Launch Ranking System");
+        LaunchSystem system = new LaunchSystem();
+        system.launch(settings.getPropMap());
+        
+        //Start Logging
         manager.startLogger();
     }
     
