@@ -68,11 +68,11 @@ public class RankingSystemManager {
     private void agentSettings(Map userAgentParam, Map rankAgentParam, Map serverParam) {
         //AgentClient ObjectPool Initialize
         AgentConnection agconn = AgentConnection.getInstance();
-        if(serverParam != null){
+        /*if(serverParam != null){
             List<String[]> hostList = (List) serverParam.get("HOST_LIST");
             for(String[] host : hostList)
                 agconn.setPoolSize((Integer) serverParam.get("POOL_SIZE"), host);
-        }
+        }*/
 
         //RankAgent Initialize
         System.out.println("< Initialise RankAgents >");
