@@ -145,7 +145,7 @@ public class AgentIntaractionExtension implements Extension{
             
             mq.put(msg);
             
-            System.out.println("rda.extension.intaraction.AgentIntaractionExtension.transport() :: "+(System.currentTimeMillis()-start)+" [msec]");
+            System.out.println("\n rda.extension.intaraction.AgentIntaractionExtension.transport() :: "+(System.currentTimeMillis()-start)+" [msec]");
             
         }catch(MessageQueueEvent mqev){
             mqev.printEvent();
