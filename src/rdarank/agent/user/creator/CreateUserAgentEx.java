@@ -15,6 +15,7 @@ import rda.manager.TestCaseManager;
 import rdarank.agent.user.manager.UserAgentManager;
 import rdarank.agent.user.message.InitUserMessage;
 import rdarank.agent.user.updater.UpdateUser;
+import rdarank.agent.user.updater.UpdateUserEx;
 
 /**
  *
@@ -60,7 +61,8 @@ public class CreateUserAgentEx {
 
             //Create AgentQueue & Register Manager
             MessageQueue mq = new MessageQueue(UserAgentManager.getInstance(), agID, size, queuewait, agentwait);
-            mq.setAgentType(new UpdateUser(agID));
+            //mq.setAgentType(new UpdateUser(agID));
+            mq.setAgentType(new UpdateUserEx(agID));
             UserAgentManager.getInstance().register(mq);
 
         } catch (Exception e) {

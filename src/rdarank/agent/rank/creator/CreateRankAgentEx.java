@@ -12,6 +12,7 @@ import rda.agent.queue.MessageQueue;
 import rdarank.agent.rank.manager.RankAgentManager;
 import rdarank.agent.rank.message.InitRankMessage;
 import rdarank.agent.rank.updater.UpdateRank;
+import rdarank.agent.rank.updater.UpdateRankEx;
 
 /**
  *
@@ -50,7 +51,8 @@ public class CreateRankAgentEx {
 
             //Create AgentQueue & Register Manager
             MessageQueue mq = new MessageQueue(RankAgentManager.getInstance(), agID, size, queuewait, agentwait);
-            mq.setAgentType(new UpdateRank(agID));
+            //mq.setAgentType(new UpdateRank(agID));
+            mq.setAgentType(new UpdateRankEx(agID));
             RankAgentManager.getInstance().register(mq);
 
         } catch (Exception e) {
