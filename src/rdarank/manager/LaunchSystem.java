@@ -15,7 +15,7 @@ import com.ibm.agent.exa.client.AgentExecutor;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
-import rda.agent.client.AgentConnection;
+
 import rda.agent.client.DistributedAgentConnection;
 import rdarank.server.DistributedServerConnection;
 

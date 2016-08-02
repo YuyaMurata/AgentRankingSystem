@@ -43,7 +43,7 @@ public class AgentIntaractionThread extends Thread {
 
                 //dist deploy
                 if (SystemManagerExtension.getInstance().getDeployPattern() == 1) {
-                    AgentClient client = AgentConnection.getInstance().getConnection();
+                    AgentClient client = null;//AgentConnection.getInstance().getConnection();
                     Transport trans = new Transport();
                     trans.sendMessage(client, msg);
                 }

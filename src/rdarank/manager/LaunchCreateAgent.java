@@ -8,13 +8,13 @@ package rdarank.manager;
 import com.ibm.agent.exa.AgentException;
 import com.ibm.agent.exa.AgentKey;
 import com.ibm.agent.exa.AgentManager;
-import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageFactory;
 import com.ibm.agent.exa.SimpleMessage;
 import com.ibm.agent.exa.client.AgentClient;
 import com.ibm.agent.exa.client.AgentExecutor;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Map;
 import rda.agent.client.DistributedAgentConnection;
 import rdarank.server.DistributedServerConnection;
 
@@ -22,20 +22,23 @@ import rdarank.server.DistributedServerConnection;
  *
  * @author kaeru
  */
-public class ExecuteDataStream implements AgentExecutor, Serializable {
-    private static final String AGENT_TYPE = "systemmanageragent";
-    private static final String MESSAGE_TYPE = "dataGenerate";
-    //private static AgentConnection agcon = AgentConnection.getInstance();
+public class LaunchCreateAgent implements AgentExecutor, Serializable {
+    private static final long serialVersionUID = -1381710350145867L;
     
+    private static final String AGENT_TYPE ="systemmanageragent";
+    private static final String MESSAGE_TYPE = "createAgent";
+    //private static AgentConnection agcon = AgentConnection.getInstance();
     private static DistributedAgentConnection agcon;
-
-    public ExecuteDataStream() {
+    
+    public LaunchCreateAgent() {
         agcon = DistributedServerConnection.getInstance().getConnection(0);
     }
     
     AgentKey agentKey;
-    public ExecuteDataStream(AgentKey agentKey) {
+    Map agentGroup;
+    public LaunchCreateAgent(AgentKey agentKey, Map prop) {
         this.agentKey = agentKey;
+        this.agentGroup = prop;
     }
     
     @Override
@@ -50,32 +53,36 @@ public class ExecuteDataStream implements AgentExecutor, Serializable {
         // TODO 自動生成されたメソッド・スタブ
         try {
             AgentManager agentManager = AgentManager.getAgentManager();
-                
-            Message msg = (Message)MessageFactory.getFactory().getMessage(MESSAGE_TYPE);
+            
+            SimpleMessage msg = (SimpleMessage)MessageFactory.getFactory().getMessage(MESSAGE_TYPE);
+            msg.set("agent", agentGroup);
             
             //Sync Message
-            Object ret = null;//agentManager.sendMessage(agentKey, msg);
-            agentManager.putMessage(agentKey, msg);
+            Object ret = agentManager.sendMessage(agentKey, msg);
+            //agentManager.putMessage(agentKey, msg);
 
             return ret;
-        } catch (Exception e) {
+        } catch (IllegalAccessException | InstantiationException e) {
             // TODO 自動生成された catch ブロック
             return e;
         }
     }
     
-    public void stream(){
+    public void create(Map agentGroup){
         try{
             AgentClient client = agcon.getConnection();
-            AgentKey agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
+            agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
             
-            ExecuteDataStream executor = new ExecuteDataStream(agentKey);
+            //System.out.println("Agent Key = "+agentKey);
+            
+            LaunchSystem executor = new LaunchSystem(agentKey, agentGroup);
             Object reply = client.execute(agentKey, executor);
             
-            //System.out.println(reply);
+            System.out.println(reply);
             
             agcon.returnConnection(client);
         } catch (AgentException ex) {
+            ex.printStackTrace();
         }
     }
 }

@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import rda.agent.client.AgentConnection;
 import rdarank.server.DistributedServerConnection;
 import rda.agent.template.AgentLogPrinterTemplate;
 import rda.extension.manager.logger.SystemManagerLogPrinter;
@@ -66,14 +65,6 @@ public class RankingSystemManager {
     }
 
     private void agentSettings(Map userAgentParam, Map rankAgentParam, Map serverParam) {
-        //AgentClient ObjectPool Initialize
-        AgentConnection agconn = AgentConnection.getInstance();
-        /*if(serverParam != null){
-            List<String[]> hostList = (List) serverParam.get("HOST_LIST");
-            for(String[] host : hostList)
-                agconn.setPoolSize((Integer) serverParam.get("POOL_SIZE"), host);
-        }*/
-
         //RankAgent Initialize
         System.out.println("< Initialise RankAgents >");
         RankAgentManager rank = RankAgentManager.getInstance();
@@ -116,6 +107,12 @@ public class RankingSystemManager {
         }
 
         System.out.println(">>> Finished Set UserAgents & IDs");
+    }
+    
+    public void agentSettings(String agentType){
+        if(agentType == "rankagent"){
+            
+        }
     }
 
     private void dataSettings(Map dataParam, Map profParam) {

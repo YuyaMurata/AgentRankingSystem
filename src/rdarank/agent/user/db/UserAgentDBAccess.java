@@ -21,7 +21,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import rda.agent.client.AgentConnection;
+import rda.agent.client.DistributedAgentConnection;
 import rda.db.SQLReturnObject;
+import rdarank.server.DistributedServerConnection;
 
 /**
  *
@@ -32,6 +34,7 @@ public class UserAgentDBAccess implements AgentExecutor, Serializable {
     * 
     */
     private static final long serialVersionUID = -4826433740843048L;
+    private static DistributedAgentConnection agcon;
 
     public UserAgentDBAccess() {
     }
@@ -106,7 +109,8 @@ public class UserAgentDBAccess implements AgentExecutor, Serializable {
         }
     }
     
-    public SQLReturnObject query() {        
+    public SQLReturnObject query() {
+        agcon = DistributedServerConnection.getInstance().getConnection(0);
         try {
             AgentConnection con = AgentConnection.getInstance();
             AgentClient client = con.getConnection();

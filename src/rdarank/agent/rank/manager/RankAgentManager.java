@@ -102,6 +102,15 @@ public class RankAgentManager extends AgentManager{
         return agID;
     }
     
+    //Agentの単生成 e.g.("R#01")
+    public void createAgent(String agID){
+        Object agent = null;
+
+        rankID.genID(); //SerialID Generate
+        CreateRankAgentEx rankAgent = new CreateRankAgentEx();
+        rankAgent.create(agID, queueLength, queuewait, agentwait);
+    }
+    
     //Agentの複製 e.g.("R#01_Clone")
     public String createCloneAgent(String originalID, Object originalState){
         String agID = createAgent();
