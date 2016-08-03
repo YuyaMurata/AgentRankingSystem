@@ -9,7 +9,9 @@ import com.ibm.agent.exa.client.AgentClient;
 import rda.agent.client.AgentConnection;
 import rda.agent.queue.MessageObject;
 import rda.extension.manager.SystemManagerExtension;
+import rda.manager.IDManager;
 import rda.window.Window;
+import rdarank.agent.rank.manager.RankAgentManager;
 
 /**
  *
@@ -34,7 +36,9 @@ public class AgentIntaractionThread extends Thread {
             } else {
                 //System.out.println("Transport Window ! wsize=" + ((Window) window).getSize());
                 //Translation Window To Message
-                MessageObject msg = new MessageObject(window.getDestID(), window.unpack());
+                IDManager rankID = RankAgentManager.getInstance().getIDManager();
+                String[] id = window.getDestID().split(",");
+                MessageObject msg = new MessageObject(rankID.getDestID(id[0], id[1]), window.unpack());
 
                 //local
                 if (extension.transport(msg)) {

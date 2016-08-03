@@ -102,11 +102,18 @@ public class RankAgentManager extends AgentManager{
         return agID;
     }
     
+    //Agentの複数生成 e.g.("R#", 10)
+    public void initNumberOfAgents(Integer numOfAgents){
+        for(int i=0; i < numOfAgents; i++){
+            String agentID = rankID.genID(); //SerialID Generate
+            rankID.initRegID(agentID);
+        }
+    }
+    
     //Agentの単生成 e.g.("R#01")
     public void createAgent(String agID){
         Object agent = null;
 
-        rankID.genID(); //SerialID Generate
         CreateRankAgentEx rankAgent = new CreateRankAgentEx();
         rankAgent.create(agID, queueLength, queuewait, agentwait);
     }

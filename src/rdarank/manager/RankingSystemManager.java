@@ -109,10 +109,24 @@ public class RankingSystemManager {
         System.out.println(">>> Finished Set UserAgents & IDs");
     }
     
-    public void agentSettings(String agentType){
-        if(agentType == "rankagent"){
-            
-        }
+    //Distributed Server
+    public void agentDistSettings(Map userAgentParam, Map rankAgentParam, Map serverParam){
+        //RankAgent Initialize
+        System.out.println("< Initialise RankAgents >");
+        RankAgentManager rank = RankAgentManager.getInstance();
+        rank.initRankAgent(rankAgentParam);
+        rank.initNumberOfAgents((Integer) rankAgentParam.get("AMOUNT_OF_AGENTS"));
+        
+        //UserAgent Attributed Initialize
+        TestCaseManager tcManager = TestCaseManager.getInstance();
+        tcManager.profgen.addUserProfileToAgent();
+        tcManager.profgen.addUserAgentCommunication();
+        
+        //UserAgent Initialize
+        System.out.println("< Initialise UserAgents >");
+        UserAgentManager user = UserAgentManager.getInstance();
+        user.initUserAgent(userAgentParam);
+        user.initNumberOfAgents((Integer) userAgentParam.get("AMOUNT_OF_AGENTS"));
     }
 
     private void dataSettings(Map dataParam, Map profParam) {

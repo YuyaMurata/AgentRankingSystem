@@ -41,7 +41,11 @@ public class WindowController{
     
     //Hash
     public void pack(AgentManager manager, Object data){
-        String destID = manager.getIDManager().getDestID(((DataTemplate)data).toID, ((DataTemplate)data).id);
+        String destID = "";
+        //Window ID Settings
+        if(((DataTemplate)data).toID.equals(((DataTemplate)data).id)) 
+            destID = ((DataTemplate)data).toID;
+        else destID = ((DataTemplate)data).toID+","+((DataTemplate)data).id;
         
         if(windowMap.get(destID) == null){
             Window window = new Window(this, destID, size);
