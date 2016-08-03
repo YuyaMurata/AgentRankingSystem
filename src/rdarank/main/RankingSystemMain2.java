@@ -53,7 +53,7 @@ public class RankingSystemMain2 implements SetProperty{
         //Agent Deploy (Test)
         Map agentGroup = new HashMap();
         
-        agentGroup.put("agenttype", "useragent");
+        String agenttype = "useragent";
         List agList = new ArrayList();
         agList.add("U#000");agList.add("U#001");agList.add("U#002");
         agentGroup.put("useragent", agList);
@@ -61,7 +61,7 @@ public class RankingSystemMain2 implements SetProperty{
         DistributedAgentConnection agcon = DistributedServerConnection.getInstance().getConnection(0);
         LaunchCreateAgent agent = new LaunchCreateAgent();
         AgentClient client = agcon.getConnection();
-        agent.create(client, agentGroup);
+        agent.create(client, agenttype, agentGroup);
         agcon.returnConnection(client);
         
         //Start Logging

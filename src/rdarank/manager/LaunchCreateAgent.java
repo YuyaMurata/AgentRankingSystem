@@ -16,6 +16,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
 import rda.agent.client.DistributedAgentConnection;
+import rda.extension.manager.message.CreateAgentMessage;
 import rdarank.server.DistributedServerConnection;
 
 /**
@@ -34,10 +35,12 @@ public class LaunchCreateAgent implements AgentExecutor, Serializable {
     }
     
     AgentKey agentKey;
+    String agentType;
     Map agentGroup;
-    public LaunchCreateAgent(AgentKey agentKey, Map prop) {
+    public LaunchCreateAgent(AgentKey agentKey,String agenttype, Map agentGroup) {
         this.agentKey = agentKey;
-        this.agentGroup = prop;
+        this.agentType = agenttype;
+        this.agentGroup = agentGroup;
     }
     
     @Override
@@ -53,8 +56,9 @@ public class LaunchCreateAgent implements AgentExecutor, Serializable {
         try {
             AgentManager agentManager = AgentManager.getAgentManager();
             
-            SimpleMessage msg = (SimpleMessage)MessageFactory.getFactory().getMessage(MESSAGE_TYPE);
-            msg.set("agent", agentGroup);
+            MessageFactory factory = MessageFactory.getFactory();
+            CreateAgentMessage msg = (CreateAgentMessage) factory.getMessage(MESSAGE_TYPE);
+            msg.setParams(agentType, agentGroup);
             
             //Sync Message
             Object ret = agentManager.sendMessage(agentKey, msg);
@@ -67,7 +71,7 @@ public class LaunchCreateAgent implements AgentExecutor, Serializable {
         }
     }
     
-    public void create(AgentClient client, Map agentGroup){
+    public void create(AgentClient client, String agentType, Map agentGroup){
         try{
             agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
             

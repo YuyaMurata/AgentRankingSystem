@@ -5,10 +5,21 @@
  */
 package rda.extension.manager.message;
 
+import com.ibm.agent.exa.Message;
+import java.util.List;
+import java.util.Map;
+
 /**
  *
  * @author kaeru
  */
-public class CreateAgentMessage {
-    
+public class CreateAgentMessage extends Message {
+    public String agenttype;
+    public Map<String, List<String>> agentGroup;
+
+    // パラメータをセット
+    public void setParams(String agentType, Map agentGroup) {
+        this.agenttype = agentType;
+        this.agentGroup = agentGroup;
+    }
 }

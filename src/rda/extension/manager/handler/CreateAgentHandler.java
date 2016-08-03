@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import rda.extension.manager.SystemManagerExtension;
+import rda.extension.manager.message.CreateAgentMessage;
 import rdarank.agent.rank.manager.RankAgentManager;
 import rdarank.agent.user.manager.UserAgentManager;
 
@@ -24,8 +25,7 @@ public class CreateAgentHandler  extends MessageHandler{
     @Override
     public Object onMessage(Message msg) throws Exception {
         // TODO 自動生成されたメソッド・スタブ
-        SimpleMessage smsg = (SimpleMessage)msg;
-        HashMap<String, Object> agentGroup = (HashMap)smsg.get("agent");
+        CreateAgentMessage ag = (CreateAgentMessage) msg;
         
         System.out.println("Launch CreateAgent");
         
@@ -34,17 +34,17 @@ public class CreateAgentHandler  extends MessageHandler{
         RankAgentManager rank = RankAgentManager.getInstance();
         UserAgentManager user = UserAgentManager.getInstance();
         
-        if(((String)agentGroup.get("agenttype")).contains("rankagent"))
-            for(String agID : (List<String>)agentGroup.get("rankagent"))
+        if((ag.agenttype).contains("rankagent"))
+            for(String agID : ag.agentGroup.get("rankagent"))
                 rank.createAgent(agID);
-        else if(((String)agentGroup.get("agenttype")).contains("useragent"))
-            for(String agID : (List<String>)agentGroup.get("useragent"))
+        else if((ag.agenttype).contains("useragent"))
+            for(String agID : ag.agentGroup.get("useragent"))
                 user.createAgent(agID);
         else{
-            for(String agID : (List<String>)agentGroup.get("rankagent"))
+            for(String agID : ag.agentGroup.get("rankagent"))
                 rank.createAgent(agID);
             
-            for(String agID : (List<String>)agentGroup.get("useragent"))
+            for(String agID : ag.agentGroup.get("useragent"))
                 user.createAgent(agID);
         }
             

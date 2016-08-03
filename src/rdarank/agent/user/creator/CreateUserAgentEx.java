@@ -8,10 +8,12 @@ package rdarank.agent.user.creator;
 import com.ibm.agent.exa.AgentException;
 import com.ibm.agent.exa.AgentKey;
 import com.ibm.agent.exa.AgentManager;
+import com.ibm.agent.exa.MessageFactory;
 import java.util.Map;
 import rda.agent.queue.MessageQueue;
 import rda.data.profile.ProfileGenerator;
 import rda.manager.TestCaseManager;
+import static rdarank.agent.user.creator.CreateUserAgent.MESSAGE_TYPE;
 import rdarank.agent.user.manager.UserAgentManager;
 import rdarank.agent.user.message.InitUserMessage;
 import rdarank.agent.user.updater.UpdateUser;
@@ -50,7 +52,8 @@ public class CreateUserAgentEx {
             Map profile = profgen.getProf(agID);
 
             //Initialze
-            InitUserMessage msg = new InitUserMessage();
+            MessageFactory factory = MessageFactory.getFactory();
+            InitUserMessage msg = (InitUserMessage)factory.getMessage(MESSAGE_TYPE);
             msg.setParams((String) profile.get("Name"), (String) profile.get("Sex"),
                     ((Integer) profile.get("Age")).toString(), (String) profile.get("Address"),
                     (String) profile.get("Agent"));
