@@ -52,8 +52,9 @@ public class CreateUserAgentEx {
             Map profile = profgen.getProf(agID);
 
             //Initialze
-            //MessageFactory factory = MessageFactory.getFactory();
-            InitUserMessage msg = new InitUserMessage();//(InitUserMessage)factory.getMessage(MESSAGE_TYPE);
+            System.out.println(">Create Agent : "+profile);
+            MessageFactory factory = MessageFactory.getFactory();
+            InitUserMessage msg = (InitUserMessage)factory.getMessage(MESSAGE_TYPE);
             msg.setParams((String) profile.get("Name"), (String) profile.get("Sex"),
                     ((Integer) profile.get("Age")).toString(), (String) profile.get("Address"),
                     (String) profile.get("Agent"));
