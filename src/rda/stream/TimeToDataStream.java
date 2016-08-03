@@ -53,14 +53,15 @@ public class TimeToDataStream {
                 //Message Sender
                 mq.put(msg);
                 
+                
                 total = total+window.unpack().size();
                 
                 manager.getWindowController().remove();
             } catch (MessageQueueEvent mqev) {
-                    mqev.printEvent();
+                mqev.printEvent();
             } catch (Exception e){
-                    //e.printStackTrace();
-            }    
+                //e.printStackTrace();
+            }
         }
     }
 }
