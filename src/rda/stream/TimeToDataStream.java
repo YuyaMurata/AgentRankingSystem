@@ -59,7 +59,7 @@ public class TimeToDataStream {
             } catch (MessageQueueEvent mqev) {
                     mqev.printEvent();
             } catch (Exception e){
-                    e.printStackTrace();
+                    //e.printStackTrace();
             }    
         }
     }
