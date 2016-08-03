@@ -1,133 +1,135 @@
 <?xml version="1.0"?>
 <agentdef package="rdarank" version="rdarank1.0">
-	<entities>
-		<!--UserAgent Entity define-->
-		<entity type="useragent">
-			<attribute name="UserID" type="string" primarykey="true" maxlength="16"/>
-			<attribute name="Profile" type="profile" singleentity="true"/>
-			<attribute name="Data" type="long" />
-                        <attribute name="CommunicationID" type="string" maxlength="16"/>
-			<attribute name="ConnectionCount" type="long" />
-			<attribute name="MessageLatency" type="long" />
-                        <attribute name="MessageQueueLength" type="long" />
-			<attribute name="Log" type="userlog" />
-		</entity>
-		<entity type="profile">
-			<attribute name="UserID" type="string" primarykey="true" relationto="UserID" maxlength="16"/>
-			<attribute name="Name" type="string" maxlength="32"/>
-			<attribute name="Sex" type="string" maxlength="2"/>
-			<attribute name="Age" type="string" maxlength="4"/>
-			<attribute name="Address" type="string" maxlength="64"/>
-			<attribute name="LastAccessTime" type="timestamp" />
-		</entity>
-		<entity type="userlog">
-			<attribute name="UserID" type="string" primarykey="true" relationto="UserID" maxlength="16"/>
-			<attribute name="AccessID" type="string" primarykey="true" maxlength="16"/>
-			<attribute name="CurrentTime" type="long"/>
-			<attribute name="LastAccessTime" type="timestamp" />
-		</entity>
+    <entities>
+        <!--UserAgent Entity define-->
+        <entity type="useragent">
+            <attribute name="UserID" type="string" primarykey="true" maxlength="16"/>
+            <attribute name="Profile" type="profile" singleentity="true"/>
+            <attribute name="Data" type="long" />
+            <attribute name="CommunicationID" type="string" maxlength="16"/>
+            <attribute name="ConnectionCount" type="long" />
+            <attribute name="MessageLatency" type="long" />
+            <attribute name="MessageQueueLength" type="long" />
+            <attribute name="Log" type="userlog" />
+        </entity>
+        <entity type="profile">
+            <attribute name="UserID" type="string" primarykey="true" relationto="UserID" maxlength="16"/>
+            <attribute name="Name" type="string" maxlength="32"/>
+            <attribute name="Sex" type="string" maxlength="2"/>
+            <attribute name="Age" type="string" maxlength="4"/>
+            <attribute name="Address" type="string" maxlength="64"/>
+            <attribute name="LastAccessTime" type="timestamp" />
+        </entity>
+        <entity type="userlog">
+            <attribute name="UserID" type="string" primarykey="true" relationto="UserID" maxlength="16"/>
+            <attribute name="AccessID" type="string" primarykey="true" maxlength="16"/>
+            <attribute name="CurrentTime" type="long"/>
+            <attribute name="LastAccessTime" type="timestamp" />
+        </entity>
                 
-                <!--RankAgent Entity define-->
-		<entity type="rankagent">
-			<attribute name="RankID" type="string" primarykey="true" maxlength="16"/>
-			<attribute name="RankTable" type="ranktable" />
-                        <attribute name="TotalUsers" type="long" />
-			<attribute name="ConnectionCount" type="long" />
-			<attribute name="MessageLatency" type="long" />
-                        <attribute name="MessageQueueLength" type="long" />
-			<attribute name="Log" type="ranklog" />
-		</entity>
-                <entity type="ranktable">
-			<attribute name="RankID" type="string" primarykey="true" relationto="RankID" maxlength="16"/>
-			<attribute name="UserID" type="string" primarykey="true" maxlength="16"/>
-			<attribute name="Rank" type="long" />
-                        <attribute name="Data" type="long" />
-                        <attribute name="ConnectionCount" type="long" />
-                        <attribute name="CurrentTime" type="long"/>
-                        <attribute name="LastAccessTime" type="timestamp" />
-		</entity>
-		<entity type="ranklog">
-			<attribute name="RankID" type="string" primarykey="true" relationto="RankID" maxlength="16"/>
-			<attribute name="AccessID" type="string" primarykey="true" maxlength="16"/>
-			<attribute name="CurrentTime" type="long"/>
-			<attribute name="LastAccessTime" type="timestamp" />
-		</entity>
+        <!--RankAgent Entity define-->
+        <entity type="rankagent">
+            <attribute name="RankID" type="string" primarykey="true" maxlength="16"/>
+            <attribute name="RankTable" type="ranktable" />
+            <attribute name="TotalUsers" type="long" />
+            <attribute name="ConnectionCount" type="long" />
+            <attribute name="MessageLatency" type="long" />
+            <attribute name="MessageQueueLength" type="long" />
+            <attribute name="Log" type="ranklog" />
+        </entity>
+        <entity type="ranktable">
+            <attribute name="RankID" type="string" primarykey="true" relationto="RankID" maxlength="16"/>
+            <attribute name="UserID" type="string" primarykey="true" maxlength="16"/>
+            <attribute name="Rank" type="long" />
+            <attribute name="Data" type="long" />
+            <attribute name="ConnectionCount" type="long" />
+            <attribute name="CurrentTime" type="long"/>
+            <attribute name="LastAccessTime" type="timestamp" />
+        </entity>
+        <entity type="ranklog">
+            <attribute name="RankID" type="string" primarykey="true" relationto="RankID" maxlength="16"/>
+            <attribute name="AccessID" type="string" primarykey="true" maxlength="16"/>
+            <attribute name="CurrentTime" type="long"/>
+            <attribute name="LastAccessTime" type="timestamp" />
+        </entity>
                 
-                <!--SystemManager Extension define-->
-                <entity type="systemmanageragent">
-                    <attribute name="ID" type="string" primarykey="true"/>
-		</entity>
+        <!--SystemManager Extension define-->
+        <entity type="systemmanageragent">
+            <attribute name="ID" type="string" primarykey="true"/>
+        </entity>
                 
-                <!--AgentIntaraction Extension define-->
-                <entity type="intaractionmanageragent">
-                    <attribute name="ID" type="string" primarykey="true"/>
-		</entity>
-	</entities>
-	<messages>
-		<!--system define-->
-		<!--UserAgent Messages -->
-		<message type="initUserAgent" class="rdarank.agent.user.message.InitUserMessage"/>
-		<message type="readUserAgent" />
-		<message type="updateUserAgent" class="rdarank.agent.user.message.UpdateUserMessage"/>
-                <message type="updateCommunicationID" class="rdarank.agent.user.message.UpdateCommunicationIDMessage"/>
-		<message type="readLogUserAgent"/>
-                <message type="disposeUserAgent" />
-                <message type="intaractionAgent" />
+        <!--AgentIntaraction Extension define-->
+        <entity type="intaractionmanageragent">
+            <attribute name="ID" type="string" primarykey="true"/>
+        </entity>
+    </entities>
+    <messages>
+        <!--system define-->
+        <!--UserAgent Messages -->
+        <message type="initUserAgent" class="rdarank.agent.user.message.InitUserMessage"/>
+        <message type="readUserAgent" />
+        <message type="updateUserAgent" class="rdarank.agent.user.message.UpdateUserMessage"/>
+        <message type="updateCommunicationID" class="rdarank.agent.user.message.UpdateCommunicationIDMessage"/>
+        <message type="readLogUserAgent"/>
+        <message type="disposeUserAgent" />
+        <message type="intaractionAgent" />
                 
                 
-                <!--RankAgent Messages -->
-		<message type="initRankAgent" class="rdarank.agent.rank.message.InitRankMessage"/>
-		<message type="readRankAgent" />
-		<message type="updateRankAgent" class="rdarank.agent.rank.message.UpdateRankMessage"/>
-                <message type="updateRanking" class="rdarank.agent.rank.message.UpdateRankingMessage"/>
-                <message type="queryRanking" class="rdarank.agent.rank.message.QueryRankingMessage"/>
-		<message type="readLogRankAgent"/>
-                <message type="disposeRankAgent" />
+        <!--RankAgent Messages -->
+        <message type="initRankAgent" class="rdarank.agent.rank.message.InitRankMessage"/>
+        <message type="readRankAgent" />
+        <message type="updateRankAgent" class="rdarank.agent.rank.message.UpdateRankMessage"/>
+        <message type="updateRanking" class="rdarank.agent.rank.message.UpdateRankingMessage"/>
+        <message type="queryRanking" class="rdarank.agent.rank.message.QueryRankingMessage"/>
+        <message type="readLogRankAgent"/>
+        <message type="disposeRankAgent" />
                 
-                <!--SystemManager Extension define-->
-                <message type="launchSystem" />
-                <message type="dataGenerate" />
-                <message type="shutdownSystem" />
+        <!--SystemManager Extension define-->
+        <message type="launchSystem" />
+        <message type="createAgent" class="rda.extension.manager.message.CreateAgentMessage"/>
+        <message type="dataGenerate" />
+        <message type="shutdownSystem" />
                 
-                <!--AgentIntaraction Extension define-->
-                <message type="intaractionAgent" />
+        <!--AgentIntaraction Extension define-->
+        <message type="intaractionAgent" />
                 
-	</messages>
-	<agents>
-		<!--system define-->
-		<agent type="useragent">
-			<handler message="initUserAgent" class="rdarank.agent.user.handler.InitUserHandler"/>
-			<handler message="readUserAgent" class="rdarank.agent.user.handler.ReadUserHandler"/>
-			<handler message="updateUserAgent" class="rdarank.agent.user.handler.UpdateUserHandler">
-                            <postmessage message="intaractionAgent"/>
-			</handler>
-                        <handler message="intaractionAgent" class="rdarank.agent.user.handler.IntaractionAgentHandler"/>
-                        <handler message="updateCommunicationID" class="rdarank.agent.user.handler.UpdateCommunicationIDHandler"/>
-			<handler message="readLogUserAgent" class="rdarank.agent.user.handler.ReadLogUserHandler"/>
-			<handler message="disposeUserAgent" class="rdarank.agent.user.handler.DisposeUserHandler"/>
-		</agent>
+    </messages>
+    <agents>
+        <!--system define-->
+        <agent type="useragent">
+            <handler message="initUserAgent" class="rdarank.agent.user.handler.InitUserHandler"/>
+            <handler message="readUserAgent" class="rdarank.agent.user.handler.ReadUserHandler"/>
+            <handler message="updateUserAgent" class="rdarank.agent.user.handler.UpdateUserHandler">
+                <postmessage message="intaractionAgent"/>
+            </handler>
+            <handler message="intaractionAgent" class="rdarank.agent.user.handler.IntaractionAgentHandler"/>
+            <handler message="updateCommunicationID" class="rdarank.agent.user.handler.UpdateCommunicationIDHandler"/>
+            <handler message="readLogUserAgent" class="rdarank.agent.user.handler.ReadLogUserHandler"/>
+            <handler message="disposeUserAgent" class="rdarank.agent.user.handler.DisposeUserHandler"/>
+        </agent>
                 
-                <!--system define-->
-		<agent type="rankagent">
-			<handler message="initRankAgent" class="rdarank.agent.rank.handler.InitRankHandler"/>
-			<handler message="readRankAgent" class="rdarank.agent.rank.handler.ReadRankHandler"/>
-                        <handler message="updateRankAgent" class="rdarank.agent.rank.handler.UpdateRankHandler"/>
-			<handler message="updateRanking" class="rdarank.agent.rank.handler.UpdateRankingHandler"/>
-                        <handler message="queryRanking" class="rdarank.agent.rank.handler.QueryRankingHandler"/>
-			<handler message="readLogRankAgent" class="rdarank.agent.rank.handler.ReadLogRankHandler"/>
-			<handler message="disposeRankAgent" class="rdarank.agent.rank.handler.DisposeRankHandler"/>
-		</agent>
+        <!--system define-->
+        <agent type="rankagent">
+            <handler message="initRankAgent" class="rdarank.agent.rank.handler.InitRankHandler"/>
+            <handler message="readRankAgent" class="rdarank.agent.rank.handler.ReadRankHandler"/>
+            <handler message="updateRankAgent" class="rdarank.agent.rank.handler.UpdateRankHandler"/>
+            <handler message="updateRanking" class="rdarank.agent.rank.handler.UpdateRankingHandler"/>
+            <handler message="queryRanking" class="rdarank.agent.rank.handler.QueryRankingHandler"/>
+            <handler message="readLogRankAgent" class="rdarank.agent.rank.handler.ReadLogRankHandler"/>
+            <handler message="disposeRankAgent" class="rdarank.agent.rank.handler.DisposeRankHandler"/>
+        </agent>
                 
-                <!--SystemManager Extension define-->
-                <agent type="systemmanageragent">
-                    <handler message="launchSystem" class="rda.extension.manager.handler.LaunchSystemHandler"/>
-                    <handler message="dataGenerate" class="rda.extension.manager.handler.DataGenerateHandler"/>
-                    <handler message="shutdownSystem" class="rda.extension.manager.handler.ShutdownSystemHandler"/>
-                </agent>
+        <!--SystemManager Extension define-->
+        <agent type="systemmanageragent">
+            <handler message="launchSystem" class="rda.extension.manager.handler.LaunchSystemHandler"/>
+            <handler message="createAgent" class="rda.extension.manager.handler.CreateAgentHandler"/>
+            <handler message="dataGenerate" class="rda.extension.manager.handler.DataGenerateHandler"/>
+            <handler message="shutdownSystem" class="rda.extension.manager.handler.ShutdownSystemHandler"/>
+        </agent>
                 
-                <!--AgentIntaraction Extension define-->
-                <agent type="intaractionmanageragent">
-                    <handler message="intaractionAgent" class="rda.extension.intaraction.handler.IntaractionAgentHandler"/>
-                </agent>
-	</agents>
+        <!--AgentIntaraction Extension define-->
+        <agent type="intaractionmanageragent">
+            <handler message="intaractionAgent" class="rda.extension.intaraction.handler.IntaractionAgentHandler"/>
+        </agent>
+    </agents>
 </agentdef>
