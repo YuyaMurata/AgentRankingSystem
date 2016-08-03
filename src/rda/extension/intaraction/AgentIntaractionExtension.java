@@ -135,6 +135,11 @@ public class AgentIntaractionExtension implements Extension{
         //Get MessageQueue
         MessageQueue mq = (MessageQueue)RankAgentManager.getInstance().getMQMap().get(msg.getID());
         
+        if(mq == null){
+            System.out.println("Not Found Destination !");
+            return true;
+        }
+        
         try {
             mq.put(msg);
         } catch (MessageQueueEvent mqev) {
