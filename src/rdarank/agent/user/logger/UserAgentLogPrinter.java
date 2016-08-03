@@ -61,6 +61,11 @@ public class UserAgentLogPrinter extends AgentLogPrinterTemplate{
     private void printAgentTransaction(){
         SQLReturnObject obj = db.query();
         
+        if(obj == null){
+            System.out.println("UserAgent Store is null !");
+            return ;
+        }
+        
         Map map = obj.toMap("Transaction", 0);
         System.out.println("> DataTransaction:\n"+mapToString(map));
         AgentLogPrint.printAgentTransaction(map);
@@ -69,6 +74,11 @@ public class UserAgentLogPrinter extends AgentLogPrinterTemplate{
     //Message Latency
     private void printAgentLatency(){
         SQLReturnObject obj = db.query();
+        
+        if(obj == null){
+            System.out.println("UserAgent Latency is null !");
+            return ;
+        }
         
         Map map = obj.toMap("Latency", 1);
         System.out.println("> MessageLatency:\n"+mapToString(map));

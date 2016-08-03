@@ -136,7 +136,7 @@ public class RankAgentDBAccess  implements AgentExecutor, Serializable {
             
             return sqlResults;
         } catch(Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         
         return null;

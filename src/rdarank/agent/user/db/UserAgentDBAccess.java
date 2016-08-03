@@ -112,8 +112,7 @@ public class UserAgentDBAccess implements AgentExecutor, Serializable {
     public SQLReturnObject query() {
         agcon = DistributedServerConnection.getInstance().getConnection(0);
         try {
-            AgentConnection con = AgentConnection.getInstance();
-            AgentClient client = con.getConnection();
+            AgentClient client = agcon.getConnection();
             
             UserAgentDBAccess executor = new UserAgentDBAccess();
             
@@ -133,11 +132,11 @@ public class UserAgentDBAccess implements AgentExecutor, Serializable {
             
             sqlResults.setResultSet(results);
             
-            con.returnConnection(client);
+            agcon.returnConnection(client);
             
             return sqlResults;
         } catch(Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         
         return null;

@@ -61,6 +61,11 @@ public class RankAgentLogPrinter extends AgentLogPrinterTemplate{
     private void printAgentStore(){
         SQLReturnObject obj = db.query();
         
+        if(obj == null){
+            System.out.println("RankAgent Store is null !");
+            return ;
+        }
+        
         Map map = obj.toMap("NumberOfUsers", 0);
         System.out.println("> NumberOfUsers:\n"+mapToString(map));
         AgentLogPrint.printAgentTransaction(map);
@@ -69,6 +74,11 @@ public class RankAgentLogPrinter extends AgentLogPrinterTemplate{
     //RankAgent Database MessageLatency
     private void printAgentLatency(){
         SQLReturnObject obj = db.query();
+        
+        if(obj == null){
+            System.out.println("RankAgent Latency is null !");
+            return ;
+        }
         
         Map map = obj.toMap("Latency", 1);
         System.out.println("> MessageLatency:\n"+mapToString(map));
