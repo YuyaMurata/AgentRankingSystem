@@ -2,6 +2,8 @@ package rda.agent.queue;
 
 import java.util.List;
 import rda.agent.template.MessageTemplate;
+import rda.manager.IDManager;
+import rdarank.agent.rank.manager.RankAgentManager;
 
 public class MessageObject extends MessageTemplate{
     public String id;
@@ -12,6 +14,13 @@ public class MessageObject extends MessageTemplate{
         super();
         this.id = destID;
         this.data = (List)data;
+    }
+    
+    //Only RankAgent
+    public String getID(){
+        IDManager rankID = RankAgentManager.getInstance().getIDManager();
+        String[] idarr = this.id.split(",");
+        return rankID.getDestID(idarr[0], idarr[1]);
     }
     
     @Override

@@ -36,9 +36,7 @@ public class AgentIntaractionThread extends Thread {
             } else {
                 //System.out.println("Transport Window ! wsize=" + ((Window) window).getSize());
                 //Translation Window To Message
-                IDManager rankID = RankAgentManager.getInstance().getIDManager();
-                String[] id = window.getDestID().split(",");
-                MessageObject msg = new MessageObject(rankID.getDestID(id[0], id[1]), window.unpack());
+                MessageObject msg = new MessageObject(window.getDestID(), window.unpack());
 
                 //local
                 if (extension.transport(msg)) {
