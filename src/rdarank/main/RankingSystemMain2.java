@@ -55,7 +55,7 @@ public class RankingSystemMain2 implements SetProperty{
         
         String agenttype = "useragent";
         List agList = new ArrayList();
-        agList.add("U#000");agList.add("U#001");agList.add("U#002");
+        agList.add("USER#000");agList.add("USER#001");agList.add("USER#002");
         agentGroup.put("useragent", agList);
         
         DistributedAgentConnection agcon = DistributedServerConnection.getInstance().getConnection(0);

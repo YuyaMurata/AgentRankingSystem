@@ -134,11 +134,6 @@ public class SystemManagerExtension implements Extension {
 
         //Data Stream Generator Initialize
         manager.setDataStreamGenerator();
-        
-        //Test
-        ProfileGenerator profgen = ProfileGenerator.getInstance();
-        System.out.println("> StartRankingSystem : "+profgen.getProf("U#001"));
-        System.out.println("> StartRankingSystem : "+profgen.getUser(1));
 
         //Start Logger
         manager.startLogger();

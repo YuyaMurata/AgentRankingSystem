@@ -46,15 +46,12 @@ public class CreateUserAgentEx {
             ex.printStackTrace();
         }
         
-        //Profile
-        //Profile Generator
-        ProfileGenerator profgen = TestCaseManager.getInstance().profgen;
-        Map profile = profgen.getProf(agID);
-        
-        System.out.println("> CreateAgent Profile = "+profile);
-        
         try {
-            
+            //Profile
+            //Profile Generator
+            ProfileGenerator profgen = TestCaseManager.getInstance().profgen;
+            Map profile = profgen.getProf(agID);
+        
 
             //Initialze
             MessageFactory factory = MessageFactory.getFactory();
