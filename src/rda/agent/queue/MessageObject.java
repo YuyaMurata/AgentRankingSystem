@@ -20,6 +20,7 @@ public class MessageObject extends MessageTemplate{
     public String getID(){
         IDManager rankID = RankAgentManager.getInstance().getIDManager();
         String[] idarr = this.id.split(",");
+        System.out.println(id);
         return rankID.getDestID(idarr[0], idarr[1]);
     }
     
