@@ -37,7 +37,10 @@ public class AgentIntaractionThread extends Thread {
                 //System.out.println("Transport Window ! wsize=" + ((Window) window).getSize());
                 //Translation Window To Message
                 MessageObject msg = new MessageObject(window.getDestID(), window.unpack());
-
+                
+                if(msg.getID() == "USER#000")
+                    System.out.println("> AgentIntaraction : "+msg.data.size());
+                
                 //local
                 if (extension.transport(msg)) {
                     extension.getWindowController().remove();
