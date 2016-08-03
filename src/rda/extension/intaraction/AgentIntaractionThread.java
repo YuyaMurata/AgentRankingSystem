@@ -38,8 +38,8 @@ public class AgentIntaractionThread extends Thread {
                 //Translation Window To Message
                 MessageObject msg = new MessageObject(window.getDestID(), window.unpack());
                 
-                if(msg.getID() == "USER#000")
-                    System.out.println("> AgentIntaraction : "+msg.data.size());
+                if(msg.id.contains("USER#000"))
+                    System.out.println("> AgentIntaraction : "+msg.id+" = "+msg.data.size());
                 
                 //local
                 if (extension.transport(msg)) {
