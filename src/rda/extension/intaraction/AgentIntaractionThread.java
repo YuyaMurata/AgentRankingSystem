@@ -38,11 +38,8 @@ public class AgentIntaractionThread extends Thread {
                 //Translation Window To Message
                 MessageObject msg = new MessageObject(window.getDestID(), window.unpack());
                 
-                if(msg.id.contains("USER#000"))
-                    System.out.println("> AgentIntaraction : "+msg.id+" = "+msg.data.size());
-                
                 //local
-                if (extension.transport(msg)) {
+                /*if (extension.transport(msg)) {
                     extension.getWindowController().remove();
                 }
 
@@ -51,7 +48,7 @@ public class AgentIntaractionThread extends Thread {
                     AgentClient client = null;//AgentConnection.getInstance().getConnection();
                     Transport trans = new Transport();
                     trans.sendMessage(client, msg);
-                }
+                }*/
             }
         }
 
