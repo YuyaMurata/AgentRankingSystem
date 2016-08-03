@@ -75,7 +75,7 @@ public class LaunchCreateAgent implements AgentExecutor, Serializable {
         try{
             agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
             
-            //System.out.println("Agent Key = "+agentKey);
+            System.out.println("Create Agent ManagerKey = "+agentKey);
             
             LaunchSystem executor = new LaunchSystem(agentKey, agentGroup);
             Object reply = client.execute(agentKey, executor);
