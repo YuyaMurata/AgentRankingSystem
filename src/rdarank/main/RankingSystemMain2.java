@@ -5,12 +5,20 @@
  */
 package rdarank.main;
 
+import com.ibm.agent.exa.client.AgentClient;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import rda.agent.client.DistributedAgentConnection;
 import rda.property.SetProperty;
 import rdarank.manager.ExecuteDataStream;
+import rdarank.manager.LaunchCreateAgent;
 import rdarank.manager.LaunchSettingsMap;
 import rdarank.manager.LaunchSystem;
 import rdarank.manager.RankingSystemManager;
 import rdarank.manager.ShutdownSystem;
+import rdarank.server.DistributedServerConnection;
 
 /**
  *
@@ -41,6 +49,20 @@ public class RankingSystemMain2 implements SetProperty{
         System.out.println("Launch Ranking System");
         LaunchSystem system = new LaunchSystem();
         system.launch(settings.getPropMap());
+        
+        //Agent Deploy (Test)
+        Map agentGroup = new HashMap();
+        
+        agentGroup.put("agenttype", "useragent");
+        List agList = new ArrayList();
+        agList.add("U#000");agList.add("U#001");agList.add("U#002");
+        agentGroup.put("useragent", agList);
+        
+        DistributedAgentConnection agcon = DistributedServerConnection.getInstance().getConnection(0);
+        LaunchCreateAgent agent = new LaunchCreateAgent();
+        AgentClient client = agcon.getConnection();
+        agent.create(client, agentGroup);
+        agcon.returnConnection(client);
         
         //Start Logging
         manager.startLogger();

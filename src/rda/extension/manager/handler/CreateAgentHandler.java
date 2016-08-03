@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import rda.extension.manager.SystemManagerExtension;
+import rdarank.agent.rank.manager.RankAgentManager;
+import rdarank.agent.user.manager.UserAgentManager;
 
 /**
  *
@@ -23,13 +25,29 @@ public class CreateAgentHandler  extends MessageHandler{
     public Object onMessage(Message msg) throws Exception {
         // TODO 自動生成されたメソッド・スタブ
         SimpleMessage smsg = (SimpleMessage)msg;
-        HashMap<String, List> agentGroup = (HashMap)smsg.get("agent");
+        HashMap<String, Object> agentGroup = (HashMap)smsg.get("agent");
         
-        System.out.println("Launch System Handler 1");
+        System.out.println("Launch CreateAgent");
         
-        //Launch System
-        SystemManagerExtension extension = SystemManagerExtension.getInstance();
+        SystemManagerExtension extinsion = SystemManagerExtension.getInstance();
         
-        return 0L;
+        RankAgentManager rank = RankAgentManager.getInstance();
+        UserAgentManager user = UserAgentManager.getInstance();
+        
+        if(((String)agentGroup.get("agenttype")).contains("rankagent"))
+            for(String agID : (List<String>)agentGroup.get("rankagent"))
+                rank.createAgent(agID);
+        else if(((String)agentGroup.get("agenttype")).contains("useragent"))
+            for(String agID : (List<String>)agentGroup.get("useragent"))
+                user.createAgent(agID);
+        else{
+            for(String agID : (List<String>)agentGroup.get("rankagent"))
+                rank.createAgent(agID);
+            
+            for(String agID : (List<String>)agentGroup.get("useragent"))
+                user.createAgent(agID);
+        }
+            
+        return "Success CreateAgent !!";
     }
 }

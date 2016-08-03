@@ -31,7 +31,6 @@ public class LaunchCreateAgent implements AgentExecutor, Serializable {
     private static DistributedAgentConnection agcon;
     
     public LaunchCreateAgent() {
-        agcon = DistributedServerConnection.getInstance().getConnection(0);
     }
     
     AgentKey agentKey;
@@ -68,9 +67,8 @@ public class LaunchCreateAgent implements AgentExecutor, Serializable {
         }
     }
     
-    public void create(Map agentGroup){
+    public void create(AgentClient client, Map agentGroup){
         try{
-            AgentClient client = agcon.getConnection();
             agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
             
             //System.out.println("Agent Key = "+agentKey);
@@ -80,7 +78,6 @@ public class LaunchCreateAgent implements AgentExecutor, Serializable {
             
             System.out.println(reply);
             
-            agcon.returnConnection(client);
         } catch (AgentException ex) {
             ex.printStackTrace();
         }

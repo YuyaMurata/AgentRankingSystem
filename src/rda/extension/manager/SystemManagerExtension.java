@@ -124,7 +124,10 @@ public class SystemManagerExtension implements Extension {
         
         //Setting Property & Initialise Agent
         manager.setPropMap(props);
-        manager.launchSystem();
+        //manager.launchSystem(); //Local
+        
+        //DistributedSystem
+        manager.launchDistSystem();
         
         pattern = (Integer) ((Map)props.get("manager")).get("DEPLOY_PATTERN");
 

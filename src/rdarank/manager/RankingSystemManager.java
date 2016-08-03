@@ -45,6 +45,15 @@ public class RankingSystemManager {
         dataSettings(preDataMap(), preProfMap());
         agentSettings(preUserAgentMap(), preRankAgentMap(), preServerMap());
     }
+    
+    public void launchDistSystem() {
+        System.out.println(">>Launch System");
+
+        serverSettings(preServerMap());
+        managerLoggerSettings(preLoggerMap(), new SystemManagerLogPrinter("systemmanager"));
+        dataSettings(preDataMap(), preProfMap());
+        agentDistSettings(preUserAgentMap(), preRankAgentMap(), preServerMap());
+    }
 
     public void setDataStreamGenerator() {
         streamSettings();
