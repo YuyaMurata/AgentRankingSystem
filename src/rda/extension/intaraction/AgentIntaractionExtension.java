@@ -133,7 +133,7 @@ public class AgentIntaractionExtension implements Extension{
         //Transport OtherServer Extension
         // ***
         //Get MessageQueue
-        MessageQueue mq = (MessageQueue)RankAgentManager.getInstance().getMQMap().get(msg.id);
+        MessageQueue mq = (MessageQueue)RankAgentManager.getInstance().getMQMap().get(msg.getID());
         
         try {
             mq.put(msg);
