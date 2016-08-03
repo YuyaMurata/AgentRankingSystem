@@ -34,7 +34,9 @@ public class CreateAgentHandler  extends MessageHandler{
         RankAgentManager rank = RankAgentManager.getInstance();
         UserAgentManager user = UserAgentManager.getInstance();
         
-        if((ag.agenttype).contains("rankagent"))
+        System.out.println(ag.agenttype + " = "+ag.agentGroup);
+        
+        /*if((ag.agenttype).contains("rankagent"))
             for(String agID : ag.agentGroup.get("rankagent"))
                 rank.createAgent(agID);
         else if((ag.agenttype).contains("useragent"))
@@ -46,7 +48,7 @@ public class CreateAgentHandler  extends MessageHandler{
             
             for(String agID : ag.agentGroup.get("useragent"))
                 user.createAgent(agID);
-        }
+        }*/
             
         return "Success CreateAgent !!";
     }
