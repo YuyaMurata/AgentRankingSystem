@@ -29,12 +29,12 @@ public class CreateAgentHandler  extends MessageHandler{
         
         System.out.println("Launch CreateAgent");
         
-        SystemManagerExtension extinsion = SystemManagerExtension.getInstance();
+        //SystemManagerExtension extinsion = SystemManagerExtension.getInstance();
         
-        RankAgentManager rank = RankAgentManager.getInstance();
-        UserAgentManager user = UserAgentManager.getInstance();
+        //RankAgentManager rank = RankAgentManager.getInstance();
+        //UserAgentManager user = UserAgentManager.getInstance();
         
-        //System.out.println(ag.agenttype + " = "+ag.agentGroup);
+        System.out.println(ag.agenttype + " = "+ag.agentGroup);
         
         /*if((ag.agenttype).contains("rankagent"))
             for(String agID : ag.agentGroup.get("rankagent"))
