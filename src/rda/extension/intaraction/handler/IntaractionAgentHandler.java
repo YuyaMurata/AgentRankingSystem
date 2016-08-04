@@ -27,12 +27,12 @@ public class IntaractionAgentHandler extends MessageHandler{
         System.out.println("Transport Int : "+trans.toString());
         
         //Intaraction Agent
-        while(!AgentIntaractionExtension.getInstance().transport(trans)){
-            try{
-                Thread.sleep(10L);
-            }catch(InterruptedException e){
-            }
-        }
+        //while(!AgentIntaractionExtension.getInstance().transport(trans)){
+        //    try{
+        //        Thread.sleep(10L);
+        //    }catch(InterruptedException e){
+        //    }
+        //}
         
         return "-- AgentIntaraction Transport Message -->";
     }

@@ -8,6 +8,7 @@ package rdarank.agent.rank.creator;
 import com.ibm.agent.exa.AgentException;
 import com.ibm.agent.exa.AgentKey;
 import com.ibm.agent.exa.AgentManager;
+import com.ibm.agent.exa.MessageFactory;
 import rda.agent.queue.MessageQueue;
 import rdarank.agent.rank.manager.RankAgentManager;
 import rdarank.agent.rank.message.InitRankMessage;
@@ -42,7 +43,8 @@ public class CreateRankAgentEx {
         }
         try {
             //Initialze
-            InitRankMessage msg = new InitRankMessage();
+            MessageFactory factory = MessageFactory.getFactory();
+            InitRankMessage msg = (InitRankMessage)factory.getMessage(MESSAGE_TYPE);
             msg.setParams("No Message");
 
             Object reply = am.sendMessage(agentKey, msg);

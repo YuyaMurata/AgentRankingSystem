@@ -25,7 +25,8 @@ public class AgentIntaractionThread extends Thread {
     @Override
     public void run() {
         System.out.println(name + " Start !");
-
+        Transport trans = new Transport();
+        
         while (SystemManagerExtension.getInstance().getState()) {
             Window window = extension.getWindowController().get();
             if (window == null) {
@@ -45,8 +46,7 @@ public class AgentIntaractionThread extends Thread {
                     }
                 //dist deploy
                 }else if(SystemManagerExtension.getInstance().getDeployPattern() == 1){
-                    AgentClient client = RankAgentManager.getInstance().getConnection("TEST").getConnection();
-                    Transport trans = new Transport();
+                    AgentClient client = RankAgentManager.getInstance().getConnection("TEST").getConnection();  
                     trans.sendMessage(client, msg);
                 }
             }
