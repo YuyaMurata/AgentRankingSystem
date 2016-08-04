@@ -110,6 +110,6 @@ public class RankAgentLogPrinter extends AgentLogPrinterTemplate{
         System.out.println(agenttype+" - Log Printer : ");
         printAgentStore();
         printAgentLatency();
-        //printAgentObserver();
+        printAgentObserver();
     }
 }
