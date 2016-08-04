@@ -37,6 +37,11 @@ public class RankAgentLogPrinter extends AgentLogPrinterTemplate{
         List data = new ArrayList();
         Map map = new HashMap();
         
+        if(manager.getObserver().size() <= 0){
+            System.out.println("RankAgent Store is null !");
+            return ;
+        }
+        
         for(int i=0; i < manager.getObserver().size(); i++){
             place.append(",{}");
             field.add(manager.getObserver().get(i).getName());
