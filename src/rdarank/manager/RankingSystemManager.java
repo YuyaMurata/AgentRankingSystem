@@ -37,6 +37,15 @@ public class RankingSystemManager {
     public static RankingSystemManager getInstance() {
         return manager;
     }
+    
+    //Monitor 
+    public void launchMonitor(){
+        System.out.println(">>Launch Monitor");
+        serverSettings(preServerMap());
+        dataSettings(preDataMap(), preProfMap());
+        loggerSettings(preLoggerMap());
+        System.out.println(">>> Finished Set Logger & Printer");
+    }
 
     public void launchSystem() {
         System.out.println(">>Launch System");
@@ -179,15 +188,6 @@ public class RankingSystemManager {
         LoggerManager.getInstance().stopLogger();
     }
     
-    //Monitor 
-    public void launchMonitor(){
-        System.out.println(">>Launch Monitor");
-        serverSettings(preServerMap());
-        dataSettings(preDataMap(), preProfMap());
-        loggerSettings(preLoggerMap());
-         System.out.println(">>> Finished Set Logger & Printer");
-    }
-
     //DataStream Generator
     private TimeToDataStream timeStream;
 

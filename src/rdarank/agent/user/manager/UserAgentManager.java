@@ -196,6 +196,7 @@ public class UserAgentManager extends AgentManager{
     private DistributedServerConnection sconn;
     @Override
     public void setServerList(Map serverMap) {
+        System.out.println("Server Settings UserAgent");
         DistributedServerConnection sconn = new DistributedServerConnection();
         sconn.setServerList((String) serverMap.get("SERVER_LIST_USER"), (Integer) serverMap.get("POOLSIZE"));
     }
@@ -203,7 +204,5 @@ public class UserAgentManager extends AgentManager{
     @Override
     public DistributedAgentConnection getConnection(String id) {
         return sconn.getConnection(0);
-    }
-    
-    
+    }   
 }
