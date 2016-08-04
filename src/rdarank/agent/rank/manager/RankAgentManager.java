@@ -199,7 +199,7 @@ public class RankAgentManager extends AgentManager{
     @Override
     public void setServerList(Map serverMap) {
         System.out.println("Server Settings RankAgent");
-        DistributedServerConnection sconn = new DistributedServerConnection();
+        sconn = new DistributedServerConnection();
         sconn.setServerList((String) serverMap.get("SERVER_LIST_RANK"), (Integer) serverMap.get("POOLSIZE"));
     }
 
