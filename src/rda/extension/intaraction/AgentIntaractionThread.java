@@ -48,6 +48,7 @@ public class AgentIntaractionThread extends Thread {
                 }else if(SystemManagerExtension.getInstance().getDeployPattern() == 1){
                     AgentClient client = RankAgentManager.getInstance().getConnection("TEST").getConnection();  
                     trans.sendMessage(client, msg);
+                    extension.getWindowController().remove();
                 }
             }
         }
