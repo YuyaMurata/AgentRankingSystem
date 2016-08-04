@@ -32,7 +32,7 @@ public class Transport implements AgentExecutor, Externalizable{
     AgentKey agentKey;
     MessageObject msg;
     public Transport(AgentKey agentKey, MessageObject msg) {
-        this.agentKey = this.agentKey;
+        this.agentKey = agentKey;
         this.msg = msg;
     }
     
@@ -79,13 +79,13 @@ public class Transport implements AgentExecutor, Externalizable{
         try{
             agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
             
-            //System.out.println("Agent Key = "+agentKey);
+            System.out.println("Agent Key = "+agentKey);
             
             Transport executor = new Transport(agentKey, msg);
             Object reply = client.execute(agentKey, executor);
             
             System.out.println(reply);
-        } catch (AgentException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }

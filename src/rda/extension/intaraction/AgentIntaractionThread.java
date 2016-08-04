@@ -39,12 +39,12 @@ public class AgentIntaractionThread extends Thread {
                 MessageObject msg = new MessageObject(window.getDestID(), window.unpack());
                 
                 //local
-                if (extension.transport(msg)) {
-                    extension.getWindowController().remove();
-                }
-
+                if (SystemManagerExtension.getInstance().getDeployPattern() == 0) {
+                    if (extension.transport(msg)) {
+                        extension.getWindowController().remove();
+                    }
                 //dist deploy
-                if (SystemManagerExtension.getInstance().getDeployPattern() == 1) {
+                }else if(SystemManagerExtension.getInstance().getDeployPattern() == 1){
                     AgentClient client = RankAgentManager.getInstance().getConnection("TEST").getConnection();
                     Transport trans = new Transport();
                     trans.sendMessage(client, msg);
