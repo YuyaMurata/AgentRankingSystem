@@ -24,15 +24,15 @@ public class IntaractionAgentHandler extends MessageHandler{
         SimpleMessage smsg = (SimpleMessage)msg;
         MessageObject trans = (MessageObject) smsg.get("message");
         
-        System.out.println("Transport Int : "+trans.toString());
+        //System.out.println("Transport Int : "+trans.toString());
         
         //Intaraction Agent
-        //while(!AgentIntaractionExtension.getInstance().transport(trans)){
-        //    try{
-        //        Thread.sleep(10L);
-        //    }catch(InterruptedException e){
-        //    }
-        //}
+        while(!AgentIntaractionExtension.getInstance().transport(trans)){
+            try{
+                Thread.sleep(10L);
+            }catch(InterruptedException e){
+            }
+        }
         
         return "-- AgentIntaraction Transport Message -->";
     }
