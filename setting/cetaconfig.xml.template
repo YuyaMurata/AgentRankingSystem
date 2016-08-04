@@ -2,7 +2,7 @@
 <ceta>
 	<serverTypes>
 		<solidDBServer
-			primary="2"
+			primary="1"
 			secondary="0"
 			replica="0">
 			<!-- EncriptorExtension must be defined prior to other Extensions -->
