@@ -51,8 +51,7 @@ public class TimeToDataStream {
                 MessageObject msg = new MessageObject(agID, window.unpack());
                 
                 //Message Sender
-                mq.put(msg);
-                
+                if(mq != null) mq.put(msg);
                 
                 total = total+window.unpack().size();
                 
