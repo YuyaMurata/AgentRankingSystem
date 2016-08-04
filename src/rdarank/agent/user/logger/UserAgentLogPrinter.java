@@ -37,6 +37,11 @@ public class UserAgentLogPrinter extends AgentLogPrinterTemplate{
         List data = new ArrayList();
         Map map = new HashMap();
         
+        if(manager.getObserver() == null){
+            System.out.println("UserAgent Observer is null !");
+            return ;
+        }
+        
         for(int i=0; i < manager.getObserver().size(); i++){
             place.append(",{}");
             field.add(manager.getObserver().get(i).getName());
