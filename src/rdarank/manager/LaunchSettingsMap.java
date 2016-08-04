@@ -137,7 +137,7 @@ public class LaunchSettingsMap implements SetProperty{
     
     private Map preManagerMap(){
         Map map = new HashMap();
-        map.put("DEPLOY_PATTERN", 0); // 0 is local
+        map.put("DEPLOY_PATTERN", AGENT_DEPLOY_PATTERN);
         AgentLogPrint.printPropertySettings("Manager", map);
         
         return map;

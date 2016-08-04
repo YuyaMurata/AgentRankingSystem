@@ -88,7 +88,7 @@ public class UpdateAgent extends AgentType  implements AgentExecutor, Externaliz
         
         try {
             AgentConnection agcon = AgentConnection.getInstance();
-            AgentClient client = agcon.getConnection();
+            AgentClient client = agcon.getClient();
             
             agentKey = new AgentKey(AGENT_TYPE, new Object[]{agID});
                 

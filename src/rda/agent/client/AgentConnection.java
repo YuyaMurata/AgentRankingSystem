@@ -44,21 +44,7 @@ public class AgentConnection {
         createObjectPool(poolsize, aghost);
     }
     
-    public AgentClient getConnection(){
-        AgentClient ag = null;
-        
-        try {
-            ag = _pool.borrowObject();
-            
-            return ag;
-        } catch (Exception ex) {
-            System.out.println("Not Connect AgentClient!");
-        }
-        
-        return ag;
-    }
-    
-    public AgentClient getConnection(String id){
+    public AgentClient getClient(){
         AgentClient ag = null;
         
         try {

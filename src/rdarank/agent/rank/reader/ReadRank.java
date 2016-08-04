@@ -59,7 +59,7 @@ public class ReadRank implements AgentExecutor, Serializable{
 
     public ArrayList<RankInfo> read(int numOfAgents) {
         AgentConnection ag = AgentConnection.getInstance();
-        AgentClient client = ag.getConnection();
+        AgentClient client = ag.getClient();
             
         try{
             ArrayList<RankInfo> list = new ArrayList<>();

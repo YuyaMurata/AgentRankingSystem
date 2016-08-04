@@ -59,7 +59,7 @@ public class ReadLogAgent implements AgentExecutor, Serializable{
 
     public LogInfo get(String id) {
         AgentConnection ag = AgentConnection.getInstance();
-        AgentClient client = ag.getConnection();
+        AgentClient client = ag.getClient();
         
         try{
             agentKey = new AgentKey(AGENT_TYPE, new Object[]{id});

@@ -93,7 +93,7 @@ public class SendAgentMessage extends AgentType  implements AgentExecutor, Exter
         
         try {
             AgentConnection agconn = AgentConnection.getInstance();
-            AgentClient client = agconn.getConnection();
+            AgentClient client = agconn.getClient();
             
             agentKey = new AgentKey(AGENT_TYPE, new Object[]{win.getDestID()});
             SendAgentMessage executor = new SendAgentMessage(agentKey, win.unpack());

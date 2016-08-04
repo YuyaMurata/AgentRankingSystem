@@ -59,7 +59,7 @@ public class ReadLogRank implements AgentExecutor, Serializable{
 	public void get(int numOfAgents) {
             try{
                 AgentConnection agconn = AgentConnection.getInstance();
-                AgentClient client = agconn.getConnection();
+                AgentClient client = agconn.getClient();
                 for(int i=0; i < numOfAgents; i++){
                     String rankID = "R#00"+i;
                     agentKey = new AgentKey(AGENT_TYPE, new Object[]{rankID});

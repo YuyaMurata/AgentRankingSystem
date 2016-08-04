@@ -57,7 +57,7 @@ public class Dispose implements AgentExecutor, Serializable {
     public static void main(String[] args) {
         // エージェントクライアントの生成
         AgentConnection ag = AgentConnection.getInstance();
-        AgentClient client = ag.getConnection();
+        AgentClient client = ag.getClient();
         
         try {
             // エージェントエグゼキュータを生成

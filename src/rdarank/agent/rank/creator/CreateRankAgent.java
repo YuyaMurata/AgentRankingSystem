@@ -76,7 +76,7 @@ public class CreateRankAgent implements AgentExecutor, Serializable{
     public void create(String agID, Integer size, Long queuewait, Long agentwait){
         try {
             AgentConnection agconn = AgentConnection.getInstance();            
-            AgentClient client = agconn.getConnection();
+            AgentClient client = agconn.getClient();
             
             agentKey = new AgentKey(AGENT_TYPE,new Object[]{agID});
             

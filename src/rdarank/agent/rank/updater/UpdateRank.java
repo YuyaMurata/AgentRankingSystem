@@ -96,7 +96,7 @@ public class UpdateRank extends AgentType  implements AgentExecutor, Externaliza
         }
 
         try {
-            AgentClient client = agcon.getConnection();
+            AgentClient client = agcon.getClient();
 
             UpdateRank executor = new UpdateRank(agentKey, (MessageObject) data);
 

@@ -92,7 +92,7 @@ public class UpdateUser extends AgentType implements AgentExecutor, Externalizab
         if(data == null) return;
             
         try {
-            AgentClient client = agcon.getConnection();
+            AgentClient client = agcon.getClient();
                 
             UpdateUser executor = new UpdateUser(agentKey, (MessageObject)data);
             

@@ -55,7 +55,7 @@ public class ReadALLAgents implements AgentExecutor, Serializable{
         
         try {
             //クライアントの接続
-            AgentClient client = ag.getConnection();
+            AgentClient client = ag.getClient();
             
             // エージェントエグゼキュータを生成
             ReadALLAgents executor = new ReadALLAgents();
