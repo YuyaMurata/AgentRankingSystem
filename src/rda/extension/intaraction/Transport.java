@@ -61,11 +61,11 @@ public class Transport implements AgentExecutor, Externalizable{
         try {
             AgentManager agentManager = AgentManager.getAgentManager();
                 
-            SimpleMessage msg = (SimpleMessage)MessageFactory.getFactory().getMessage(MESSAGE_TYPE);
-            msg.set("message", msg);
+            SimpleMessage smsg = (SimpleMessage)MessageFactory.getFactory().getMessage(MESSAGE_TYPE);
+            smsg.set("message", msg);
 
             //Sync Message
-            Object ret = agentManager.sendMessage(agentKey, msg);
+            Object ret = agentManager.sendMessage(agentKey, smsg);
             //agentManager.putMessage(agentKey, msg);
 
             return ret;
