@@ -39,7 +39,7 @@ public class AgentIntaractionThread extends Thread {
                 MessageObject msg = new MessageObject(window.getDestID(), window.unpack());
                 
                 //local
-                /*if (extension.transport(msg)) {
+                if (extension.transport(msg)) {
                     extension.getWindowController().remove();
                 }
 
@@ -48,7 +48,7 @@ public class AgentIntaractionThread extends Thread {
                     AgentClient client = null;//AgentConnection.getInstance().getConnection();
                     Transport trans = new Transport();
                     trans.sendMessage(client, msg);
-                }*/
+                }
             }
         }
 
