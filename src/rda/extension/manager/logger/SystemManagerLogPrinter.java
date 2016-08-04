@@ -106,11 +106,11 @@ public class SystemManagerLogPrinter extends AgentLogPrinterTemplate{
     public void printer() {
         System.out.println(agenttype+" - Log Printer : ");
         
-        //System.out.println("> useragent : ");
-        //printUserAgentObserver();
+        System.out.println("> useragent : ");
+        printUserAgentObserver();
         
         //System.out.println("> rankagent : ");
-        printRankAgentObserver();
+        //printRankAgentObserver();
     }
     
 }
