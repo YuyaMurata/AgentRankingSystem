@@ -79,8 +79,6 @@ public class Transport implements AgentExecutor, Externalizable{
         try{
             agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
             
-            System.out.println("Agent Key = "+agentKey);
-            
             Transport executor = new Transport(agentKey, msg);
             Object reply = client.execute(agentKey, executor);
             
