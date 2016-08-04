@@ -23,6 +23,7 @@ import java.util.Properties;
 import rda.agent.client.AgentConnection;
 import rda.agent.client.DistributedAgentConnection;
 import rda.db.SQLReturnObject;
+import rdarank.agent.rank.manager.RankAgentManager;
 import rdarank.server.DistributedServerConnection;
 
 /**
@@ -110,7 +111,7 @@ public class RankAgentDBAccess  implements AgentExecutor, Serializable {
     }
     
     public SQLReturnObject query() {
-        agcon = DistributedServerConnection.getInstance().getConnection(0);
+        agcon = RankAgentManager.getInstance().getConnection("all");
         try {
             AgentClient client = agcon.getConnection();
             

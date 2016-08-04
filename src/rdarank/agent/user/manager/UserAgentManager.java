@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import rda.agent.client.DistributedAgentConnection;
 
 import rda.agent.queue.MessageQueue;
 import rda.agent.queue.QueueObserver;
@@ -20,6 +21,7 @@ import rda.window.WindowController;
 import rdarank.agent.user.creator.CreateUserAgent;
 import rdarank.agent.user.creator.CreateUserAgentEx;
 import rdarank.agent.user.logger.UserAgentLogPrinter;
+import rdarank.server.DistributedServerConnection;
 
 /**
  *
@@ -45,33 +47,36 @@ public class UserAgentManager extends AgentManager{
         return manager;
     }
     
-    public void initUserAgent(Map userAgentMapParam){
-        this.queueLength = (Integer)userAgentMapParam.get("QUEUE_LENGTH");
-        this.queuewait = (Long)userAgentMapParam.get("QUEUE_WAIT");
-        this.agentwait = (Long)userAgentMapParam.get("AGENT_WAIT");
-        this.reserveMode = (Integer)userAgentMapParam.get("RESERVE_MODE");
+    @Override
+    public void initAgent(Map param){
+        this.queueLength = (Integer)param.get("QUEUE_LENGTH");
+        this.queuewait = (Long)param.get("QUEUE_WAIT");
+        this.agentwait = (Long)param.get("AGENT_WAIT");
+        this.reserveMode = (Integer)param.get("RESERVE_MODE");
         
         this.observes = new ArrayList();
         
         //Init IDManager
-        this.userID = new IDManager(userAgentMapParam);
+        this.userID = new IDManager(param);
         
         //Init AgentCloning Mode
         //this.agentMode = (Integer)userAgentMapParam.get("AGENT_MODE");
         this.agentMode = 0;
         
         //Init WindowController
-        this.windowCTRL = new WindowController((Integer)userAgentMapParam.get("WINDOW_SIZE"),
-                                          (Long)userAgentMapParam.get("ALIVE_TIME"),
-                                          (Integer)userAgentMapParam.get("POOLSIZE"));
+        this.windowCTRL = new WindowController((Integer)param.get("WINDOW_SIZE"),
+                                          (Long)param.get("ALIVE_TIME"),
+                                          (Integer)param.get("POOLSIZE"));
     }
     
+    @Override
     public void setLogger(){
         //Init LogPrinter
         UserAgentLogPrinter log = new UserAgentLogPrinter("useragent");
         LoggerManager.getInstance().setLogPrinter(log);
     }
     
+    @Override
     public IDManager getIDManager(){
         return userID;
     }
@@ -117,6 +122,7 @@ public class UserAgentManager extends AgentManager{
     }
     
     //Agentの複製 e.g.("R#01_Clone")
+    @Override
     public String createCloneAgent(String originalID, Object originalState){
         String agID = createAgent();
         ((MessageQueue)getAgent(agID)).setOriginalQueue(originalState);
@@ -125,40 +131,48 @@ public class UserAgentManager extends AgentManager{
     }
     
     //MessageQueueの実行管理
+    @Override
     public Boolean getState(){
         return runnable;
     }
     
     //全てのMessageQueueを終了する
+    @Override
     public void doShutdown(){
         runnable = false;
         windowCTRL.close();
     }
     
     //Logger用にMQの監視オブジェクトを登録
+    @Override
     public void add(QueueObserver observe) {
         observes.add(observe);
     }
     
+    @Override
     public List<QueueObserver> getObserver(){
         return observes;
     }
     
     //ManagerにMessageQueueを登録
     private static Map messageQueueMap = new HashMap();
+    @Override
     public void register(MessageQueue mq){
         messageQueueMap.put(mq.getID(), mq);
         mq.start();
     }
     
+    @Override
     public Object getAgent(String agID){
         return messageQueueMap.get(agID);
     }
     
+    @Override
     public Map getMQMap(){
         return messageQueueMap;
     }
     
+    @Override
     public Integer getNumAgents(){
         return messageQueueMap.size() - userID.getNumReserves();
     }
@@ -169,6 +183,7 @@ public class UserAgentManager extends AgentManager{
         return this.agentMode == 1;
     }
     
+    @Override
     public Boolean getReserveMode(){
         return reserveMode == 1;
     }
@@ -177,4 +192,18 @@ public class UserAgentManager extends AgentManager{
     public WindowController getWindowController() {
         return this.windowCTRL;
     }
+
+    private DistributedServerConnection sconn;
+    @Override
+    public void setServerList(Map serverMap) {
+        DistributedServerConnection sconn = new DistributedServerConnection();
+        sconn.setServerList((String) serverMap.get("SERVER_LIST_USER"), (Integer) serverMap.get("POOLSIZE"));
+    }
+
+    @Override
+    public DistributedAgentConnection getConnection(String id) {
+        return sconn.getConnection(0);
+    }
+    
+    
 }

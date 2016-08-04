@@ -6,7 +6,9 @@
 package rdarank.server;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import rda.agent.client.DistributedAgentConnection;
 
 /**
@@ -14,16 +16,16 @@ import rda.agent.client.DistributedAgentConnection;
  * @author kaeru
  */
 public class DistributedServerConnection {
-    private static final DistributedServerConnection instance = new DistributedServerConnection();
-    
-    public static DistributedServerConnection getInstance(){
-        return instance;
-    }
-    
-    List serverList = new ArrayList();
+    private List serverList;
     public void setServerList(String servers, Integer poolsize){
+        Map<String, Integer> server = new HashMap();
         for(String host: servers.split(","))
-            serverList.add(new DistributedAgentConnection(poolsize, new String[]{host, "rdarank", "agent"}));
+            server.put(host, poolsize);
+        
+        serverList = new ArrayList();
+        
+        for(String host : server.keySet())
+            serverList.add(new DistributedAgentConnection(server.get(host), new String[]{host, "rdarank", "agent"}));
     }
     
     public DistributedAgentConnection getConnection(int index){

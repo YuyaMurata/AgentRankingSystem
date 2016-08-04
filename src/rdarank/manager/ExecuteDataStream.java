@@ -10,13 +10,14 @@ import com.ibm.agent.exa.AgentKey;
 import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageFactory;
-import com.ibm.agent.exa.SimpleMessage;
 import com.ibm.agent.exa.client.AgentClient;
 import com.ibm.agent.exa.client.AgentExecutor;
+
 import java.io.Serializable;
 import java.util.Collection;
+
 import rda.agent.client.DistributedAgentConnection;
-import rdarank.server.DistributedServerConnection;
+import rdarank.agent.user.manager.UserAgentManager;
 
 /**
  *
@@ -30,7 +31,7 @@ public class ExecuteDataStream implements AgentExecutor, Serializable {
     private static DistributedAgentConnection agcon;
 
     public ExecuteDataStream() {
-        agcon = DistributedServerConnection.getInstance().getConnection(0);
+        agcon = UserAgentManager.getInstance().getConnection("all");
     }
     
     AgentKey agentKey;

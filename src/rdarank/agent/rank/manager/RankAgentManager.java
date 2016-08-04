@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import rda.agent.client.DistributedAgentConnection;
 
 import rda.agent.queue.MessageQueue;
 import rda.agent.queue.QueueObserver;
@@ -19,6 +20,7 @@ import rda.window.WindowController;
 
 import rdarank.agent.rank.creator.CreateRankAgentEx;
 import rdarank.agent.rank.logger.RankAgentLogPrinter;
+import rdarank.server.DistributedServerConnection;
 
 /**
  *
@@ -44,29 +46,31 @@ public class RankAgentManager extends AgentManager{
         return manager;
     }
     
-    public void initRankAgent(Map rankAgentMapParam){
-        this.queueLength = (Integer)rankAgentMapParam.get("QUEUE_LENGTH");
-        this.queuewait = (Long)rankAgentMapParam.get("QUEUE_WAIT");
-        this.agentwait = (Long)rankAgentMapParam.get("AGENT_WAIT");
-        this.reserveMode = (Integer)rankAgentMapParam.get("RESERVE_MODE");
+    @Override
+    public void initAgent(Map param){
+        this.queueLength = (Integer)param.get("QUEUE_LENGTH");
+        this.queuewait = (Long)param.get("QUEUE_WAIT");
+        this.agentwait = (Long)param.get("AGENT_WAIT");
+        this.reserveMode = (Integer)param.get("RESERVE_MODE");
         
         this.observes = new ArrayList();
         
         //Init IDManager
-        this.rankID = new IDManager(rankAgentMapParam);
+        this.rankID = new IDManager(param);
         
         //Init AgentCloning Mode
-        this.agentMode = (Integer)rankAgentMapParam.get("AGENT_MODE");
+        this.agentMode = (Integer)param.get("AGENT_MODE");
         //this.agentMode = 0;
         
         //Init WindowController
-        this.windowCTRL = new WindowController((Integer)rankAgentMapParam.get("WINDOW_SIZE"),
-                                          (Long)rankAgentMapParam.get("ALIVE_TIME"),
-                                          (Integer)rankAgentMapParam.get("POOLSIZE"));
+        this.windowCTRL = new WindowController((Integer)param.get("WINDOW_SIZE"),
+                                          (Long)param.get("ALIVE_TIME"),
+                                          (Integer)param.get("POOLSIZE"));
         
         System.out.println("Finish Initialize RankAgentManager !");
     }
     
+    @Override
     public void setLogger(){
         //Init LogPrinter
         RankAgentLogPrinter log = new RankAgentLogPrinter("rankagent");
@@ -87,6 +91,7 @@ public class RankAgentManager extends AgentManager{
     }
     
     //Agentの単生成 e.g.("R#01")
+    @Override
     public String createAgent(){
         String agID;
         Object agent = null;
@@ -119,6 +124,7 @@ public class RankAgentManager extends AgentManager{
     }
     
     //Agentの複製 e.g.("R#01_Clone")
+    @Override
     public String createCloneAgent(String originalID, Object originalState){
         String agID = createAgent();
         ((MessageQueue)getAgent(agID)).setOriginalQueue(originalState);
@@ -133,6 +139,7 @@ public class RankAgentManager extends AgentManager{
     }
     
     //全てのMessageQueueを終了する
+    @Override
     public void doShutdown(){
         runnable = false;
         windowCTRL.close();
@@ -144,25 +151,30 @@ public class RankAgentManager extends AgentManager{
         observes.add(observe);
     }
     
+    @Override
     public List<QueueObserver> getObserver(){
         return observes;
     }
     
     //ManagerにMessageQueueを登録
     private static Map messageQueueMap = new HashMap();
+    @Override
     public void register(MessageQueue mq){
         messageQueueMap.put(mq.getID(), mq);
         mq.start();
     }
     
+    @Override
     public Object getAgent(String agID){
         return messageQueueMap.get(agID);
     }
     
+    @Override
     public Map getMQMap(){
         return messageQueueMap;
     }
     
+    @Override
     public Integer getNumAgents(){
         return messageQueueMap.size() - rankID.getNumReserves();
     }
@@ -173,6 +185,7 @@ public class RankAgentManager extends AgentManager{
         return this.agentMode == 1;
     }
     
+    @Override
     public Boolean getReserveMode(){
         return reserveMode == 1;
     }
@@ -180,5 +193,18 @@ public class RankAgentManager extends AgentManager{
     @Override
     public WindowController getWindowController() {
         return this.windowCTRL;
+    }
+
+    private DistributedServerConnection sconn;
+    @Override
+    public void setServerList(Map serverMap) {
+        DistributedServerConnection sconn = new DistributedServerConnection();
+        sconn.setServerList((String) serverMap.get("SERVER_LIST_USER"), (Integer) serverMap.get("POOLSIZE"));
+    }
+
+    @Override
+    public DistributedAgentConnection getConnection(String id) {
+        return sconn.getConnection(0);
+
     }
 }

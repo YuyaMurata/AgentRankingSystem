@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import rda.agent.client.DistributedAgentConnection;
 
 import rdarank.server.DistributedServerConnection;
 import rda.agent.template.AgentLogPrinterTemplate;
@@ -77,7 +78,7 @@ public class RankingSystemManager {
         //RankAgent Initialize
         System.out.println("< Initialise RankAgents >");
         RankAgentManager rank = RankAgentManager.getInstance();
-        rank.initRankAgent(rankAgentParam);
+        rank.initAgent(rankAgentParam);
         rank.createNumberOfAgents((Integer) rankAgentParam.get("AMOUNT_OF_AGENTS"));
 
         if (rank.getReserveMode()) {
@@ -101,7 +102,7 @@ public class RankingSystemManager {
 
         System.out.println("< Initialise UserAgents >");
         UserAgentManager user = UserAgentManager.getInstance();
-        user.initUserAgent(userAgentParam);
+        user.initAgent(userAgentParam);
         user.createNumberOfAgents((Integer) userAgentParam.get("AMOUNT_OF_AGENTS"));
 
         if (user.getReserveMode()) {
@@ -123,7 +124,7 @@ public class RankingSystemManager {
         //RankAgent Initialize
         System.out.println("< Initialise RankAgents >");
         RankAgentManager rank = RankAgentManager.getInstance();
-        rank.initRankAgent(rankAgentParam);
+        rank.initAgent(rankAgentParam);
         rank.initNumberOfAgents((Integer) rankAgentParam.get("AMOUNT_OF_AGENTS"));
         
         //UserAgent Attributed Initialize
@@ -134,7 +135,7 @@ public class RankingSystemManager {
         //UserAgent Initialize
         System.out.println("< Initialise UserAgents >");
         UserAgentManager user = UserAgentManager.getInstance();
-        user.initUserAgent(userAgentParam);
+        user.initAgent(userAgentParam);
         user.initNumberOfAgents((Integer) userAgentParam.get("AMOUNT_OF_AGENTS"));
     }
 
@@ -157,9 +158,17 @@ public class RankingSystemManager {
         LoggerManager.getInstance().setLogPrinter(log);
     }
     
+    private DistributedServerConnection sconn;
     private void serverSettings(Map serverMap){
-        DistributedServerConnection sconn = DistributedServerConnection.getInstance();
-        sconn.setServerList((String) serverMap.get("SERVER_LIST"), (Integer) serverMap.get("POOLSIZE"));
+        UserAgentManager.getInstance().setServerList(serverMap);
+        RankAgentManager.getInstance().setServerList(serverMap);
+        
+        //All Server
+        sconn = new DistributedServerConnection();
+        sconn.setServerList(
+                ((String)serverMap.get("SERVER_LIST_USER")+(String)serverMap.get("SERVER_LIST_RANK")),
+                (Integer) serverMap.get("POOLSIZE")
+        );
     }
 
     public void startLogger() {
@@ -239,8 +248,11 @@ public class RankingSystemManager {
     }
 
     private HashMap<String, Map> props;
-
     public void setPropMap(Map map) {
         this.props = (HashMap<String, Map>) map;
+    }
+    
+    public DistributedServerConnection getServer(){
+        return sconn;
     }
 }

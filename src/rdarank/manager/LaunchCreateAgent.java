@@ -9,7 +9,6 @@ import com.ibm.agent.exa.AgentException;
 import com.ibm.agent.exa.AgentKey;
 import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.exa.MessageFactory;
-import com.ibm.agent.exa.SimpleMessage;
 import com.ibm.agent.exa.client.AgentClient;
 import com.ibm.agent.exa.client.AgentExecutor;
 import java.io.Serializable;
@@ -17,7 +16,6 @@ import java.util.Collection;
 import java.util.Map;
 import rda.agent.client.DistributedAgentConnection;
 import rda.extension.manager.message.CreateAgentMessage;
-import rdarank.server.DistributedServerConnection;
 
 /**
  *

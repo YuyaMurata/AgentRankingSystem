@@ -31,7 +31,7 @@ public class ShutdownSystem implements AgentExecutor, Serializable {
     private static DistributedAgentConnection agcon;
 
     public ShutdownSystem() {
-        agcon = DistributedServerConnection.getInstance().getConnection(0);
+        agcon = RankingSystemManager.getInstance().getServer().getConnection(0);
     }
 
     AgentKey agentKey;
