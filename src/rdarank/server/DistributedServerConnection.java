@@ -22,6 +22,8 @@ public class DistributedServerConnection {
         for(String host: servers.split(","))
             server.put(host, poolsize);
         
+        System.out.println("ServerLists : "+server);
+        
         serverList = new ArrayList();
         
         for(String host : server.keySet())
