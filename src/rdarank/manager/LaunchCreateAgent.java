@@ -35,11 +35,9 @@ public class LaunchCreateAgent implements AgentExecutor, Serializable {
     }
     
     AgentKey agentKey;
-    String agentType;
     Map agentGroup;
-    public LaunchCreateAgent(AgentKey agentKey,String agenttype, Map agentGroup) {
+    public LaunchCreateAgent(AgentKey agentKey, Map agentGroup) {
         this.agentKey = agentKey;
-        this.agentType = agenttype;
         this.agentGroup = agentGroup;
     }
     
@@ -58,7 +56,7 @@ public class LaunchCreateAgent implements AgentExecutor, Serializable {
             
             MessageFactory factory = MessageFactory.getFactory();
             CreateAgentMessage msg = (CreateAgentMessage) factory.getMessage(MESSAGE_TYPE);
-            msg.setParams(agentType, agentGroup);
+            msg.setParams(agentGroup);
             
             //Sync Message
             Object ret = agentManager.sendMessage(agentKey, msg);
@@ -71,13 +69,13 @@ public class LaunchCreateAgent implements AgentExecutor, Serializable {
         }
     }
     
-    public void create(AgentClient client, String agentType, Map agentGroup){
+    public void create(AgentClient client, Map agentGroup){
         try{
             agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
             
             System.out.println("Create Agent ManagerKey = "+agentKey);
             
-            LaunchCreateAgent executor = new LaunchCreateAgent(agentKey, agentType, agentGroup);
+            LaunchCreateAgent executor = new LaunchCreateAgent(agentKey, agentGroup);
             Object reply = client.execute(agentKey, executor);
             
             System.out.println(reply);

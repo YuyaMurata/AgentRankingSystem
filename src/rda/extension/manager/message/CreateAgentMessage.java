@@ -14,12 +14,10 @@ import java.util.Map;
  * @author kaeru
  */
 public class CreateAgentMessage extends Message {
-    public String agenttype;
     public Map<String, List<String>> agentGroup;
 
     // パラメータをセット
-    public void setParams(String agentType, Map agentGroup) {
-        this.agenttype = agentType;
+    public void setParams(Map agentGroup) {
         this.agentGroup = agentGroup;
     }
 }
