@@ -145,7 +145,8 @@ public class LaunchSettingsMap implements SetProperty{
     
     private Map preServerMap(){
         Map map = new HashMap();
-        map.put("SERVER_LIST", SERVER_LIST);
+        map.put("SERVER_LIST_USER", SERVER_LIST_USER);
+        map.put("SERVER_LIST_RANK", SERVER_LIST_RANK);
         map.put("SERVER_THREAD", SERVER_THREAD);
         map.put("POOLSIZE", SERVER_POOLSIZE);
         AgentLogPrint.printPropertySettings("Server", map);
