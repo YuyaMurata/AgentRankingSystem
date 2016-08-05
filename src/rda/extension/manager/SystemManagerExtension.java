@@ -69,7 +69,7 @@ public class SystemManagerExtension implements Extension {
     @Override
     public void shutdown() {
         this.state = false;
-        
+
         //Only Thread Type
         //manager.dataStream().stop();
         manager.stopLogger();
@@ -120,37 +120,39 @@ public class SystemManagerExtension implements Extension {
     //Rankig System Manager
     private RankingSystemManager manager;
     private Boolean state = true;
+
     public void startRankingSystem(Map props) {
         manager = RankingSystemManager.getInstance();
-        
+
         //Setting Property & Initialise Agent
         manager.setPropMap(props);
         //manager.launchSystem(); //Local
-        
+
         //DistributedSystem
         manager.launchDistSystem();
-        
-        pattern = (Integer) ((Map)props.get("manager")).get("DEPLOY_PATTERN");
+
+        pattern = (Integer) ((Map) props.get("manager")).get("DEPLOY_PATTERN");
 
         //Data Stream Generator Initialize
         manager.setDataStreamGenerator();
 
         //Start Logger
         manager.startLogger();
-        
+
         this.state = true;
     }
 
     public void dataGenerate(Long time) {
         manager.timeDataStream().stream(time);
     }
-    
-    public Boolean getState(){
+
+    public Boolean getState() {
         return this.state;
     }
-    
+
     private Integer pattern;
-    public Integer getDeployPattern(){
+
+    public Integer getDeployPattern() {
         return this.pattern;
     }
 }

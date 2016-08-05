@@ -36,7 +36,7 @@ public class AgentIntaractionThread extends Thread {
                 } catch (InterruptedException ex) {
                 }
             } else {
-                //System.out.println("Transport Window ! wsize=" + ((Window) window).getSize());
+                System.out.println("Transport Window ! wsize=" + ((Window) window).getSize());
                 //Translation Window To Message
                 MessageObject msg = new MessageObject(window.getDestID(), window.unpack());
                 
