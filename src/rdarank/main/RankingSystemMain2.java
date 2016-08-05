@@ -32,7 +32,7 @@ public class RankingSystemMain2 implements SetProperty{
         launchSystem();
         
         //Execute
-        periodDataStream();
+        //periodDataStream();
         
         //Shutdown
         shutdownSystem();
@@ -58,6 +58,7 @@ public class RankingSystemMain2 implements SetProperty{
         
         //UserAgent
         DistributedAgentConnection agcon = UserAgentManager.getInstance().getConnection("all");
+        System.out.println(">>  Server <"+agcon.toString()+">");
         List agList = new ArrayList();
         agList.add("USER#000");agList.add("USER#001");agList.add("USER#002");
         agentGroup = new HashMap();
@@ -69,6 +70,7 @@ public class RankingSystemMain2 implements SetProperty{
         
         //RankAgent
         agcon = RankAgentManager.getInstance().getConnection("all");
+        System.out.println(">>  Server <"+agcon.toString()+">");
         List agrList = new ArrayList();
         agrList.add("RANK#005");
         agentGroup = new HashMap();
