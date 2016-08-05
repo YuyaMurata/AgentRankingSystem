@@ -203,6 +203,8 @@ public class UserAgentManager extends AgentManager{
 
     @Override
     public DistributedAgentConnection getConnection(String id) {
-        return sconn.getConnection(0);
+        DistributedAgentConnection agcon = sconn.getConnection(0);
+        System.out.println("UserAgentManager Get Connection : "+ agcon.toString());
+        return agcon;
     }   
 }

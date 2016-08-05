@@ -97,6 +97,8 @@ public class RankingSystemMain2 implements SetProperty{
             } catch (InterruptedException ex) {
             }
         }
+        
+        System.out.println("Stop Data Stream");
     }
     
     private static void shutdownSystem(){

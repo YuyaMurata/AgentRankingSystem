@@ -35,7 +35,6 @@ public class RankAgentDBAccess  implements AgentExecutor, Serializable {
     * 
     */
     private static final long serialVersionUID = -3826433740843048L;
-    private static DistributedAgentConnection agcon;
 
     public RankAgentDBAccess() {
     }
@@ -111,7 +110,7 @@ public class RankAgentDBAccess  implements AgentExecutor, Serializable {
     }
     
     public SQLReturnObject query() {
-        agcon = RankAgentManager.getInstance().getConnection("all");
+        DistributedAgentConnection agcon = RankAgentManager.getInstance().getConnection("all");
         try {
             AgentClient client = agcon.getClient();
             
@@ -137,7 +136,7 @@ public class RankAgentDBAccess  implements AgentExecutor, Serializable {
             
             return sqlResults;
         } catch(Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
         }
         
         return null;

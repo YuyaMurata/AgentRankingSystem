@@ -205,6 +205,8 @@ public class RankAgentManager extends AgentManager{
 
     @Override
     public DistributedAgentConnection getConnection(String id) {
-        return sconn.getConnection(0);
+        DistributedAgentConnection agcon = sconn.getConnection(0);
+        System.out.println("RankAgentManager Get Connection : "+ agcon.toString());
+        return agcon;
     }
 }
