@@ -14,6 +14,9 @@ public class MessageObject implements Externalizable {
     public long lateTime;
     public String id;
     public List data;
+
+    public MessageObject() {
+    }
     
     public MessageObject(String destID, Object data) {
         // TODO 自動生成されたコンストラクター・スタブ
