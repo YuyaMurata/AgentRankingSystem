@@ -25,9 +25,9 @@ public class AgentIntaractionThread extends Thread {
 
     private SystemManagerExtension manager;
     private AgentManager agent;
-    public AgentIntaractionThread(SystemManagerExtension manager, AgentManager agent) {
-        this.manager = manager;
-        this.agent = agent;
+    public AgentIntaractionThread() {
+        this.manager = SystemManagerExtension.getInstance();
+        this.agent = RankAgentManager.getInstance();
     }
     
     @Override

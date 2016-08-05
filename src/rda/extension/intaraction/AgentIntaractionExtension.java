@@ -146,10 +146,10 @@ public class AgentIntaractionExtension implements Extension{
         return true;
     }
     
-    public void startConnectionAgents(SystemManagerExtension manager, RankAgentManager agent){
+    public void startConnectionAgents(){
         System.out.println("rda.extension.intaraction.AgentIntaractionExtension.startConnectionAgents() >> "+"start intaractions!");
         //AgentIntaraction Thread
-        AgentIntaractionThread thread = new AgentIntaractionThread(manager, agent);
+        AgentIntaractionThread thread = new AgentIntaractionThread();
         thread.start();
     }
     

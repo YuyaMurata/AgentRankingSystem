@@ -141,7 +141,7 @@ public class SystemManagerExtension implements Extension {
         manager.startLogger();
 
         //Start Intaraction
-        AgentIntaractionExtension.getInstance().startConnectionAgents(extention, RankAgentManager.getInstance());
+        AgentIntaractionExtension.getInstance().startConnectionAgents();
     }
 
     public void dataGenerate(Long time) {
