@@ -1,5 +1,9 @@
 package rda.agent.queue;
 
+import com.ibm.agent.exa.AgentKey;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.List;
 import rda.agent.template.MessageTemplate;
 import rda.manager.IDManager;
@@ -14,6 +18,20 @@ public class MessageObject extends MessageTemplate{
         super();
         this.id = destID;
         this.data = (List)data;
+    }
+    
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(lateTime);
+        out.writeObject(id);
+        out.writeObject(data);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        this.lateTime = (Long)in.readObject();
+        this.id = (String) in.readObject();
+        this.data = (List) in.readObject();
     }
     
     //Only RankAgent

@@ -5,33 +5,24 @@
  */
 package rda.agent.template;
 
-import java.io.Serializable;
+import java.io.Externalizable;
 
 /**
  *
  * @author kaeru
  */
-public abstract class MessageTemplate implements Serializable{
-    private long timestamp;
-    private int length;
+public abstract class MessageTemplate implements Externalizable{
+    public Long lateTime;
     
     public MessageTemplate() {
         // TODO 自動生成されたコンストラクター・スタブ
-        this.timestamp = System.currentTimeMillis();
+        this.lateTime = System.currentTimeMillis();
     }
 
     @Override
     public abstract String toString();
     
     public Long latency(){
-        return System.currentTimeMillis() - timestamp;
-    }
-    
-    public void setLength(int length){
-        this.length = length;
-    }
-    
-    public int getLength(){
-        return length;
+        return System.currentTimeMillis() - lateTime;
     }
 }
