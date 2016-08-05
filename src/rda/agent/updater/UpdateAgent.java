@@ -16,7 +16,6 @@ import rda.agent.client.AgentConnection;
 import rda.agent.template.AgentType;
 import rda.agent.message.UpdateMessage;
 import rda.agent.queue.MessageObject;
-import rda.agent.template.MessageTemplate;
 
 public class UpdateAgent extends AgentType  implements AgentExecutor, Externalizable{
     /**
@@ -35,8 +34,8 @@ public class UpdateAgent extends AgentType  implements AgentExecutor, Externaliz
     }
 
     AgentKey agentKey;
-    MessageTemplate data;
-    public UpdateAgent(AgentKey agentKey, MessageTemplate data) {
+    MessageObject data;
+    public UpdateAgent(AgentKey agentKey, MessageObject data) {
         // TODO 自動生成されたコンストラクター・スタブ
         this.agentKey = agentKey;
         this.data = data;
@@ -51,7 +50,7 @@ public class UpdateAgent extends AgentType  implements AgentExecutor, Externaliz
     @Override
     public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
         this.agentKey = (AgentKey) in.readObject();
-        this.data = (MessageTemplate) in.readObject();
+        this.data = (MessageObject) in.readObject();
     }
 
     @Override

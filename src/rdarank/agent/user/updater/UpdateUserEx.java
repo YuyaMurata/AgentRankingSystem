@@ -3,9 +3,9 @@ package rdarank.agent.user.updater;
 import com.ibm.agent.exa.AgentKey;
 import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.exa.MessageFactory;
+import rda.agent.queue.MessageObject;
 import rda.agent.template.AgentType;
 
-import rda.agent.template.MessageTemplate;
 import rdarank.agent.user.message.UpdateUserMessage;
 
 public class UpdateUserEx extends AgentType{
@@ -30,7 +30,7 @@ public class UpdateUserEx extends AgentType{
         try {
             MessageFactory factory = MessageFactory.getFactory();
             UpdateUserMessage msg = (UpdateUserMessage)factory.getMessage(MESSAGE_TYPE);
-            msg.setParams((MessageTemplate)data);
+            msg.setParams((MessageObject)data);
 
             //Sync Message
             Object ret = agentManager.sendMessage(agentKey, msg);

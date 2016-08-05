@@ -1,20 +1,22 @@
 package rda.agent.queue;
 
+import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.util.List;
-import rda.agent.template.MessageTemplate;
+
 import rda.manager.IDManager;
 import rdarank.agent.rank.manager.RankAgentManager;
 
-public class MessageObject extends MessageTemplate{
+public class MessageObject implements Externalizable {
+    public Long lateTime;
     public String id;
     public List data;
     
     public MessageObject(String destID, Object data) {
         // TODO 自動生成されたコンストラクター・スタブ
-        super();
+        this.lateTime = System.currentTimeMillis();
         this.id = destID;
         this.data = (List)data;
     }
@@ -38,6 +40,10 @@ public class MessageObject extends MessageTemplate{
         IDManager rankID = RankAgentManager.getInstance().getIDManager();
         String[] idarr = this.id.split(",");
         return rankID.getDestID(idarr[0], idarr[1]);
+    }
+    
+    public Long latency(){
+        return System.currentTimeMillis() - lateTime;
     }
     
     @Override
