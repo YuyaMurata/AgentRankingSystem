@@ -16,8 +16,10 @@ import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
  */
 public class DistributedAgentConnection {
     private ObjectPool<AgentClient> _pool;
+    private String[] h;
     
     public DistributedAgentConnection(Integer poolsize, String[] aghost){
+        this.h = aghost;
         createObjectPool(poolsize, aghost);
     }
     
@@ -53,20 +55,6 @@ public class DistributedAgentConnection {
         return ag;
     }
     
-    public AgentClient getConnection(String id){
-        AgentClient ag = null;
-        
-        try {
-            ag = _pool.borrowObject();
-            
-            return ag;
-        } catch (Exception ex) {
-            System.out.println("Not Connect AgentClient!");
-        }
-        
-        return ag;
-    }
-    
     public void returnConnection(AgentClient ag){
         if(ag != null)
             try {
@@ -84,5 +72,9 @@ public class DistributedAgentConnection {
     
     public Integer getIdleObject(){
         return _pool.getNumIdle();
+    }
+    
+    public String toString(){
+        return h.toString();
     }
 }

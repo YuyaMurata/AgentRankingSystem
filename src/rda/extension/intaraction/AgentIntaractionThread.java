@@ -55,7 +55,8 @@ public class AgentIntaractionThread extends Thread {
                 //dist deploy
                 }else if(manager.getDeployPattern() == 1){
                     System.out.println("Transport Window ! wsize=" + ((Window) window).getSize());
-                    //AgentClient client = agent.getConnection("TEST").getConnection();  
+                    //AgentClient client = agent.getConnection("TEST").getConnection();
+                    System.out.println(name+" Server : "+agent.getConnection("TEST").toString());
                     //trans.sendMessage(client, msg);
                     extension.getWindowController().remove();
                 }
