@@ -14,6 +14,7 @@ import java.util.Properties;
 import rda.agent.template.AgentLogPrinterTemplate;
 import rda.data.profile.ProfileGenerator;
 import rda.extension.intaraction.AgentIntaractionExtension;
+import rdarank.agent.rank.manager.RankAgentManager;
 import rdarank.manager.RankingSystemManager;
 
 /**
@@ -140,7 +141,7 @@ public class SystemManagerExtension implements Extension {
         manager.startLogger();
 
         //Start Intaraction
-        AgentIntaractionExtension.getInstance().startConnectionAgents();
+        AgentIntaractionExtension.getInstance().startConnectionAgents(extention, RankAgentManager.getInstance());
     }
 
     public void dataGenerate(Long time) {

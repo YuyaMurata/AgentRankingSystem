@@ -11,14 +11,13 @@ import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.soliddb.extension.Extension;
 
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import rda.agent.queue.MessageObject;
 import rda.agent.queue.MessageQueue;
 import rda.agent.queue.MessageQueueEvent;
 import rda.agent.template.MessageTemplate;
 import rda.data.test.DataTemplate;
+import rda.extension.manager.SystemManagerExtension;
 import rda.window.Window;
 import rda.window.WindowController;
 
@@ -147,10 +146,10 @@ public class AgentIntaractionExtension implements Extension{
         return true;
     }
     
-    public void startConnectionAgents(){
+    public void startConnectionAgents(SystemManagerExtension manager, RankAgentManager agent){
         System.out.println("rda.extension.intaraction.AgentIntaractionExtension.startConnectionAgents() >> "+"start intaractions!");
         //AgentIntaraction Thread
-        AgentIntaractionThread thread = new AgentIntaractionThread();
+        AgentIntaractionThread thread = new AgentIntaractionThread(manager, agent);
         thread.start();
     }
     
