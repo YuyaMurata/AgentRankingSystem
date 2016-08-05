@@ -28,6 +28,7 @@ public class AgentIntaractionThread extends Thread {
         Transport trans = new Transport();
         
         while (SystemManagerExtension.getInstance().getState()) {
+            try{
             Window window = extension.getWindowController().get();
             if (window == null) {
                 try {
@@ -51,6 +52,7 @@ public class AgentIntaractionThread extends Thread {
                     extension.getWindowController().remove();
                 }
             }
+            }catch(Exception e){e.printStackTrace();}
         }
 
         extension.getWindowController().close();
