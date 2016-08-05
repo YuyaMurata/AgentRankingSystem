@@ -30,7 +30,6 @@ import rdarank.agent.rank.manager.RankAgentManager;
  */
 public class AgentIntaractionExtension implements Extension{
     private static AgentIntaractionExtension extention = new AgentIntaractionExtension();
-    private AgentIntaractionThread thread;
     
     private WindowController windowCTRL  = new WindowController(100, 10L, 1);
     
@@ -120,8 +119,7 @@ public class AgentIntaractionExtension implements Extension{
         } catch (AgentException ex) {
         }
         
-        //AgentIntaraction Thread
-        thread = new AgentIntaractionThread();
+        
     }
     
     public WindowController getWindowController() {
@@ -151,6 +149,8 @@ public class AgentIntaractionExtension implements Extension{
     
     public void startConnectionAgents(){
         System.out.println("rda.extension.intaraction.AgentIntaractionExtension.startConnectionAgents() >> "+"start intaractions!");
+        //AgentIntaraction Thread
+        AgentIntaractionThread thread = new AgentIntaractionThread();
         thread.start();
     }
     
