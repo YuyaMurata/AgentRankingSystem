@@ -32,7 +32,7 @@ public class RankingSystemMain2 implements SetProperty{
         launchSystem();
         
         //Execute
-        //periodDataStream();
+        periodDataStream();
         
         //Shutdown
         shutdownSystem();
