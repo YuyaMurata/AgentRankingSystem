@@ -71,7 +71,7 @@ public class Transport implements AgentExecutor, Externalizable{
             return ret;
         } catch (IllegalAccessException | InstantiationException e) {
             // TODO 自動生成された catch ブロック
-            return 0L;
+            return e;
         }
     }
     
