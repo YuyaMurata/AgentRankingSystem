@@ -36,7 +36,6 @@ public class AgentIntaractionThread extends Thread {
                 } catch (InterruptedException ex) {
                 }
             } else {
-                System.out.println("Transport Window ! wsize=" + ((Window) window).getSize());
                 //Translation Window To Message
                 MessageObject msg = new MessageObject(window.getDestID(), window.unpack());
                 
@@ -47,8 +46,9 @@ public class AgentIntaractionThread extends Thread {
                     }
                 //dist deploy
                 }else if(SystemManagerExtension.getInstance().getDeployPattern() == 1){
-                    AgentClient client = RankAgentManager.getInstance().getConnection("TEST").getConnection();  
-                    trans.sendMessage(client, msg);
+                    System.out.println("Transport Window ! wsize=" + ((Window) window).getSize());
+                    //AgentClient client = RankAgentManager.getInstance().getConnection("TEST").getConnection();  
+                    //trans.sendMessage(client, msg);
                     extension.getWindowController().remove();
                 }
             }
