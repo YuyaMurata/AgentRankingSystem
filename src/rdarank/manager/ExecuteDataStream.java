@@ -67,7 +67,7 @@ public class ExecuteDataStream implements AgentExecutor, Serializable {
     
     public void stream(){
         try{
-            AgentClient client = agcon.getConnection();
+            AgentClient client = agcon.getClient();
             AgentKey agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
             
             ExecuteDataStream executor = new ExecuteDataStream(agentKey);

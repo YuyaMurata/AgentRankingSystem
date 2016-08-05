@@ -7,6 +7,7 @@ package rda.extension.intaraction;
 
 import com.ibm.agent.exa.client.AgentClient;
 import rda.agent.client.AgentConnection;
+import rda.agent.client.DistributedAgentConnection;
 import rda.agent.queue.MessageObject;
 import rda.extension.manager.SystemManagerExtension;
 import rda.manager.AgentManager;
@@ -55,10 +56,14 @@ public class AgentIntaractionThread extends Thread {
                 //dist deploy
                 }else if(manager.getDeployPattern() == 1){
                     System.out.println("Transport Window ! wsize=" + ((Window) window).getSize());
-                    //AgentClient client = agent.getConnection("TEST").getConnection();
-                    System.out.println(name+" Server : "+agent.getConnection("TEST").toString());
-                    //trans.sendMessage(client, msg);
+                    DistributedAgentConnection agcon = agent.getConnection("TEST");
+                    //System.out.println(name+" Server : "+agent.getConnection("TEST").toString());
+                    
+                    AgentClient client = agcon.getClient();
+                    trans.sendMessage(client, msg);
                     extension.getWindowController().remove();
+                    
+                    agcon.returnConnection(client);
                 }
             }
             }catch(Exception e){e.printStackTrace();}

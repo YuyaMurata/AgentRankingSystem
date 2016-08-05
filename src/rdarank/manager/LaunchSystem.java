@@ -71,7 +71,7 @@ public class LaunchSystem implements AgentExecutor, Serializable {
     
     public void launch(Map prop){
         try{
-            AgentClient client = agcon.getConnection();
+            AgentClient client = agcon.getClient();
             agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
             
             //System.out.println("Agent Key = "+agentKey);

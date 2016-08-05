@@ -68,7 +68,7 @@ public class ShutdownSystem implements AgentExecutor, Serializable {
 
     public void shutdownm() {
         try {
-            AgentClient client = agcon.getConnection();
+            AgentClient client = agcon.getClient();
             AgentKey agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
 
             ShutdownSystem executor = new ShutdownSystem(agentKey);

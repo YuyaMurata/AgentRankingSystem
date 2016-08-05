@@ -63,8 +63,9 @@ public class RankingSystemMain2 implements SetProperty{
         agentGroup = new HashMap();
         agentGroup.put("useragent", agList);
         
-        agent.create(agcon.getConnection(), agentGroup);
-        agcon.returnConnection(agcon.getConnection());
+        AgentClient client = agcon.getClient();
+        agent.create(client, agentGroup);
+        agcon.returnConnection(client);
         
         //RankAgent
         agcon = RankAgentManager.getInstance().getConnection("all");
@@ -73,8 +74,9 @@ public class RankingSystemMain2 implements SetProperty{
         agentGroup = new HashMap();
         agentGroup.put("rankagent", agrList);
         
-        agent.create(agcon.getConnection(), agentGroup);
-        agcon.returnConnection(agcon.getConnection());
+        client = agcon.getClient();
+        agent.create(client, agentGroup);
+        agcon.returnConnection(client);
         
         //Start Logging
         manager.startLogger();

@@ -113,7 +113,7 @@ public class RankAgentDBAccess  implements AgentExecutor, Serializable {
     public SQLReturnObject query() {
         agcon = RankAgentManager.getInstance().getConnection("all");
         try {
-            AgentClient client = agcon.getConnection();
+            AgentClient client = agcon.getClient();
             
             RankAgentDBAccess executor = new RankAgentDBAccess();
             

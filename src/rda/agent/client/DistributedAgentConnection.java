@@ -41,7 +41,7 @@ public class DistributedAgentConnection {
         createObjectPool(poolsize, aghost);
     }
     
-    public AgentClient getConnection(){
+    public AgentClient getClient(){
         AgentClient ag = null;
         
         try {

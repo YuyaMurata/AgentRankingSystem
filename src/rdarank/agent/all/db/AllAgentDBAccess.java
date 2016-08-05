@@ -108,7 +108,7 @@ public class AllAgentDBAccess implements AgentExecutor, Serializable {
     public SQLReturnObject query() {
         agcon = RankingSystemManager.getInstance().getServer().getConnection(0);
         try {
-            AgentClient client = agcon.getConnection();
+            AgentClient client = agcon.getClient();
             
             AllAgentDBAccess executor = new AllAgentDBAccess();
             
