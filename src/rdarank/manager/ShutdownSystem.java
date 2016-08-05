@@ -16,7 +16,6 @@ import java.io.Serializable;
 import java.util.Collection;
 
 import rda.agent.client.DistributedAgentConnection;
-import rdarank.server.DistributedServerConnection;
 
 /**
  *
@@ -27,11 +26,8 @@ public class ShutdownSystem implements AgentExecutor, Serializable {
     private static final String AGENT_TYPE = "systemmanageragent";
     private static final String MESSAGE_TYPE = "shutdownSystem";
     //private static AgentConnection agcon = AgentConnection.getInstance();
-    
-    private static DistributedAgentConnection agcon;
 
     public ShutdownSystem() {
-        agcon = RankingSystemManager.getInstance().getServer().getConnection(0);
     }
 
     AgentKey agentKey;
@@ -67,17 +63,20 @@ public class ShutdownSystem implements AgentExecutor, Serializable {
     }
 
     public void shutdownm() {
-        try {
-            AgentClient client = agcon.getClient();
-            AgentKey agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
+        RankingSystemManager manager = RankingSystemManager.getInstance();
+        for (DistributedAgentConnection agcon : manager.getServer().getConnectionList()) {
+            try {
+                AgentClient client = agcon.getClient();
+                AgentKey agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
 
-            ShutdownSystem executor = new ShutdownSystem(agentKey);
-            Object reply = client.execute(agentKey, executor);
+                ShutdownSystem executor = new ShutdownSystem(agentKey);
+                Object reply = client.execute(agentKey, executor);
 
-            System.out.println(reply);
+                System.out.println(reply);
 
-            agcon.returnConnection(client);
-        } catch (AgentException ex) {
+                agcon.returnConnection(client);
+            } catch (AgentException ex) {
+            }
         }
     }
 }

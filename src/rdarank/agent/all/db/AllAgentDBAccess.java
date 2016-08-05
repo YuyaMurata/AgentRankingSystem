@@ -30,28 +30,28 @@ import rdarank.server.DistributedServerConnection;
  * @author kaeru
  */
 public class AllAgentDBAccess implements AgentExecutor, Serializable {
+
     /**
-    * 
-    */
+     *
+     */
     private static final long serialVersionUID = -1826433740843048L;
     private static DistributedAgentConnection agcon;
 
     public AllAgentDBAccess() {
     }
-    
+
     @Override
     /**
-    * 各リージョンのAgentDataのコレクションを返す
-    */
+     * 各リージョンのAgentDataのコレクションを返す
+     */
     public Object complete(Collection<Object> results) {
         return results;
     }
 
     @Override
     /**
-    * エージェント実行環境のサーバにて，そのサーバのリージョンに対応する
-    * レプリカ用solidDBにJDBCで接続して，AgentDataを得る
-    */
+     * エージェント実行環境のサーバにて，そのサーバのリージョンに対応する レプリカ用solidDBにJDBCで接続して，AgentDataを得る
+     */
     public Object execute() {
         Connection con = null;
         PreparedStatement stmt = null;
@@ -59,32 +59,33 @@ public class AllAgentDBAccess implements AgentExecutor, Serializable {
             // このサーバのリージョン名を取得する
             AgentManager agentManager = AgentManager.getAgentManager();
             String regionName = agentManager.getRegionName();
-			
+
             // JDBCドライバの接続パラメータにリージョン名を指定する
             Properties props = new Properties();
             props.put("region", regionName);
-			
+
             // JDBC接続を得る
             con = DriverManager.getConnection("jdbc:ceta:rdarank", props);
 
             // AgentDataを得るSQLを生成し，検索を行う．
             stmt = con.prepareStatement("select * from userlog where accessid='update'");
             ResultSet rs = stmt.executeQuery();
-            
+
             //IDとDataを取得
             List<Map> result = new ArrayList<>();
             Map log = new HashMap();
-            while(rs.next()){
+            while (rs.next()) {
                 //System.out.println(rs.getString(1));
-                if(rs.getString(2).contains("update"))
-                log.put(rs.getString(1), rs.getLong(4));
+                if (rs.getString(2).contains("update")) {
+                    log.put(rs.getString(1), rs.getLong(4));
+                }
             }
-            
+
             result.add(log);
-                
+
             return result;
-                
-        } catch(Exception e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
             return e;
         } finally {
@@ -104,38 +105,40 @@ public class AllAgentDBAccess implements AgentExecutor, Serializable {
             }
         }
     }
-    
+
     public SQLReturnObject query() {
         agcon = RankingSystemManager.getInstance().getServer().getConnection(0);
         try {
             AgentClient client = agcon.getClient();
-            
+
             AllAgentDBAccess executor = new AllAgentDBAccess();
-            
+
             Object ret = client.execute(executor);
-            Collection<Object> col = (Collection<Object>)ret;
-            
+            Collection<Object> col = (Collection<Object>) ret;
+
             SQLReturnObject sqlResults = new SQLReturnObject();
             List<Map> results = new ArrayList<>();
-            for(Object o : col) {
-                int i=0;
-                for(Map m : (List<Map>)o){
-                    if(results.size() <= i) results.add(i, new HashMap());
+            for (Object o : col) {
+                int i = 0;
+                for (Map m : (List<Map>) o) {
+                    if (results.size() <= i) {
+                        results.add(i, new HashMap());
+                    }
                     results.get(i).putAll(m);
                     i++;
                 }
             }
-            
+
             sqlResults.setResultSet(results);
-            
+
             agcon.returnConnection(client);
-            
+
             return sqlResults;
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return null;
     }
-    
+
 }

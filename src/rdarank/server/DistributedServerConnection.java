@@ -30,4 +30,8 @@ public class DistributedServerConnection {
     public DistributedAgentConnection getConnection(int index){
         return (DistributedAgentConnection) serverList.get(index);
     }
+    
+    public List<DistributedAgentConnection> getConnectionList(){
+        return serverList;
+    }
 }
