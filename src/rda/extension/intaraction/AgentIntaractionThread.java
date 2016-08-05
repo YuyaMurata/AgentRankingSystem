@@ -55,9 +55,7 @@ public class AgentIntaractionThread extends Thread {
                     }
                 //dist deploy
                 }else if(manager.getDeployPattern() == 1){
-                    System.out.println("Transport Window ! wsize=" + ((Window) window).getSize());
-                    
-                    DistributedAgentConnection agcon = agent.getConnection("TEST");
+                    DistributedAgentConnection agcon = agent.getConnection(msg.rankID());
                     AgentClient client = agcon.getClient();
                     
                     System.out.print(">> Server <"+agcon.toString()+"> ");

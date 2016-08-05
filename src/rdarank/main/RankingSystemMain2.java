@@ -14,6 +14,7 @@ import rda.agent.client.DistributedAgentConnection;
 import rda.property.SetProperty;
 import rdarank.agent.rank.manager.RankAgentManager;
 import rdarank.agent.user.manager.UserAgentManager;
+import rdarank.deploy.DeployStrategy;
 import rdarank.manager.ExecuteDataStream;
 import rdarank.manager.LaunchCreateAgent;
 import rdarank.manager.LaunchSettingsMap;
@@ -52,34 +53,8 @@ public class RankingSystemMain2 implements SetProperty{
         LaunchSystem system = new LaunchSystem();
         system.launch(settings.getPropMap());
         
-        //Agent Deploy (Test)
-        LaunchCreateAgent agent = new LaunchCreateAgent();
-        Map agentGroup;
-        // Agent Create
-        
-        //UserAgent
-        DistributedAgentConnection agcon = UserAgentManager.getInstance().getConnection("all");
-        System.out.println(">>  Server <"+agcon.toString()+">");
-        List agList = new ArrayList();
-        agList.add("USER#000");agList.add("USER#001");agList.add("USER#002");
-        agentGroup = new HashMap();
-        agentGroup.put("useragent", agList);
-        
-        AgentClient client = agcon.getClient();
-        agent.create(client, agentGroup);
-        agcon.returnConnection(client);
-        
-        //RankAgent
-        agcon = RankAgentManager.getInstance().getConnection("all");
-        System.out.println(">>  Server <"+agcon.toString()+">");
-        List agrList = new ArrayList();
-        agrList.add("RANK#005");
-        agentGroup = new HashMap();
-        agentGroup.put("rankagent", agrList);
-        
-        client = agcon.getClient();
-        agent.create(client, agentGroup);
-        agcon.returnConnection(client);
+        //Deploy and CreateAgent
+        DeployStrategy strategy = new DeployStrategy(AGENT_DEPLOY_PATTERN);
     }
     
     private static void periodDataStream(){

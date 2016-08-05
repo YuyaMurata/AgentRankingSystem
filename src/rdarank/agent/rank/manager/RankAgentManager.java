@@ -205,8 +205,27 @@ public class RankAgentManager extends AgentManager{
 
     @Override
     public DistributedAgentConnection getConnection(String id) {
-        DistributedAgentConnection agcon = sconn.getConnection(0);
+        Integer hash = Math.abs(id.hashCode()) % sconn.getConnectionList().size();
+        DistributedAgentConnection agcon = sconn.getConnection(hash);
         System.out.println("RankAgentManager Get Connection : "+ agcon.toString());
         return agcon;
+    }
+    
+    public Integer getNumServer(){
+        return sconn.getConnectionList().size();
+    }
+    
+    
+    //基本的に使わない IDのみ生成　*initAgentと両立不可
+    private List<String> idList = new ArrayList<>();
+    public void initID(Map param){
+        //Init IDManager
+        this.rankID = new IDManager(param);
+        Integer n = (Integer) param.get("AMOUNT_OF_AGENTS");
+        for(int i=0; i < n; i++)
+            idList.add(rankID.genID());
+    }
+    public List<String> getIDList(){
+        return idList;
     }
 }

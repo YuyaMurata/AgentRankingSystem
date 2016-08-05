@@ -47,6 +47,11 @@ public class MessageObject implements Externalizable {
         return rankID.getDestID(idarr[0], idarr[1]);
     }
     
+    public String rankID(){
+        String[] idarr = this.id.split(",");
+        return idarr[0];
+    }
+    
     public Long latency(){
         return System.currentTimeMillis() - lateTime;
     }

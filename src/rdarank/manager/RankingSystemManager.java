@@ -43,6 +43,13 @@ public class RankingSystemManager {
         System.out.println(">>Launch Monitor");
         serverSettings(preServerMap());
         dataSettings(preDataMap(), preProfMap());
+        
+        //使用時に注意 launchSystemを実行した環境では使用不可
+        RankAgentManager rank = RankAgentManager.getInstance();
+        rank.initID(preRankAgentMap());
+        UserAgentManager user = UserAgentManager.getInstance();
+        user.initID(preUserAgentMap());
+        
         System.out.println(">>> Finished Set Monitor");
     }
 

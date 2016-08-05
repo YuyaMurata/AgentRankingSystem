@@ -203,8 +203,29 @@ public class UserAgentManager extends AgentManager{
 
     @Override
     public DistributedAgentConnection getConnection(String id) {
-        DistributedAgentConnection agcon = sconn.getConnection(0);
+        Integer hash = Math.abs(id.hashCode()) % sconn.getConnectionList().size();
+        if(id.contains("")) hash = 0;
+            
+        DistributedAgentConnection agcon = sconn.getConnection(hash);
         System.out.println("UserAgentManager Get Connection : "+ agcon.toString());
         return agcon;
-    }   
+    }
+    
+    public Integer getNumServer(){
+        return sconn.getConnectionList().size();
+    }
+    
+    
+    //基本的に使わない IDのみ生成　*initAgentと両立不可
+    private List<String> idList = new ArrayList<>();
+    public void initID(Map param){
+        //Init IDManager
+        this.userID = new IDManager(param);
+        Integer n = (Integer) param.get("AMOUNT_OF_AGENTS");
+        for(int i=0; i < n; i++)
+            idList.add(userID.genID());
+    }
+    public List<String> getIDList(){
+        return idList;
+    }
 }
