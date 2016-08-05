@@ -222,38 +222,38 @@ public class RankingSystemManager {
 
     //UserAgent Parameter
     private Map preUserAgentMap() {
-        AgentLogPrint.printPropertySettings("UserAgent", props.get("user"));
+        //AgentLogPrint.printPropertySettings("UserAgent", props.get("user"));
         return props.get("user");
     }
 
     //RankAgent Parameter
     private Map preRankAgentMap() {
-        AgentLogPrint.printPropertySettings("RankAgent", props.get("rank"));
+        //AgentLogPrint.printPropertySettings("RankAgent", props.get("rank"));
         return props.get("rank");
     }
 
     private Map preProfMap() {
-        AgentLogPrint.printPropertySettings("UserProfile", props.get("profile"));
+        //AgentLogPrint.printPropertySettings("UserProfile", props.get("profile"));
         return props.get("profile");
     }
 
     private Map preDataMap() {
-        AgentLogPrint.printPropertySettings("Data", props.get("datagen"));
+        //AgentLogPrint.printPropertySettings("Data", props.get("datagen"));
         return props.get("datagen");
     }
 
     private Map preStreamMap() {
-        AgentLogPrint.printPropertySettings("Stream", props.get("stream"));
+        //AgentLogPrint.printPropertySettings("Stream", props.get("stream"));
         return props.get("stream");
     }
 
     private Map preLoggerMap() {
-        AgentLogPrint.printPropertySettings("Logger", props.get("logger"));
+        //AgentLogPrint.printPropertySettings("Logger", props.get("logger"));
         return props.get("logger");
     }
 
     private Map preServerMap() {
-        AgentLogPrint.printPropertySettings("Server", props.get("server"));
+        //AgentLogPrint.printPropertySettings("Server", props.get("server"));
         return props.get("server");
     }
 

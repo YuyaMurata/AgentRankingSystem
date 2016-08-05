@@ -55,6 +55,7 @@ public class RankingSystemMain2 implements SetProperty{
         
         //Deploy and CreateAgent
         DeployStrategy strategy = new DeployStrategy(AGENT_DEPLOY_PATTERN);
+        strategy.deploy(UserAgentManager.getInstance(), RankAgentManager.getInstance());
     }
     
     private static void periodDataStream(){

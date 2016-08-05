@@ -43,7 +43,7 @@ public class DeployStrategy {
         agentGroup.put("useragent", user.getIDList());
         agentGroup.put("rankagent", rank.getIDList());
         
-        System.out.println(agentGroup);
+        //System.out.println(agentGroup);
         
         DistributedAgentConnection agcon = UserAgentManager.getInstance().getConnection("");
         AgentClient client = agcon.getClient();
