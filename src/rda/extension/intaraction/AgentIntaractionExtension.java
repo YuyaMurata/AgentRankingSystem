@@ -150,6 +150,7 @@ public class AgentIntaractionExtension implements Extension{
     }
     
     public void startConnectionAgents(){
+        System.out.println("rda.extension.intaraction.AgentIntaractionExtension.startConnectionAgents() >> "+"start intaractions!");
         thread.start();
     }
     
