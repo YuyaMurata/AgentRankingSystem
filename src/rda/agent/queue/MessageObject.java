@@ -1,6 +1,5 @@
 package rda.agent.queue;
 
-import com.ibm.agent.exa.AgentKey;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
