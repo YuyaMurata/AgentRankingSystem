@@ -32,7 +32,6 @@ public class AgentIntaractionThread extends Thread {
             Window window = extension.getWindowController().get();
             if (window == null) {
                 try {
-                    System.out.println("Transport Window ! wsize is NULL !! ");
                     Thread.sleep(10L);
                 } catch (InterruptedException ex) {
                 }

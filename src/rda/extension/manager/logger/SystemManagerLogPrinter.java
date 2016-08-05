@@ -29,10 +29,16 @@ public class SystemManagerLogPrinter extends AgentLogPrinterTemplate{
     //UserAgent MessageQueue Status
     private void printUserAgentObserver(){
         UserAgentManager manager = UserAgentManager.getInstance();
+        
         StringBuilder place = new StringBuilder("MessageQueue");
         List field = new ArrayList();
         List data = new ArrayList();
         Map map = new HashMap();
+        
+        if(manager.getObserver() == null){
+            System.out.println("UserAgent Observer is null !");
+            return ;
+        }
         
         for(int i=0; i < manager.getObserver().size(); i++){
             place.append(",{}");
@@ -57,10 +63,16 @@ public class SystemManagerLogPrinter extends AgentLogPrinterTemplate{
     //RankAgent MessageQueue Status
      private void printRankAgentObserver(){
         RankAgentManager manager = RankAgentManager.getInstance();
+        
         StringBuilder place = new StringBuilder("MessageQueue");
         List field = new ArrayList();
         List data = new ArrayList();
         Map map = new HashMap();
+        
+        if(manager.getObserver() == null){
+            System.out.println("RankAgent Observer is null !");
+            return ;
+        }
         
         for(int i=0; i < manager.getObserver().size(); i++){
             place.append(",{}");
@@ -109,8 +121,8 @@ public class SystemManagerLogPrinter extends AgentLogPrinterTemplate{
         System.out.println("> useragent : ");
         printUserAgentObserver();
         
-        //System.out.println("> rankagent : ");
-        //printRankAgentObserver();
+        System.out.println("> rankagent : ");
+        printRankAgentObserver();
     }
     
 }

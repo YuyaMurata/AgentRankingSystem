@@ -122,7 +122,6 @@ public class AgentIntaractionExtension implements Extension{
         
         //AgentIntaraction Thread
         thread = new AgentIntaractionThread();
-        thread.start();
     }
     
     public WindowController getWindowController() {
@@ -148,6 +147,10 @@ public class AgentIntaractionExtension implements Extension{
         }
         
         return true;
+    }
+    
+    public void startConnectionAgents(){
+        thread.start();
     }
     
     public void communicateAgent(DataTemplate data){

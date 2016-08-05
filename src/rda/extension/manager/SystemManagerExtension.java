@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Properties;
 import rda.agent.template.AgentLogPrinterTemplate;
 import rda.data.profile.ProfileGenerator;
+import rda.extension.intaraction.AgentIntaractionExtension;
 import rdarank.manager.RankingSystemManager;
 
 /**
@@ -119,8 +120,7 @@ public class SystemManagerExtension implements Extension {
 
     //Rankig System Manager
     private RankingSystemManager manager;
-    private Boolean state = true;
-
+    private Boolean state;
     public void startRankingSystem(Map props) {
         manager = RankingSystemManager.getInstance();
 
@@ -139,7 +139,9 @@ public class SystemManagerExtension implements Extension {
         //Start Logger
         manager.startLogger();
 
+        //Start Intaraction
         this.state = true;
+        AgentIntaractionExtension.getInstance().startConnectionAgents();
     }
 
     public void dataGenerate(Long time) {
