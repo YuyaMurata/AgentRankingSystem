@@ -74,7 +74,6 @@ public class SystemManagerExtension implements Extension {
 
         //Only Thread Type
         //manager.dataStream().stop();
-        manager.stopLogger();
         manager.shutdownSystem();
     }
 
@@ -136,9 +135,6 @@ public class SystemManagerExtension implements Extension {
 
         //Data Stream Generator Initialize
         manager.setDataStreamGenerator();
-
-        //Start Logger
-        manager.startLogger();
 
         //Start Intaraction
         AgentIntaractionExtension.getInstance().startConnectionAgents();

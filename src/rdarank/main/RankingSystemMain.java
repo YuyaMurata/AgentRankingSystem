@@ -26,7 +26,7 @@ public class RankingSystemMain {
     }
     
     private static void logger(){
-        manager.startLogger();
+        //manager.startLogger();
     }
     
     private static void execute(){
@@ -35,7 +35,7 @@ public class RankingSystemMain {
     
     private static void shutdown(){
         manager.dataStream().stop();
-        manager.stopLogger();
+        //manager.stopLogger();
         manager.shutdownSystem();
     }
 }

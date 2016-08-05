@@ -55,6 +55,7 @@ public class RankingSystemMain2 implements SetProperty{
         //Agent Deploy (Test)
         LaunchCreateAgent agent = new LaunchCreateAgent();
         Map agentGroup;
+        // Agent Create
         
         //UserAgent
         DistributedAgentConnection agcon = UserAgentManager.getInstance().getConnection("all");
@@ -79,9 +80,6 @@ public class RankingSystemMain2 implements SetProperty{
         client = agcon.getClient();
         agent.create(client, agentGroup);
         agcon.returnConnection(client);
-        
-        //Start Logging
-        manager.startLogger();
     }
     
     private static void periodDataStream(){
@@ -102,9 +100,6 @@ public class RankingSystemMain2 implements SetProperty{
     }
     
     private static void shutdownSystem(){
-        RankingSystemManager manager = RankingSystemManager.getInstance();
-        manager.stopLogger();
-        
         ShutdownSystem system = new ShutdownSystem();
         system.shutdownm();
         

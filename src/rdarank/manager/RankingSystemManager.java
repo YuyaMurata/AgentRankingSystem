@@ -37,30 +37,31 @@ public class RankingSystemManager {
     public static RankingSystemManager getInstance() {
         return manager;
     }
-    
+
     //Monitor 
-    public void launchMonitor(){
+    public void launchMonitor() {
         System.out.println(">>Launch Monitor");
         serverSettings(preServerMap());
         dataSettings(preDataMap(), preProfMap());
-        loggerSettings(preLoggerMap());
-        System.out.println(">>> Finished Set Logger & Printer");
+        System.out.println(">>> Finished Set Monitor");
     }
 
     public void launchSystem() {
         System.out.println(">>Launch System");
 
         serverSettings(preServerMap());
-        managerLoggerSettings(preLoggerMap(), new SystemManagerLogPrinter("systemmanager"));
+        //変更予定
+        //managerLoggerSettings(preLoggerMap(), new SystemManagerLogPrinter("systemmanager"));
         dataSettings(preDataMap(), preProfMap());
         agentSettings(preUserAgentMap(), preRankAgentMap(), preServerMap());
     }
-    
+
     public void launchDistSystem() {
         System.out.println(">>Launch System");
 
         serverSettings(preServerMap());
-        managerLoggerSettings(preLoggerMap(), new SystemManagerLogPrinter("systemmanager"));
+        //変更予定
+        //managerLoggerSettings(preLoggerMap(), new SystemManagerLogPrinter("systemmanager"));
         dataSettings(preDataMap(), preProfMap());
         agentDistSettings(preUserAgentMap(), preRankAgentMap(), preServerMap());
     }
@@ -127,20 +128,20 @@ public class RankingSystemManager {
 
         System.out.println(">>> Finished Set UserAgents & IDs");
     }
-    
+
     //Distributed Server
-    public void agentDistSettings(Map userAgentParam, Map rankAgentParam, Map serverParam){
+    public void agentDistSettings(Map userAgentParam, Map rankAgentParam, Map serverParam) {
         //RankAgent Initialize
         System.out.println("< Initialise RankAgents >");
         RankAgentManager rank = RankAgentManager.getInstance();
         rank.initAgent(rankAgentParam);
         rank.initNumberOfAgents((Integer) rankAgentParam.get("AMOUNT_OF_AGENTS"));
-        
+
         //UserAgent Attributed Initialize
         TestCaseManager tcManager = TestCaseManager.getInstance();
         tcManager.profgen.addUserProfileToAgent();
         tcManager.profgen.addUserAgentCommunication();
-        
+
         //UserAgent Initialize
         System.out.println("< Initialise UserAgents >");
         UserAgentManager user = UserAgentManager.getInstance();
@@ -155,31 +156,33 @@ public class RankingSystemManager {
         System.out.println(">>> Finished Set TestCase");
     }
 
-    private void loggerSettings(Map loggerMap) {
-        LoggerManager.getInstance().initLoggerManager(loggerMap);
-        RankAgentManager.getInstance().setLogger();
-        UserAgentManager.getInstance().setLogger();
+    private DistributedServerConnection sconn;
+
+    private void serverSettings(Map serverMap) {
+        UserAgentManager.getInstance().setServerList(serverMap);
+        RankAgentManager.getInstance().setServerList(serverMap);
+
+        //All Server
+        sconn = new DistributedServerConnection();
+        sconn.setServerList(
+                ((String) serverMap.get("SERVER_LIST_USER") + (String) serverMap.get("SERVER_LIST_RANK")),
+                (Integer) serverMap.get("POOLSIZE")
+        );
     }
-    
+
+    /* 変更予定
     private void managerLoggerSettings(Map loggerMap, AgentLogPrinterTemplate log){
         System.out.println("< Initialize Logger >");
         LoggerManager.getInstance().initLoggerManager(loggerMap);
         LoggerManager.getInstance().setLogPrinter(log);
     }
     
-    private DistributedServerConnection sconn;
-    private void serverSettings(Map serverMap){
-        UserAgentManager.getInstance().setServerList(serverMap);
-        RankAgentManager.getInstance().setServerList(serverMap);
-        
-        //All Server
-        sconn = new DistributedServerConnection();
-        sconn.setServerList(
-                ((String)serverMap.get("SERVER_LIST_USER")+(String)serverMap.get("SERVER_LIST_RANK")),
-                (Integer) serverMap.get("POOLSIZE")
-        );
+    private void loggerSettings(Map loggerMap) {
+        LoggerManager.getInstance().initLoggerManager(loggerMap);
+        RankAgentManager.getInstance().setLogger();
+        UserAgentManager.getInstance().setLogger();
     }
-
+    
     public void startLogger() {
         LoggerManager.getInstance().startLogger();
     }
@@ -187,7 +190,7 @@ public class RankingSystemManager {
     public void stopLogger() {
         LoggerManager.getInstance().stopLogger();
     }
-    
+     */
     //DataStream Generator
     private TimeToDataStream timeStream;
 
@@ -241,18 +244,19 @@ public class RankingSystemManager {
         AgentLogPrint.printPropertySettings("Logger", props.get("logger"));
         return props.get("logger");
     }
-    
+
     private Map preServerMap() {
         AgentLogPrint.printPropertySettings("Server", props.get("server"));
         return props.get("server");
     }
 
     private HashMap<String, Map> props;
+
     public void setPropMap(Map map) {
         this.props = (HashMap<String, Map>) map;
     }
-    
-    public DistributedServerConnection getServer(){
+
+    public DistributedServerConnection getServer() {
         return sconn;
     }
 }
