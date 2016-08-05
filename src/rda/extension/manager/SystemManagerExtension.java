@@ -120,7 +120,7 @@ public class SystemManagerExtension implements Extension {
 
     //Rankig System Manager
     private RankingSystemManager manager;
-    private Boolean state;
+    private static Boolean state = true;
     public void startRankingSystem(Map props) {
         manager = RankingSystemManager.getInstance();
 
@@ -140,7 +140,6 @@ public class SystemManagerExtension implements Extension {
         manager.startLogger();
 
         //Start Intaraction
-        this.state = true;
         AgentIntaractionExtension.getInstance().startConnectionAgents();
     }
 
