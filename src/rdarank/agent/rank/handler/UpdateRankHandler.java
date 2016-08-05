@@ -64,8 +64,6 @@ public class UpdateRankHandler extends MessageHandler {
         //Connection
         agent.setConnectionCount(tx, agent.getConnectionCount(tx) + 1);
         //Message Latency
-        System.out.println("RankAgent Latency :: CurrentTime="+System.currentTimeMillis() + " - "+ msgObj.lateTime +" -> "+(System.currentTimeMillis()-msgObj.lateTime));
-        
         agent.setMessageLatency(tx, msgObj.latency());
         //Agent Message Queue
         //agent.setMessageQueueLength(tx, msgObj.getLength());
