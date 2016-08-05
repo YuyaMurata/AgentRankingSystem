@@ -1,1 +1,1 @@
-clsql -catalog:h1:11000 -user:cetaadmin -password:cetaadmin
+clsql -catalog:localhost:11000 -user:cetaadmin -password:cetaadmin
