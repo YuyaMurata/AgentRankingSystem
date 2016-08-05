@@ -75,6 +75,6 @@ public class DistributedAgentConnection {
     }
     
     public String toString(){
-        return h.toString();
+        return h[0];
     }
 }
