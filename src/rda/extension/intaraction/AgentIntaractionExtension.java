@@ -28,7 +28,7 @@ public class AgentIntaractionExtension implements Extension {
 
     private static AgentIntaractionExtension extention = new AgentIntaractionExtension();
 
-    private WindowController windowCTRL = new WindowController(100, 10L, 1);
+    private WindowController windowCTRL = new WindowController(1000, 10L, 1);
 
     public static AgentIntaractionExtension getInstance() {
         return extention;
