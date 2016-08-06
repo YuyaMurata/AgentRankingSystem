@@ -41,7 +41,7 @@ public class AgentIntaractionThread extends Thread {
             Window window = extension.getWindowController().get();
             if (window == null) {
                 try {
-                    Thread.sleep(10L);
+                    Thread.sleep(1L);
                 } catch (InterruptedException ex) {
                 }
             } else {
