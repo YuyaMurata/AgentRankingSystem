@@ -45,7 +45,7 @@ public class DeployStrategy {
         
         //System.out.println(agentGroup);
         
-        DistributedAgentConnection agcon = UserAgentManager.getInstance().getConnection("");
+        DistributedAgentConnection agcon = UserAgentManager.getInstance().getConnection("0");
         AgentClient client = agcon.getClient();
         
         agent.create(client, agentGroup);
