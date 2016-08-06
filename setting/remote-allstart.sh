@@ -5,9 +5,8 @@ read
 
 #遠隔で実験用スクリプトを起動
 sshpass -p 11m35584 ssh root@$1 \
-"echo $CETA_HOME"
-#cd $CETA_HOME/App/AgentSystem/AgentRankingSystem/setting;\
-#pwd;\
-#./$1start.sh;\
-#sleep 2s;\
-#showRegion"
+"cd $CETA_HOME/App/AgentSystem/AgentRankingSystem/setting;\
+pwd;\
+./$1start.sh;\
+sleep 2s;\
+showRegion"
