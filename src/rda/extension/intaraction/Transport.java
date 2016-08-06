@@ -65,14 +65,18 @@ public class Transport implements AgentExecutor, Externalizable{
             smsg.set("message", msg);
 
             //Sync Message
-            Object ret = agentManager.sendMessage(agentKey, smsg);
-            //agentManager.putMessage(agentKey, msg);
+            //Object ret = agentManager.sendMessage(agentKey, smsg);
+            agentManager.putMessage(agentKey, smsg);
 
-            return ret;
+            //return ret;
         } catch (IllegalAccessException | InstantiationException e) {
             // TODO 自動生成された catch ブロック
             return e;
+        } catch (AgentException ex) {
+            return ex;
         }
+        
+        return null;
     }
     
     public void sendMessage(AgentClient client, MessageObject msg){

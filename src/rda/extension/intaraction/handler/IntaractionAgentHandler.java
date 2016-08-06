@@ -23,9 +23,7 @@ public class IntaractionAgentHandler extends MessageHandler{
         // TODO 自動生成されたメソッド・スタブ
         SimpleMessage smsg = (SimpleMessage)msg;
         MessageObject trans = (MessageObject) smsg.get("message");
-        
-        //
-        
+
         //Intaraction Agent
         while(!AgentIntaractionExtension.getInstance().transport(trans)){
             try{
