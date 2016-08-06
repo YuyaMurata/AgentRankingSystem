@@ -70,6 +70,7 @@ public class DeployStrategy {
         }
         
         for(DistributedAgentConnection agcon : serverGroup.keySet()){
+            System.out.println(">> Deploy Agent Server = "+agcon.toString());
             
             agentGroup.put("useragent", serverGroup.get(agcon));
             
@@ -93,6 +94,7 @@ public class DeployStrategy {
         }
         
         for(DistributedAgentConnection agcon : serverGroup.keySet()){
+            System.out.println(">> Deploy Agent Server = "+agcon.toString());
             
             agentGroup.put("rankagent", serverGroup.get(agcon));
             
