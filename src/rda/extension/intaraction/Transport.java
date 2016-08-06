@@ -82,7 +82,7 @@ public class Transport implements AgentExecutor, Externalizable{
             Transport executor = new Transport(agentKey, msg);
             Object reply = client.execute(agentKey, executor);
             
-            System.out.println(reply);
+            //System.out.println(reply);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

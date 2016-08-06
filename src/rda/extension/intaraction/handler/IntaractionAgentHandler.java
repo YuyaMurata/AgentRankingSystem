@@ -35,7 +35,7 @@ public class IntaractionAgentHandler extends MessageHandler{
             System.out.println("Transport Int : "+trans.toString());
         }
         
-        return "-- AgentIntaraction Transport Message -->";
+        return "-- AgentIntaraction Transport Message" + trans.toString() + "-->";
     }
     
 }
