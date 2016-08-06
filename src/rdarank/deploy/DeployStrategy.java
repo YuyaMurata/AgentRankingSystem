@@ -57,21 +57,21 @@ public class DeployStrategy {
         
         //User Agent
         Map agentGroup = new HashMap();
-        Map serverGroup = new HashMap();
+        Map<DistributedAgentConnection, List> serverGroup = new HashMap();
         
         for(String userID : user.getIDList()){
-            Integer hash = Math.abs(userID.hashCode()) % user.getNumServer();
-            if(serverGroup.get(hash) == null) serverGroup.put(hash, new ArrayList<>());
+            DistributedAgentConnection agcon = user.getConnection(userID);
             
-            List<String> agList = (List<String>) serverGroup.get(hash);
+            if(serverGroup.get(agcon) == null) serverGroup.put(agcon, new ArrayList<>());
+            
+            List<String> agList = (List<String>) serverGroup.get(agcon);
             agList.add(userID);
-            serverGroup.put(hash, agList);
+            serverGroup.put(agcon, agList);
         }
         
-        for(Object id : serverGroup.keySet()){
-            DistributedAgentConnection agcon = user.getConnection(((List<String>)serverGroup.get(id)).get(0));
+        for(DistributedAgentConnection agcon : serverGroup.keySet()){
             
-            agentGroup.put("useragent", serverGroup.get(id));
+            agentGroup.put("useragent", serverGroup.get(agcon));
             
             AgentClient client = agcon.getClient();
             agent.create(client, agentGroup);
@@ -83,18 +83,18 @@ public class DeployStrategy {
         serverGroup = new HashMap();
         
         for(String rankID : rank.getIDList()){
-            Integer hash = Math.abs(rankID.hashCode()) % rank.getNumServer();
-            if(serverGroup.get(hash) == null) serverGroup.put(hash, new ArrayList<>());
+            DistributedAgentConnection agcon = rank.getConnection(rankID);
             
-            List<String> agList = (List<String>) serverGroup.get(hash);
+            if(serverGroup.get(agcon) == null) serverGroup.put(agcon, new ArrayList<>());
+            
+            List<String> agList = (List<String>) serverGroup.get(agcon);
             agList.add(rankID);
-            serverGroup.put(hash, agList);
+            serverGroup.put(agcon, agList);
         }
         
-        for(Object id : serverGroup.keySet()){
-            DistributedAgentConnection agcon = rank.getConnection(((List<String>)serverGroup.get(id)).get(0));
+        for(DistributedAgentConnection agcon : serverGroup.keySet()){
             
-            agentGroup.put("rankagent", serverGroup.get(id));
+            agentGroup.put("rankagent", serverGroup.get(agcon));
             
             AgentClient client = agcon.getClient();
             agent.create(client, agentGroup);
