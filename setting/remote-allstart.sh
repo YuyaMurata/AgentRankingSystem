@@ -8,4 +8,6 @@ sshpass -p 11m35584 ssh $1@$1 \
 "source /etc/profile;\
 cd $CETA_HOME/App/AgentSystem/AgentRankingSystem/setting;\
 pwd;\
-startCatalog"
+./$1start.sh;\
+sleep 2s;\
+showRegion"

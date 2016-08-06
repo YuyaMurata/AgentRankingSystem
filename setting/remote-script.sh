@@ -5,7 +5,6 @@ pwd
 ./h2start.sh
 sleep 2
 
-showRegion
 
 #プログラムの実行 NumberOFAgents = N
 #/exec_system.sh 10
