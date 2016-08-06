@@ -207,7 +207,7 @@ public class UserAgentManager extends AgentManager{
         if(id.contains("")) hash = 0;
             
         DistributedAgentConnection agcon = sconn.getConnection(hash);
-        System.out.println("UserAgentManager Get Connection : "+hash +" = "+ agcon.toString());
+        System.out.println("UserAgentManager Get Connection : "+hash +" = "+ agcon.toString() +" test = "+id+":"+sconn.getConnectionList());
         return agcon;
     }
     
