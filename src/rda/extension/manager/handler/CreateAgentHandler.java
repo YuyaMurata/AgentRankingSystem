@@ -36,14 +36,30 @@ public class CreateAgentHandler  extends MessageHandler{
         
         System.out.println(ag.agentGroup);
         
-        if(ag.agentGroup.get("rankagent") != null)
-            for(String agID : ag.agentGroup.get("rankagent"))
-                rank.createAgent(agID);
+        Integer numAgents = 0;
+        String type = "";
         
-        if(ag.agentGroup.get("useragent") != null)
-            for(String agID : ag.agentGroup.get("useragent"))
-                user.createAgent(agID);
+        if(ag.agentGroup.get("rankagent") != null){
+            type = "rankagent";
+            for(String agID : ag.agentGroup.get("rankagent")){
+                rank.createAgent(agID);
+                
+                numAgents = numAgents + 1;
+            }
             
-        return "Success CreateAgent !!";
+            type = type + "["+numAgents+"] ";
+        }
+        
+        numAgents = 0;
+        if(ag.agentGroup.get("useragent") != null){
+            type = type + "useragent";
+            for(String agID : ag.agentGroup.get("useragent")){
+                user.createAgent(agID);
+                numAgents = numAgents + 1;
+            }
+            type = type + "["+numAgents+"] ";
+        }
+            
+        return "Success " + type + "CreateAgent !!";
     }
 }
