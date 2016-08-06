@@ -24,36 +24,35 @@ import rdarank.agent.user.manager.UserAgentManager;
  * @author kaeru
  */
 public class ExecuteDataStream implements AgentExecutor, Serializable {
+
     private static final String AGENT_TYPE = "systemmanageragent";
     private static final String MESSAGE_TYPE = "dataGenerate";
     //private static AgentConnection agcon = AgentConnection.getInstance();
-    
-    private static DistributedAgentConnection agcon;
 
     public ExecuteDataStream() {
-        agcon = UserAgentManager.getInstance().getConnection("all");
     }
-    
+
     AgentKey agentKey;
+
     public ExecuteDataStream(AgentKey agentKey) {
         this.agentKey = agentKey;
     }
-    
+
     @Override
     public Object complete(Collection<Object> results) {
         // TODO 自動生成されたメソッド・スタブ
         Object[] ret = results.toArray();
         return ret[0];
     }
-    
+
     @Override
     public Object execute() {
         // TODO 自動生成されたメソッド・スタブ
         try {
             AgentManager agentManager = AgentManager.getAgentManager();
-                
-            Message msg = (Message)MessageFactory.getFactory().getMessage(MESSAGE_TYPE);
-            
+
+            Message msg = (Message) MessageFactory.getFactory().getMessage(MESSAGE_TYPE);
+
             //Sync Message
             Object ret = null;//agentManager.sendMessage(agentKey, msg);
             agentManager.putMessage(agentKey, msg);
@@ -64,19 +63,21 @@ public class ExecuteDataStream implements AgentExecutor, Serializable {
             return e;
         }
     }
-    
-    public void stream(){
-        try{
-            AgentClient client = agcon.getClient();
-            AgentKey agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
-            
-            ExecuteDataStream executor = new ExecuteDataStream(agentKey);
-            Object reply = client.execute(agentKey, executor);
-            
-            //System.out.println(reply);
-            
-            agcon.returnConnection(client);
-        } catch (AgentException ex) {
+
+    public void stream() {
+        UserAgentManager manager = UserAgentManager.getInstance();
+        for (DistributedAgentConnection agcon : manager.getServer().getConnectionList()) {
+            try {
+                AgentClient client = agcon.getClient();
+                AgentKey agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});
+
+                ExecuteDataStream executor = new ExecuteDataStream(agentKey);
+                Object reply = client.execute(agentKey, executor);
+
+                //System.out.println(reply);
+                agcon.returnConnection(client);
+            } catch (AgentException ex) {
+            }
         }
     }
 }

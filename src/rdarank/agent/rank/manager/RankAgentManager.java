@@ -202,6 +202,10 @@ public class RankAgentManager extends AgentManager{
         sconn = new DistributedServerConnection();
         sconn.setServerList((String) serverMap.get("SERVER_LIST_RANK"), (Integer) serverMap.get("POOLSIZE"));
     }
+    
+    public DistributedServerConnection getServer() {
+        return sconn;
+    }
 
     @Override
     public DistributedAgentConnection getConnection(String id) {
