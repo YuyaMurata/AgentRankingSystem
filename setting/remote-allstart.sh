@@ -14,10 +14,9 @@ do
         ./h${i}start.sh"
      
     #確認
-    sleep 10s
     sshpass -p 11m35584 ssh h${i}@h${i} \
         "source /etc/profile;\
         cd $CETA_HOME/App/AgentSystem/AgentRankingSystem/setting;\
-        showRegion"
+        chmod -R 777 *"
 
 done
