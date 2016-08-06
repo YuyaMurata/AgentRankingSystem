@@ -7,10 +7,7 @@ package rda.extension.manager.handler;
 
 import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageHandler;
-import com.ibm.agent.exa.SimpleMessage;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 import rda.extension.manager.SystemManagerExtension;
 import rda.extension.manager.message.CreateAgentMessage;
 import rdarank.agent.rank.manager.RankAgentManager;

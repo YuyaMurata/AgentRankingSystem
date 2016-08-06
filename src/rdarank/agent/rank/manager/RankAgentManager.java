@@ -207,7 +207,9 @@ public class RankAgentManager extends AgentManager{
     public DistributedAgentConnection getConnection(String id) {
         Integer hash = Math.abs(id.hashCode()) % sconn.getConnectionList().size();
         DistributedAgentConnection agcon = sconn.getConnection(hash);
-        System.out.println("RankAgentManager Get Connection : "+ agcon.toString());
+        
+        System.out.println("RankAgentManager Get Connection : "+hash +" = "+ agcon.toString());
+        
         return agcon;
     }
     
