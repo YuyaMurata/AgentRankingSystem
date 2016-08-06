@@ -13,8 +13,8 @@ do
         pwd;\
         ./h${i}start.sh"
      
-    #確認
-    sshpass -p 11m35584 ssh h${i}@h${i} \
+    #権限
+    sshpass -p 11m35584 ssh root@h${i} \
         "source /etc/profile;\
         cd $CETA_HOME/App/AgentSystem/AgentRankingSystem/setting;\
         chmod -R 777 *"
