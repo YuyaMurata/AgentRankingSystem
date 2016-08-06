@@ -1,4 +1,6 @@
 
+rm -fR a? s? catalog
+
 for i in `seq 1 $1`
 do
     #遠隔でサーバーを停止
