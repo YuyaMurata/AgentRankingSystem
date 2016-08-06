@@ -11,8 +11,12 @@ do
         "source /etc/profile;\
         cd $CETA_HOME/App/AgentSystem/AgentRankingSystem/setting;\
         pwd;\
-        ./h${i}start.sh;\
-        sleep 4s;\
+        ./h${i}start.sh"
+
+    #確認
+    sshpass -p 11m35584 ssh h${i}@h${i} \
+        "source /etc/profile;\
+        cd $CETA_HOME/App/AgentSystem/AgentRankingSystem/setting;\
         showRegion"
 
 done
