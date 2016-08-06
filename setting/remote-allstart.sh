@@ -8,6 +8,7 @@ do
     sshpass -p 11m35584 ssh h${i}@h${i} 'echo `hostname`'
     echo ""
     echo " --------------------------------------------------------"
+    echo ""
 
     #遠隔で実験用スクリプトを起動
     sshpass -p 11m35584 ssh h${i}@h${i} \
