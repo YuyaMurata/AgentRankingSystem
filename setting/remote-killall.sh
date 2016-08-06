@@ -1,6 +1,4 @@
 
-rm -fR a? s? catalog
-
 for i in `seq 1 $1`
 do
     #遠隔でサーバーを停止
@@ -11,3 +9,5 @@ do
         ps aux | grep java"
 
 done
+
+rm -fR a? s? catalog
