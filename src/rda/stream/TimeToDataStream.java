@@ -41,6 +41,8 @@ public class TimeToDataStream {
                 
                 if((window = manager.getWindowController().get()) == null) continue;
                 
+                System.out.println(">> TimeToDataStream >> Get WindowCTRL after that Send Data");
+                
                 //Get Destination ID
                 String agID = window.getDestID();
                 
@@ -56,6 +58,8 @@ public class TimeToDataStream {
                 total = total+window.unpack().size();
                 
                 manager.getWindowController().remove();
+                
+                System.out.println(">> TimeToDataStream >> Finished Send Data");
             } catch (MessageQueueEvent mqev) {
                 mqev.printEvent();
             } catch (Exception e){

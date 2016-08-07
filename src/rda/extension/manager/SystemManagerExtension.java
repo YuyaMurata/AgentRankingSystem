@@ -11,10 +11,7 @@ import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.soliddb.extension.Extension;
 import java.util.Map;
 import java.util.Properties;
-import rda.agent.template.AgentLogPrinterTemplate;
-import rda.data.profile.ProfileGenerator;
 import rda.extension.intaraction.AgentIntaractionExtension;
-import rdarank.agent.rank.manager.RankAgentManager;
 import rdarank.manager.RankingSystemManager;
 
 /**
