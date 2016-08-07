@@ -70,10 +70,10 @@ public class RankingSystemMain2 implements SetProperty{
         }
         
         //時間調整
-        try {
+        /*try {
                 Thread.sleep(TIME_PERIOD);
             } catch (InterruptedException ex) {
-            }
+            }*/
         
         System.out.println("Stop Data Stream");
     }
