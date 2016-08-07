@@ -15,6 +15,7 @@ import rda.agent.client.DistributedAgentConnection;
 import rda.agent.template.AgentLogPrinterTemplate;
 import rda.db.SQLReturnObject;
 import rda.log.AgentLogPrint;
+import rda.manager.LoggerManager;
 import rdarank.agent.all.db.AllAgentDBLifetimeAccess;
 import rdarank.agent.all.db.AllAgentDBTransactionAccess;
 import rdarank.agent.rank.manager.RankAgentManager;
@@ -132,5 +133,6 @@ public class SystemLogPrinter  extends AgentLogPrinterTemplate{
     public void printer() {
         printAgentLifeTime(start);
         printAgentTransaction();
+        LoggerManager.getInstance().printTestcaseData(-1L);
     }
 }
