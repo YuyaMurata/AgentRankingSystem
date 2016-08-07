@@ -20,8 +20,9 @@ public class ShutdownSystemHandler extends MessageHandler {
         // TODO 自動生成されたメソッド・スタブ
 
         //Shutdown
+        System.out.println(">> Shutdown Handle !");
         SystemManagerExtension extension = SystemManagerExtension.getInstance();
-        extension.stopRankingSystem();
+        extension.shutdown();
 
         return "Shutdown RankingSystem !";
     }

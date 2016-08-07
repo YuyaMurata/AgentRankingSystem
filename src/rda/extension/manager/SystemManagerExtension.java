@@ -70,6 +70,11 @@ public class SystemManagerExtension implements Extension {
 
     @Override
     public void shutdown() {
+        this.state = false;
+
+        //Only Thread Type
+        //manager.dataStream().stop();
+        manager.shutdownSystem();
     }
 
     @Override
@@ -136,11 +141,7 @@ public class SystemManagerExtension implements Extension {
     }
     
     public void stopRankingSystem(){
-        this.state = false;
-
-        //Only Thread Type
-        //manager.dataStream().stop();
-        manager.shutdownSystem();
+        
     }
 
     public void dataGenerate(Long time) {
