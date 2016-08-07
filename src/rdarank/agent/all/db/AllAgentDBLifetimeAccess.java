@@ -35,7 +35,6 @@ public class AllAgentDBLifetimeAccess implements AgentExecutor, Serializable {
      *
      */
     private static final long serialVersionUID = -1826433740843048L;
-    private static DistributedAgentConnection agcon;
 
     public AllAgentDBLifetimeAccess() {
     }
@@ -108,8 +107,6 @@ public class AllAgentDBLifetimeAccess implements AgentExecutor, Serializable {
 
     public SQLReturnObject query(AgentClient client) {
         try {
-            client = agcon.getClient();
-
             AllAgentDBLifetimeAccess executor = new AllAgentDBLifetimeAccess();
 
             Object ret = client.execute(executor);
