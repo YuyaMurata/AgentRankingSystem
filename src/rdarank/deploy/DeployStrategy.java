@@ -105,5 +105,32 @@ public class DeployStrategy {
     }
     
     private void agentCloneDeploy(UserAgentManager user, RankAgentManager rank){
+        LaunchCreateAgent agent = new LaunchCreateAgent();
+        
+        //User Agent
+        Map agentGroup = new HashMap();
+        Map<DistributedAgentConnection, List> serverGroup = new HashMap();
+        
+        for(String userID : user.getIDList()){
+            DistributedAgentConnection agcon = user.getConnection(userID);
+            
+            if(serverGroup.get(agcon) == null) serverGroup.put(agcon, new ArrayList<>());
+            
+            List<String> agList = (List<String>) serverGroup.get(agcon);
+            agList.add(userID);
+            serverGroup.put(agcon, agList);
+        }
+        
+        for(DistributedAgentConnection agcon : serverGroup.keySet()){
+            System.out.println(">> Deploy Agent Server = "+agcon.toString());
+            
+            agentGroup.put("useragent", serverGroup.get(agcon));
+            //Rank Agent
+            agentGroup.put("rankagent", rank.getIDList());
+            
+            AgentClient client = agcon.getClient();
+            agent.create(client, agentGroup);
+            agcon.returnConnection(client);
+        }
     }
 }
