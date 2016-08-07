@@ -68,7 +68,7 @@ public class SystemLogPrinter  extends AgentLogPrinterTemplate{
             SQLReturnObject obj = transactionDB.query(client);
             agcon.returnConnection(client);
             
-            Map map = obj.toMap(agcon.toString()+" - Transaction", start);
+            Map map = obj.toMap(agcon.toString()+" - Transaction", 0);
             meargeMap(allMap, map);
         }
         
