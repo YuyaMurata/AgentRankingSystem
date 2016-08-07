@@ -111,6 +111,10 @@ public class AllAgentDBTransactionAccess implements AgentExecutor, Serializable 
 
             SQLReturnObject sqlResults = new SQLReturnObject();
             List<Map> results = new ArrayList<>();
+            
+            System.out.println("Results : "+col.getClass() +" -- "+col);
+            
+            /*
             for (Object o : col) {
                 int i = 0;
                 for (Map m : (List<Map>) o) {
@@ -123,7 +127,7 @@ public class AllAgentDBTransactionAccess implements AgentExecutor, Serializable 
             }
 
             sqlResults.setResultSet(results);
-
+            */
             return sqlResults;
         } catch (Exception e) {
             e.printStackTrace();
