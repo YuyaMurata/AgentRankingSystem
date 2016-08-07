@@ -26,13 +26,18 @@ public abstract class MessageQueueProcess extends Thread{
         AgentType agent = getAgentType();
         System.out.println(">AgentID::"+agent.getID());
         System.out.println(">> Start--MessageQueue of "+agent.getID()+" run message processing");
+        
         while(getRunnable()){
-            Object msgpack = get();
+            try{
+                Object msgpack = get();
             
-            if(msgpack != null)
-                agent.sendMessage(msgpack);
-            
+                if(msgpack != null)
+                    agent.sendMessage(msgpack);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
+        
         System.out.println(">> Stop--MessageQueue of "+agent.getID()+" shutdown message processing");
     }
 }

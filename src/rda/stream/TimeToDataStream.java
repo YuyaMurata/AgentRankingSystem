@@ -35,8 +35,11 @@ public class TimeToDataStream {
         TestData data;
         Window window;
 
-        while(((data = tcmanager.datagen.generate(t)) != null) && manager.getState()){
+        while(manager.getState()){
             try {
+                data = tcmanager.datagen.generate(t);
+                if(data == null) break;
+                
                 manager.getWindowController().pack(data);
                 
                 if((window = manager.getWindowController().get()) == null) continue;
