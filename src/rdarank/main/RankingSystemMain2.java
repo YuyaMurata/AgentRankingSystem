@@ -5,24 +5,16 @@
  */
 package rdarank.main;
 
-import com.ibm.agent.exa.client.AgentClient;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import rda.agent.client.DistributedAgentConnection;
 import rda.property.SetProperty;
-import rdarank.agent.all.logger.SystemLogPrinter;
+
 import rdarank.agent.rank.manager.RankAgentManager;
 import rdarank.agent.user.manager.UserAgentManager;
 import rdarank.deploy.DeployStrategy;
 import rdarank.manager.ExecuteDataStream;
-import rdarank.manager.LaunchCreateAgent;
 import rdarank.manager.LaunchSettingsMap;
 import rdarank.manager.LaunchSystem;
 import rdarank.manager.RankingSystemManager;
 import rdarank.manager.ShutdownSystem;
-import rdarank.server.DistributedServerConnection;
 
 /**
  *
@@ -76,6 +68,12 @@ public class RankingSystemMain2 implements SetProperty{
             } catch (InterruptedException ex) {
             }
         }
+        
+        //時間調整
+        try {
+                Thread.sleep(TIME_PERIOD);
+            } catch (InterruptedException ex) {
+            }
         
         System.out.println("Stop Data Stream");
     }
