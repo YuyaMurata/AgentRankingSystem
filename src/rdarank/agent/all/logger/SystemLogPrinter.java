@@ -59,7 +59,7 @@ public class SystemLogPrinter  extends AgentLogPrinterTemplate{
     //RankAgent Database LifeTime
     private void printAgentTransaction(){
         //Initalize
-        Map allMap = new HashMap();
+        Map<String, List<String>> allMap = new HashMap();
         allMap.put("Field", new ArrayList<String>());
         allMap.put("Data", new ArrayList<String>());
         
@@ -71,6 +71,26 @@ public class SystemLogPrinter  extends AgentLogPrinterTemplate{
             Map map = obj.toMap(agcon.toString()+" - Transaction", 0);
             meargeMap(allMap, map);
         }
+        
+        //Totalの再集計
+        List<String> field = allMap.get("Field");
+        List<String> data = allMap.get("Data");
+        List<String> newField = new ArrayList<>();
+        List<String> newData = new ArrayList<>();
+        Long total = 0L;
+        for(int i=0; i <  field.size(); i++){
+            if(field.get(i).contains("Total")){
+                total = total + Long.valueOf(data.get(i));
+            }else{
+                newField.add(field.get(i));
+                newData.add(data.get(i));
+            }
+        }
+        newField.add("TOTAL");
+        newData.add(total.toString());
+        allMap.put("Field",newField);
+        allMap.put("Data", newData);
+        
         
         System.out.println("> AgentTransaction:\n"+mapToString(allMap));
         AgentLogPrint.printAgentTransaction(allMap);
