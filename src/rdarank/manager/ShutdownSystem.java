@@ -50,7 +50,8 @@ public class ShutdownSystem implements AgentExecutor, Serializable {
             AgentManager agentManager = AgentManager.getAgentManager();
 
             SimpleMessage msg = (SimpleMessage) MessageFactory.getFactory().getMessage(MESSAGE_TYPE);
-
+            msg.setHighPriority();
+            
             //Sync Message
             Object ret = agentManager.sendMessage(agentKey, msg);
             //agentManager.putMessage(agentKey, msg);
