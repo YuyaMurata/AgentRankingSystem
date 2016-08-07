@@ -6,6 +6,7 @@
 package rdarank.agent.all.logger;
 
 import com.ibm.agent.exa.client.AgentClient;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -35,15 +36,18 @@ public class SystemLogPrinter  extends AgentLogPrinterTemplate{
     
     //UserAgent Database LifeTime
     private void printAgentLifeTime(Long start){
+        Map allMap = new HashMap();
         for(DistributedAgentConnection agcon : UserAgentManager.getInstance().getServer().getConnectionList()){
             AgentClient client = agcon.getClient();
             SQLReturnObject obj = lifeTimeDB.query(client);
             agcon.returnConnection(client);
             
             Map map = obj.toMap(agcon.toString()+" - LifeTime", start);
-            System.out.println("> AgentLifeTime:\n"+mapToString(map));
-            AgentLogPrint.printAgentTransaction(map);
+            allMap.putAll(map);
         }
+        
+        System.out.println("> AgentLifeTime:\n"+mapToString(allMap));
+        AgentLogPrint.printAgentTransaction(allMap);
     }
     
     //RankAgent Database LifeTime
