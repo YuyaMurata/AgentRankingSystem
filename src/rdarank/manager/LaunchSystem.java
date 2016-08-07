@@ -71,7 +71,7 @@ public class LaunchSystem implements AgentExecutor, Serializable {
 
     public void launch(Map prop) {
         RankingSystemManager manager = RankingSystemManager.getInstance();
-        for (DistributedAgentConnection agcon : manager.getServer().getConnectionList()) {
+        for (DistributedAgentConnection agcon : manager.getServers()) {
             try {
                 AgentClient client = agcon.getClient();
                 agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});

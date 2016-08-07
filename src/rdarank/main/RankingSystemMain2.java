@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import rda.agent.client.DistributedAgentConnection;
 import rda.property.SetProperty;
+import rdarank.agent.all.logger.SystemLogPrinter;
 import rdarank.agent.rank.manager.RankAgentManager;
 import rdarank.agent.user.manager.UserAgentManager;
 import rdarank.deploy.DeployStrategy;
@@ -39,12 +40,12 @@ public class RankingSystemMain2 implements SetProperty{
         shutdownSystem();
     }
     
+    private static RankingSystemManager manager = RankingSystemManager.getInstance();
     private static void launchSystem(){
         //SetProperty To Map
         LaunchSettingsMap settings = new LaunchSettingsMap();
         
         //Init MonitorSystem Manager
-        RankingSystemManager manager = RankingSystemManager.getInstance();
         manager.setPropMap(settings.getPropMap());
         manager.launchMonitor();
         
@@ -56,6 +57,10 @@ public class RankingSystemMain2 implements SetProperty{
         //Deploy and CreateAgent
         DeployStrategy strategy = new DeployStrategy(AGENT_DEPLOY_PATTERN);
         strategy.deploy(UserAgentManager.getInstance(), RankAgentManager.getInstance());
+        
+        //Logger
+        manager.loggerMonitorStart();
+        
     }
     
     private static void periodDataStream(){
@@ -78,6 +83,9 @@ public class RankingSystemMain2 implements SetProperty{
     private static void shutdownSystem(){
         ShutdownSystem system = new ShutdownSystem();
         system.shutdownm();
+        
+        //Logger
+        manager.loggerMonitorStop();
         
         System.out.println("Shutdown System");
     }

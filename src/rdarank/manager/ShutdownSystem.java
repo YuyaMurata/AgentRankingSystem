@@ -64,7 +64,7 @@ public class ShutdownSystem implements AgentExecutor, Serializable {
 
     public void shutdownm() {
         RankingSystemManager manager = RankingSystemManager.getInstance();
-        for (DistributedAgentConnection agcon : manager.getServer().getConnectionList()) {
+        for (DistributedAgentConnection agcon : manager.getServers()) {
             try {
                 AgentClient client = agcon.getClient();
                 AgentKey agentKey = new AgentKey(AGENT_TYPE, new Object[]{AGENT_TYPE});

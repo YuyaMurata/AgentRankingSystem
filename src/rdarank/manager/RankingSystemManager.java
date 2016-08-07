@@ -19,6 +19,7 @@ import rda.manager.LoggerManager;
 import rda.manager.TestCaseManager;
 import rda.stream.DataStream;
 import rda.stream.TimeToDataStream;
+import rdarank.agent.all.logger.SystemLogPrinter;
 
 import rdarank.agent.rank.manager.RankAgentManager;
 import rdarank.agent.user.manager.UserAgentManager;
@@ -263,7 +264,17 @@ public class RankingSystemManager {
         this.props = (HashMap<String, Map>) map;
     }
 
-    public DistributedServerConnection getServer() {
-        return sconn;
+    public List<DistributedAgentConnection> getServers() {
+        return sconn.getConnectionList();
+    }
+    
+    //１回のみロガー実行
+    SystemLogPrinter managerLogger;
+    public void loggerMonitorStart(){
+        managerLogger = new SystemLogPrinter(System.currentTimeMillis());
+    }
+    
+    public void loggerMonitorStop(){
+        managerLogger.printer();
     }
 }

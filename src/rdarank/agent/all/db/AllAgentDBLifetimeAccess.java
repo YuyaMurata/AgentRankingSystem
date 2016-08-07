@@ -29,7 +29,7 @@ import rdarank.server.DistributedServerConnection;
  *
  * @author kaeru
  */
-public class AllAgentDBAccess implements AgentExecutor, Serializable {
+public class AllAgentDBLifetimeAccess implements AgentExecutor, Serializable {
 
     /**
      *
@@ -37,7 +37,7 @@ public class AllAgentDBAccess implements AgentExecutor, Serializable {
     private static final long serialVersionUID = -1826433740843048L;
     private static DistributedAgentConnection agcon;
 
-    public AllAgentDBAccess() {
+    public AllAgentDBLifetimeAccess() {
     }
 
     @Override
@@ -106,12 +106,11 @@ public class AllAgentDBAccess implements AgentExecutor, Serializable {
         }
     }
 
-    public SQLReturnObject query() {
-        agcon = RankingSystemManager.getInstance().getServer().getConnection(0);
+    public SQLReturnObject query(AgentClient client) {
         try {
-            AgentClient client = agcon.getClient();
+            client = agcon.getClient();
 
-            AllAgentDBAccess executor = new AllAgentDBAccess();
+            AllAgentDBLifetimeAccess executor = new AllAgentDBLifetimeAccess();
 
             Object ret = client.execute(executor);
             Collection<Object> col = (Collection<Object>) ret;
@@ -130,8 +129,6 @@ public class AllAgentDBAccess implements AgentExecutor, Serializable {
             }
 
             sqlResults.setResultSet(results);
-
-            agcon.returnConnection(client);
 
             return sqlResults;
         } catch (Exception e) {

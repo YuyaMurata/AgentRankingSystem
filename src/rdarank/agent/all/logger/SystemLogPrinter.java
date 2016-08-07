@@ -5,34 +5,58 @@
  */
 package rdarank.agent.all.logger;
 
+import com.ibm.agent.exa.client.AgentClient;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import rda.agent.client.DistributedAgentConnection;
 import rda.agent.template.AgentLogPrinterTemplate;
 import rda.db.SQLReturnObject;
 import rda.log.AgentLogPrint;
-import rdarank.agent.all.db.AllAgentDBAccess;
+import rdarank.agent.all.db.AllAgentDBLifetimeAccess;
+import rdarank.agent.all.db.AllAgentDBTransactionAccess;
+import rdarank.agent.rank.manager.RankAgentManager;
+import rdarank.agent.user.manager.UserAgentManager;
 
 /**
  *
  * @author kaeru
  */
 public class SystemLogPrinter  extends AgentLogPrinterTemplate{
-    private AllAgentDBAccess db;
+    private AllAgentDBLifetimeAccess lifeTimeDB;
+    private AllAgentDBTransactionAccess transactionDB;
     private Long start;
 
     public SystemLogPrinter(Long start) {
-        this.db = new AllAgentDBAccess();
+        this.lifeTimeDB = new AllAgentDBLifetimeAccess();
+        this.transactionDB = new AllAgentDBTransactionAccess();
         this.start = start;
     }
     
-    //RankAgent Database Transaction
+    //UserAgent Database LifeTime
     private void printAgentLifeTime(Long start){
-        SQLReturnObject obj = db.query();
-        
-        Map map = obj.toMap("LifeTime", start);
-        System.out.println("> AgentLifeTime:\n"+mapToString(map));
-        AgentLogPrint.printAgentTransaction(map);
+        for(DistributedAgentConnection agcon : UserAgentManager.getInstance().getServer().getConnectionList()){
+            AgentClient client = agcon.getClient();
+            SQLReturnObject obj = lifeTimeDB.query(client);
+            agcon.returnConnection(client);
+            
+            Map map = obj.toMap(agcon.toString()+" - LifeTime", start);
+            System.out.println("> AgentLifeTime:\n"+mapToString(map));
+            AgentLogPrint.printAgentTransaction(map);
+        }
+    }
+    
+    //RankAgent Database LifeTime
+    private void printAgentTransaction(){
+        for(DistributedAgentConnection agcon : RankAgentManager.getInstance().getServer().getConnectionList()){
+            AgentClient client = agcon.getClient();
+            SQLReturnObject obj = transactionDB.query(client);
+            agcon.returnConnection(client);
+            
+            Map map = obj.toMap(agcon.toString()+" - Transaction", start);
+            System.out.println("> AgentTransaction:\n"+mapToString(map));
+            AgentLogPrint.printAgentTransaction(map);
+        }
     }
     
     //String Print Out
@@ -58,5 +82,6 @@ public class SystemLogPrinter  extends AgentLogPrinterTemplate{
     @Override
     public void printer() {
         printAgentLifeTime(start);
+        printAgentTransaction();
     }
 }
