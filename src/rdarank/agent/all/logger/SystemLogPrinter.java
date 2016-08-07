@@ -60,8 +60,8 @@ public class SystemLogPrinter  extends AgentLogPrinterTemplate{
     private void printAgentTransaction(){
         //Initalize
         Map allMap = new HashMap();
-        allMap.put("Field", new ArrayList<>());
-        allMap.put("Data", new ArrayList<>());
+        allMap.put("Field", new ArrayList<String>());
+        allMap.put("Data", new ArrayList<String>());
         
         for(DistributedAgentConnection agcon : RankAgentManager.getInstance().getServer().getConnectionList()){
             AgentClient client = agcon.getClient();
