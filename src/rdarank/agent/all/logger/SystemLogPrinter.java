@@ -81,7 +81,7 @@ public class SystemLogPrinter  extends AgentLogPrinterTemplate{
             if(((String)key).contains("Place")) continue;
             
             List list = (List) mearge.get(key);
-            list.add(map.get(key));
+            list.addAll((List)map.get(key));
             mearge.put(key, list);
         }
         
