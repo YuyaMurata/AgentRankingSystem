@@ -49,12 +49,12 @@ public class AgentIntaractionThread extends Thread {
                 MessageObject msg = new MessageObject(window.getDestID(), window.unpack());
                 
                 //local
-                if (manager.getDeployPattern() == 0) {
+                if (manager.getDeployPattern() != 1) {
                     if (extension.transport(msg)) {
                         extension.getWindowController().remove();
                     }
                 //dist deploy
-                }else if(manager.getDeployPattern() == 1){
+                }else {
                     DistributedAgentConnection agcon = agent.getConnection(msg.rankID());
                     AgentClient client = agcon.getClient();
                     
