@@ -6,6 +6,7 @@
 package rdarank.agent.all.logger;
 
 import com.ibm.agent.exa.client.AgentClient;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,14 +37,19 @@ public class SystemLogPrinter  extends AgentLogPrinterTemplate{
     
     //UserAgent Database LifeTime
     private void printAgentLifeTime(Long start){
+        //Initalize
         Map allMap = new HashMap();
+        allMap.put("Field", new ArrayList<>());
+        allMap.put("Data", new ArrayList<>());
+        
+        //Get AgentData
         for(DistributedAgentConnection agcon : UserAgentManager.getInstance().getServer().getConnectionList()){
             AgentClient client = agcon.getClient();
             SQLReturnObject obj = lifeTimeDB.query(client);
             agcon.returnConnection(client);
             
             Map map = obj.toMap(agcon.toString()+" - LifeTime", start);
-            allMap.putAll(map);
+            meargeMap(allMap, map);
         }
         
         System.out.println("> AgentLifeTime:\n"+mapToString(allMap));
@@ -52,15 +58,34 @@ public class SystemLogPrinter  extends AgentLogPrinterTemplate{
     
     //RankAgent Database LifeTime
     private void printAgentTransaction(){
+        //Initalize
+        Map allMap = new HashMap();
+        allMap.put("Field", new ArrayList<>());
+        allMap.put("Data", new ArrayList<>());
+        
         for(DistributedAgentConnection agcon : RankAgentManager.getInstance().getServer().getConnectionList()){
             AgentClient client = agcon.getClient();
             SQLReturnObject obj = transactionDB.query(client);
             agcon.returnConnection(client);
             
             Map map = obj.toMap(agcon.toString()+" - Transaction", start);
-            System.out.println("> AgentTransaction:\n"+mapToString(map));
-            AgentLogPrint.printAgentTransaction(map);
+            meargeMap(allMap, map);
         }
+        
+        System.out.println("> AgentTransaction:\n"+mapToString(allMap));
+        AgentLogPrint.printAgentTransaction(allMap);
+    }
+    
+    private Map meargeMap(Map mearge, Map map){
+        for(Object key : map.keySet()){
+            if(((String)key).contains("Place")) continue;
+            
+            List list = (List) mearge.get(key);
+            list.add(map.get(key));
+            mearge.put(key, list);
+        }
+        
+        return mearge;
     }
     
     //String Print Out
