@@ -20,6 +20,8 @@ public class DataGenerateHandler extends MessageHandler{
     public Object onMessage(Message msg) throws Exception {
         // TODO 自動生成されたメソッド・スタブ
         
+        System.out.println("Execute Elapsed Time : "+time+" [sec]");
+        
         //DataGenerate
         SystemManagerExtension extension = SystemManagerExtension.getInstance();
         extension.dataGenerate(time++);
