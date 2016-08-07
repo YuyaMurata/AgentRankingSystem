@@ -70,11 +70,6 @@ public class SystemManagerExtension implements Extension {
 
     @Override
     public void shutdown() {
-        this.state = false;
-
-        //Only Thread Type
-        //manager.dataStream().stop();
-        manager.shutdownSystem();
     }
 
     @Override
@@ -120,7 +115,7 @@ public class SystemManagerExtension implements Extension {
 
     //Rankig System Manager
     private RankingSystemManager manager;
-    private static Boolean state = true;
+    private Boolean state = true;
     public void startRankingSystem(Map props) {
         manager = RankingSystemManager.getInstance();
 
@@ -138,6 +133,14 @@ public class SystemManagerExtension implements Extension {
 
         //Start Intaraction
         AgentIntaractionExtension.getInstance().startConnectionAgents();
+    }
+    
+    public void stopRankingSystem(){
+        this.state = false;
+
+        //Only Thread Type
+        //manager.dataStream().stop();
+        manager.shutdownSystem();
     }
 
     public void dataGenerate(Long time) {

@@ -11,6 +11,7 @@ import com.ibm.agent.exa.SimpleMessage;
 
 import rda.agent.queue.MessageObject;
 import rda.extension.intaraction.AgentIntaractionExtension;
+import rda.extension.manager.SystemManagerExtension;
 
 /**
  *
@@ -25,12 +26,13 @@ public class IntaractionAgentHandler extends MessageHandler{
         MessageObject trans = (MessageObject) smsg.get("message");
 
         //Intaraction Agent
-        while(!AgentIntaractionExtension.getInstance().transport(trans)){
+        while(!AgentIntaractionExtension.getInstance().transport(trans) 
+                    && SystemManagerExtension.getInstance().getState()){
             try{
                 Thread.sleep(10L);
             }catch(InterruptedException e){
             }
-            System.out.println("Transport Int : "+trans.toString());
+            //System.out.println("Transport Int : "+trans.toString());
         }
         
         return "-- AgentIntaraction Transport Message" + trans.toString() + "-->";
