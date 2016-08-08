@@ -15,6 +15,7 @@ import rda.agent.client.DistributedAgentConnection;
 
 import rda.agent.queue.MessageQueue;
 import rda.agent.queue.QueueObserver;
+import rda.agent.template.AgentType;
 import rda.manager.AgentManager;
 import rda.manager.IDManager;
 import rda.manager.LoggerManager;
@@ -160,12 +161,17 @@ public class UserAgentManager extends AgentManager{
     private static Map messageQueueMap = new HashMap();
     private static ExecutorService exec = Executors.newCachedThreadPool();
     @Override
-    public void register(MessageQueue mq){
-        messageQueueMap.put(mq.getID(), mq);
-        exec.execute(mq);
+    public void register(Object mq){
+        //MessageQueue agent = (MessageQueue) mq;
+        //messageQueueMap.put(agent.getID(), agent);
+        //exec.execute(agent);
         
         //extends Thread のとき
         //mq.start();
+        
+        //Test NotMessageQueue
+        AgentType agent = (AgentType) mq;
+        messageQueueMap.put(agent.getID(), agent);
     }
     
     @Override

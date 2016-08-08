@@ -32,7 +32,7 @@ public abstract class AgentManager {
     public abstract List<QueueObserver> getObserver();
     public abstract void setServerList(Map map);
     public abstract void setLogger();
-    public abstract void register(MessageQueue mq);
+    public abstract void register(Object mq);
     public abstract Object getAgent(String id);
     
     public abstract DistributedAgentConnection getConnection(String id);

@@ -9,6 +9,7 @@ import java.util.Map;
 import rda.agent.queue.MessageObject;
 import rda.agent.queue.MessageQueue;
 import rda.agent.queue.MessageQueueEvent;
+import rda.agent.template.AgentType;
 import rda.data.test.TestData;
 import rda.manager.AgentManager;
 import rda.manager.TestCaseManager;
@@ -53,20 +54,24 @@ public class TimeToDataStream {
                 MessageObject msg = new MessageObject(agID, window.unpack());
                 
                 //Message Sender
-                if(mq != null) {
+                /*if(mq != null) {
                     if(mq.put(msg)) manager.getWindowController().remove();
                     else manager.getWindowController().returnExecutable(window);
-                }
+                }*/
+                
+                //MessageQueueを通さないSender
+                AgentType agent = (AgentType) manager.getAgent(agID);
+                agent.sendMessage(msg);
                 
                 //total = total+window.unpack().size();
                 
-                //manager.getWindowController().remove();
+                manager.getWindowController().remove();
                 
                 //System.out.println(">> TimeToDataStream >> Finished Send Data");
-            } catch (MessageQueueEvent mqev) {
+            /*} catch (MessageQueueEvent mqev) {
                 mqev.printEvent();
                 manager.getWindowController().returnExecutable(window);
-            } catch (Exception e){
+            */} catch (Exception e){
                 e.printStackTrace();
             }
         }

@@ -11,12 +11,14 @@ import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.exa.MessageFactory;
 import java.util.Map;
 import rda.agent.queue.MessageQueue;
+import rda.agent.template.AgentType;
 import rda.data.profile.ProfileGenerator;
 import rda.manager.TestCaseManager;
 import static rdarank.agent.user.creator.CreateUserAgent.MESSAGE_TYPE;
 import rdarank.agent.user.manager.UserAgentManager;
 import rdarank.agent.user.message.InitUserMessage;
 import rdarank.agent.user.updater.UpdateUser;
+import rdarank.agent.user.updater.UpdateUserAnsyncEx;
 import rdarank.agent.user.updater.UpdateUserEx;
 
 /**
@@ -65,9 +67,12 @@ public class CreateUserAgentEx {
             System.out.println("Agent[" + agentKey + "] was created. Reply is [" + reply + "]");
 
             //Create AgentQueue & Register Manager
-            MessageQueue mq = new MessageQueue(UserAgentManager.getInstance(), agID, size, queuewait, agentwait);
+            //MessageQueue mq = new MessageQueue(UserAgentManager.getInstance(), agID, size, queuewait, agentwait);
             //mq.setAgentType(new UpdateUser(agID));
-            mq.setAgentType(new UpdateUserEx(agID));
+            //mq.setAgentType(new UpdateUserEx(agID));
+            
+            //MessageQueueを通さない場合
+            AgentType mq = new UpdateUserAnsyncEx(agID);
             UserAgentManager.getInstance().register(mq);
 
         } catch (Exception e) {
