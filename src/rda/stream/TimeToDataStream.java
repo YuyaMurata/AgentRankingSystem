@@ -47,12 +47,11 @@ public class TimeToDataStream {
                 //Get Destination ID
                 String agID = window.getDestID();
                 
-                //Get MessageQueue
-                MessageQueue mq = (MessageQueue)mqMap.get(agID);
-            
                 //Translation Window To Message
                 MessageObject msg = new MessageObject(agID, window.unpack());
                 
+                //Get MessageQueue
+                //MessageQueue mq = (MessageQueue)mqMap.get(agID);
                 //Message Sender
                 /*if(mq != null) {
                     if(mq.put(msg)) manager.getWindowController().remove();
