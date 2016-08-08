@@ -220,7 +220,9 @@ public class UserAgentManager extends AgentManager{
 
     @Override
     public DistributedAgentConnection getConnection(String id) {
-        Integer hash = Integer.valueOf(id.split("#")[1]) % sconn.getConnectionList().size();
+        Integer hash = 0;
+        if(id.contains("#"))
+            hash = Integer.valueOf(id.split("#")[1]) % sconn.getConnectionList().size();
             
         DistributedAgentConnection agcon = sconn.getConnection(hash);
         //System.out.println("UserAgentManager Get Connection : "+hash +" = "+ agcon.toString());
