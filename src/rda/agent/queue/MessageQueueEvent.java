@@ -13,12 +13,13 @@ public class MessageQueueEvent extends Exception{
 
     public void printEvent(){
         //if(AgentMessageQueueManager.getInstance().getAutoMode() == 1){
-            //System.out.println(">MQEvents:"+name+"-msg="+msgpack.toString());
-            AgentLogPrint.printAgentLoad(original, name, clonename);
+            System.out.println(">MQEvents:"+name+"-msg="+clonename);
+            //AgentLogPrint.printAgentLoad(original, name, clonename);
         //}
     }
     
     public static void printState(String state, String originalID, String cloneID, Integer numAgents){
-        AgentLogPrint.printAgentState(state, originalID, cloneID, numAgents);
+        System.out.println(">MQEvents:"+originalID+"-clone="+cloneID+" num="+numAgents);
+        //AgentLogPrint.printAgentState(state, originalID, cloneID, numAgents);
     }
 }

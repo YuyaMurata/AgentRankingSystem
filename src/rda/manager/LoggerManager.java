@@ -42,6 +42,6 @@ public class LoggerManager {
     public void printTestcaseData(Long time){
         String n = TestCaseManager.getInstance().datagen.toString(time);
         System.out.println("> TestcaseGenData:"+n);
-        AgentLogPrint.printTestcaseData(time.toString(), n);
+        //AgentLogPrint.printTestcaseData(time.toString(), n);
     }
 }
