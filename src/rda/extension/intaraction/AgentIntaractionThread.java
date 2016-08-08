@@ -50,9 +50,9 @@ public class AgentIntaractionThread extends Thread {
                 
                 //local
                 if (manager.getDeployPattern() != 1) {
-                    if (extension.transport(msg)) {
+                    if (extension.transport(msg))
                         extension.getWindowController().remove();
-                    }
+                    else extension.getWindowController().returnExecutable(window);
                 //dist deploy
                 }else {
                     DistributedAgentConnection agcon = agent.getConnection(msg.rankID());
