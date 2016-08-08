@@ -74,7 +74,10 @@ public class AllAgentDBTransactionAccess implements AgentExecutor, Serializable 
             List<Map> result = new ArrayList<>();
             Map log = new HashMap();
             while (rs.next()) {
-                log.put(rs.getString(2), rs.getLong(4));
+                if(log.get(rs.getString(2)) != null)
+                    log.put(rs.getString(2), Math.max((Long)log.get(rs.getString(2)), rs.getLong(4)));
+                else 
+                    log.put(rs.getString(2), rs.getLong(4));
             }
 
             result.add(log);
