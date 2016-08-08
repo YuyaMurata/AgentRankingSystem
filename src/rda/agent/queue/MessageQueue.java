@@ -55,16 +55,21 @@ public class MessageQueue extends MessageQueueProcess{
     }
     
     @Override
-    public void put(Object msgpack) throws MessageQueueEvent{
+    public Boolean put(Object msgpack) throws MessageQueueEvent{
         boolean success = false;
         try {
             success = queue.offer(msgpack, putwait, TimeUnit.MILLISECONDS);
         } catch (InterruptedException ex) {
         }
         
-        if(!success) eventClone();
+        if(manager.getAutoMode()){
+            //AgentCloning
+            if(!success) eventClone();
+            //AgentDelete
+            if(isClone() && ((queue.size() + orgQueue.size()) == 0)) eventDelete();
+        }
         
-        if(isClone() && ((queue.size() + orgQueue.size()) == 0)) eventDelete();
+        return success;
     }
     
     //Load Balancer Cloning updgrade

@@ -53,11 +53,14 @@ public class TimeToDataStream {
                 MessageObject msg = new MessageObject(agID, window.unpack());
                 
                 //Message Sender
-                if(mq != null) mq.put(msg);
+                if(mq != null) {
+                    if(mq.put(msg)) manager.getWindowController().remove();
+                    else manager.getWindowController().returnExecutable(window);
+                }
                 
-                total = total+window.unpack().size();
+                //total = total+window.unpack().size();
                 
-                manager.getWindowController().remove();
+                //manager.getWindowController().remove();
                 
                 //System.out.println(">> TimeToDataStream >> Finished Send Data");
             } catch (MessageQueueEvent mqev) {

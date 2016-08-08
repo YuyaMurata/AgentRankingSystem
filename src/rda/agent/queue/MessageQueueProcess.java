@@ -16,7 +16,7 @@ public abstract class MessageQueueProcess implements Runnable{
     abstract public Boolean getRunnable();
     
     abstract public Object get();
-    abstract public void put(Object message) throws MessageQueueEvent;
+    abstract public Boolean put(Object message) throws MessageQueueEvent;
     
     abstract public void setAgentType(AgentType type);
     abstract public AgentType getAgentType();
