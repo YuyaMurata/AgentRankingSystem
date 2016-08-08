@@ -158,7 +158,7 @@ public class UserAgentManager extends AgentManager{
     
     //ManagerにMessageQueueを登録
     private static Map messageQueueMap = new HashMap();
-    private static ExecutorService exec = Executors.newFixedThreadPool(16);
+    private static ExecutorService exec = Executors.newCachedThreadPool();
     @Override
     public void register(MessageQueue mq){
         messageQueueMap.put(mq.getID(), mq);
