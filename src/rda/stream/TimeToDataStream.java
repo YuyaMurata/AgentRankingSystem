@@ -62,6 +62,7 @@ public class TimeToDataStream {
                 //System.out.println(">> TimeToDataStream >> Finished Send Data");
             } catch (MessageQueueEvent mqev) {
                 mqev.printEvent();
+                manager.getWindowController()
             } catch (Exception e){
                 e.printStackTrace();
             }

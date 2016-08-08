@@ -66,11 +66,17 @@ public class WindowController{
     }
     
     public void addExecutable(Window window){
-        //if(!executableQueue.contains(window)){
+        executableQueue.add(window);
+        windowMap.remove(window.getDestID());
+        //System.out.println("Window Controller Size = "+executableQueue.size());
+    }
+    
+    public void returnExecutable(Window window){
+        if(executableQueue.contains(window))
+            remove();
+        else
             executableQueue.add(window);
-            windowMap.remove(window.getDestID());
-        //}
-        System.out.println("Window Controller Size = "+executableQueue.size());
+        //System.out.println("Window Controller Size = "+executableQueue.size());
     }
     
     public Window get(){
