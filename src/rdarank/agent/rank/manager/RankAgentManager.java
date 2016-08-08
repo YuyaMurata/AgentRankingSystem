@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import rda.agent.client.DistributedAgentConnection;
 
 import rda.agent.queue.MessageQueue;
@@ -158,10 +160,14 @@ public class RankAgentManager extends AgentManager{
     
     //ManagerにMessageQueueを登録
     private static Map messageQueueMap = new HashMap();
+    private static ExecutorService exec = Executors.newFixedThreadPool(16);
     @Override
     public void register(MessageQueue mq){
         messageQueueMap.put(mq.getID(), mq);
-        mq.start();
+        exec.execute(mq);
+        
+        //extends Thread のとき
+        //mq.start();
     }
     
     @Override

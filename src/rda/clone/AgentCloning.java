@@ -16,6 +16,8 @@ public class AgentCloning {
     public static String cloning(AgentManager manager, String sourceID, Object originalState){
         if(!manager.getAutoMode()) return "";
         
+        System.out.println(">> Start Agent Cloning");
+        
         IDManager id = manager.getIDManager();
         String originalID = id.getOrigID(sourceID);
         
@@ -30,6 +32,8 @@ public class AgentCloning {
     
     public static String delete(AgentManager manager, String deleteID){
         if(!manager.getAutoMode()) return "";
+        
+        System.out.println(">> Start Agent Delete");
         
         IDManager id = manager.getIDManager();
         String originalID = id.getOrigID(deleteID);

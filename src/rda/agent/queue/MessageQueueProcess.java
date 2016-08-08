@@ -12,7 +12,7 @@ import rda.agent.template.AgentType;
  *
  * @author 悠也
  */
-public abstract class MessageQueueProcess extends Thread{
+public abstract class MessageQueueProcess implements Runnable{
     abstract public Boolean getRunnable();
     
     abstract public Object get();
