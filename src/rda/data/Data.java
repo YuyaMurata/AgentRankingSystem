@@ -52,7 +52,7 @@ public class Data{
     //Get Data userID = Call % NUMBER_USER_AGENTS
     public Object getData(){
         String uid = prof.getUser(idNo());
-        TestData data = new TestData(uid , (String)prof.getProf(uid).get("TargetID"));
+        TestData data = new TestData(uid , uid);
         data.setData(value);
         return data;
     }   
