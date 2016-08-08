@@ -90,7 +90,7 @@ public class SystemLogPrinter  extends AgentLogPrinterTemplate{
         newField.add("TOTAL");
         newData.add(total);
         newField.add("USERS");
-        newData.add((long)(newField.size()-1));
+        newData.add((long)(newField.size()-2));
         allMap.put("Field",newField);
         allMap.put("Data", newData);
         

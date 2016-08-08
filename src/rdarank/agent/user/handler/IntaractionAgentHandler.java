@@ -32,7 +32,7 @@ public class IntaractionAgentHandler extends MessageHandler{
         userData.setData(agent.getData(tx));
         
         //Agent Communication
-        extension.communicateAgent(userData);
+        //extension.communicateAgent(userData);
         
         return null;
     }
