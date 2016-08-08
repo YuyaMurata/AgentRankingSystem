@@ -31,6 +31,12 @@ public class TimeToDataStream {
         this.tcmanager  = TestCaseManager.getInstance();
     }
     
+    //MQを通さない場合かつHashMapを利用しない
+    private AgentType agArr[];
+    public void setAgentTypeList(AgentType agArr[]){
+        this.agArr = agArr;
+    }
+    
     public void stream(Long t){
         Map mqMap = manager.getMQMap();
         TestData data;
@@ -59,7 +65,8 @@ public class TimeToDataStream {
                 }*/
                 
                 //MessageQueueを通さないSender
-                AgentType agent = (AgentType) manager.getAgent(agID);
+                Integer hash = Math.abs(agID.hashCode()) % agArr.length;
+                AgentType agent = agArr[hash];//(AgentType) manager.getAgent(agID);
                 agent.sendMessage(msg);
                 
                 //total = total+window.unpack().size();

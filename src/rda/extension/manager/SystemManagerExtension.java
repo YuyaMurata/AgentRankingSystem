@@ -11,6 +11,7 @@ import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.soliddb.extension.Extension;
 import java.util.Map;
 import java.util.Properties;
+import rda.agent.template.AgentType;
 import rda.extension.intaraction.AgentIntaractionExtension;
 import rdarank.manager.RankingSystemManager;
 
@@ -153,5 +154,9 @@ public class SystemManagerExtension implements Extension {
 
     public Integer getDeployPattern() {
         return this.pattern;
+    }
+    
+    public void setDataStreamUseAgentList(AgentType agArr[]){
+        manager.timeDataStream().setAgentTypeList(agArr);
     }
 }

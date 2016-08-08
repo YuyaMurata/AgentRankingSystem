@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import rda.agent.client.DistributedAgentConnection;
@@ -242,5 +243,17 @@ public class UserAgentManager extends AgentManager{
     }
     public List<String> getIDList(){
         return idList;
+    }
+    
+    //MessageQueueを通さずかつHashMapを利用しない
+    //繰り返しの呼び出しは行わないように
+    public AgentType[] getAgentList(){
+        AgentType[] agArr = new AgentType[messageQueueMap.size()];
+        for(String key : (Set<String>)messageQueueMap.keySet()){
+            Integer hash = Math.abs(key.hashCode()) % agArr.length;
+            agArr[hash] = (AgentType) messageQueueMap.get(key);
+        }
+        
+        return agArr;
     }
 }

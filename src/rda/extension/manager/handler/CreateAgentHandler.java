@@ -26,7 +26,7 @@ public class CreateAgentHandler  extends MessageHandler{
         
         System.out.println("Launch CreateAgent");
         
-        SystemManagerExtension extinsion = SystemManagerExtension.getInstance();
+        SystemManagerExtension extension = SystemManagerExtension.getInstance();
         
         RankAgentManager rank = RankAgentManager.getInstance();
         UserAgentManager user = UserAgentManager.getInstance();
@@ -54,7 +54,10 @@ public class CreateAgentHandler  extends MessageHandler{
                 user.createAgent(agID);
                 numAgents = numAgents + 1;
             }
+            
             type = type + "["+numAgents+"] ";
+            
+            extension.setDataStreamUseAgentList(user.getAgentList());
         }
             
         return "Success " + type + "CreateAgent !!";
