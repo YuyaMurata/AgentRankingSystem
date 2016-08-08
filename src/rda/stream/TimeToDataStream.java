@@ -53,15 +53,15 @@ public class TimeToDataStream {
                 MessageObject msg = new MessageObject(agID, window.unpack());
                 
                 //Message Sender
-                if(mq != null) mq.put(msg);
+                //if(mq != null) mq.put(msg);
                 
                 total = total+window.unpack().size();
                 
                 manager.getWindowController().remove();
                 
                 //System.out.println(">> TimeToDataStream >> Finished Send Data");
-            } catch (MessageQueueEvent mqev) {
-                mqev.printEvent();
+            //} catch (MessageQueueEvent mqev) {
+            //    mqev.printEvent();
             } catch (Exception e){
                 e.printStackTrace();
             }
