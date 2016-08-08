@@ -68,7 +68,7 @@ public class TimeToDataStream {
                 AgentType agent = agArr[hash];//(AgentType) manager.getAgent(agID);
                 agent.sendMessage(msg);
                 
-                System.out.println("DataStream Check : "+agID +" = "+agent.getID());
+                //System.out.println("DataStream Check : "+agID +" = "+agent.getID());
                 
                 //total = total+window.unpack().size();
                 
