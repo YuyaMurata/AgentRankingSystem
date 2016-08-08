@@ -22,6 +22,8 @@ import rdarank.manager.ShutdownSystem;
  */
 public class RankingSystemMain2 implements SetProperty{
     public static void main(String[] args) {
+        Long start = System.currentTimeMillis();
+        
         //Launch
         launchSystem();
         
@@ -30,6 +32,9 @@ public class RankingSystemMain2 implements SetProperty{
         
         //Shutdown
         shutdownSystem();
+        
+        Long stop = System.currentTimeMillis();
+        System.out.println("Main Time : "+(stop-start));
     }
     
     private static RankingSystemManager manager = RankingSystemManager.getInstance();
