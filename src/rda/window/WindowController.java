@@ -66,10 +66,10 @@ public class WindowController{
     }
     
     public void addExecutable(Window window){
-        if(!executableQueue.contains(window)){
+        //if(!executableQueue.contains(window)){
             executableQueue.add(window);
             windowMap.remove(window.getDestID());
-        }
+        //}
         System.out.println("Window Controller Size = "+executableQueue.size());
     }
     
