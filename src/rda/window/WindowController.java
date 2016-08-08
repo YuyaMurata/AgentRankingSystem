@@ -70,6 +70,7 @@ public class WindowController{
             executableQueue.add(window);
             windowMap.remove(window.getDestID());
         }
+        System.out.println("Window Controller Size = "+executableQueue.size());
     }
     
     public Window get(){
