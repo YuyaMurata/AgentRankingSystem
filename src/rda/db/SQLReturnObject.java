@@ -56,8 +56,16 @@ public class SQLReturnObject {
         for(int i=0; i < data.size(); i++)
             data.set(i, (Long)data.get(i) - time);
         
+        //Avg Latency
+        field.add("AVG");
+        long avg = 0L;
+        for(Long late : (List<Long>)data)
+            avg = avg + late;
+        data.add(avg / data.size());
+        
         for(int i=0; i < field.size(); i++)
             place.append(",{}");
+        
         
         map.put("Place", place.toString());
         map.put("Field", field);
