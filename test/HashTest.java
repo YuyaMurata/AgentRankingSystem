@@ -16,5 +16,7 @@ public class HashTest {
         System.out.println("hash1 = "+hash1+" -> "+hash1.hashCode()+" %100 = " +(Math.abs(hash1.hashCode())%100));
         
         System.out.println("hash2 = "+hash2+" -> "+hash2.hashCode()+" %100 = " +(Math.abs(hash2.hashCode())%100));
+        
+        System.out.println(hash1.substring(2));
     }
 }
