@@ -126,7 +126,7 @@ public class IDManager {
     //Hash
     public String getDestID(String origID, String userID) {
         List destAgentList = (List) regAgentMap.get(origID);
-        return (String) destAgentList.get(Math.abs(userID.hashCode()) % destAgentList.size());
+        return (String) destAgentList.get(Integer.valueOf(userID.split("#")[1]) % destAgentList.size());
     }
 
     //Test Print

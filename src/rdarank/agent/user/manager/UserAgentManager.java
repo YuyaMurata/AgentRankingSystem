@@ -220,7 +220,7 @@ public class UserAgentManager extends AgentManager{
 
     @Override
     public DistributedAgentConnection getConnection(String id) {
-        Integer hash = Math.abs(id.hashCode()) % sconn.getConnectionList().size();
+        Integer hash = Integer.valueOf(id.split("#")[1]) % sconn.getConnectionList().size();
             
         DistributedAgentConnection agcon = sconn.getConnection(hash);
         //System.out.println("UserAgentManager Get Connection : "+hash +" = "+ agcon.toString());
@@ -250,7 +250,7 @@ public class UserAgentManager extends AgentManager{
     public AgentType[] getAgentList(){
         AgentType[] agArr = new AgentType[messageQueueMap.size()];
         for(String key : (Set<String>)messageQueueMap.keySet()){
-            Integer hash = Math.abs(key.hashCode()) % agArr.length;
+            Integer hash = Integer.valueOf(key.split("#")[1]) % agArr.length;
             agArr[hash] = (AgentType) messageQueueMap.get(key);
         }
         
