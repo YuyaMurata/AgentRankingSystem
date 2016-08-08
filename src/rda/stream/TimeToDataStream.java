@@ -33,7 +33,7 @@ public class TimeToDataStream {
     public void stream(Long t){
         Map mqMap = manager.getMQMap();
         TestData data;
-        Window window;
+        Window window = null;
 
         while(((data = tcmanager.datagen.generate(t)) != null) && manager.getState()){
             try {
@@ -62,7 +62,7 @@ public class TimeToDataStream {
                 //System.out.println(">> TimeToDataStream >> Finished Send Data");
             } catch (MessageQueueEvent mqev) {
                 mqev.printEvent();
-                manager.getWindowController()
+                manager.getWindowController().returnExecutable(window);
             } catch (Exception e){
                 e.printStackTrace();
             }
