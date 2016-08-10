@@ -66,7 +66,7 @@ public class TimeToDataStream {
                 //----- MessageQueueを通さないSender
                 //Integer hash =Integer.valueOf(agID.split("#")[1]) % agArr.length;
                 AgentType agent = (AgentType) manager.getAgent(agID);
-                agent.sendMessage(msg);
+                if(agent != null) agent.sendMessage(msg);
                 manager.getWindowController().remove();
                 //-----
                 
