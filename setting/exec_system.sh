@@ -23,8 +23,9 @@ source ./set_classpath.sh
 
     #java -cp $CLASSPATH -Xms4096m -Xmx4096m rdarank.main.RankingSystemMain
     java -cp $CLASSPATH -Xms4096m -Xmx4096m rdarank.main.RankingSystemMain2
+    java -cp $CLASSPATH rdarank.main.AgentLoggingMain
     #java -cp $CLASSPATH rda.test.ReadTest
-
+    
     #java -cp $CLASSPATH rda.agent.disposer.Dispose
 
     #killall vmstat
