@@ -58,7 +58,7 @@ public class AgentIntaractionThread extends Thread {
                     DistributedAgentConnection agcon = agent.getConnection(msg.rankID());
                     AgentClient client = agcon.getClient();
                     
-                    System.out.print(">> Server <"+agcon.toString()+"> ");
+                    //System.out.print(">> Server <"+agcon.toString()+"> ");
                     trans.sendMessage(client, msg);
                     extension.getWindowController().remove();
                     
