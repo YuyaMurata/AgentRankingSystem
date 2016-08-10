@@ -29,7 +29,7 @@ public class IntaractionAgentHandler extends MessageHandler{
         while(!AgentIntaractionExtension.getInstance().transport(trans) 
                     && SystemManagerExtension.getInstance().getState()){
             try{
-                Thread.sleep(10L);
+                Thread.sleep(1L);
             }catch(InterruptedException e){
             }
             //System.out.println("Transport Int : "+trans.toString());
