@@ -36,6 +36,5 @@ public class IntaractionAgentHandler extends MessageHandler{
         }
         
         return "-- AgentIntaraction Transport Message" + trans.toString() + "-->";
-    }
-    
+    }   
 }

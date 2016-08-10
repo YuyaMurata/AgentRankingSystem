@@ -16,6 +16,7 @@ import rda.agent.queue.MessageObject;
 import rda.agent.queue.MessageQueue;
 import rda.agent.queue.MessageQueueEvent;
 import rda.data.test.DataTemplate;
+import rda.window.Window;
 import rda.window.WindowController;
 
 import rdarank.agent.rank.manager.RankAgentManager;
