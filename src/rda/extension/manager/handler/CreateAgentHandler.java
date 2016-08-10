@@ -57,7 +57,7 @@ public class CreateAgentHandler  extends MessageHandler{
             
             type = type + "["+numAgents+"] ";
             
-            //extension.setDataStreamUseAgentList(user.getAgentList());
+            extension.setDataStreamUseAgentList(user.getAgentList());
         }
             
         return "Success " + type + "CreateAgent !!";
