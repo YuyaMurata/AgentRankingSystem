@@ -266,8 +266,8 @@ public class RankingSystemManager {
     
     //１回のみロガー実行
     SystemLogPrinter managerLogger;
-    public void loggerMonitorStart(){
-        managerLogger = new SystemLogPrinter(System.currentTimeMillis());
+    public void loggerMonitorStart(Long start){
+        managerLogger = new SystemLogPrinter(start);
     }
     
     public void loggerMonitorStop(){

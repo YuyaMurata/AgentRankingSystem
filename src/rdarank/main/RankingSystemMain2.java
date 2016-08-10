@@ -10,6 +10,7 @@ import rda.property.SetProperty;
 import rdarank.agent.rank.manager.RankAgentManager;
 import rdarank.agent.user.manager.UserAgentManager;
 import rdarank.deploy.DeployStrategy;
+import rdarank.io.TimerInOut;
 import rdarank.manager.ExecuteDataStream;
 import rdarank.manager.LaunchSettingsMap;
 import rdarank.manager.LaunchSystem;
@@ -56,8 +57,8 @@ public class RankingSystemMain2 implements SetProperty{
         strategy.deploy(UserAgentManager.getInstance(), RankAgentManager.getInstance());
         
         //Logger
-        manager.loggerMonitorStart();
-        
+        //manager.loggerMonitorStart(System.currentTimeMillis());
+        TimerInOut.startTimeOut(System.currentTimeMillis());
     }
     
     private static void periodDataStream(){
@@ -88,7 +89,7 @@ public class RankingSystemMain2 implements SetProperty{
         system.shutdownm();
         
         //Logger
-        manager.loggerMonitorStop();
+        //manager.loggerMonitorStop();
         
         System.out.println("Shutdown System");
     }

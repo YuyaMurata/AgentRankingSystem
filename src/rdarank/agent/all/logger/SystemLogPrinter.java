@@ -39,7 +39,7 @@ public class SystemLogPrinter  extends AgentLogPrinterTemplate{
     //UserAgent Database LifeTime
     private void printAgentLifeTime(Long start){
         //Initalize
-        Map allMap = new HashMap();
+        Map<String, List> allMap = new HashMap();
         allMap.put("Field", new ArrayList<>());
         allMap.put("Data", new ArrayList<>());
         
@@ -53,6 +53,26 @@ public class SystemLogPrinter  extends AgentLogPrinterTemplate{
             meargeMap(allMap, map);
         }
         
+         //AVGの再集計
+        List<String> field = allMap.get("Field");
+        List<Long> data = allMap.get("Data");
+        List<String> newField = new ArrayList<>();
+        List<Long> newData = new ArrayList<>();
+        Long avg = 0L;
+        for(int i=0; i <  field.size(); i++){
+            if(field.get(i).contains("AVG")){
+            }else{
+                newField.add(field.get(i));
+                newData.add(data.get(i));
+                avg = avg + data.get(i);
+            }
+        }
+        avg = avg / newField.size();
+        newField.add("AVG");
+        newData.add(avg);
+        allMap.put("Field",newField);
+        allMap.put("Data", newData);
+         
         System.out.println("> AgentLifeTime:\n"+mapToString(allMap));
         AgentLogPrint.printAgentTransaction(allMap);
     }
