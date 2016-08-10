@@ -57,8 +57,10 @@ public class RankingSystemMain2 implements SetProperty{
         strategy.deploy(UserAgentManager.getInstance(), RankAgentManager.getInstance());
         
         //Logger
-        //manager.loggerMonitorStart(System.currentTimeMillis());
-        TimerInOut.startTimeOut(System.currentTimeMillis());
+        manager.loggerMonitorStart(System.currentTimeMillis());
+        
+        //System終了後にタイムログをとる場合にしよう
+        //TimerInOut.startTimeOut(System.currentTimeMillis());
     }
     
     private static void periodDataStream(){
@@ -89,7 +91,7 @@ public class RankingSystemMain2 implements SetProperty{
         system.shutdownm();
         
         //Logger
-        //manager.loggerMonitorStop();
+        manager.loggerMonitorStop();
         
         System.out.println("Shutdown System");
     }
