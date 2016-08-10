@@ -67,13 +67,13 @@ public class CreateUserAgentEx {
             System.out.println("Agent[" + agentKey + "] was created. Reply is [" + reply + "]");
 
             //Create AgentQueue & Register Manager
-            //MessageQueue mq = new MessageQueue(UserAgentManager.getInstance(), agID, size, queuewait, agentwait);
+            MessageQueue mq = new MessageQueue(UserAgentManager.getInstance(), agID, size, queuewait, agentwait);
             //mq.setAgentType(new UpdateUser(agID));
-            //mq.setAgentType(new UpdateUserEx(agID));
+            mq.setAgentType(new UpdateUserEx(agID));
             
             //MessageQueueを通さない場合
-            AgentType mq = new UpdateUserAnsyncEx(agID);
-            UserAgentManager.getInstance().register(mq);
+            //AgentType mq = new UpdateUserAnsyncEx(agID);
+            //UserAgentManager.getInstance().register(mq);
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -162,14 +162,15 @@ public class UserAgentManager extends AgentManager{
     private static Map messageQueueMap = new HashMap();
     private static ExecutorService exec = Executors.newCachedThreadPool();
     @Override
-    public void register(Object mq){
-        //MessageQueue agent = (MessageQueue) mq;
-        //messageQueueMap.put(agent.getID(), agent);
-        //exec.execute(agent);
+    public void register(MessageQueue mq){
+        messageQueueMap.put(mq.getID(), mq);
+        exec.execute(mq);
         
         //extends Thread のとき
         //mq.start();
-        
+    }
+    
+    public void register(AgentType mq){
         //Test NotMessageQueue
         AgentType agent = (AgentType) mq;
         messageQueueMap.put(agent.getID(), agent);
