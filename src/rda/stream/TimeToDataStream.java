@@ -57,28 +57,28 @@ public class TimeToDataStream {
                 MessageObject msg = new MessageObject(agID, window.unpack());
                 
                 //Get MessageQueue
-                //MessageQueue mq = (MessageQueue)mqMap.get(agID);
+                MessageQueue mq = (MessageQueue)mqMap.get(agID);
                 //Message Sender
-                /*if(mq != null) {
+                if(mq != null) {
                     if(mq.put(msg)) manager.getWindowController().remove();
                     else manager.getWindowController().returnExecutable(window);
-                }*/
+                }
                 //MessageQueueを通さないSender
-                Integer hash =Integer.valueOf(agID.split("#")[1]) % agArr.length;
-                AgentType agent = agArr[hash];//(AgentType) manager.getAgent(agID);
-                agent.sendMessage(msg);
+                //Integer hash =Integer.valueOf(agID.split("#")[1]) % agArr.length;
+                //AgentType agent = agArr[hash];//(AgentType) manager.getAgent(agID);
+                //agent.sendMessage(msg);
                 
                 //System.out.println("DataStream Check : "+agID +" = "+agent.getID());
                 
                 //total = total+window.unpack().size();
                 
-                manager.getWindowController().remove();
+                //manager.getWindowController().remove();
                 
                 //System.out.println(">> TimeToDataStream >> Finished Send Data");
-            /*} catch (MessageQueueEvent mqev) {
+            } catch (MessageQueueEvent mqev) {
                 mqev.printEvent();
                 manager.getWindowController().returnExecutable(window);
-            */} catch (Exception e){
+            } catch (Exception e){
                 e.printStackTrace();
             }
         }
