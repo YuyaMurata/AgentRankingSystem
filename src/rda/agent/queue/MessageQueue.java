@@ -5,13 +5,11 @@
  */
 package rda.agent.queue;
 
-import java.util.Stack;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
 import rda.agent.template.AgentType;
 import rda.clone.AgentCloning;
-import rda.extension.intaraction.AgentIntaractionExtension;
 import rda.manager.AgentManager;
 import rda.manager.IDManager;
 
@@ -97,27 +95,17 @@ public class MessageQueue extends MessageQueueProcess{
         
         this.checkClone = true;
         
-        Stack tempStack = new Stack();
-        
         //Work Stealing
         Object obj;
         int i = size / 2;
         while((obj = orgQueue.pollFirst()) != null){
             i--;
             if(i <= 0) break;
-            
-            tempStack.push(obj);
-            
-            /*try {
+            try {
                 put(obj);
             } catch (MessageQueueEvent mqev) {
                 mqev.printEvent();
-            }*/
-        }
-        
-        AgentIntaractionExtension extension = AgentIntaractionExtension.getInstance();
-        while((obj = tempStack.pop()) != null){
-            extension.transport((MessageObject)obj);
+            }
         }
     }
     
