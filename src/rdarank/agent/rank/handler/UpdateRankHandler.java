@@ -50,7 +50,8 @@ public class UpdateRankHandler extends MessageHandler {
                 count = table.getConnectionCount(tx) + 1;
             }
 
-            table.setData(tx, (Long) tableMap.get(id));
+            if((Long)tableMap.get(id) > table.getData(tx))
+                table.setData(tx, (Long) tableMap.get(id));
 
             //Table Status
             table.setConnectionCount(tx, count);
