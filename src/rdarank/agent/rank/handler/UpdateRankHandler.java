@@ -5,9 +5,10 @@ import java.sql.Timestamp;
 import com.ibm.agent.exa.Message;
 import com.ibm.agent.exa.MessageHandler;
 import com.ibm.agent.exa.TxID;
+import com.ibm.agent.exa.entity.Entity;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
-import java.util.List;
 import rda.agent.queue.MessageObject;
 import rdarank.Rankagent;
 import rdarank.Ranklog;
@@ -33,30 +34,38 @@ public class UpdateRankHandler extends MessageHandler {
             Map user = (Map) data;
             tableMap.putAll(user);
         }
-
+        
+        Long time = System.currentTimeMillis();
+        Timestamp updateTime = new Timestamp(time);
+        
         for (Object id : tableMap.keySet()) {
+            Iterator<Entity> it = agent.getRankTableIterator(tx);
+            Integer rank = 1;
+            while(it.hasNext()){
+                Ranktable table = (Ranktable) it.next();
+                if((table.getData(tx) > (Long)tableMap.get(id)) && table.getUserID(tx) != id)
+                    rank = rank + 1;
+            }
+            
             Ranktable table = agent.getRankTable(tx, (String) id);
-            long d = 0;
-            long count;
-
+            long count = 1;
             if (table == null) {
                 table = agent.createRankTable(tx, (String) id);
-                table.setRank(tx, 1);
-                count = 1;
-
-                long n = agent.getTotalUsers(tx) + 1;
-                agent.setTotalUsers(tx, n);
+                agent.setTotalUsers(tx, agent.getTotalUsers(tx) + 1);
             } else {
                 count = table.getConnectionCount(tx) + 1;
             }
-
-            if((Long)tableMap.get(id) > table.getData(tx))
+            
+            if((Long)tableMap.get(id) > table.getData(tx)){
+                //Update Data
                 table.setData(tx, (Long) tableMap.get(id));
+                
+                //Update Ranking
+                table.setRank(tx, rank);
+            }
 
             //Table Status
             table.setConnectionCount(tx, count);
-            Long time = System.currentTimeMillis();
-            Timestamp updateTime = new Timestamp(time);
             table.setCurrentTime(tx, time);
             table.setLastAccessTime(tx, updateTime);
         }
@@ -76,8 +85,6 @@ public class UpdateRankHandler extends MessageHandler {
         }
 
         // Update LastAccessTime
-        Long time = System.currentTimeMillis();
-        Timestamp updateTime = new Timestamp(time);
         log.setLastAccessTime(tx, updateTime);
         log.setCurrentTime(tx, time);
 

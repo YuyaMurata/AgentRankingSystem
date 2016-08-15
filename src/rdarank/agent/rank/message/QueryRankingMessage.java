@@ -6,17 +6,18 @@
 package rdarank.agent.rank.message;
 
 import com.ibm.agent.exa.Message;
+import java.util.Map;
 
 /**
  *
  * @author kaeru
  */
 public class QueryRankingMessage extends Message{
-    //User Data
-    public Long userData;
-
-    public void setParams(Long userData){
-        this.userData = userData;
-    }
+    public String type;
+    public String id;
     
+    public void setParams(String type, String id){
+        this.type = type;
+        this.id = id;
+    }
 }
