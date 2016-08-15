@@ -16,7 +16,7 @@ public class UpdateRankEx extends AgentType{
     private static final String AGENT_TYPE = "rankagent";
     private static final String MESSAGE_TYPE = "updateRankAgent";
     private String agID;
-
+    
     public UpdateRankEx(String agID) {
         this.agID = agID;
         this.agentKey = new AgentKey(AGENT_TYPE, new Object[]{agID});
