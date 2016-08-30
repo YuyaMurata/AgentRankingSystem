@@ -26,7 +26,7 @@ public class ProfileGenerator {
     
     public void initProfile(Integer numberOfUser, Integer mode, String rule, Long seed){
         //Random Parameter
-        rand.reSeed(seed);
+        if(seed != -1L) rand.reSeed(seed);
         mu = 100/2;
         sigma = 100/10;
         this.rule = rule;
