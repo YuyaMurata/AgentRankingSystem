@@ -28,7 +28,7 @@ public class Data{
         this.value = value;
         this.mode = mode;
         
-        rand.reSeed(seed);
+        if(seed != -1L) rand.reSeed(seed);
     }
         
     private Integer idNo(){
