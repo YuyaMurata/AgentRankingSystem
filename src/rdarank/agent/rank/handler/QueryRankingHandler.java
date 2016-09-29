@@ -34,12 +34,17 @@ public class QueryRankingHandler extends MessageHandler {
         
         Ranktable table = agent.getRankTable(tx, queryMsg.id);
         if(queryMsg.type.equals("")){
+            //順位の取得
             return table.getRank(tx);
-        }else{
+        }else if(queryMsg.type.equals("delete")){
+            //重複排除
+            table.remove(tx);
+        }else if(queryMsg.type.equals("sync")){
             HashMap map = new HashMap();
             map.put(table.getUserID(tx), table.getLastAccessTime(tx)+","+table.getRank(tx));
             long rank = table.getRank(tx);
             
+            //同期用のデータセットを取得
             Iterator<Entity> it = agent.getRankTableIterator(tx);
             while(it.hasNext()){
                 table = (Ranktable) it.next();
@@ -49,6 +54,8 @@ public class QueryRankingHandler extends MessageHandler {
             
             return map;
         }
+        
+        return null;
     }
 
 }

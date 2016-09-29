@@ -39,8 +39,7 @@ public class UpdateRankEx extends AgentType{
             //Sync Message
             Object ret = agentManager.sendMessage(agentKey, msg);
             //agentManager.putMessage(agentKey, msg);
-            
-
+    
         } catch (Exception e) {
             e.printStackTrace();
         }
