@@ -7,7 +7,6 @@ package rda.manager;
 
 import java.util.Map;
 import rda.agent.template.AgentLogPrinterTemplate;
-import rda.log.AgentLogPrint;
 import rda.log.LogSchedule;
 
 /**
