@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rdarank.agent.user.logger;
 
 import java.util.ArrayList;
@@ -16,10 +11,6 @@ import rda.log.AgentLogPrint;
 import rdarank.agent.user.db.UserAgentDBAccess;
 import rdarank.agent.user.manager.UserAgentManager;
 
-/**
- *
- * @author kaeru
- */
 public class UserAgentLogPrinter extends AgentLogPrinterTemplate{
     private static UserAgentManager manager = UserAgentManager.getInstance();
     private UserAgentDBAccess db;

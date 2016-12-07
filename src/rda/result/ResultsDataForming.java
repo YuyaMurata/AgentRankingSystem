@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rda.result;
 
 import com.ibm.ws.xs.jdk5.java.util.Arrays;
@@ -24,10 +19,6 @@ import java.util.Map;
 import java.util.TreeMap;
 import rda.property.SetProperty;
 
-/**
- *
- * @author kaeru
- */
 public class ResultsDataForming implements SetProperty{
     private static final Integer digit = LOG_PERIOD.toString().length()-1;
     

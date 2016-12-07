@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rdarank.agent.rank.manager;
 
 import java.util.ArrayList;
@@ -24,10 +19,6 @@ import rdarank.agent.rank.creator.CreateRankAgentEx;
 import rdarank.agent.rank.logger.RankAgentLogPrinter;
 import rdarank.server.DistributedServerConnection;
 
-/**
- *
- * @author kaeru
- */
 public class RankAgentManager extends AgentManager{
     private static RankAgentManager manager = new RankAgentManager();
     private static Boolean runnable = true;

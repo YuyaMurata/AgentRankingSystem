@@ -1,7 +1,5 @@
 package rda.agent.queue;
 
-import rda.log.AgentLogPrint;
-
 public class MessageQueueEvent extends Exception{
     private String name, clonename, original;
     

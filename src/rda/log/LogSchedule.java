@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rda.log;
 
 import java.util.HashMap;
@@ -16,12 +11,7 @@ import java.util.concurrent.TimeUnit;
 import rda.agent.template.AgentLogPrinterTemplate;
 import rda.manager.LoggerManager;
 import rdarank.agent.all.logger.SystemLogPrinter;
-import rdarank.agent.user.manager.UserAgentManager;
 
-/**
- *
- * @author kaeru
- */
 public class LogSchedule implements Runnable{
     private static final String name = "LogSchedule";
     private final ScheduledExecutorService schedule = Executors.newSingleThreadScheduledExecutor();

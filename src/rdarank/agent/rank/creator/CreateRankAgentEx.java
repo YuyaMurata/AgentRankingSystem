@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rdarank.agent.rank.creator;
 
 import com.ibm.agent.exa.AgentException;
@@ -12,13 +7,8 @@ import com.ibm.agent.exa.MessageFactory;
 import rda.agent.queue.MessageQueue;
 import rdarank.agent.rank.manager.RankAgentManager;
 import rdarank.agent.rank.message.InitRankMessage;
-import rdarank.agent.rank.updater.UpdateRank;
 import rdarank.agent.rank.updater.UpdateRankEx;
 
-/**
- *
- * @author kaeru
- */
 public class CreateRankAgentEx {
     //Executorを転送する必要が無いときのエージェントの生成
     public static final String AGENT_TYPE = "rankagent";

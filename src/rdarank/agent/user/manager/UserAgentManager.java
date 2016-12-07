@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rdarank.agent.user.manager;
 
 import java.util.ArrayList;
@@ -22,15 +17,10 @@ import rda.manager.IDManager;
 import rda.manager.LoggerManager;
 import rda.window.WindowController;
 
-import rdarank.agent.user.creator.CreateUserAgent;
 import rdarank.agent.user.creator.CreateUserAgentEx;
 import rdarank.agent.user.logger.UserAgentLogPrinter;
 import rdarank.server.DistributedServerConnection;
 
-/**
- *
- * @author kaeru
- */
 public class UserAgentManager extends AgentManager{
     private static UserAgentManager manager = new UserAgentManager();
     private static Boolean runnable = true;

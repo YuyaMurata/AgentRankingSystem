@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rda.stream;
 
 import java.util.Map;
@@ -16,14 +11,7 @@ import rda.data.test.TestData;
 import rda.manager.AgentManager;
 import rda.manager.TestCaseManager;
 import rda.window.Window;
-import rda.window.WindowController;
-import rdarank.agent.rank.manager.RankAgentManager;
-import rdarank.agent.user.manager.UserAgentManager;
 
-/**
- *
- * @author kaeru
- */
 public class DataStream implements Runnable{
     private static final String name = "DataStream";
     private final ScheduledExecutorService schedule = Executors.newSingleThreadScheduledExecutor();

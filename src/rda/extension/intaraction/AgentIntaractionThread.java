@@ -1,24 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rda.extension.intaraction;
 
 import com.ibm.agent.exa.client.AgentClient;
-import rda.agent.client.AgentConnection;
 import rda.agent.client.DistributedAgentConnection;
 import rda.agent.queue.MessageObject;
 import rda.extension.manager.SystemManagerExtension;
 import rda.manager.AgentManager;
-import rda.manager.IDManager;
 import rda.window.Window;
 import rdarank.agent.rank.manager.RankAgentManager;
 
-/**
- *
- * @author kaeru
- */
 public class AgentIntaractionThread extends Thread {
 
     private static final String name = "AgentIntaraction Thread";

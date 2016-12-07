@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rdarank.main;
 
 import rda.property.SetProperty;
@@ -10,17 +5,12 @@ import rda.property.SetProperty;
 import rdarank.agent.rank.manager.RankAgentManager;
 import rdarank.agent.user.manager.UserAgentManager;
 import rdarank.deploy.DeployStrategy;
-import rdarank.io.TimerInOut;
 import rdarank.manager.ExecuteDataStream;
 import rdarank.manager.LaunchSettingsMap;
 import rdarank.manager.LaunchSystem;
 import rdarank.manager.RankingSystemManager;
 import rdarank.manager.ShutdownSystem;
 
-/**
- *
- * @author kaeru
- */
 public class RankingSystemMain2 implements SetProperty{
     public static void main(String[] args) {
         Long start = System.currentTimeMillis();

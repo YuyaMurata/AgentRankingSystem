@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rdarank.agent.all.reader;
 
 import com.ibm.agent.exa.AgentKey;
@@ -18,10 +13,6 @@ import java.util.TreeMap;
 import rda.agent.client.AgentConnection;
 import rdarank.agent.user.reader.UserInfo;
 
-/**
- *
- * @author kaeru
- */
 public class ReadALLAgents implements AgentExecutor, Serializable{
     private static final String MESSAGE_TYPE = "readUserAgent";
 

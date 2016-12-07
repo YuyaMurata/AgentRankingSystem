@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rda.log;
 
 import org.slf4j.Logger;
@@ -10,10 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
-/**
- *
- * @author kaeru
- */
 public class AgentSystemLogger {
     //Logger SLF4J
     /**

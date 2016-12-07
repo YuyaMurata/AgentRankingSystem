@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rda.extension.intaraction;
 
 import com.ibm.agent.exa.AgentException;
@@ -19,10 +14,6 @@ import java.io.ObjectOutput;
 import java.util.Collection;
 import rda.agent.queue.MessageObject;
 
-/**
- *
- * @author kaeru
- */
 public class Transport implements AgentExecutor, Externalizable{
     private static final String AGENT_TYPE ="intaractionmanageragent";
     private static final String MESSAGE_TYPE="intaractionAgent";

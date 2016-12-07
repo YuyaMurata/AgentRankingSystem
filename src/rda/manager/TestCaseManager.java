@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rda.manager;
 
 import java.util.Map;
@@ -12,10 +7,6 @@ import rda.data.type.FlatData;
 import rda.data.type.ImpulseData;
 import rda.data.type.MountData;
 
-/**
- *
- * @author 悠也
- */
 public class TestCaseManager{
     private static TestCaseManager manager = new TestCaseManager();
     public ProfileGenerator profgen;

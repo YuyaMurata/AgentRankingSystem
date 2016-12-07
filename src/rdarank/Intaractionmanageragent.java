@@ -1,6 +1,5 @@
 package rdarank;
 
-import com.ibm.agent.exa.AgentException;
 import com.ibm.agent.exa.impl.HPAEntity;
 import com.ibm.agent.exa.TxID;
 

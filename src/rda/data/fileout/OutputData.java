@@ -8,8 +8,6 @@ import java.io.PrintWriter;
 
 /**
  * Output Log File
- * Not Use 
- * @author kaeru
  */
 public class OutputData {
 	private String filename;

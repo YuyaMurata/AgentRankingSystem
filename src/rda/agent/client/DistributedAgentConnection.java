@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rda.agent.client;
 
 import com.ibm.agent.exa.client.AgentClient;
@@ -10,10 +5,6 @@ import org.apache.commons.pool2.ObjectPool;
 import org.apache.commons.pool2.impl.GenericObjectPool;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 
-/**
- *
- * @author kaeru
- */
 public class DistributedAgentConnection {
     private ObjectPool<AgentClient> _pool;
     private String[] h;

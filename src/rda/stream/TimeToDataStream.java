@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rda.stream;
 
 import java.util.Map;
 import rda.agent.queue.MessageObject;
-import rda.agent.queue.MessageQueue;
-import rda.agent.queue.MessageQueueEvent;
 import rda.agent.template.AgentType;
 import rda.data.test.TestData;
 import rda.manager.AgentManager;
@@ -16,8 +9,7 @@ import rda.manager.TestCaseManager;
 import rda.window.Window;
 
 /**
- * Distirubutee Environment  -- X
- * @author kaeru
+ * Distirubute Environment  -- X
  */
 public class TimeToDataStream {
     private static final String name = "DataStream";
