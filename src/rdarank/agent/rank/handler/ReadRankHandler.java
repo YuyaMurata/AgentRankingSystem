@@ -17,7 +17,7 @@ public class ReadRankHandler extends MessageHandler {
         // トランザクションIDを取得
         TxID tx = getTx();
 
-        return 0L;
+        return rank.getRankID(tx);
     }
 
 }
