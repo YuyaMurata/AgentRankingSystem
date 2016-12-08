@@ -12,10 +12,8 @@ public class IntaractionAgentHandler extends MessageHandler{
     
     @Override
     public Object onMessage(Message msg) throws Exception {
-        // マスターエンティティを取得
         Useragent agent = (Useragent)getEntity();
         
-        // トランザクションIDを取得
         TxID tx = getTx();
         
         //UserData

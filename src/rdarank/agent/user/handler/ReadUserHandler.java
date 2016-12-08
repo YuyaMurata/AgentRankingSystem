@@ -7,31 +7,27 @@ import rdarank.Profile;
 import rdarank.Useragent;
 import rdarank.agent.user.reader.UserInfo;
 
-public class ReadUserHandler extends MessageHandler{
+public class ReadUserHandler extends MessageHandler {
 
-	@Override
-	public Object onMessage(Message arg0) throws Exception {
-		// TODO 自動生成されたメソッド・スタブ
+    @Override
+    public Object onMessage(Message arg0) throws Exception {
+        Useragent user = (Useragent) getEntity();
 
-		// マスターエンティティを取得
-		Useragent user = (Useragent)getEntity();
+        TxID tx = getTx();
 
-		// トランザクションIDを取得
-		TxID tx = getTx();
+        Profile prof = user.getProfile(tx);
 
-		Profile prof = user.getProfile(tx);
+        UserInfo info = new UserInfo(
+                /*UserID*/user.getUserID(tx),
+                /*Name*/ prof.getName(tx),
+                /*Sex*/ prof.getSex(tx),
+                /*Age*/ prof.getAge(tx),
+                /*address*/ prof.getAddress(tx),
+                /*data*/ user.getData(tx),
+                /*count */ user.getConnectionCount(tx)
+        );
 
-		UserInfo info = new UserInfo(
-				/*UserID*/	user.getUserID(tx),
-				/*Name*/ 	prof.getName(tx),
-				/*Sex*/ 	prof.getSex(tx),
-				/*Age*/		prof.getAge(tx),
-				/*address*/	prof.getAddress(tx),
-				/*data*/	user.getData(tx),
-                                /*count */      user.getConnectionCount(tx)
-                                );
-
-		return info;
-	}
+        return info;
+    }
 
 }

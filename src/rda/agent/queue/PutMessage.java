@@ -7,7 +7,6 @@ public class PutMessage extends Message {
     
     public List msgPack;
 	
-    // パラメータをセット
     public void setParams(List msgPack) {
         this.msgPack = msgPack;
     }

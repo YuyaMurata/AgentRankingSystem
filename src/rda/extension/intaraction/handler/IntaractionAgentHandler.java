@@ -12,7 +12,6 @@ public class IntaractionAgentHandler extends MessageHandler{
 
     @Override
     public Object onMessage(Message msg) throws Exception {
-        // TODO 自動生成されたメソッド・スタブ
         SimpleMessage smsg = (SimpleMessage)msg;
         MessageObject trans = (MessageObject) smsg.get("message");
 

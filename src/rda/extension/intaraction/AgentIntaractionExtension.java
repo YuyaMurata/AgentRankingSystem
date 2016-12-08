@@ -43,13 +43,9 @@ public class AgentIntaractionExtension implements Extension {
 
     @Override
     public void regionChanged(int serverRole, String regionName) throws Exception {
-        // リージョン名のセット
         this.regionName = regionName;
 
         if (serverRole == Extension.ROLE_PRIMARY) {
-            // ロールがエージェント実行環境のプライマリであるかをチェック
-            // し，そうであればサービスを開始する．
-            // ただし，サンプルの構成では，かならずプライマリである．
             startService();
         }
     }
@@ -57,9 +53,6 @@ public class AgentIntaractionExtension implements Extension {
     @Override
     public void roleChanged(int serverRole) throws Exception {
         if (serverRole == Extension.ROLE_PRIMARY) {
-            // ロールがエージェント実行環境のプライマリであるかをチェック
-            // し，そうであればサービスを開始する．
-            // ただし，サンプルの構成では，かならずプライマリである．
             startService();
         }
     }
@@ -70,13 +63,9 @@ public class AgentIntaractionExtension implements Extension {
 
     @Override
     public void start(int serverRole, String regionName) throws Exception {
-        // リージョン名のセット
         this.regionName = regionName;
 
         if (serverRole == Extension.ROLE_PRIMARY) {
-            // ロールがエージェント実行環境のプライマリであるかをチェック
-            // し，そうであればサービスを開始する．
-            // ただし，サンプルの構成では，かならずプライマリである．
             startService();
         }
     }

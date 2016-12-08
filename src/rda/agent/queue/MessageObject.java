@@ -18,7 +18,6 @@ public class MessageObject implements Externalizable {
     }
     
     public MessageObject(String destID, Object data) {
-        // TODO 自動生成されたコンストラクター・スタブ
         this.lateTime = System.currentTimeMillis();
         this.id = destID;
         this.data = (List)data;

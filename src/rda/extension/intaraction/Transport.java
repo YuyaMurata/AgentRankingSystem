@@ -41,14 +41,12 @@ public class Transport implements AgentExecutor, Externalizable{
 
     @Override
     public Object complete(Collection<Object> results) {
-        // TODO 自動生成されたメソッド・スタブ
         Object[] ret = results.toArray();
         return ret[0];
     }
 
     @Override
     public Object execute() {
-        // TODO 自動生成されたメソッド・スタブ
         try {
             AgentManager agentManager = AgentManager.getAgentManager();
                 
@@ -61,7 +59,6 @@ public class Transport implements AgentExecutor, Externalizable{
 
             //return ret;
         } catch (IllegalAccessException | InstantiationException e) {
-            // TODO 自動生成された catch ブロック
             return e;
         } catch (AgentException ex) {
             return ex;
