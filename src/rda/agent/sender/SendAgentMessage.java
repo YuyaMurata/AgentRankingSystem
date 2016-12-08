@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rda.agent.sender;
 
 import com.ibm.agent.exa.AgentException;
@@ -22,10 +17,6 @@ import rda.agent.queue.PutMessage;
 import rda.agent.template.AgentType;
 import rda.window.Window;
 
-/**
- *
- * @author kaeru
- */
 public class SendAgentMessage extends AgentType  implements AgentExecutor, Externalizable{
     private static final long serialVersionUID = -853123152041L;
     

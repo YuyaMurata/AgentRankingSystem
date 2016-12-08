@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rdarank.agent.rank.db;
 
 import com.ibm.agent.exa.AgentManager;
@@ -20,11 +15,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import rda.agent.client.AgentConnection;
 import rda.agent.client.DistributedAgentConnection;
 import rda.db.SQLReturnObject;
 import rdarank.agent.rank.manager.RankAgentManager;
-import rdarank.server.DistributedServerConnection;
 
 /**
  *

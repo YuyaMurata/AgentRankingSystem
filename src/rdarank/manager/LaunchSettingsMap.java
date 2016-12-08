@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rdarank.manager;
 
 import java.util.HashMap;
@@ -10,10 +5,6 @@ import java.util.Map;
 import rda.log.AgentLogPrint;
 import rda.property.SetProperty;
 
-/**
- *
- * @author kaeru
- */
 public class LaunchSettingsMap implements SetProperty{
     private Map prop;
     public LaunchSettingsMap() {

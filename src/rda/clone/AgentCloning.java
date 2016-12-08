@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rda.clone;
 
 import rda.manager.AgentManager;
 import rda.manager.IDManager;
 
-/**
- *
- * @author 悠也
- */
 public class AgentCloning {
     public static String cloning(AgentManager manager, String sourceID, Object originalState){
         if(!manager.getAutoMode()) return "";

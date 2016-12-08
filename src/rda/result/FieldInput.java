@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rda.result;
 
 import java.text.ParseException;
@@ -13,10 +8,6 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-/**
- *
- * @author kaeru
- */
 public class FieldInput {
     private String time;
     private final List<String> lengthField  = new ArrayList<>();

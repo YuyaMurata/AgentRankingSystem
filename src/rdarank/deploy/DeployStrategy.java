@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rdarank.deploy;
 
 import com.ibm.agent.exa.client.AgentClient;
@@ -15,10 +10,6 @@ import rdarank.agent.rank.manager.RankAgentManager;
 import rdarank.agent.user.manager.UserAgentManager;
 import rdarank.manager.LaunchCreateAgent;
 
-/**
- *
- * @author kaeru
- */
 public class DeployStrategy {
     private Integer pattern = 0;
     public DeployStrategy(Integer pattern) {

@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rda.data;
 
 import rda.data.test.TestData;
 
-/**
- *
- * @author kaeru
- */
 public interface DataType{
     public abstract TestData nextData(Long time);
     public abstract String getName();

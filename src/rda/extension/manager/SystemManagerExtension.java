@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rda.extension.manager;
 
 import com.ibm.agent.exa.AgentException;
@@ -15,10 +10,6 @@ import rda.agent.template.AgentType;
 import rda.extension.intaraction.AgentIntaractionExtension;
 import rdarank.manager.RankingSystemManager;
 
-/**
- *
- * @author kaeru
- */
 public class SystemManagerExtension implements Extension {
 
     private static SystemManagerExtension extention = new SystemManagerExtension();

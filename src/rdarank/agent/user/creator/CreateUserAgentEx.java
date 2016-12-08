@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rdarank.agent.user.creator;
 
 import com.ibm.agent.exa.AgentException;
@@ -10,20 +5,13 @@ import com.ibm.agent.exa.AgentKey;
 import com.ibm.agent.exa.AgentManager;
 import com.ibm.agent.exa.MessageFactory;
 import java.util.Map;
-import rda.agent.queue.MessageQueue;
 import rda.agent.template.AgentType;
 import rda.data.profile.ProfileGenerator;
 import rda.manager.TestCaseManager;
 import rdarank.agent.user.manager.UserAgentManager;
 import rdarank.agent.user.message.InitUserMessage;
-import rdarank.agent.user.updater.UpdateUser;
 import rdarank.agent.user.updater.UpdateUserAnsyncEx;
-import rdarank.agent.user.updater.UpdateUserEx;
 
-/**
- *
- * @author kaeru
- */
 public class CreateUserAgentEx {
     //Executorを転送する必要が無いときのエージェントの生成
     private static final String AGENT_TYPE = "useragent";

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rdarank.manager;
 
 import com.ibm.agent.exa.AgentException;
@@ -17,10 +12,6 @@ import java.util.Map;
 import rda.agent.client.DistributedAgentConnection;
 import rda.extension.manager.message.CreateAgentMessage;
 
-/**
- *
- * @author kaeru
- */
 public class LaunchCreateAgent implements AgentExecutor, Serializable {
     private static final long serialVersionUID = -1381710350145867L;
     

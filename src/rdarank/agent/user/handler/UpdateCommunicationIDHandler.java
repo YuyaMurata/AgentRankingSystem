@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rdarank.agent.user.handler;
 
 import com.ibm.agent.exa.Message;
@@ -11,10 +6,6 @@ import com.ibm.agent.exa.TxID;
 import rdarank.Useragent;
 import rdarank.agent.user.message.UpdateCommunicationIDMessage;
 
-/**
- *
- * @author kaeru
- */
 public class UpdateCommunicationIDHandler  extends MessageHandler{
 
     @Override

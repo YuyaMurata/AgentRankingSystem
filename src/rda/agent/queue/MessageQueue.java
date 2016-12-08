@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package rda.agent.queue;
 
 import java.util.concurrent.BlockingQueue;
@@ -13,10 +8,6 @@ import rda.clone.AgentCloning;
 import rda.manager.AgentManager;
 import rda.manager.IDManager;
 
-/**
- *
- * @author 悠也
- */
 public class MessageQueue extends MessageQueueProcess{
     private AgentManager manager;
     private BlockingQueue<Object> queue;
