@@ -12,142 +12,143 @@ import rdarank.manager.RankingSystemManager;
 
 public class SystemManagerExtension implements Extension {
 
-    private static SystemManagerExtension extention = new SystemManagerExtension();
+	private static SystemManagerExtension extention = new SystemManagerExtension();
 
-    public static SystemManagerExtension getInstance() {
-        return extention;
-    }
+	public static SystemManagerExtension getInstance() {
+		return extention;
+	}
 
-    AgentKey extensionAgentKey;
+	AgentKey extensionAgentKey;
 
-    public SystemManagerExtension() {
-    }
+	public SystemManagerExtension() {
+	}
 
-    // リージョン名
-    String regionName;
+	// リージョン名
+	String regionName;
 
-    @Override
-    public void initialize(String serverTypeName, Properties params) throws Exception {
-    }
+	@Override
+	public void initialize(String serverTypeName, Properties params) throws Exception {
+	}
 
-    @Override
-    public void primaryChanged() throws Exception {
-    }
+	@Override
+	public void primaryChanged() throws Exception {
+	}
 
-    @Override
-    public void regionChanged(int serverRole, String regionName) throws Exception {
-        // リージョン名のセット
-        this.regionName = regionName;
+	@Override
+	public void regionChanged(int serverRole, String regionName) throws Exception {
+		// リージョン名のセット
+		this.regionName = regionName;
 
-        if (serverRole == Extension.ROLE_PRIMARY) {
-            // ロールがエージェント実行環境のプライマリであるかをチェック
-            // し，そうであればサービスを開始する．
-            // ただし，サンプルの構成では，かならずプライマリである．
-            startService();
-        }
-    }
+		if (serverRole == Extension.ROLE_PRIMARY) {
+			// ロールがエージェント実行環境のプライマリであるかをチェック
+			// し，そうであればサービスを開始する．
+			// ただし，サンプルの構成では，かならずプライマリである．
+			startService();
+		}
+	}
 
-    @Override
-    public void roleChanged(int serverRole) throws Exception {
-        if (serverRole == Extension.ROLE_PRIMARY) {
-            // ロールがエージェント実行環境のプライマリであるかをチェック
-            // し，そうであればサービスを開始する．
-            // ただし，サンプルの構成では，かならずプライマリである．
-            startService();
-        }
-    }
+	@Override
+	public void roleChanged(int serverRole) throws Exception {
+		if (serverRole == Extension.ROLE_PRIMARY) {
+			// ロールがエージェント実行環境のプライマリであるかをチェック
+			// し，そうであればサービスを開始する．
+			// ただし，サンプルの構成では，かならずプライマリである．
+			startService();
+		}
+	}
 
-    @Override
-    public void shutdown() {
-        this.state = false;
+	@Override
+	public void shutdown() {
+		this.state = false;
 
-        //Only Thread Type
-        //manager.dataStream().stop();
-        manager.shutdownSystem();
-    }
+		//Only Thread Type
+		//manager.dataStream().stop();
+		manager.shutdownSystem();
+	}
 
-    @Override
-    public void start(int serverRole, String regionName) throws Exception {
-        // リージョン名のセット
-        this.regionName = regionName;
+	@Override
+	public void start(int serverRole, String regionName) throws Exception {
+		// リージョン名のセット
+		this.regionName = regionName;
 
-        if (serverRole == Extension.ROLE_PRIMARY) {
-            // ロールがエージェント実行環境のプライマリであるかをチェック
-            // し，そうであればサービスを開始する．
-            // ただし，サンプルの構成では，かならずプライマリである．
-            startService();
-        }
-    }
+		if (serverRole == Extension.ROLE_PRIMARY) {
+			// ロールがエージェント実行環境のプライマリであるかをチェック
+			// し，そうであればサービスを開始する．
+			// ただし，サンプルの構成では，かならずプライマリである．
+			startService();
+		}
+	}
 
-    private void startService() {
-        System.out.println("Start SystemManager Extension");
+	private void startService() {
+		System.out.println("Start SystemManager Extension");
 
-        System.out.println("************ ************  **********  ************");
-        System.out.println("************ ************ ************ ************");
-        System.out.println("    ***      ***          ***       **      ***    ");
-        System.out.println("    ***      ************  ********         ***    ");
-        System.out.println("    ***      ************    ********       ***    ");
-        System.out.println("    ***      ***          **       ***      ***    ");
-        System.out.println("    ***      ************ ************      ***    ");
-        System.out.println("    ***      ************  **********       ***    ");
+		System.out.println("************ ************  **********  ************");
+		System.out.println("************ ************ ************ ************");
+		System.out.println("    ***      ***          ***       **      ***    ");
+		System.out.println("    ***      ************  ********         ***    ");
+		System.out.println("    ***      ************    ********       ***    ");
+		System.out.println("    ***      ***          **       ***      ***    ");
+		System.out.println("    ***      ************ ************      ***    ");
+		System.out.println("    ***      ************  **********       ***    ");
 
-        //Set Agent
-        AgentManager am = AgentManager.getAgentManager();
-        try {
-            //SystemManager Extension AgentKey
-            extensionAgentKey = new AgentKey("systemmanageragent", new Object[]{"systemmanageragent"});
+		//Set Agent
+		AgentManager am = AgentManager.getAgentManager();
+		try {
+			//SystemManager Extension AgentKey
+			extensionAgentKey = new AgentKey("systemmanageragent", new Object[]{"systemmanageragent"});
 
-            //CreateAgent
-            if (am.exists(extensionAgentKey)) {
-                System.out.println("SystemManagerAgent already exists");
-            } else {
-                am.createAgent(extensionAgentKey);
-            }
-        } catch (AgentException ex) {
-        }
-    }
+			//CreateAgent
+			if (am.exists(extensionAgentKey)) {
+				System.out.println("SystemManagerAgent already exists");
+			} else {
+				am.createAgent(extensionAgentKey);
+			}
+		} catch (AgentException ex) {
+		}
+	}
 
-    //Rankig System Manager
-    private RankingSystemManager manager;
-    private Boolean state = true;
-    public void startRankingSystem(Map props) {
-        manager = RankingSystemManager.getInstance();
+	//Rankig System Manager
+	private RankingSystemManager manager;
+	private Boolean state = true;
 
-        //Setting Property & Initialise Agent
-        manager.setPropMap(props);
-        //manager.launchSystem(); //Local
+	public void startRankingSystem(Map props) {
+		manager = RankingSystemManager.getInstance();
 
-        //DistributedSystem
-        manager.launchDistSystem();
+		//Setting Property & Initialise Agent
+		manager.setPropMap(props);
+		//manager.launchSystem(); //Local
 
-        pattern = (Integer) ((Map) props.get("manager")).get("DEPLOY_PATTERN");
+		//DistributedSystem
+		manager.launchDistSystem();
 
-        //Data Stream Generator Initialize
-        manager.setDataStreamGenerator();
+		pattern = (Integer) ((Map) props.get("manager")).get("DEPLOY_PATTERN");
 
-        //Start Intaraction
-        AgentIntaractionExtension.getInstance().startConnectionAgents();
-    }
-    
-    public void stopRankingSystem(){
-        
-    }
+		//Data Stream Generator Initialize
+		manager.setDataStreamGenerator();
 
-    public void dataGenerate(Long time) {
-        manager.timeDataStream().stream(time);
-    }
+		//Start Intaractionz
+		AgentIntaractionExtension.getInstance().startConnectionAgents();
+	}
 
-    public Boolean getState() {
-        return this.state;
-    }
+	public void stopRankingSystem() {
 
-    private Integer pattern;
+	}
 
-    public Integer getDeployPattern() {
-        return this.pattern;
-    }
-    
-    public void setDataStreamUseAgentList(AgentType agArr[]){
-        manager.timeDataStream().setAgentTypeList(agArr);
-    }
+	public void dataGenerate(Long time) {
+		manager.timeDataStream().stream(time);
+	}
+
+	public Boolean getState() {
+		return this.state;
+	}
+
+	private Integer pattern;
+
+	public Integer getDeployPattern() {
+		return this.pattern;
+	}
+
+	public void setDataStreamUseAgentList(AgentType agArr[]) {
+		manager.timeDataStream().setAgentTypeList(agArr);
+	}
 }
